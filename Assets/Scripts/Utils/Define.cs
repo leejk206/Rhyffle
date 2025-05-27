@@ -9,6 +9,8 @@ public class Define
         Lobby, // 메인
         Game, // 게임
         Loading, // 로딩
+        LoadingGame, // 게임 시작 전 로딩 (곡 설명/난이도/모드 정보/ 점수 정보)
+        ScoreBoard, //게임 결과화면
     }
 
 }

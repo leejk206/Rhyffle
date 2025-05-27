@@ -11,8 +11,10 @@ public class Managers : MonoBehaviour
     #region Content
     // 게임 컨텐츠 구현에 필요한 매니저 선언
     // CardManager _card = new CardManager();
+    GameUIManager _uiManager = new GameUIManager();
 
     // public static CardManager Card { get { return Instance._card } }
+    public static GameUIManager UI { get { return Instance._uiManager; } }
     #endregion
 
     #region Core
