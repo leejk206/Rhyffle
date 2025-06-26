@@ -15,12 +15,20 @@ public class NoteCreationTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= 0.25f)
+        if (timer >= 0.5f)
         {
             timer = 0;
             GameObject g = Instantiate(prefab);
-            int lane = UnityEngine.Random.Range(0, 21);
-            int length = UnityEngine.Random.Range(1, 21 - lane);
+            int lane = 0;//UnityEngine.Random.Range(0, 21);
+            int length = 0;
+            if (21 - lane <= 7)
+            {
+                length = UnityEngine.Random.Range(1, 21 - lane);
+            }
+            else
+            {
+                length = UnityEngine.Random.Range(1, 7);
+            }
             g.GetComponent<Note>().set(lane, length);
             notes.Add(g);
         }

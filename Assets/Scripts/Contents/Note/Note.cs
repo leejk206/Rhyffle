@@ -18,11 +18,11 @@ public class Note : MonoBehaviour
         if (height >= 0)
         {
             gameObject.transform.localScale = new Vector3((2.0f - 3.0f * height / 8.0f) * length, 2.0f - (3.0f * height) / 8.0f, -2);
-            gameObject.transform.localPosition = new Vector3(lanePos * (1 - (3 * height / 16)), 1.05f * height - 2.45f, -2);
+            gameObject.transform.localPosition = new Vector3(lanePos * (1 - (3 * height / 16)), 2f * height - 2.25f, -2);
         }
         else
         {
-            gameObject.transform.localPosition = new Vector3(lanePos, 1.05f * height - 2.45f, -2);
+            gameObject.transform.localPosition = new Vector3(lanePos, 2f * height - 2.25f, -2);
         }
         //test용 이후 이 코드는 없어질 것임
         if (gameObject.transform.position.y < -2.6)
@@ -38,7 +38,7 @@ public class Note : MonoBehaviour
         this.length = length;
         lanePos = -6.725f + 0.61f * lane;
         gameObject.transform.localScale = new Vector3(length * 0.5f, 0.5f, 1);
-        gameObject.transform.localPosition = new Vector3(lanePos * 0.25f, 1.75f,2);
+        gameObject.transform.localPosition = new Vector3(lanePos * 0.25f, 5.8f,2);
     }
 
     virtual public void touched()
