@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 646327568514250522}
   - component: {fileID: 1564439497269783325}
-  - component: {fileID: -3919590257531567530}
+  - component: {fileID: 8244326249287074978}
   m_Layer: 0
-  m_Name: BasicNote
+  m_Name: FlickNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3919590257531567530
+--- !u!114 &8244326249287074978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335181937763020999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52a18a95606f3c54ab7411d1b9af2631, type: 3}
+  m_Script: {fileID: 11500000, guid: 37455d949214f11489a21726fc8eef82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   noteTime: 0
