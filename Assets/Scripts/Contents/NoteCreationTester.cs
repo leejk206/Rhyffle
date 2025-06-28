@@ -6,53 +6,52 @@ using Cysharp.Threading.Tasks;
 
 public class NoteCreationTester : MonoBehaviour
 {
-    float timer = 0.5f;
-    //�ӽ÷� ���� prefab �Լ���
+    //임시로 만든 prefab 함수들
     public GameObject basicNotePrefab;
     public GameObject slideNotePrefab;
     public GameObject flickNotePrefab;
 
-    //�ӽ÷� ���� ��Ʈ ����Ʈ��
+    //임시로 만든 노트 리스트들
     //Basic note [num][pos,lane,length] 
     BasicNoteInfo[] basicNote = new BasicNoteInfo[15];
     SlideNoteInfo[] slideNote = new SlideNoteInfo[10];
     FlickNoteInfo[] flickNote = new FlickNoteInfo[5];
-    //�Ʒ��� ������ ����� dropNote��
-    //����ؼ� Note�迭�� �����ϱ⺸�� �ܼ��� ���ں񱳸� �ؼ� ������ �θ��� ����
+    //아래는 실제로 사용할 dropNote들
+    //계속해서 Note배열을 참조하기보단 단순히 숫자비교를 해서 빠르게 부르기 위함
     List<int> dropBasic = new List<int>();
     List<int> dropSlide = new List<int>();
     List<int> dropFlick = new List<int>();
-    //�� ��Ʈ�� ������� ���� ���ϴ�
+    //총 노트의 개수라고 보면 편하다
     int basicNoteCount = 0;
     int slideNoteCount = 0;
     int flickNoteCount = 0;
-    //���� �����ؾ��ϴ� ����Ʈ�� ��
+    //현재 생성해야하는 리스트의 값
     int createBasicNote = 0;
     int createSlideNote = 0;
     int createFlickNote = 0;
-    //���� �����ؾ��ϴ� ����Ʈ�� ��
-    //����� �� ���� ��������
+    //현재 참조해야하는 리스트의 값
+    //사용할 지 말지 고민중임
     int curBasicNote = 0;
     int curSlideNote = 0;
     int curFlickNote = 0;
-    //���� �����Ǿ� �ִ� Note GameObject���� ����Ʈ�� ����
-    //pooling�� ����Ǿ� ���� ������ ������ �������� ���ǰ� �ʿ���
-    //���������δ� HoldNote�� ������ �ٸ� ��� ��Ʈ���� �����ص� �� �� ����
+    //현재 생성되어 있는 Note GameObject들의 리스트를 담음
+    //pooling이 적용되어 있지 않으며 통합할 지에대한 논의가 필요함
+    //개인적으로는 HoldNote를 제외한 다른 모든 노트들은 통합해도 될 것 같음
     List<GameObject> basicNoteObject = new List<GameObject>();
     List<GameObject> slideNoteObject = new List<GameObject>();
     List<GameObject> flickNoteObject = new List<GameObject>();
     #region touchBoolean
-    //�� ������ ��ġ�� ���
+    //그 블록을 터치한 경우
     public bool[] touched = new bool[21];
-    //�� �������� ���� ���(��ġ ������ ��쿡�� ����)
+    //그 블록으로 들어온 경우(터치 시작할 경우에도 켜짐)
     public bool[] entered = new bool[21];
-    //�� ���Ͽ��� ���� ������ ���
+    //그 블록에서 위로 움직인 경우
     public bool[] flickUp = new bool[21];
-    //�� ���Ͽ��� �Ʒ��� ������ ���
+    //그 블록에서 아래로 움직인 경우
     public bool[] flickDown = new bool[21];
     #endregion
 
-    //�̰��� ���� �����Ǿ�� ������ �� �����ϴ� ��Ʈ�� �ð�
+    //이것이 현재 판정되어야 눌렀을 때 판정하는 노트의 시간
     int bpm = 120;
     float currentTime = -144;
     float currentSpeed = 4;
@@ -101,7 +100,7 @@ public class NoteCreationTester : MonoBehaviour
         basicNoteCount = basicNote.Length;
         slideNoteCount = slideNote.Length;
         flickNoteCount = flickNote.Length;
-        //������ ���� Ÿ�ָ̹� ��� List �ʱ�ȭ
+        //생성할 때의 타이밍만 잡는 List 초기화
         for(int i = 0; i < basicNoteCount; i++)
         {
             dropBasic.Add(basicNote[i].position);
@@ -124,7 +123,7 @@ public class NoteCreationTester : MonoBehaviour
             if (!play)
             {
                 await UniTask.WaitUntil(() => play);
-                //���� ���� ���� �� �ʱ�ȭ
+                //정지 이후 개재 시 초기화
                 for (int i = 0; i < 21; i++)
                 {
                     touched[i] = false;
@@ -136,14 +135,14 @@ public class NoteCreationTester : MonoBehaviour
             }
 
             currentTime += 16 * bpm / 60 * Time.deltaTime;
-            //����� ��Ʈ ����
+            //저장된 노트 생성
             //Basic Note
             while (true)
             {
                 if (createBasicNote < basicNoteCount)
                 {
                     if (dropBasic[createBasicNote] <= currentTime + 64) {
-                        //�����ϰ� ���� index�� �Ѿ
+                        //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(basicNotePrefab);
                         temp.GetComponent<BasicNote>().set(basicNote[createBasicNote].line, basicNote[createBasicNote].length);
                         temp.GetComponent<BasicNote>().noteTime = basicNote[createBasicNote].position;
@@ -168,7 +167,7 @@ public class NoteCreationTester : MonoBehaviour
                 {
                     if (dropSlide[createSlideNote] <= currentTime + 64)
                     {
-                        //�����ϰ� ���� index�� �Ѿ
+                        //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(slideNotePrefab);
                         temp.GetComponent<SlideNote>().set(slideNote[createSlideNote].line, slideNote[createSlideNote].length);
                         temp.GetComponent<SlideNote>().noteTime = slideNote[createSlideNote].position;
@@ -193,7 +192,7 @@ public class NoteCreationTester : MonoBehaviour
                 {
                     if (dropFlick[createFlickNote] <= currentTime + 64)
                     {
-                        //�����ϰ� ���� index�� �Ѿ
+                        //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(flickNotePrefab);
                         temp.GetComponent<FlickNote>().set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
                         temp.GetComponent<FlickNote>().setDir(flickNote[createFlickNote].dir);
@@ -212,16 +211,16 @@ public class NoteCreationTester : MonoBehaviour
                     break;
                 }
             }
-            //���� ��Ʈ ������ �� ����
-            //���� ���� �ڵ�� �������� GetComponent�� �ʹ� ���� �����
-            //���� �ϼ��� �ڵ忡���� List�� ���� ������ �������� ��Ƶΰ� List�� �����Ͽ� ������ ��
-            //�� ���� ��Ʈ�� �������Ѿ� �� ��쿡�� GetComponent�� �����Ű�� ������� ������ ����
-            //Pooling�� ���� ���������
+            //매턴 노트 내리기 및 판정
+            //지금 현재 코드는 땜빵용임 GetComponent를 너무 많이 사용함
+            //추후 완성할 코드에서는 List와 같은 것으로 정보들을 담아두고 List를 참조하여 판정을 함
+            //그 이후 노트를 삭제시켜야 할 경우에만 GetComponent를 실행시키는 방식으로 수정할 예정
+            //Pooling도 아직 미적용상태
             //Basic Note
             for(int i = 0; i < basicNoteObject.Count; i++)
             {
                 var tempBasic = basicNoteObject[i].GetComponent<BasicNote>();
-                //�̽� ����
+                //미스 판정
                 tempBasic.drop(currentSpeed * bpm);
                 if(16 * bpm/600 * 2 + tempBasic.noteTime < currentTime)
                 {
@@ -329,7 +328,7 @@ public class NoteCreationTester : MonoBehaviour
             {
                 var tempFlick = flickNoteObject[i].GetComponent<FlickNote>();
                 tempFlick.drop(currentSpeed * bpm);
-                //�Ѿ�� miss ����
+                //넘어가서 miss 판정
                 if (16 * bpm / 600f * 2 + tempFlick.noteTime < currentTime)
                 {
                     GameObject temp = flickNoteObject[i];
@@ -419,11 +418,11 @@ public class NoteCreationTester : MonoBehaviour
                     }
                 }
             }
-            //��Ʈ ��ġ ����
-            //������ ���� �׽�Ʈ ������ click�� ��������� ���Ŀ��� touch�� ����� ����
+            //노트 위치 따라서
+            //지금은 판정 테스트 때문에 click을 사용하지만 추후에는 touch를 사용할 예정
             
 
-            //���� ����
+            //판정 리셋
             for (int i = 0; i < 21; i++)
             {
                 touched[i] = false;
