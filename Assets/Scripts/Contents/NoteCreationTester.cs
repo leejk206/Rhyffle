@@ -115,10 +115,6 @@ public class NoteCreationTester : MonoBehaviour
         }
         TestPlay();
 
-<<<<<<< Updated upstream
-        // Manager 생성용 임시 코드
-=======
->>>>>>> Stashed changes
         Managers.Deck.DoNothing();
     }
 

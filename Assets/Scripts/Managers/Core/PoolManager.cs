@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolManager
     // 오브젝트 풀링을 구현한 매니저.
-    // 오브젝트 풀링을 위해서는 해당 오브젝트에 Poolable 컴포넌트만 넣으면 된다.
+    // 오브젝트 풀링을 위해서는 해당 오브젝트에 Poolable만 붙여 넣으면 된다.
     // ResourceManager에서 Instantiate, Destroy한다면 자동으로 풀링이 구현되도록 설정함.
 {
     #region Pool

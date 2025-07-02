@@ -10,11 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5516388415009561165}
   - component: {fileID: 482074672895770593}
-<<<<<<< Updated upstream
-  - component: {fileID: 4988852061756896386}
-=======
   - component: {fileID: 1180217811832090534}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: TempCard
   m_TagString: Untagged
@@ -92,11 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
---- !u!114 &4988852061756896386
-=======
 --- !u!114 &1180217811832090534
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,11 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 610298332938065557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< Updated upstream
-  m_Script: {fileID: 11500000, guid: 2980d9965807ade47bef7c31688cff6c, type: 3}
-=======
   m_Script: {fileID: 11500000, guid: beec38a66cb6f2f4aad105044af894df, type: 3}
->>>>>>> Stashed changes
   m_Name: 
   m_EditorClassIdentifier: 
   CardPosition: {x: 0, y: 0, z: 0}
