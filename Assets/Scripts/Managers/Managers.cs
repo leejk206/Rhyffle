@@ -12,9 +12,12 @@ public class Managers : MonoBehaviour
     // 게임 컨텐츠 구현에 필요한 매니저 선언
 <<<<<<< Updated upstream
     // CardManager _card = new CardManager();
+<<<<<<< Updated upstream
 
     // public static CardManager Card { get { return Instance._card } }
 =======
+=======
+>>>>>>> Stashed changes
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
     GameUIManager _uiManager = new GameUIManager();
@@ -77,7 +80,10 @@ public class Managers : MonoBehaviour
         s_instance._card.Init();
         s_instance._deck.Init();
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         s_instance._pool.Init();
         s_instance._scene.Init();
 
