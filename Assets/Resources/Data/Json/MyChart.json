@@ -1,0 +1,80 @@
+{
+    "NormalNotes": [
+        {
+            "position": 0,
+            "line": 7,
+            "length": 3
+        },
+        {
+            "position": 8,
+            "line": 4,
+            "length": 3
+        },
+        {
+            "position": 16,
+            "line": 10,
+            "length": 3
+        },
+        {
+            "position": 26,
+            "line": 7,
+            "length": 3
+        },
+        {
+            "position": 4,
+            "line": 9,
+            "length": 1
+        }
+    ],
+    "HoldNotes": [
+    ],
+    "SlideNotes": [
+        {
+            "position": 37,
+            "line": 5,
+            "length": 1.0
+        },
+        {
+            "position": 36,
+            "line": 4,
+            "length": 1.0
+        },
+        {
+            "position": 38,
+            "line": 6,
+            "length": 1.0
+        },
+        {
+            "position": 39,
+            "line": 7,
+            "length": 1.0
+        },
+        {
+            "position": 40,
+            "line": 8,
+            "length": 1.0
+        },
+        {
+            "position": 41,
+            "line": 7,
+            "length": 1.0
+        },
+        {
+            "position": 42,
+            "line": 6,
+            "length": 1.0
+        },
+        {
+            "position": 43,
+            "line": 5,
+            "length": 1.0
+        },
+        {
+            "position": 44,
+            "line": 4,
+            "length": 1.0
+        }
+    ],
+    "UpFlickNotes": [],
+    "DownFlickNotes": []
+}

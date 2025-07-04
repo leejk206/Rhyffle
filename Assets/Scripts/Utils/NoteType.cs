@@ -6,6 +6,17 @@ using System.Collections.Generic;
 //Note 스크립트와의 충돌 회피를 위해 이렇게 info, json을 붙여서 작명함
 //info는 각각의 노트에 대한 정보
 //json은 json 파일에서 가져온 모든 노트에 대한 정보
+
+[System.Serializable]
+public class NoteJson
+{
+    public BasicNoteJson NormalNotes;
+    public HoldNoteJson HoldNotes;
+    public SlideNoteJson SlideNotes;
+    public FlickNoteJson FlickNotes;
+}
+
+
 #region BasicNote
 [System.Serializable]
 public class BasicNoteInfo
