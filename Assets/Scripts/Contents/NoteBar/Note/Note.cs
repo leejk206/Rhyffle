@@ -11,6 +11,9 @@ public class Note : MonoBehaviour
     public int length;
     float height = 10;
 
+    Vector3 scaleVector;
+    Vector3 posVector;
+
     //노트 떨구는 함수, UniTask로 지속적으로 호출하는 방식
     //추후 너무 비효율적이라면 수정 예정
 
@@ -23,12 +26,19 @@ public class Note : MonoBehaviour
         float cal = height * (-0.08f) + 1;
         if (height >= 0)
         {
-            gameObject.transform.localScale = new Vector3(length * 3.2f * cal,3.2f * cal,1);
-            gameObject.transform.localPosition = new Vector3(lanePos * cal, height - 2.25f,0);
+            scaleVector.x = length * 3.2f * cal;
+            scaleVector.y = 3.2f * cal;
+            posVector.x = lanePos * cal;
+            posVector.y = height - 2.25f;
+            gameObject.transform.localScale = scaleVector;
+            gameObject.transform.localPosition = posVector;
         }
         else
         {
-            gameObject.transform.localPosition = new Vector3(lanePos, height - 2.25f, -2);
+            posVector.x = lanePos;
+            posVector.y = height - 2.25f;
+            posVector.z = -2;
+            gameObject.transform.localPosition = posVector;
         }
     }
     //길이 설정, 처음에 설정하고 건들지 않음
@@ -39,13 +49,9 @@ public class Note : MonoBehaviour
         this.length = length;
         lanePos = -10.5f + lane;
         //초기 위치 설정
-        gameObject.transform.localScale = new Vector3(length * 0.64f, 0.64f, 1);
-        gameObject.transform.localPosition = new Vector3(lanePos * 0.2f, 7.75f ,2);
-    }
-
-    //판정 되었을 때 비주얼적으로
-    virtual public void touched()
-    {
-
+        scaleVector = new Vector3(length * 0.64f, 0.64f, 1);
+        gameObject.transform.localScale = scaleVector;
+        posVector = new Vector3(lanePos * 0.2f, 7.75f, 2);
+        gameObject.transform.localPosition = posVector;
     }
 }

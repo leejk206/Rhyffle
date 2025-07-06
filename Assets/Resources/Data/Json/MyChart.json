@@ -16,12 +16,12 @@
             "length": 3
         },
         {
-            "position": 26,
+            "position": 24,
             "line": 7,
             "length": 3
         },
         {
-            "position": 4,
+            "position": 32,
             "line": 9,
             "length": 1
         }
@@ -30,51 +30,50 @@
     ],
     "SlideNotes": [
         {
-            "position": 37,
-            "line": 5,
-            "length": 1.0
-        },
-        {
-            "position": 36,
-            "line": 4,
-            "length": 1.0
-        },
-        {
-            "position": 38,
-            "line": 6,
-            "length": 1.0
-        },
-        {
-            "position": 39,
-            "line": 7,
-            "length": 1.0
-        },
-        {
             "position": 40,
-            "line": 8,
-            "length": 1.0
+            "line": 5,
+            "length": 1
         },
         {
-            "position": 41,
+            "position": 48,
+            "line": 4,
+            "length": 1
+        },
+        {
+            "position": 56,
+            "line": 6,
+            "length": 1
+        },
+        {
+            "position": 64,
             "line": 7,
-            "length": 1.0
+            "length": 1
+        },
+        {
+            "position": 80,
+            "line": 8,
+            "length": 1
+        },
+        {
+            "position": 96,
+            "line": 7,
+            "length": 1
         },
         {
             "position": 42,
             "line": 6,
-            "length": 1.0
+            "length": 1
         },
         {
             "position": 43,
             "line": 5,
-            "length": 1.0
+            "length": 1
         },
         {
             "position": 44,
             "line": 4,
-            "length": 1.0
+            "length": 1
         }
     ],
-    "UpFlickNotes": [],
-    "DownFlickNotes": []
+    "FlickNotes": []
 }

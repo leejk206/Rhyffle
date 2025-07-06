@@ -11,7 +11,6 @@ public class Bar : MonoBehaviour
 
     private void OnMouseDown()
     {
-        tester.touched[barNum] = true;
         tester.entered[barNum] = true;
     }
     private void OnMouseEnter()
@@ -25,6 +24,7 @@ public class Bar : MonoBehaviour
     }
     private void OnMouseDrag()
     {
+        tester.touched[barNum] = true;
         if (checkPos)
         {
             if(Input.mousePosition.y > beforePos)

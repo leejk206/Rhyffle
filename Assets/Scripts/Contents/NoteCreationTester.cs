@@ -16,6 +16,7 @@ public class NoteCreationTester : MonoBehaviour
     BasicNoteInfo[] basicNote = new BasicNoteInfo[15];
     SlideNoteInfo[] slideNote = new SlideNoteInfo[10];
     FlickNoteInfo[] flickNote = new FlickNoteInfo[5];
+    HoldNoteInfo[] holdNote = new HoldNoteInfo[7];
     //아래는 실제로 사용할 dropNote들
     //계속해서 Note배열을 참조하기보단 단순히 숫자비교를 해서 빠르게 부르기 위함
     List<int> dropBasic = new List<int>();
@@ -95,6 +96,14 @@ public class NoteCreationTester : MonoBehaviour
         flickNote[2] = new FlickNoteInfo(280, 10, 3, 0);
         flickNote[3] = new FlickNoteInfo(312, 0, 3, 0);
         flickNote[4] = new FlickNoteInfo(312, 12, 3, 0);
+
+        holdNote[0] = new HoldNoteInfo(328, 0, 0, 0, 3);
+        holdNote[1] = new HoldNoteInfo(344, 10, 0, 1, 5);
+        holdNote[2] = new HoldNoteInfo(352, 17, 1, 0, 2);
+        holdNote[3] = new HoldNoteInfo(360, 20, 2, 0, 1);
+        holdNote[4] = new HoldNoteInfo(372, 8, 1, 1, 7);
+        holdNote[5] = new HoldNoteInfo(380, 6, 1, 1, 2);
+        holdNote[6] = new HoldNoteInfo(444, 18, 2, 1, 2);
 
         #endregion
         basicNoteCount = basicNote.Length;
@@ -211,6 +220,8 @@ public class NoteCreationTester : MonoBehaviour
                     break;
                 }
             }
+
+
             //매턴 노트 내리기 및 판정
             //지금 현재 코드는 땜빵용임 GetComponent를 너무 많이 사용함
             //추후 완성할 코드에서는 List와 같은 것으로 정보들을 담아두고 List를 참조하여 판정을 함

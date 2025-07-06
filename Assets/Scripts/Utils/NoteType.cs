@@ -99,7 +99,7 @@ public class HoldNoteInfo
 {
     public int position;
     public int line;
-    public int noteType;
+    public int noteType; //0: 시작, 1: 중간, 2: 끝
     public int count;
     public int length;
 
