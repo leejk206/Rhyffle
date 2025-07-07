@@ -6,8 +6,8 @@ public class SlideNote : Note
     {
         base.drop(speed);
     }
-    public override void set(int lane, int length)
+    public override void Set(int lane, int length)
     {
-        base.set(lane, length);
+        base.Set(lane, length);
     }
 }

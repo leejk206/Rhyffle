@@ -7,11 +7,11 @@ public class FlickNote : Note
     {
         base.drop(speed);
     }
-    public override void set(int lane, int length)
+    public override void Set(int lane, int length)
     {
-        base.set(lane, length);
+        base.Set(lane, length);
     }
-    public void setDir(int dir)
+    public void SetDir(int dir)
     {
         flicDir = dir;
         if (dir == 0)

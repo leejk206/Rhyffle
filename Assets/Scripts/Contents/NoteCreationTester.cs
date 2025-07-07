@@ -22,14 +22,19 @@ public class NoteCreationTester : MonoBehaviour
     List<int> dropBasic = new List<int>();
     List<int> dropSlide = new List<int>();
     List<int> dropFlick = new List<int>();
+    List<int> dropHold = new List<int>();
     //총 노트의 개수라고 보면 편하다
     int basicNoteCount = 0;
     int slideNoteCount = 0;
     int flickNoteCount = 0;
+    // holdNote만 holdNote 전체를 기준으로 개수를 센다
+    int holdNoteCount = 0;
     //현재 생성해야하는 리스트의 값
     int createBasicNote = 0;
     int createSlideNote = 0;
     int createFlickNote = 0;
+    // holdNote만 holdNote 전체를 기준으로 개수를 셈
+    int createHoldNote = 0;
     //현재 참조해야하는 리스트의 값
     //사용할 지 말지 고민중임
     int curBasicNote = 0;
@@ -41,6 +46,7 @@ public class NoteCreationTester : MonoBehaviour
     List<GameObject> basicNoteObject = new List<GameObject>();
     List<GameObject> slideNoteObject = new List<GameObject>();
     List<GameObject> flickNoteObject = new List<GameObject>();
+    List<GameObject> holdNoteObject = new List<GameObject>();
     #region touchBoolean
     //그 블록을 터치한 경우
     public bool[] touched = new bool[21];
@@ -105,6 +111,16 @@ public class NoteCreationTester : MonoBehaviour
         holdNote[5] = new HoldNoteInfo(380, 6, 1, 1, 2);
         holdNote[6] = new HoldNoteInfo(444, 18, 2, 1, 2);
 
+        //HoldNoteBody를 여러개 만들고 그걸 생성하는 방식
+        holdNoteCount = -1;
+        for(int i = 0; i < holdNote.Length; i++)
+        {
+            if (holdNote[i].count > holdNoteCount)
+            {
+                holdNoteCount = holdNote[i].count;
+            }
+        }
+
         #endregion
         basicNoteCount = basicNote.Length;
         slideNoteCount = slideNote.Length;
@@ -153,7 +169,7 @@ public class NoteCreationTester : MonoBehaviour
                     if (dropBasic[createBasicNote] <= currentTime + 64) {
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(basicNotePrefab);
-                        temp.GetComponent<BasicNote>().set(basicNote[createBasicNote].line, basicNote[createBasicNote].length);
+                        temp.GetComponent<BasicNote>().Set(basicNote[createBasicNote].line, basicNote[createBasicNote].length);
                         temp.GetComponent<BasicNote>().noteTime = basicNote[createBasicNote].position;
                         basicNoteObject.Add(temp);
                         createBasicNote++;
@@ -178,7 +194,7 @@ public class NoteCreationTester : MonoBehaviour
                     {
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(slideNotePrefab);
-                        temp.GetComponent<SlideNote>().set(slideNote[createSlideNote].line, slideNote[createSlideNote].length);
+                        temp.GetComponent<SlideNote>().Set(slideNote[createSlideNote].line, slideNote[createSlideNote].length);
                         temp.GetComponent<SlideNote>().noteTime = slideNote[createSlideNote].position;
                         slideNoteObject.Add(temp);
                         createSlideNote++;
@@ -203,8 +219,8 @@ public class NoteCreationTester : MonoBehaviour
                     {
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(flickNotePrefab);
-                        temp.GetComponent<FlickNote>().set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
-                        temp.GetComponent<FlickNote>().setDir(flickNote[createFlickNote].dir);
+                        temp.GetComponent<FlickNote>().Set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
+                        temp.GetComponent<FlickNote>().SetDir(flickNote[createFlickNote].dir);
                         temp.GetComponent<FlickNote>().noteTime = flickNote[createFlickNote].position;
                         flickNoteObject.Add(temp);
                         createFlickNote++;
