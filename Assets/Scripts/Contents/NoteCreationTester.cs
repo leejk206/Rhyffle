@@ -1,8 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using System;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class NoteCreationTester : MonoBehaviour
 {
@@ -10,6 +8,8 @@ public class NoteCreationTester : MonoBehaviour
     public GameObject basicNotePrefab;
     public GameObject slideNotePrefab;
     public GameObject flickNotePrefab;
+    public GameObject holdNotePrefab;
+    public GameObject holdNoteBody;
 
     //임시로 만든 노트 리스트들
     //Basic note [num][pos,lane,length] 
@@ -18,40 +18,57 @@ public class NoteCreationTester : MonoBehaviour
     FlickNoteInfo[] flickNote = new FlickNoteInfo[5];
     HoldNoteInfo[] holdNote = new HoldNoteInfo[7];
     //아래는 실제로 사용할 dropNote들
-    //계속해서 Note배열을 참조하기보단 단순히 숫자비교를 해서 빠르게 부르기 위함
+    //계속해서 Note배열을 참조하기보단 단순히 숫자비교를 해서 빠르게 생성하기 위함
     List<int> dropBasic = new List<int>();
     List<int> dropSlide = new List<int>();
     List<int> dropFlick = new List<int>();
     List<int> dropHold = new List<int>();
+
+
+    List<List<int>> holdNoteList = new List<List<int>>();
+
+    #region totalNoteCount
     //총 노트의 개수라고 보면 편하다
     int basicNoteCount = 0;
     int slideNoteCount = 0;
     int flickNoteCount = 0;
     // holdNote만 holdNote 전체를 기준으로 개수를 센다
     int holdNoteCount = 0;
+    #endregion
+
+    #region currentNote
     //현재 생성해야하는 리스트의 값
     int createBasicNote = 0;
     int createSlideNote = 0;
     int createFlickNote = 0;
-    // holdNote만 holdNote 전체를 기준으로 개수를 셈
     int createHoldNote = 0;
+    #endregion
+
     //현재 참조해야하는 리스트의 값
     //사용할 지 말지 고민중임
     int curBasicNote = 0;
     int curSlideNote = 0;
     int curFlickNote = 0;
+
     //현재 생성되어 있는 Note GameObject들의 리스트를 담음
     //pooling이 적용되어 있지 않으며 통합할 지에대한 논의가 필요함
     //개인적으로는 HoldNote를 제외한 다른 모든 노트들은 통합해도 될 것 같음
     List<GameObject> basicNoteObject = new List<GameObject>();
     List<GameObject> slideNoteObject = new List<GameObject>();
     List<GameObject> flickNoteObject = new List<GameObject>();
-    List<GameObject> holdNoteObject = new List<GameObject>();
+
+    List<GameObject> holdNoteBodies = new List<GameObject>();
+    
+    
     #region touchBoolean
     //그 블록을 터치한 경우
-    public bool[] touched = new bool[21];
+    public bool[] pressed = new bool[21];
     //그 블록으로 들어온 경우(터치 시작할 경우에도 켜짐)
-    public bool[] entered = new bool[21];
+    public bool[] slide = new bool[21];
+    //그 블록을 누르고 있는 경우
+    public bool[] touched = new bool[21];
+    //그 블록에서 손을 뗀 경우
+    public bool[] off = new bool[21];
     //그 블록에서 위로 움직인 경우
     public bool[] flickUp = new bool[21];
     //그 블록에서 아래로 움직인 경우
@@ -111,7 +128,18 @@ public class NoteCreationTester : MonoBehaviour
         holdNote[5] = new HoldNoteInfo(380, 6, 1, 1, 2);
         holdNote[6] = new HoldNoteInfo(444, 18, 2, 1, 2);
 
-        //HoldNoteBody를 여러개 만들고 그걸 생성하는 방식
+
+        //
+
+        // 이 부분에 노트들을 등장 순서대로 정렬하는 코드가 필요함
+        // Basic, Slide, Flick은 쉽게 할 수 있으나
+        // Hold에 대해서는 논의가 필요할 것 같음
+        // Hold노트의 등장하는 시점이 빠른 HoldNote묶음 부터 낮은 count를 입력하는 방식으로 정령 및 count 바꾸는 것
+        // 혹은 Count를 Hold를 묶는 데에만 사용하고 HoldNote의 첫 노트의 등장시점 순서대로 정렬하는 방법도 있다
+
+        //
+
+        //holdNote 사전 세팅(노트들 묶기)
         holdNoteCount = -1;
         for(int i = 0; i < holdNote.Length; i++)
         {
@@ -120,6 +148,24 @@ public class NoteCreationTester : MonoBehaviour
                 holdNoteCount = holdNote[i].count;
             }
         }
+        for(int i = 0; i <= holdNoteCount; i++)
+        {
+            holdNoteList.Add(new List<int>());
+        }
+        for(int i = 0; i <= holdNoteCount; i++)
+        {
+            for(int j = 0; j < holdNote.Length; j++)
+            {
+                if (holdNote[j].count == i)
+                {
+                    holdNoteList[i].Add(j);
+                }
+            }
+        }
+
+
+
+
 
         #endregion
         basicNoteCount = basicNote.Length;
@@ -138,6 +184,10 @@ public class NoteCreationTester : MonoBehaviour
         {
             dropFlick.Add(flickNote[i].position);
         }
+        for(int i = 0; i <= holdNoteCount; i++)
+        {
+            dropHold.Add(holdNote[holdNoteList[i][0]].position);
+        }
         TestPlay();
     }
 
@@ -151,10 +201,12 @@ public class NoteCreationTester : MonoBehaviour
                 //정지 이후 개재 시 초기화
                 for (int i = 0; i < 21; i++)
                 {
-                    touched[i] = false;
-                    entered[i] = false;
+                    pressed[i] = false;
+                    slide[i] = false;
                     flickUp[i] = false;
                     flickDown[i] = false;
+                    touched[i] = false;
+                    off[i] = false;
                 }
                 continue;
             }
@@ -219,9 +271,10 @@ public class NoteCreationTester : MonoBehaviour
                     {
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(flickNotePrefab);
-                        temp.GetComponent<FlickNote>().Set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
-                        temp.GetComponent<FlickNote>().SetDir(flickNote[createFlickNote].dir);
-                        temp.GetComponent<FlickNote>().noteTime = flickNote[createFlickNote].position;
+                        var tempFlickNote = temp.GetComponent<FlickNote>();
+                        tempFlickNote.Set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
+                        tempFlickNote.SetDir(flickNote[createFlickNote].dir);
+                        tempFlickNote.noteTime = flickNote[createFlickNote].position;
                         flickNoteObject.Add(temp);
                         createFlickNote++;
                         continue;
@@ -236,6 +289,42 @@ public class NoteCreationTester : MonoBehaviour
                     break;
                 }
             }
+            //Hold Note
+            while (true)
+            {
+                if(createHoldNote <= holdNoteCount)
+                {
+                    if(dropHold[createHoldNote] <= currentTime + 64)
+                    {
+                        //생성하고 다음 index로 넘어감
+                        GameObject tempBody = Instantiate(holdNoteBody);
+                        var tempHoldNoteBody = tempBody.GetComponent<HoldNoteBody>();
+                        int noteListNum = holdNoteList[createHoldNote].Count;
+                        for(int i = 0; i < noteListNum; i++)
+                        {
+                            GameObject tempNote = Instantiate(holdNotePrefab);
+                            var tempHoldNote = tempNote.GetComponent<HoldNote>();
+                            int noteNum = holdNoteList[createHoldNote][i];
+                            tempHoldNote.Set(holdNote[noteNum].line, holdNote[noteNum].length, (holdNote[noteNum].position - currentTime) * 0.15625f);
+                            tempHoldNote.noteTime = holdNote[noteNum].position;
+                            tempHoldNoteBody.ConnectNotes(tempNote);
+                        }
+                        holdNoteBodies.Add(tempBody);
+                        createHoldNote++;
+                        Debug.Log("Stop");
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
 
 
             //매턴 노트 내리기 및 판정
@@ -248,7 +337,7 @@ public class NoteCreationTester : MonoBehaviour
             {
                 var tempBasic = basicNoteObject[i].GetComponent<BasicNote>();
                 //미스 판정
-                tempBasic.drop(currentSpeed * bpm);
+                tempBasic.Drop(currentSpeed * bpm);
                 if(16 * bpm/600 * 2 + tempBasic.noteTime < currentTime)
                 {
                     GameObject temp = basicNoteObject[i];
@@ -260,7 +349,7 @@ public class NoteCreationTester : MonoBehaviour
                 }
                 for (int j = tempBasic.line; j < tempBasic.line + tempBasic.length; j++)
                 {
-                    if (touched[j])
+                    if (pressed[j])
                     {
                         if (tempBasic.noteTime - (16 * bpm / 600f * 3) < currentTime)
                         {
@@ -293,6 +382,7 @@ public class NoteCreationTester : MonoBehaviour
                                 Debug.Log("Miss");
                             }
                         }
+                        pressed[j] = false;
                         break;
                     }
                 }
@@ -301,7 +391,7 @@ public class NoteCreationTester : MonoBehaviour
             for (int i = 0; i < slideNoteObject.Count; i++)
             {
                 var tempSlide = slideNoteObject[i].GetComponent<SlideNote>();
-                tempSlide.drop(currentSpeed * bpm);
+                tempSlide.Drop(currentSpeed * bpm);
                 if (16 * bpm / 600f * 2 + tempSlide.noteTime < currentTime)
                 {
                     GameObject temp = slideNoteObject[i];
@@ -313,7 +403,7 @@ public class NoteCreationTester : MonoBehaviour
                 }
                 for (int j = tempSlide.line; j < tempSlide.line + tempSlide.length; j++)
                 {
-                    if (entered[j])
+                    if (slide[j])
                     {
                         if (tempSlide.noteTime - (16 * bpm / 600f * 3) < currentTime)
                         {
@@ -346,6 +436,7 @@ public class NoteCreationTester : MonoBehaviour
                                 Debug.Log("Miss");
                             }
                         }
+                        slide[j] = false;
                         break;
                     }
                 }
@@ -354,7 +445,7 @@ public class NoteCreationTester : MonoBehaviour
             for (int i = 0; i < flickNoteObject.Count; i++)
             {
                 var tempFlick = flickNoteObject[i].GetComponent<FlickNote>();
-                tempFlick.drop(currentSpeed * bpm);
+                tempFlick.Drop(currentSpeed * bpm);
                 //넘어가서 miss 판정
                 if (16 * bpm / 600f * 2 + tempFlick.noteTime < currentTime)
                 {
@@ -398,6 +489,7 @@ public class NoteCreationTester : MonoBehaviour
                                     Debug.Log("Miss");
                                 }
                             }
+                            flickDown[j] = false;
                             break;
                         }
                     } 
@@ -440,11 +532,157 @@ public class NoteCreationTester : MonoBehaviour
                                     Debug.Log("Miss");
                                 }
                             }
+                            flickUp[j] = false;
                             break;
                         }
                     }
                 }
             }
+
+            //HoldNote
+            for(int i = 0; i < holdNoteBodies.Count; i++)
+            {
+                var tempHold = holdNoteBodies[i].GetComponent<HoldNoteBody>();
+                tempHold.Drop(currentSpeed * bpm);
+                tempHold.DrawLine();
+                HoldNote tempHoldNote = tempHold.CurrentJudge();
+
+                if(16 *bpm/600 *2 + tempHoldNote.noteTime < currentTime)
+                {
+                    tempHold.MissNote();
+                    Debug.Log("MissHold");
+                    continue;
+                }
+
+                switch (tempHold.HoldType())
+                {
+                    // 처음 터치하는 경우
+                    case 0:
+                        for(int j = tempHoldNote.line;  j < tempHoldNote.length + tempHoldNote.line; j++)
+                        {
+                            if (slide[j])
+                            {
+                                if (tempHoldNote.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                                {
+                                    GameObject temp = basicNoteObject[i];
+                                    tempHoldNote.HideNote();
+                                    
+                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    {
+                                        Debug.Log("GoodHold");
+                                    }
+                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    {
+                                        Debug.Log("GreatHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                    {
+                                        Debug.Log("PerfectHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                    {
+                                        Debug.Log("GreatHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                                    {
+                                        Debug.Log("GoodHold");
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("MissHold");
+                                        tempHold.MissNote();
+                                    }
+                                }
+                                tempHold.NextNote();
+                                slide[j] = false;
+                                break;
+                            }
+                        }       
+                        break;
+                    // 누르고 있어야 하는 경우
+                    case 1:
+                        for (int j = tempHoldNote.line; j < tempHoldNote.length + tempHoldNote.line; j++)
+                        {
+                            if (touched[j])
+                            {
+                                if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                {
+                                    GameObject temp = basicNoteObject[i];
+                                    tempHoldNote.HideNote();
+
+                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    {
+                                        Debug.Log("GoodHold");
+                                    }
+                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    {
+                                        Debug.Log("GreatHold");
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("PerfectHold");
+                                    }
+                                }
+                                tempHold.NextNote();
+                                break;
+                            }
+                        }
+                        break;
+                    // 떼야 하는 경우
+                    case 2:
+                        for (int j = tempHoldNote.line; j < tempHoldNote.length + tempHoldNote.line; j++)
+                        {
+                            if (off[j])
+                            {
+                                if (tempHoldNote.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                                {
+                                    GameObject temp = basicNoteObject[i];
+                                    tempHoldNote.HideNote();
+
+                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    {
+                                        Debug.Log("GoodHold");
+                                    }
+                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    {
+                                        Debug.Log("GreatHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                    {
+                                        Debug.Log("PerfectHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                    {
+                                        Debug.Log("GreatHold");
+                                    }
+                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                                    {
+                                        Debug.Log("GoodHold");
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("MissHold");
+                                        tempHold.MissNote();
+                                    }
+                                }
+                                tempHold.NextNote();
+                                off[j] = false;
+                                break;
+                            }
+                        }
+                        break;
+                }
+
+                if (tempHold.IsRemove())
+                {
+                    Debug.Log("ExecutedRemove");
+                    holdNoteBodies.RemoveAt(i);
+                    tempHold.DeleteNotes();
+                    Destroy(tempHold.gameObject);
+                }
+
+            }
+
             //노트 위치 따라서
             //지금은 판정 테스트 때문에 click을 사용하지만 추후에는 touch를 사용할 예정
             
@@ -452,10 +690,12 @@ public class NoteCreationTester : MonoBehaviour
             //판정 리셋
             for (int i = 0; i < 21; i++)
             {
-                touched[i] = false;
-                entered[i] = false;
+                pressed[i] = false;
+                slide[i] = false;
                 flickUp[i] = false;
                 flickDown[i] = false;
+                touched[i] = false;
+                off[i] = false;
             }
             await UniTask.WaitForFixedUpdate();
         }

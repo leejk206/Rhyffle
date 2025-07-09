@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SlideNote : Note
 {
-    public override void drop(float speed)
+    public override void Drop(float speed)
     {
-        base.drop(speed);
+        base.Drop(speed);
     }
     public override void Set(int lane, int length)
     {

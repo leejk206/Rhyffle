@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 646327568514250522}
   - component: {fileID: 1564439497269783325}
-  - component: {fileID: 4413941589101630829}
   - component: {fileID: 3956280535038954398}
+  - component: {fileID: -3018593373632675914}
   m_Layer: 0
   m_Name: HoldNote
   m_TagString: Untagged
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4413941589101630829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335181937763020999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adfbe7ef7a5f2c94e865b63e074670a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteTime: 0
-  line: 0
-  length: 0
 --- !u!61 &3956280535038954398
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +135,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &-3018593373632675914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335181937763020999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99364e48d099d744b51272235f83818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteTime: 0
+  line: 0
+  length: 0

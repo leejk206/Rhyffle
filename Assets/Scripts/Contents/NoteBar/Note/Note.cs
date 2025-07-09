@@ -19,7 +19,7 @@ public class Note : MonoBehaviour
 
     //120bpm 기본속도 4 기준 2초 안에 떨어짐
     //속도 계산 방법은 (bpm)x(설정속도)
-    virtual public void drop(float speed)
+    virtual public void Drop(float speed)
     {
         //매 프레임마다 설정되는 높이
         height -= speed / 480 * 5 * Time.deltaTime;
@@ -42,7 +42,8 @@ public class Note : MonoBehaviour
         }
         else
         {
-
+            posVector.y = height - 2.25f;
+            gameObject.transform.localPosition = posVector;
         }
     }
     //길이 설정, 처음에 설정하고 건들지 않음
@@ -58,7 +59,7 @@ public class Note : MonoBehaviour
         posVector = new Vector3(lanePos * 0.2f, 7.75f, 2);
         gameObject.transform.localPosition = posVector;
     }
-    virtual public void Set(int lane, int length, int height)
+    virtual public void Set(int lane, int length, float height)
     {
         this.height = height;
         this.line = lane;

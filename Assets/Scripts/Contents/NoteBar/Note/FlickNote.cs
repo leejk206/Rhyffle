@@ -3,9 +3,9 @@ using UnityEngine;
 public class FlickNote : Note
 {
     public int flicDir;
-    public override void drop(float speed)
+    public override void Drop(float speed)
     {
-        base.drop(speed);
+        base.Drop(speed);
     }
     public override void Set(int lane, int length)
     {

@@ -11,20 +11,32 @@ public class Bar : MonoBehaviour
 
     private void OnMouseDown()
     {
-        tester.entered[barNum] = true;
+        tester.slide[barNum] = true;
+        tester.touched[barNum] = true;
     }
     private void OnMouseEnter()
     {
-        tester.entered[barNum] = true;
+        tester.slide[barNum] = true;
+        tester.touched[barNum] = true;
+    }
+
+    private void OnMouseOver()
+    {
+        tester.touched[barNum] = true;
     }
 
     private void OnMouseExit()
     {
+        tester.off[barNum] = true;
         checkPos = false;
+    }
+    private void OnMouseUp()
+    {
+        tester.off[barNum] = true;
     }
     private void OnMouseDrag()
     {
-        tester.touched[barNum] = true;
+        tester.pressed[barNum] = true;
         if (checkPos)
         {
             if(Input.mousePosition.y > beforePos)
