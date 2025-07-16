@@ -5,23 +5,31 @@ using UnityEngine;
 
 public class CardManager
 {
-    //Ä«µå ÀÌµ¿ ¹× ÆÄ±«, È¿°ú Àû¿ë µîÀ» ´ã´çÇÏ´Â ¸Å´ÏÀú
+    //Ä«ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½Ä±ï¿½, È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Å´ï¿½ï¿½ï¿½
 
     List<CardBase> _fieldCards;
-    public List<CardBase> FieldCards { get { return _fieldCards; } } // ÇöÀç ±ò¸° Ä«µå ¸®½ºÆ®
+    public List<CardBase> FieldCards { get { return _fieldCards; } } // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    
+    Queue<CardBase> _cemetery;
+    public Queue<CardBase> Cemetery { get { return _cemetery; } } // ë¬˜ì§€ ì¹´ë“œ ë¦¬ìŠ¤íŠ¸
 
     GameObject CardSpawnPoint;
-    GameObject CardBoard; // Card »ı¼º ·çÆ®
+    GameObject CardCemeteryPoint; // Card ë¬«ìë¦¬
+    GameObject CardBoard; // Card ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®
     List<Vector3> CardPositions;
     Vector3 CardScale;
+
 
     public void Init()
     {
         _fieldCards = new List<CardBase> { null, null, null, null, null, null, null };
         CardPositions = new();
+        
+        _cemetery = new Queue<CardBase> {};
 
         #region GetCardPosition
         CardSpawnPoint = GameObject.Find("CardSpawnPoint");
+        CardCemeteryPoint = GameObject.Find("CardCemeteryPoint");
         CardBoard = GameObject.Find("CardBoard");
         SpriteRenderer sr = CardBoard.GetComponent<SpriteRenderer>();
         Vector3 CardBoardSize = Vector3.Scale(sr.sprite.bounds.size, sr.transform.lossyScale);
@@ -37,7 +45,7 @@ public class CardManager
 
         foreach (int i in indices)
         {
-            float t = (float)i / totalDivisions;    // ºñÀ²
+            float t = (float)i / totalDivisions;    // ï¿½ï¿½ï¿½ï¿½
             float posX = startX + t * width;
             Vector3 pos = new Vector3(posX, y, z);
             CardPositions.Add(pos);
@@ -47,12 +55,12 @@ public class CardManager
         CardScale = new Vector3(originalScale.x * (2f / 21f), originalScale.y * (4f / 5f), 1f);
         #endregion
 
-        TempKeyAllocate(); // Todo - µğ¹ö±ë ³¡³»¸é ¾ø¾Ö±â
+        TempKeyAllocate(); // Todo - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
     }
 
     public void OnUpdate()
     {
-        // ÀÓ½Ã : Å°ÆĞµå 1 ´©¸£¸é Ä«µå µå·Î¿ìµÇ°Ô ¼³Á¤
+        // ï¿½Ó½ï¿½ : Å°ï¿½Ğµï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½Î¿ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.A))
         {
             DrawCard();
@@ -76,6 +84,29 @@ public class CardManager
                     {
                         _fieldCards[i] = card;
                         CardAlignment(card, i);
+                        
+                        // ë‚´êµ¬ë„ = 0ì¼ ë•Œ
+                        card.SlotIndex = i;
+
+                        card.isDurabilityZero = (int index) =>
+                        {
+                            switch (index)
+                            {
+                                case 0: Del0(); break;
+                                case 1: Del1(); break;
+                                case 2: Del2(); break;
+                                case 3: Del3(); break;
+                                case 4: Del4(); break;
+                                case 5: Del5(); break;
+                                case 6: Del6(); break;
+                            }
+                            DrawCard();
+                            
+                            // ë¬˜ì§€ ìƒíƒœ í™•ì¸ ìš©
+                            string summary = string.Join(" | ", _cemetery.Select(c => $"Slot {c.SlotIndex}: {c.cardBaseId}"));
+                            Debug.Log("[ë¬˜ì§€ ìƒíƒœ] " + summary);
+                        };
+                        
                         break;
                     }
                 }
@@ -89,9 +120,8 @@ public class CardManager
         card.CardPosition = CardPositions[idx];
         card.MoveTransform(card.CardPosition, 0.2f);
     }
-
-
-    #region ForKeyActionDebug // µğ¹ö±ëÀ» À§ÇÑ ÀÓ½Ã ÄÚµå
+    
+    #region ForKeyActionDebug // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½Úµï¿½
     Action _keypadKeyAction;
 
 
@@ -141,51 +171,95 @@ public class CardManager
 
     public void Del0()
     {
-        GameObject temp = _fieldCards[0].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[0];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[0] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[0].gameObject;
+        // _fieldCards[0] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del1()
     {
-        GameObject temp = _fieldCards[1].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[1];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[1] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[1].gameObject;
+        // _fieldCards[1] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del2()
     {
-        GameObject temp = _fieldCards[2].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[2];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[2] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[2].gameObject;
+        // _fieldCards[2] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del3()
     {
-        GameObject temp = _fieldCards[3].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[3];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[3] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[3].gameObject;
+        // _fieldCards[3] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del4()
     {
-        GameObject temp = _fieldCards[4].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[4];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[4] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[4].gameObject;
+        // _fieldCards[4] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del5()
     {
-        GameObject temp = _fieldCards[5].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[5];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[5] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[5].gameObject;
+        // _cemetery.Enqueue(_fieldCards[5]); // ë¬˜ì§€ì— ì¶”ê°€
+        // _fieldCards[5] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     public void Del6()
     {
-        GameObject temp = _fieldCards[6].gameObject;
+        // ë¬˜ì§€ì— ì¶”ê°€
+        CardBase card = _fieldCards[6];
+        card.transform.position = CardCemeteryPoint.transform.position;
+        _cemetery.Enqueue(card);
         _fieldCards[6] = null;
-        Managers.Resource.Destroy(temp);
+        
+        // GameObject temp = _fieldCards[6].gameObject;
+        // _cemetery.Enqueue(_fieldCards[6]); // ë¬˜ì§€ì— ì¶”ê°€
+        // _fieldCards[6] = null;
+        // Managers.Resource.Destroy(temp);
     }
 
     #endregion

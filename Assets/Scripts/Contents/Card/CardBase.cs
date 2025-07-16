@@ -3,25 +3,43 @@ using DG.Tweening;
 
 public class CardBase : MonoBehaviour
 {
+    [Header("ì¹´ë“œ ìƒíƒœ")]
+    public int durability = 3;
     public Vector3 CardPosition;
+    public System.Action<int> isDurabilityZero;
+    public int SlotIndex { get; set; } // ìŠ¬ë¡¯ë˜ëŠ” ì¸ë±ìŠ¤
+    
+    [Header("ì¹´ë“œ ê¸°ë³¸ ì •ë³´")]
+    public int cardBaseId;
+    public CardSuit cardSuit;
+    public CardRank cardRank;
+    public CardRarity cardRarity;
+    public string cardName;
+    public string collection;
+    public int uniqueAbilityId;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    public void MoveTransform(Vector3 pos, float dotweenTime) // Ä«µåÀÇ À§Ä¡¿Í ½ºÄÉÀÏÀ» dotweenTimeµ¿¾È º¯°æ
+    [Header("ì¹´ë“œ ê¸°ë³¸ ì •ë³´ - Back")]
+    public string cardNameBack;
+    public int uniqueAbilityIdBack;
+    public string collectionBack;
+    
+    public void MoveTransform(Vector3 pos, float dotweenTime) // Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dotweenTimeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         if (gameObject != null)
         {
             transform.DOMove(pos, dotweenTime);
         }
 
+    }
+    
+    void OnMouseDown() // (ì„ì‹œ) ì¹´ë“œ í´ë¦­ ì‹œ ë‚´êµ¬ë„ ê°ì†Œ
+    {
+        ReduceDurability();
+    }
+
+    public void ReduceDurability() // ë‚´êµ¬ë„ ê°ì†Œ í•¨ìˆ˜
+    {
+        durability--;
+        if (durability <= 0) isDurabilityZero?.Invoke(SlotIndex);
     }
 }
