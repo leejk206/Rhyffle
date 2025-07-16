@@ -3,7 +3,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     //외부에서 이 노트를 참조할 때 노트
-    public int noteTime;
+    public int judge;
     //노트 lane
     public int line;
     float lanePos = 0;
@@ -19,6 +19,13 @@ public class Note : MonoBehaviour
 
     //120bpm 기본속도 4 기준 2초 안에 떨어짐
     //속도 계산 방법은 (bpm)x(설정속도)
+    
+    //판정 위치 저장
+    virtual public void SetJudge(int judge)
+    {
+        this.judge = judge;
+    }
+    
     virtual public void Drop(float speed)
     {
         //매 프레임마다 설정되는 높이
@@ -70,5 +77,18 @@ public class Note : MonoBehaviour
         gameObject.transform.localScale = scaleVector;
         posVector = new Vector3(lanePos * 0.2f, height - 2.25f, 2);
         gameObject.transform.localPosition = posVector;
+    }
+
+    // No hit : 0
+    // Miss : 1
+    // Good : 2
+    // Great : 3
+    // Perfect : 4
+    // 이 함수는 판정을 통해서 값을 내보냄
+    // lane에 대해서 judgeF 타이밍에 판정을 해주는 것
+    //speed에 따라서 판정 계산 달라짐 (속도가 빠르면 judgeF와 judge와의 판정이 커져야 함) 
+    virtual public int ReadJudge(int lane, float speed, float judgeF)
+    {
+        return 0;
     }
 }

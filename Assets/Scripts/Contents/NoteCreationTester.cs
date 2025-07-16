@@ -222,7 +222,7 @@ public class NoteCreationTester : MonoBehaviour
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(basicNotePrefab);
                         temp.GetComponent<BasicNote>().Set(basicNote[createBasicNote].line, basicNote[createBasicNote].length);
-                        temp.GetComponent<BasicNote>().noteTime = basicNote[createBasicNote].position;
+                        temp.GetComponent<BasicNote>().judge = basicNote[createBasicNote].position;
                         basicNoteObject.Add(temp);
                         createBasicNote++;
                         continue;
@@ -247,7 +247,7 @@ public class NoteCreationTester : MonoBehaviour
                         //생성하고 다음 index로 넘어감
                         GameObject temp = Instantiate(slideNotePrefab);
                         temp.GetComponent<SlideNote>().Set(slideNote[createSlideNote].line, slideNote[createSlideNote].length);
-                        temp.GetComponent<SlideNote>().noteTime = slideNote[createSlideNote].position;
+                        temp.GetComponent<SlideNote>().judge = slideNote[createSlideNote].position;
                         slideNoteObject.Add(temp);
                         createSlideNote++;
                         continue;
@@ -274,7 +274,7 @@ public class NoteCreationTester : MonoBehaviour
                         var tempFlickNote = temp.GetComponent<FlickNote>();
                         tempFlickNote.Set(flickNote[createFlickNote].line, flickNote[createFlickNote].length);
                         tempFlickNote.SetDir(flickNote[createFlickNote].dir);
-                        tempFlickNote.noteTime = flickNote[createFlickNote].position;
+                        tempFlickNote.judge = flickNote[createFlickNote].position;
                         flickNoteObject.Add(temp);
                         createFlickNote++;
                         continue;
@@ -306,7 +306,7 @@ public class NoteCreationTester : MonoBehaviour
                             var tempHoldNote = tempNote.GetComponent<HoldNote>();
                             int noteNum = holdNoteList[createHoldNote][i];
                             tempHoldNote.Set(holdNote[noteNum].line, holdNote[noteNum].length, (holdNote[noteNum].position - currentTime) * 0.15625f);
-                            tempHoldNote.noteTime = holdNote[noteNum].position;
+                            tempHoldNote.judge = holdNote[noteNum].position;
                             tempHoldNoteBody.ConnectNotes(tempNote);
                         }
                         holdNoteBodies.Add(tempBody);
@@ -338,7 +338,7 @@ public class NoteCreationTester : MonoBehaviour
                 var tempBasic = basicNoteObject[i].GetComponent<BasicNote>();
                 //미스 판정
                 tempBasic.Drop(currentSpeed * bpm);
-                if(16 * bpm/600 * 2 + tempBasic.noteTime < currentTime)
+                if(16 * bpm/600 * 2 + tempBasic.judge < currentTime)
                 {
                     GameObject temp = basicNoteObject[i];
                     basicNoteObject.RemoveAt(i);
@@ -351,29 +351,29 @@ public class NoteCreationTester : MonoBehaviour
                 {
                     if (pressed[j])
                     {
-                        if (tempBasic.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                        if (tempBasic.judge - (16 * bpm / 600f * 3) < currentTime)
                         {
                             GameObject temp = basicNoteObject[i];
                             basicNoteObject.RemoveAt(i);
                             Destroy(temp);
                             i--;
-                            if (tempBasic.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                            if (tempBasic.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                             {
                                 Debug.Log("Good");
                             }
-                            else if (tempBasic.noteTime + (16 * bpm / 600f) < currentTime)
+                            else if (tempBasic.judge + (16 * bpm / 600f) < currentTime)
                             {
                                 Debug.Log("Great");
                             }
-                            else if (tempBasic.noteTime - (16 * bpm / 600f) < currentTime)
+                            else if (tempBasic.judge - (16 * bpm / 600f) < currentTime)
                             {
                                 Debug.Log("Perfect");
                             }
-                            else if (tempBasic.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                            else if (tempBasic.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                             {
                                 Debug.Log("Great");
                             }
-                            else if (tempBasic.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                            else if (tempBasic.judge - (16 * bpm / 600f * 2f) < currentTime)
                             {
                                 Debug.Log("Good");
                             }
@@ -392,7 +392,7 @@ public class NoteCreationTester : MonoBehaviour
             {
                 var tempSlide = slideNoteObject[i].GetComponent<SlideNote>();
                 tempSlide.Drop(currentSpeed * bpm);
-                if (16 * bpm / 600f * 2 + tempSlide.noteTime < currentTime)
+                if (16 * bpm / 600f * 2 + tempSlide.judge < currentTime)
                 {
                     GameObject temp = slideNoteObject[i];
                     slideNoteObject.RemoveAt(i);
@@ -405,29 +405,29 @@ public class NoteCreationTester : MonoBehaviour
                 {
                     if (slide[j])
                     {
-                        if (tempSlide.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                        if (tempSlide.judge - (16 * bpm / 600f * 3) < currentTime)
                         {
                             GameObject temp = slideNoteObject[i];
                             slideNoteObject.RemoveAt(i);
                             Destroy(temp);
                             i--;
-                            if (tempSlide.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                            if (tempSlide.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                             {
                                 Debug.Log("Good");
                             }
-                            else if (tempSlide.noteTime + (16 * bpm / 600f) < currentTime)
+                            else if (tempSlide.judge + (16 * bpm / 600f) < currentTime)
                             {
                                 Debug.Log("Great");
                             }
-                            else if (tempSlide.noteTime - (16 * bpm / 600f) < currentTime)
+                            else if (tempSlide.judge - (16 * bpm / 600f) < currentTime)
                             {
                                 Debug.Log("Perfect");
                             }
-                            else if (tempSlide.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                            else if (tempSlide.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                             {
                                 Debug.Log("Great");
                             }
-                            else if (tempSlide.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                            else if (tempSlide.judge - (16 * bpm / 600f * 2f) < currentTime)
                             {
                                 Debug.Log("Good");
                             }
@@ -447,7 +447,7 @@ public class NoteCreationTester : MonoBehaviour
                 var tempFlick = flickNoteObject[i].GetComponent<FlickNote>();
                 tempFlick.Drop(currentSpeed * bpm);
                 //넘어가서 miss 판정
-                if (16 * bpm / 600f * 2 + tempFlick.noteTime < currentTime)
+                if (16 * bpm / 600f * 2 + tempFlick.judge < currentTime)
                 {
                     GameObject temp = flickNoteObject[i];
                     flickNoteObject.RemoveAt(i);
@@ -462,25 +462,25 @@ public class NoteCreationTester : MonoBehaviour
                     {
                         if (flickDown[j])
                         {
-                            if(tempFlick.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                            if(tempFlick.judge - (16 * bpm / 600f * 3) < currentTime)
                             {
                                 GameObject temp = flickNoteObject[i];
                                 flickNoteObject.RemoveAt(i);
                                 Destroy (temp);
                                 i--;
-                                if(tempFlick.noteTime + (16*bpm/600f * 1.5f) < currentTime)
+                                if(tempFlick.judge + (16*bpm/600f * 1.5f) < currentTime)
                                 {
                                     Debug.Log("Good");
-                                }else if(tempFlick.noteTime  + (16*bpm/600f) < currentTime)
+                                }else if(tempFlick.judge  + (16*bpm/600f) < currentTime)
                                 {
                                     Debug.Log("Great");
-                                }else if(tempFlick.noteTime - (16*bpm/600f) < currentTime)
+                                }else if(tempFlick.judge - (16*bpm/600f) < currentTime)
                                 {
                                     Debug.Log("Perfect");
-                                }else if (tempFlick.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                }else if (tempFlick.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                                 {
                                     Debug.Log("Great");
-                                }else if(tempFlick.noteTime - (16*bpm/600f * 2f) < currentTime)
+                                }else if(tempFlick.judge - (16*bpm/600f * 2f) < currentTime)
                                 {
                                     Debug.Log("Good");
                                 }
@@ -501,29 +501,29 @@ public class NoteCreationTester : MonoBehaviour
                     {
                         if (flickUp[j])
                         {
-                            if (tempFlick.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                            if (tempFlick.judge - (16 * bpm / 600f * 3) < currentTime)
                             {
                                 GameObject temp = flickNoteObject[i];
                                 flickNoteObject.RemoveAt(i);
                                 Destroy(temp);
                                 i--;
-                                if (tempFlick.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                if (tempFlick.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                                 {
                                     Debug.Log("Good");
                                 }
-                                else if (tempFlick.noteTime + (16 * bpm / 600f) < currentTime)
+                                else if (tempFlick.judge + (16 * bpm / 600f) < currentTime)
                                 {
                                     Debug.Log("Great");
                                 }
-                                else if (tempFlick.noteTime - (16 * bpm / 600f) < currentTime)
+                                else if (tempFlick.judge - (16 * bpm / 600f) < currentTime)
                                 {
                                     Debug.Log("Perfect");
                                 }
-                                else if (tempFlick.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                else if (tempFlick.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                                 {
                                     Debug.Log("Great");
                                 }
-                                else if (tempFlick.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                                else if (tempFlick.judge - (16 * bpm / 600f * 2f) < currentTime)
                                 {
                                     Debug.Log("Good");
                                 }
@@ -547,7 +547,7 @@ public class NoteCreationTester : MonoBehaviour
                 tempHold.DrawLine();
                 HoldNote tempHoldNote = tempHold.CurrentJudge();
 
-                if(16 *bpm/600 *2 + tempHoldNote.noteTime < currentTime)
+                if(16 *bpm/600 *2 + tempHoldNote.judge < currentTime)
                 {
                     tempHold.MissNote();
                     Debug.Log("MissHold");
@@ -560,30 +560,30 @@ public class NoteCreationTester : MonoBehaviour
                     case 0:
                         for(int j = tempHoldNote.line;  j < tempHoldNote.length + tempHoldNote.line; j++)
                         {
-                            if (slide[j])
+                            if (pressed[j])
                             {
-                                if (tempHoldNote.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                                if (tempHoldNote.judge - (16 * bpm / 600f * 3) < currentTime)
                                 {
                                     GameObject temp = basicNoteObject[i];
                                     tempHoldNote.HideNote();
                                     
-                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    if (tempHoldNote.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                                     {
                                         Debug.Log("GoodHold");
                                     }
-                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    else if (tempHoldNote.judge + (16 * bpm / 600f) < currentTime)
                                     {
                                         Debug.Log("GreatHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f) < currentTime)
                                     {
                                         Debug.Log("PerfectHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                                     {
                                         Debug.Log("GreatHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f * 2f) < currentTime)
                                     {
                                         Debug.Log("GoodHold");
                                     }
@@ -605,16 +605,16 @@ public class NoteCreationTester : MonoBehaviour
                         {
                             if (touched[j])
                             {
-                                if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                if (tempHoldNote.judge - (16 * bpm / 600f) < currentTime)
                                 {
                                     GameObject temp = basicNoteObject[i];
                                     tempHoldNote.HideNote();
 
-                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    if (tempHoldNote.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                                     {
                                         Debug.Log("GoodHold");
                                     }
-                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    else if (tempHoldNote.judge + (16 * bpm / 600f) < currentTime)
                                     {
                                         Debug.Log("GreatHold");
                                     }
@@ -634,28 +634,29 @@ public class NoteCreationTester : MonoBehaviour
                         {
                             if (off[j])
                             {
-                                if (tempHoldNote.noteTime - (16 * bpm / 600f * 3) < currentTime)
+                                if (tempHoldNote.judge - (16 * bpm / 600f * 3) < currentTime)
                                 {
+                                    Debug.Log("Help");
                                     GameObject temp = basicNoteObject[i];
                                     tempHoldNote.HideNote();
 
-                                    if (tempHoldNote.noteTime + (16 * bpm / 600f * 1.5f) < currentTime)
+                                    if (tempHoldNote.judge + (16 * bpm / 600f * 1.5f) < currentTime)
                                     {
                                         Debug.Log("GoodHold");
                                     }
-                                    else if (tempHoldNote.noteTime + (16 * bpm / 600f) < currentTime)
+                                    else if (tempHoldNote.judge + (16 * bpm / 600f) < currentTime)
                                     {
                                         Debug.Log("GreatHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f) < currentTime)
                                     {
                                         Debug.Log("PerfectHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 1.5f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f * 1.5f) < currentTime)
                                     {
                                         Debug.Log("GreatHold");
                                     }
-                                    else if (tempHoldNote.noteTime - (16 * bpm / 600f * 2f) < currentTime)
+                                    else if (tempHoldNote.judge - (16 * bpm / 600f * 2f) < currentTime)
                                     {
                                         Debug.Log("GoodHold");
                                     }
