@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5516388415009561165}
   - component: {fileID: 482074672895770593}
   - component: {fileID: -9056966617644072980}
-  - component: {fileID: 4221504412985397112}
+  - component: {fileID: 2807274603487241114}
   m_Layer: 0
   m_Name: TempCard
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 610298332938065557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1377, y: -0.0074, z: -0.73749715}
+  m_LocalPosition: {x: -0.1377, y: -0.0074, z: -1.195}
   m_LocalScale: {x: 0.002732035, y: 0.008956281, z: 0.73749715}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.92, y: 14.62}
   m_EdgeRadius: 0
---- !u!114 &4221504412985397112
+--- !u!114 &2807274603487241114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 610298332938065557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab3dc796016d2a44969bfab8da2a316, type: 3}
+  m_Script: {fileID: 11500000, guid: 0333d4774808685449e10a4d11fbd47c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   durability: 3

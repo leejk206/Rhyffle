@@ -2,32 +2,40 @@ using UnityEngine;
 
 public class TempCard : CardBase
 {
+    public override void SetCardProperty()
+    {
+        durability = 5;
 
+        cardBaseId = 0;
+        cardSuit = Define.CardSuit.Spade;
+        cardRank = Define.CardRank.Ace;
+        cardRarity = Define.CardRarity.Common;
 
-    public override void OnCardDestroyEffect()
+        cardName = "TempCard";
+        collection = "TempCollection";
+        uniqueAbilityId = 0;
+
+        cardNameBack = "TempCardBack";
+        uniqueAbilityIdBack = 0;
+        collectionBack = "TempCollectionBack";
+    }
+
+    public override void OnCardDraw()
+    {
+        Debug.Log($"{cardName} Draw");
+    }
+    public override void OnNoteTrigger()
     {
 
     }
 
-    public override void OnCardDrawEffect()
+
+    public override void OnCardDestroy()
     {
+        Debug.Log($"{cardName} Destroy");
 
     }
 
-    public override void OnNoteTriggerEffect()
-    {
 
-    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

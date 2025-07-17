@@ -38,7 +38,7 @@ public class CardManager
 
         float startX = sr.bounds.min.x;
         float y = CardBoard.transform.position.y;
-        float z = CardBoard.transform.position.z;
+        float z = CardBoard.transform.position.z - 1;
 
         int[] indices = { 3, 9, 15, 21, 27, 33, 39 };
         int totalDivisions = 42;
