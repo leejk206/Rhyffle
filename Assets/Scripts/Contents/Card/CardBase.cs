@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CardBase : MonoBehaviour
+public abstract class CardBase : MonoBehaviour
 {
     [Header("카드 상태")]
     public int durability = 3;
@@ -11,9 +11,9 @@ public class CardBase : MonoBehaviour
     
     [Header("카드 기본 정보")]
     public int cardBaseId;
-    public CardSuit cardSuit;
-    public CardRank cardRank;
-    public CardRarity cardRarity;
+    public Define.CardSuit cardSuit;
+    public Define.CardRank cardRank;
+    public Define.CardRarity cardRarity;
     public string cardName;
     public string collection;
     public int uniqueAbilityId;
@@ -31,7 +31,18 @@ public class CardBase : MonoBehaviour
         }
 
     }
-    
+
+    public void Init() // 카드 시작 시 Start 함수를 대체. 추상 메소드 호출은 Start에서 하면 위험함.
+    {
+        SetCardProperty();
+    }
+
+    public virtual void SetCardProperty() { } // 카드의 이름, 속성 등을 오브젝트와 매핑하는 함수.
+
+    public abstract void OnCardDraw(); // 카드 드로우 시 효과
+    public abstract void OnNoteTrigger(); // 노트 판정 시 효과
+    public abstract void OnCardDestroy(); // 카드 파괴 시 효과
+
     void OnMouseDown() // (임시) 카드 클릭 시 내구도 감소
     {
         ReduceDurability();

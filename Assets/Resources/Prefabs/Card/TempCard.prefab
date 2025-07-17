@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5516388415009561165}
   - component: {fileID: 482074672895770593}
-  - component: {fileID: 1180217811832090534}
   - component: {fileID: -9056966617644072980}
+  - component: {fileID: 4221504412985397112}
   m_Layer: 0
   m_Name: TempCard
   m_TagString: Untagged
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 4293203858158862147, guid: e620634bf95f73d4384cf2f244b65858, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -89,30 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1180217811832090534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610298332938065557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beec38a66cb6f2f4aad105044af894df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durability: 3
-  CardPosition: {x: 0, y: 0, z: 0}
-  cardBaseId: 0
-  cardSuit: 0
-  cardRank: 0
-  cardRarity: 0
-  cardName: 
-  collection: 
-  uniqueAbilityId: 0
-  cardNameBack: 
-  uniqueAbilityIdBack: 0
-  collectionBack: 
 --- !u!61 &-9056966617644072980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,3 +135,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.92, y: 14.62}
   m_EdgeRadius: 0
+--- !u!114 &4221504412985397112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610298332938065557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3dc796016d2a44969bfab8da2a316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 3
+  CardPosition: {x: 0, y: 0, z: 0}
+  cardBaseId: 0
+  cardSuit: 0
+  cardRank: 0
+  cardRarity: 0
+  cardName: 
+  collection: 
+  uniqueAbilityId: 0
+  cardNameBack: 
+  uniqueAbilityIdBack: 0
+  collectionBack: 

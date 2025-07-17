@@ -55,12 +55,12 @@ public class CardManager
         CardScale = new Vector3(originalScale.x * (2f / 21f), originalScale.y * (4f / 5f), 1f);
         #endregion
 
-        TempKeyAllocate(); // Todo - ����� ������ ���ֱ�
+        TempKeyAllocate(); // Todo - 실제 카드 삭제 로직에 맞추어 구현.
     }
 
     public void OnUpdate()
     {
-        // �ӽ� : Ű�е� 1 ������ ī�� ��ο�ǰ� ����
+        // 디버깅을 위한 임시 코드.
         if (Input.GetKeyDown(KeyCode.A))
         {
             DrawCard();
@@ -84,6 +84,9 @@ public class CardManager
                     {
                         _fieldCards[i] = card;
                         CardAlignment(card, i);
+
+                        card.Init(); // 카드 초기화 코드
+                        card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
                         
                         // 내구도 = 0일 때
                         card.SlotIndex = i;
@@ -100,6 +103,7 @@ public class CardManager
                                 case 5: Del5(); break;
                                 case 6: Del6(); break;
                             }
+                            card.OnCardDestroy();
                             DrawCard();
                             
                             // 묘지 상태 확인 용
@@ -121,7 +125,7 @@ public class CardManager
         card.MoveTransform(card.CardPosition, 0.2f);
     }
     
-    #region ForKeyActionDebug // ������� ���� �ӽ� �ڵ�
+    #region ForKeyActionDebug // 디버깅을 위한 임시 코드.
     Action _keypadKeyAction;
 
 

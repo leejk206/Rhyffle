@@ -13,4 +13,25 @@ public class Define
         ScoreBoard, //게임 결과화면
     }
 
+    public enum CardSuit
+    {
+        Unknown = 100, Spade = 0, Heart = 1, Diamond = 2, Clover = 3
+    }
+
+    public enum CardRank
+    {
+        Unknown = 100,
+        Joker = 0,
+        A = 1, Ace = 1,
+        Two = 2, Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, 
+        J = 11, Jack = 11,
+        Q = 12, Queen = 12,
+        K = 13, King = 13,
+    }
+
+    public enum CardRarity
+    {
+        Unknown = 100, Common = 0, Rare = 1, Epic = 2, Legendary = 3
+    }
+
 }
