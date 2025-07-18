@@ -102,8 +102,6 @@ public class GamePlayer : MonoBehaviour
         // 위에서 노트가 떨어지는 순서를 position기준으로 정렬하지 않는다면 이곳에서 새로운 구조체 혹은 Class를 만들어서 적용해도 됨
         // 해당 Class에서 노트의 position이랑 해당 노트가 noteInfo에 몇번째에 있는지 체크하는 정보를 가지면... 가능하지 않을까여...?
         // 그래도 그냥 위에서 정렬하는 것이 단순해 보여서 추천함
-
-
         #region setTiming
         basicNoteTiming = new int[basicNotes.Length];
         slideNoteTiming = new int[slideNotes.Length];

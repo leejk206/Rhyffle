@@ -13,12 +13,7 @@ public class HoldNoteBody : MonoBehaviour
 
     List<HoldNote> holdNotes = new List<HoldNote>();
     List<BoxCollider2D> colliders = new List<BoxCollider2D>();
-    LineRenderer lineRenderer;
-
-    private void Start()
-    {
-        lineRenderer  = gameObject.GetComponent<LineRenderer>();
-    }
+    public LineRenderer lineRenderer;
 
     //리셋시키는 용도, Pool되거나 처음 생성될 때 무조건 한번씩 호출됨
     public void ResetValues()
@@ -46,7 +41,7 @@ public class HoldNoteBody : MonoBehaviour
         for(int i = 0; i < colliders.Count; i++)
         {
             x = (colliders[i].bounds.max.x + colliders[i].bounds.min.x)/2;
-            y = (colliders[i].bounds.max.y + colliders[i].bounds.min.y) / 2;
+            y = holdNotes[i].gameObject.transform.position.y;
             drawVector.x = x;
             drawVector.y = y;
             lineRenderer.SetPosition(i, drawVector);
