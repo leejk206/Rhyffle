@@ -9,8 +9,25 @@ public class Bar : MonoBehaviour
     float beforePos;
     bool checkPos;
 
+    public void TouchPress()
+    {
+
+    }
+
+    public void TouchMove()
+    {
+
+    }
+    public void TouchEnd()
+    {
+
+    }
+
+
+
     private void OnMouseDown()
     {
+
         tester.slide[barNum] = true;
         tester.touched[barNum] = true;
     }

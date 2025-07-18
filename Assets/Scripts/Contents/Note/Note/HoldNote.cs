@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HoldNote : Note
 {
+    bool isCheck = false;
     public override void Set(int lane, int length)
     {
         base.Set(lane, length);
@@ -23,6 +24,11 @@ public class HoldNote : Note
     public void ShowNote()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled=true;
+    }
+
+    public bool isChecked()
+    {
+        return isCheck;
     }
 
 }
