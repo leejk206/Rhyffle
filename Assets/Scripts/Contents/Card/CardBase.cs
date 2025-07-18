@@ -34,14 +34,19 @@ public abstract class CardBase : MonoBehaviour
 
     public void Init() // 카드 시작 시 Start 함수를 대체. 추상 메소드 호출은 Start에서 하면 위험함.
     {
-        SetCardProperty();
+        
     }
 
     public virtual void SetCardProperty() { } // 카드의 이름, 속성 등을 오브젝트와 매핑하는 함수.
+    public virtual void SetCardProperty(Define.CardSuit cardSuit, Define.CardRank cardRank) { } // 기본 트럼프 카드 생성용
 
-    public abstract void OnCardDraw(); // 카드 드로우 시 효과
-    public abstract void OnNoteTrigger(); // 노트 판정 시 효과
-    public abstract void OnCardDestroy(); // 카드 파괴 시 효과
+
+    #region Effects : 카드 효과 관련
+    public virtual void OnCardDraw() { } // 카드 드로우 시 효과
+    public virtual void OnNoteTrigger() { } // 노트 판정 시 효과
+    public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
+
+    #endregion
 
     void OnMouseDown() // (임시) 카드 클릭 시 내구도 감소
     {
