@@ -26,20 +26,34 @@ public class DeckManager
     public void SetInitialDeck() // 기본 52장의 스탠다드 카드 추가
     {
         List<string> suits = new() {"Spade", "Heart", "Diamond", "Club" };
-        List<string> ranks = new() {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+        //List<string> ranks = new() {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
 
-        foreach (string suit in suits)
-        {
-            foreach (string rank in ranks)
-            {
-                _deck.Add(Resources.Load<GameObject>("Prefabs/Card/Standard"));
-            }
-        }
+        //foreach (string suit in suits)
+        //{
+        //    foreach (string rank in ranks)
+        //    {
+        //        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/Standard"));
+        //    }
+        //}
     }
 
     public void SetupDeck() // init 시 초기 60장의 카드를 덱에 추가
     {
         // 임시 초기 덱 설정 - 초기 덱 구현 이후 삭제 예정
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
+        _deck.Add(Resources.Load<GameObject>("Prefabs/Card/TempCard"));
         // Todo 초기 덱 구현
     }
 
