@@ -88,6 +88,8 @@ public class CardManager
                         card.Init(); // 카드 초기화 코드
                         card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
                         
+                        HandManager.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
+                        
                         // 내구도 = 0일 때
                         card.SlotIndex = i;
 

@@ -1,16 +1,16 @@
 using UnityEngine;
 
 public class Define
-// ¿©·¯ Á¤ÀÇ°¡ µé¾î°£ ÆÄÀÏ. State ÆÐÅÏ ÀÌ¿ëÀ» À§ÇÔ.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½î°£ ï¿½ï¿½ï¿½ï¿½. State ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 {
     public enum Scene
     { 
-        Unknown, // ¿À·ù
-        Lobby, // ¸ÞÀÎ
-        Game, // °ÔÀÓ
-        Loading, // ·Îµù
-        LoadingGame, // °ÔÀÓ ½ÃÀÛ Àü ·Îµù (°î ¼³¸í/³­ÀÌµµ/¸ðµå Á¤º¸/ Á¡¼ö Á¤º¸)
-        ScoreBoard, //°ÔÀÓ °á°úÈ­¸é
+        Unknown, // ï¿½ï¿½ï¿½ï¿½
+        Lobby, // ï¿½ï¿½ï¿½ï¿½
+        Game, // ï¿½ï¿½ï¿½ï¿½
+        Loading, // ï¿½Îµï¿½
+        LoadingGame, // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îµï¿½ (ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ìµï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        ScoreBoard, //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È­ï¿½ï¿½
     }
 
     public enum CardSuit
@@ -30,4 +30,20 @@ public class Define
         Unknown = 100, Common = 0, Rare = 1, Epic = 2, Legendary = 3
     }
 
+    public enum HandRank
+    {
+        None = 0,
+        OnePair = 1,
+        TwoPair = 2,
+        Triple = 3,
+        Straight = 4,
+        Flush = 5,
+        ThreePair = 6,
+        FullHouse = 7,
+        FourCard = 8,
+        Rainbow = 9,
+        StraightFlush = 10,
+        DoubleTriple = 11,
+        LuckySeven = 12,
+    }
 }
