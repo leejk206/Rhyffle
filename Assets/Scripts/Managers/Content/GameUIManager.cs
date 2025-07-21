@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 public class GameUIManager:MonoBehaviour
 {
     //테스트용 추후 삭제 혹은 다른 스크립트를 지정 예정
-    public NoteCreationTester tester;
+    public GamePlayer gamePlayer;
 
 
     // 스크린 가로 세로 길이
@@ -72,7 +72,7 @@ public class GameUIManager:MonoBehaviour
         pauseButton.SetActive(false);
         songInfoBoard.SetActive(false);
         pauseUI.SetActive(true);
-        tester.play = false;
+        gamePlayer.play = false;
     }
 
     //화면 일시정지 풀고 3초 카운팅
@@ -89,7 +89,7 @@ public class GameUIManager:MonoBehaviour
         scoreBoard.SetActive(true);
         songInfoBoard.SetActive(true);
         pauseButton.SetActive(true);
-        tester.play = true;
+        gamePlayer.play = true;
     }
 
     public async UniTask Count3()

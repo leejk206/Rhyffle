@@ -79,16 +79,62 @@ public class Note : MonoBehaviour
         gameObject.transform.localPosition = posVector;
     }
 
-    // No hit : 0
-    // Miss : 1
-    // Good : 2
-    // Great : 3
-    // Perfect : 4
+    // return 값 Define의 JudgeNum에 따른 int 값
     // 이 함수는 판정을 통해서 값을 내보냄
-    // lane에 대해서 judgeF 타이밍에 판정을 해주는 것
-    //speed에 따라서 판정 계산 달라짐 (속도가 빠르면 judgeF와 judge와의 판정이 커져야 함) 
-    virtual public int ReadJudge(int lane, float speed, float judgeF)
+    // bpm에 따라서 판정 계산 달라짐 (속도가 빠르면 curTime과 judge와의 판정이 커져야 함)
+    // bpm/600은 0.1sec라고 보면 된다
+    // 
+    // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown
+    // GamePlayer의 TouchBoolean 순서 + 0 --> MissCheck
+    //
+    virtual public int ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
-        return 0;
+        if (checkType == 0) { 
+            if(curTime > (float)bpm/600 * 2f * 16 + judge)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        if (lane >= line && lane <= line +length)
+        {
+            if (curTime < judge - (float)bpm / 600 * 3f * 16)
+            {
+                return 0;
+            }
+            else if (curTime < judge - (float)bpm / 600 * 2f * 16)
+            {
+                return 1;
+            }
+            else if (curTime < judge - (float)bpm / 600 * 1.5f * 16)
+            {
+                return 2;
+            }
+            else if (curTime < judge - (float)bpm / 600 * 16)
+            {
+                return 3;
+            }else if(curTime < judge + (float)bpm / 600 * 16)
+            {
+                return 4;
+            }else if(curTime < judge + (float)bpm / 600 * 1.5f * 16)
+            {
+                return 3;
+            }else if(curTime < judge + (float)bpm / 600 * 2f * 16)
+            {
+                return 2;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+            return 0;
     }
 }

@@ -10,4 +10,20 @@ public class SlideNote : Note
     {
         base.Set(lane, length);
     }
+    public override void SetJudge(int judge)
+    {
+        base.SetJudge(judge);
+    }
+
+    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    {
+        if (checkType == 2 || checkType == 0)
+        {
+            return base.ReadJudge(lane, bpm, checkType, curTime);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

@@ -16,19 +16,13 @@ public class HoldNote : Note
     {
         base.Drop(speed);
     }
-    public void HideNote()
+    public override void SetJudge(int judge)
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        base.SetJudge(judge);
     }
 
-    public void ShowNote()
+    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled=true;
+        return base.ReadJudge(lane, bpm, checkType, curTime);
     }
-
-    public bool isChecked()
-    {
-        return isCheck;
-    }
-
 }

@@ -1,67 +1,46 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bar : MonoBehaviour
 {
     public int barNum;
     //추후 GamePlayer나 다른 Manager로  이동예정
     //판정 test용임
-    public NoteCreationTester tester;
-    float beforePos;
-    bool checkPos;
-
-    public void TouchPress()
-    {
-
-    }
-
-    public void TouchMove()
-    {
-
-    }
-    public void TouchEnd()
-    {
-
-    }
-
-
+    public GamePlayer gamePlayer;
+    float beforeX, beforeY;
 
     private void OnMouseDown()
     {
-
-        tester.slide[barNum] = true;
-        tester.touched[barNum] = true;
+        gamePlayer.press[barNum] = true;
+        
     }
     private void OnMouseEnter()
     {
-        tester.slide[barNum] = true;
-        tester.touched[barNum] = true;
+        if(Input.GetMouseButton(0))
+        gamePlayer.slide[barNum] = true;
     }
-
     private void OnMouseOver()
     {
-        tester.touched[barNum] = true;
-    }
-
-    private void OnMouseExit()
-    {
-        tester.off[barNum] = true;
-        checkPos = false;
-    }
-    private void OnMouseUp()
-    {
-        tester.off[barNum] = true;
+        beforeX = Input.mousePosition.x;
+        beforeY = Input.mousePosition.y;
+        if (Input.GetMouseButton(0))
+        {
+            gamePlayer.intouch[barNum] = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            gamePlayer.endtouch[barNum] = true;
+        }
     }
     private void OnMouseDrag()
     {
-        tester.pressed[barNum] = true;
-        if (checkPos)
+        gamePlayer.slide[barNum] = true;
+        if (beforeY < Input.mousePosition.y)
         {
-            if(Input.mousePosition.y > beforePos)
-                tester.flickUp[barNum] = true;
-            if(Input.mousePosition.y < beforePos)
-                tester.flickDown[barNum] = true;
+            gamePlayer.flickUp[barNum] = true;
         }
-        checkPos = true;
-        beforePos = Input.mousePosition.y;
+        else if (beforeY > Input.mousePosition.y) { 
+            gamePlayer.flickDown[barNum] = true;
+        }
     }
 }

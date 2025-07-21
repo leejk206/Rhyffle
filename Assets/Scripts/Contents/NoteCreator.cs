@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class NoteCreator
+public class NoteCreator : MonoBehaviour 
 {
     public GameObject basicNote;
     public GameObject slideNote;
@@ -43,13 +43,29 @@ public class NoteCreator
         return flick;
     }
 
-    public GameObject CreateHold(List<HoldNoteInfo> holdBodyInfo)
+    public GameObject CreateHoldBody(List<HoldNoteInfo> holdBodyInfo, float playerSpeed)
     {
         GameObject holdBody = GameObject.Instantiate(holdNoteBody);
         HoldNoteBody holdBodyComp = holdBody.GetComponent<HoldNoteBody>();
-
+        int holdStart = holdBodyInfo[0].position;
+        int holddiff = 0;
+        for(int i=0; i < holdBodyInfo.Count; i++)
+        {
+            holddiff = holdBodyInfo[i].position - holdStart;
+            holdBodyComp.AddNotes(CreateHold(holdBodyInfo[i], 10 + holddiff / 16 * 2.5f * playerSpeed / 4).GetComponent<HoldNote>());
+        }
 
         return holdBody;
+    }
+
+    public GameObject CreateHold(HoldNoteInfo holdNoteInfo, float height)
+    {
+        GameObject hold = GameObject.Instantiate(holdNote);
+        HoldNote holdComp = hold.GetComponent<HoldNote>();
+        holdComp.SetJudge(holdNoteInfo.position);
+        holdComp.Set(holdNoteInfo.line,holdNoteInfo.length, height);
+
+        return hold;
     }
 
 }

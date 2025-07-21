@@ -13,4 +13,13 @@ public class Define
         ScoreBoard, //게임 결과화면
     }
 
+    public enum JudgeNum
+    {
+        No_hit, // 처리 없음
+        Miss,
+        Good,
+        Great,
+        Perfect
+    }
+
 }
