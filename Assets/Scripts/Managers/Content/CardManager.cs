@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
+using static UnityEngine.GraphicsBuffer;
 
 public class CardManager
 {
@@ -31,6 +33,7 @@ public class CardManager
         CardSpawnPoint = GameObject.Find("CardSpawnPoint");
         CardCemeteryPoint = GameObject.Find("CardCemeteryPoint");
         CardBoard = GameObject.Find("CardBoard");
+        GameObject CardScaleGuide = GameObject.Find("CardScaleGuide");
         SpriteRenderer sr = CardBoard.GetComponent<SpriteRenderer>();
         Vector3 CardBoardSize = Vector3.Scale(sr.sprite.bounds.size, sr.transform.lossyScale);
         float width = CardBoardSize.x;
@@ -52,7 +55,7 @@ public class CardManager
         }
 
         Vector3 originalScale = CardBoard.transform.localScale;
-        CardScale = new Vector3(originalScale.x * (2f / 21f), originalScale.y * (4f / 5f), 1f);
+        CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
         #endregion
 
         TempKeyAllocate(); // Todo - 실제 카드 삭제 로직에 맞추어 구현.
@@ -63,7 +66,71 @@ public class CardManager
         // 디버깅을 위한 임시 코드.
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DrawCard();
+            DrawCardByInfo();
+        }
+    }
+
+    public void DrawCardByInfo()
+    {
+        if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
+        {
+            CardInfo pop = Managers.Deck.PopCardByInfo();
+            if (pop != null)
+            {
+                GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard");
+                CardBase card = go.GetComponent<CardBase>();
+
+                #region SetCardTransform
+                go.transform.position = CardSpawnPoint.transform.position;
+
+                SpriteRenderer target = go.GetComponent<SpriteRenderer>();
+                Vector3 targetSize = target.bounds.size;
+                Vector3 scale = target.transform.localScale;
+                scale.x *= CardScale.x / targetSize.x;
+                scale.y *= CardScale.y / targetSize.y;
+                target.transform.localScale = scale;
+                #endregion
+
+                for (int i = 0; i < 7; i++) // Find empty space and fill it
+                {
+                    if (_fieldCards[i] == null)
+                    {
+                        _fieldCards[i] = card;
+                        CardAlignment(card, i);
+
+                        card.Init(pop); // 카드 초기화 코드
+                        card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
+
+                        Managers.Hand.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
+
+                        // 내구도 = 0일 때
+                        card.SlotIndex = i;
+
+                        card.isDurabilityZero = (int index) =>
+                        {
+                            switch (index)
+                            {
+                                case 0: Del0(); break;
+                                case 1: Del1(); break;
+                                case 2: Del2(); break;
+                                case 3: Del3(); break;
+                                case 4: Del4(); break;
+                                case 5: Del5(); break;
+                                case 6: Del6(); break;
+                            }
+                            card.OnCardDestroy();
+                            DrawCard();
+
+                            // 묘지 상태 확인 용
+                            string summary = string.Join(" | ", _cemetery.Select(c => $"Slot {c.SlotIndex}: {c.cardBaseId}"));
+                            Debug.Log("[묘지 상태] " + summary);
+                        };
+
+                        break;
+                    }
+                }
+
+            }
         }
     }
 
@@ -88,7 +155,7 @@ public class CardManager
                         card.Init(); // 카드 초기화 코드
                         card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
                         
-                        HandManager.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
+                        Managers.Hand.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
                         
                         // 내구도 = 0일 때
                         card.SlotIndex = i;
@@ -270,4 +337,40 @@ public class CardManager
 
     #endregion
 
+}
+
+public class CardInfo
+{
+    public CardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank) // standard용 생성자
+    {
+        this.cardName = $"{cardSuit}{cardRank}";
+        this.collection = "Standard";
+        this.cardSuit = cardSuit;
+        this.cardRank = cardRank;
+    }
+
+    public CardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank, string cardName, string collection) // 일반 생성자
+    {
+        this.cardName = cardName;
+        this.collection = collection;
+        this.cardSuit = cardSuit;
+        this.cardRank = cardRank;
+    }
+
+    public int durability = 3;
+    public Vector3 CardPosition;
+    public System.Action<int> isDurabilityZero;
+    public int SlotIndex { get; set; } // 슬롯되는 인덱스
+
+    public int cardBaseId;
+    public Define.CardSuit cardSuit;
+    public Define.CardRank cardRank;
+    public Define.CardRarity cardRarity;
+    public string cardName;
+    public string collection;
+    public int uniqueAbilityId;
+
+    public string cardNameBack;
+    public int uniqueAbilityIdBack;
+    public string collectionBack;
 }

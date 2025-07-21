@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class TempCard : CardBase
 {
-    public override void SetCardProperty()
+
+    public override void Init(CardInfo cardInfo)
     {
         durability = 5;
 

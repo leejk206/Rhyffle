@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandManager
 {
-    public static Define.HandRank Evaluate(List<CardBase> cards) // 족보 판정 함수
+    public Define.HandRank Evaluate(List<CardBase> cards) // 족보 판정 함수
     {
         if (cards.Count != 7) return Define.HandRank.None; // 카드 7장일 때 기준
 
@@ -99,7 +99,7 @@ public class HandManager
         return Define.HandRank.None;
     }
 
-    private static bool HasStraight(List<int> ranks, int length) // length만큼 스트레이트 여부 판단 함수
+    private bool HasStraight(List<int> ranks, int length) // length만큼 스트레이트 여부 판단 함수
     {
         var uniqueRanks = ranks.Distinct().ToList();
         if (uniqueRanks.Contains(1)) uniqueRanks.Add(14);
@@ -118,7 +118,7 @@ public class HandManager
         return false;
     }
 
-    private static bool HasStraightFlush(List<CardBase> cards) // 스트레이트 플러시 여부 판단 함수
+    private bool HasStraightFlush(List<CardBase> cards) // 스트레이트 플러시 여부 판단 함수
     {
         var grouped = cards.GroupBy(c => c.cardSuit);
         foreach (var group in grouped)

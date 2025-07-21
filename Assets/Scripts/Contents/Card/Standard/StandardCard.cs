@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class StandardCard : CardBase
 {
-    public override void SetCardProperty(Define.CardSuit cardSuit, Define.CardRank cardRank)
+
+    public override void Init(CardInfo cardInfo)
     {
         durability = 5;
 
         cardBaseId = 0;
-        this.cardSuit = cardSuit;
-        this.cardRank = cardRank;
+        cardSuit = cardInfo.cardSuit;
+        cardRank = cardInfo.cardRank;
         cardRarity = Define.CardRarity.Common;
 
-        cardName = $"0{cardSuit.ToString()}_{cardRank.ToString()}";
+        cardName = $"{cardInfo.cardName}";
         collection = "Standard";
         uniqueAbilityId = 0;
 
-        cardNameBack = "Standard";
+        cardNameBack = "StandardBack";
         uniqueAbilityIdBack = 0;
-        collectionBack = "TempCollectionBack";
-    } // Todo 카드 정보에 맞춰 수정
+        collectionBack = "StandardBack";
+
+
+    }
 
 }

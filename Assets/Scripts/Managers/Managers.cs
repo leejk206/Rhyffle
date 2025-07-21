@@ -14,10 +14,12 @@ public class Managers : MonoBehaviour
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
     GameUIManager _uiManager = new GameUIManager();
+    HandManager _hand = new HandManager();
     MainGameManager _mainGameManager = new MainGameManager();
 
     public static CardManager Card { get { return Instance._card; } }
     public static DeckManager Deck { get { return Instance._deck; } }
+    public static HandManager Hand { get { return Instance._hand; } }
     public static GameUIManager UI { get { return Instance._uiManager; } }
     #endregion
 
