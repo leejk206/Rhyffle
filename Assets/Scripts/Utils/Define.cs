@@ -15,7 +15,7 @@ public class Define
 
     public enum CardSuit
     {
-        Unknown = 100, Spade = 0, Heart = 1, Diamond = 2, Clover = 3
+        Unknown = 100, Spade = 0, Heart = 1, Diamond = 2, Club = 3
     }
 
     public enum CardRank

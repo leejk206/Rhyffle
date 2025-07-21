@@ -20,7 +20,16 @@ public class StandardCard : CardBase
         uniqueAbilityIdBack = 0;
         collectionBack = "StandardBack";
 
-
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Standard/{cardName}");
+        if (sprite != null)
+        {
+            sr.sprite = sprite;
+        }
+        else
+        {
+            Debug.Log($"{cardName} sprite is null");
+        }
     }
 
 }

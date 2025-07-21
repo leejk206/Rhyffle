@@ -29,7 +29,7 @@ public class CardManager
         
         _cemetery = new Queue<CardBase> {};
 
-        #region GetCardPosition
+        #region GetCardTransform
         CardSpawnPoint = GameObject.Find("CardSpawnPoint");
         CardCemeteryPoint = GameObject.Find("CardCemeteryPoint");
         CardBoard = GameObject.Find("CardBoard");
@@ -66,15 +66,15 @@ public class CardManager
         // 디버깅을 위한 임시 코드.
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DrawCardByInfo();
+            DrawCard();
         }
     }
 
-    public void DrawCardByInfo()
+    public void DrawCard()
     {
         if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
         {
-            CardInfo pop = Managers.Deck.PopCardByInfo();
+            CardInfo pop = Managers.Deck.PopCard();
             if (pop != null)
             {
                 GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard");
@@ -126,60 +126,6 @@ public class CardManager
                             Debug.Log("[묘지 상태] " + summary);
                         };
 
-                        break;
-                    }
-                }
-
-            }
-        }
-    }
-
-    public void DrawCard()
-    {
-        if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
-        {
-            GameObject pop = Managers.Deck.PopCard();
-            if (pop != null)
-            {
-                CardBase card = Managers.Resource.Instantiate(pop, CardBoard.transform).GetComponent<CardBase>();
-
-                card.gameObject.transform.position = CardSpawnPoint.transform.position;
-
-                for (int i = 0; i < 7; i++)
-                {
-                    if (_fieldCards[i] == null)
-                    {
-                        _fieldCards[i] = card;
-                        CardAlignment(card, i);
-
-                        card.Init(); // 카드 초기화 코드
-                        card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
-                        
-                        Managers.Hand.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
-                        
-                        // 내구도 = 0일 때
-                        card.SlotIndex = i;
-
-                        card.isDurabilityZero = (int index) =>
-                        {
-                            switch (index)
-                            {
-                                case 0: Del0(); break;
-                                case 1: Del1(); break;
-                                case 2: Del2(); break;
-                                case 3: Del3(); break;
-                                case 4: Del4(); break;
-                                case 5: Del5(); break;
-                                case 6: Del6(); break;
-                            }
-                            card.OnCardDestroy();
-                            DrawCard();
-                            
-                            // 묘지 상태 확인 용
-                            string summary = string.Join(" | ", _cemetery.Select(c => $"Slot {c.SlotIndex}: {c.cardBaseId}"));
-                            Debug.Log("[묘지 상태] " + summary);
-                        };
-                        
                         break;
                     }
                 }
@@ -343,7 +289,7 @@ public class CardInfo
 {
     public CardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank) // standard용 생성자
     {
-        this.cardName = $"{cardSuit}{cardRank}";
+        this.cardName = $"{cardRank}{cardSuit}";
         this.collection = "Standard";
         this.cardSuit = cardSuit;
         this.cardRank = cardRank;
