@@ -20,6 +20,7 @@ public class CardManager
     GameObject CardBoard; // Card ���� ��Ʈ
     List<Vector3> CardPositions;
     Vector3 CardScale;
+    Transform CardRoot;
 
 
     public void Init()
@@ -56,6 +57,8 @@ public class CardManager
 
         Vector3 originalScale = CardBoard.transform.localScale;
         CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
+
+        CardRoot = GameObject.Find("Cards").GetComponent<Transform>();
         #endregion
 
         TempKeyAllocate(); // Todo - 실제 카드 삭제 로직에 맞추어 구현.
@@ -77,7 +80,7 @@ public class CardManager
             CardInfo pop = Managers.Deck.PopCard();
             if (pop != null)
             {
-                GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard");
+                GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard", CardRoot);
                 CardBase card = go.GetComponent<CardBase>();
 
                 #region SetCardTransform

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SixHeart_0: 4227637592036183572
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
