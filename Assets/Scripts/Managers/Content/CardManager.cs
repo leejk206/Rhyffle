@@ -73,11 +73,16 @@ public class CardManager
         }
     }
 
-    public void DrawCard()
+    public void DrawCard(int idx = 0)
     {
+        // If no parameter is provided, draw the top card.
+        // If an index is provided, draw the card at the specified index.
         if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
         {
-            CardInfo pop = Managers.Deck.PopCard();
+            CardInfo pop;
+            if (idx == 0) { pop = Managers.Deck.PopCard(); }
+            else { pop = Managers.Deck.PopCard(idx); }
+
             if (pop != null)
             {
                 GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard", CardRoot);

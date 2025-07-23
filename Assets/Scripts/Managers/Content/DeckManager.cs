@@ -87,16 +87,20 @@ public class DeckManager
         }
     }
 
-    public CardInfo PopCard()
+    public CardInfo PopCard(int idx = 0)
     {
-        if (_unUsedDeck.Count <= 0)
-        {
-            ResetDeck(); // Todo resetdeck도 cardinfo 기반으로 수정
-        }
+        if (_unUsedDeck.Count <= 0) { ResetDeck(); }
 
-        CardInfo item = _unUsedDeck[0];
-        _unUsedDeck.RemoveAt(0);
+        CardInfo item;
+        if (idx == 0) { item = _unUsedDeck[0]; _unUsedDeck.RemoveAt(0); }
+        else { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
+        
         return item;
+    }
+
+    public void DiscardTopCard()
+    {
+
     }
 
     public void DoNothing() // 게임 개발 초반 Manager 인스턴스 생성용 호출 코드

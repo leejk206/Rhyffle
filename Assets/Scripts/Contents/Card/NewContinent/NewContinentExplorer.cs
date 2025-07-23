@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class NewContientScout : CardBase
+public class NewContientExplorer : CardBase
 {
     public override void Init(CardInfo cardInfo)
     {
