@@ -78,6 +78,8 @@ public class GamePlayer : MonoBehaviour
     private void Start()
     {
         SetUp();
+
+        Managers.Deck.DoNothing(); // Manager Instantiate를 위한 임시 코드 - Manager를 한 번은 호출해야 인스턴스가 생김
     }
 
 
