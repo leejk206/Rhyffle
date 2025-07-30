@@ -12,6 +12,15 @@ public class Define
         ScoreBoard, 
     }
 
+    public enum UIEvent
+    {
+        Click,
+        Drag,
+        PointerEnter,
+        PointerExit,
+        Drop
+    }
+
     public enum CardSuit
     {
         Unknown = -1, Spade = 0, Heart = 1, Diamond = 2, Club = 3
