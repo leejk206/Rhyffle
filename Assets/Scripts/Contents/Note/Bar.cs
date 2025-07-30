@@ -1,14 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TouchPhase = UnityEngine.TouchPhase;
 
 public class Bar : MonoBehaviour
 {
     public int barNum;
-    //ÃßÈÄ GamePlayer³ª ´Ù¸¥ Manager·Î  ÀÌµ¿¿¹Á¤
-    //ÆÇÁ¤ test¿ëÀÓ
+    //ï¿½ï¿½ï¿½ï¿½ GamePlayerï¿½ï¿½ ï¿½Ù¸ï¿½ Managerï¿½ï¿½  ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ testï¿½ï¿½ï¿½ï¿½
     public GamePlayer gamePlayer;
     float beforeX, beforeY;
+    
+    // touch flags
+    private Vector2 previousTouchPos;
+    private bool isTouching = false;
 
+    void Update()
+    {
+        HandleTouch();
+    }
+    
+#if UNITY_EDITOR
     private void OnMouseDown()
     {
         gamePlayer.press[barNum] = true;
@@ -41,6 +52,53 @@ public class Bar : MonoBehaviour
         }
         else if (beforeY > Input.mousePosition.y) { 
             gamePlayer.flickDown[barNum] = true;
+        }
+    }
+#endif
+    
+    void HandleTouch()
+    {
+        if (Input.touchCount == 0) return;
+
+        foreach (Touch touch in Input.touches)
+        {
+            Vector2 touchPos = touch.position;
+            Ray ray = Camera.main.ScreenPointToRay(touchPos);
+
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject == gameObject)
+            {
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        gamePlayer.press[barNum] = true;
+                        previousTouchPos = touchPos;
+                        isTouching = true;
+                        break;
+
+                    case TouchPhase.Moved:
+                    case TouchPhase.Stationary:
+                        gamePlayer.intouch[barNum] = true;
+                        gamePlayer.slide[barNum] = true;
+                        
+                        gamePlayer.slide[barNum] = true;
+                        if (beforeY < Input.mousePosition.y)
+                        {
+                            gamePlayer.flickUp[barNum] = true;
+                        }
+                        else if (beforeY > Input.mousePosition.y) { 
+                            gamePlayer.flickDown[barNum] = true;
+                        }
+
+                        previousTouchPos = touchPos;
+                        break;
+
+                    case TouchPhase.Ended:
+                    case TouchPhase.Canceled:
+                        gamePlayer.endtouch[barNum] = true;
+                        isTouching = false;
+                        break;
+                }
+            }
         }
     }
 }
