@@ -79,6 +79,19 @@ public class Define
         NewContinentEccentricEngineer = 106,
         NewContinentSovereign = 107,
         #endregion
+    }
+    
+    public enum JudgementType
+    {
+        Perfect,
+        Great,
+        Good,
+        Miss
+    }
 
+    public enum GameMode
+    {
+        Plain, 
+        Challenge
     }
 }
