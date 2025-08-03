@@ -18,10 +18,10 @@ public class TouchVisualizer : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    // 원 생성
-                    GameObject circle = Instantiate(touchCircle, worldPos, Quaternion.identity);
-                    activeCircles.Add(touch.fingerId, circle);
-                    break;
+                    // // 원 생성
+                    // GameObject circle = Instantiate(touchCircle, worldPos, Quaternion.identity);
+                    // activeCircles.Add(touch.fingerId, circle);
+                    // break;
 
                 case TouchPhase.Moved:
                 case TouchPhase.Stationary:
