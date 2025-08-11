@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadingSceneUI : UI_Base
+public class LoadingExtraUI : UI_Popup
 {
     enum Images
     {

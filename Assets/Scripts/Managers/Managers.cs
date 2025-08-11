@@ -19,7 +19,7 @@ public class Managers : MonoBehaviour
     // public static CardManager Card { get { return Instance._card } }
     public static CardManager Card { get { return Instance._card; } }
     public static DeckManager Deck { get { return Instance._deck; } }
-    public static GameUIManager UI { get { return Instance._uiManager; } }
+    public static GameUIManager GameUI { get { return Instance._uiManager; } }
     public static HandManager Hand { get { return Instance._hand; } }
     #endregion
 
@@ -30,12 +30,14 @@ public class Managers : MonoBehaviour
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
+    UIManager _ui = new UIManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static UIManager UI { get { return Instance._ui; } }
     #endregion
 
     void Start()
@@ -49,6 +51,19 @@ public class Managers : MonoBehaviour
         _card.OnUpdate();
 
         _input.OnUpdate();
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+        {
+            _ui.ShowExtraLoadingUI();
+        }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.H))
+        {
+            _ui.ShowHardLoadingUI();
+        }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.C))
+        {
+            _ui.CloseLoadingUI();
+        }
     }
 
     static void Init()
