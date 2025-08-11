@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LoadingSceneSongNameRectangle_0: 1286300876689203766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
