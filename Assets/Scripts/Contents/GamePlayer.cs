@@ -15,6 +15,8 @@ public class GamePlayer : MonoBehaviour
     public bool play = true;
     // ���� ���۽� ������ (-144��° ���ڿ��� ����, �� 144���� ���ĸ� 0�� �ش��ϴ� ���ڸ� ó���ؾ� �ϴ� Ÿ�̹�)
     float currentTime = -144;
+    // 이전 프레임 플레이 상태 플래그 -> 매 프레임마다 초기화 되는 것을 방지
+    private bool _wasPlaying = true;
 
     // ��Ʈ�� ����, Json���� Serialize�Ǿ� ����� Info Class���� �迭�� ���� (NoteType.cs Ȯ��)
     #region noteInfos
@@ -370,6 +372,23 @@ public class GamePlayer : MonoBehaviour
                 judgeChecker[i] = 0;
             }
             #endregion
+
+            if (!play && _wasPlaying)
+            {
+                for (int i = 0; i < 21; i++)
+                {
+                    press[i] = false;
+                    slide[i] = false;
+                    intouch[i] = false;
+                    endtouch[i] = false;
+                    flickUp[i] = false;
+                    flickDown[i] = false;
+                }
+
+                // Debug.Log("TouchBoolean 초기화");
+            }
+            
+            _wasPlaying = play;
 
             // �Ͻ� ����
             await UniTask.WaitUntil(() => play);

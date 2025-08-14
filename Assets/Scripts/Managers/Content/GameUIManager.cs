@@ -3,15 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 using Cysharp.Threading.Tasks;
 
-// ³ªÁß¿¡ UIManager °°Àº ÆÄÀÏ ÀÖÀ» °æ¿ì Ãæµ¹ ¹æÁö·Î ÀÓ½Ã·Î ÁöÀº ÀÌ¸§
-// UIManger·Î ¿Å°ÜÁú °æ¿ì regionÀ¸·Î ±¸°£ ³ª´©¾î ÀúÀåÇÒ ¿¹Á¤
+// ï¿½ï¿½ï¿½ß¿ï¿½ UIManager ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+// UIMangerï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ regionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 public class GameUIManager:MonoBehaviour
 {
-    //Å×½ºÆ®¿ë ÃßÈÄ »èÁ¦ È¤Àº ´Ù¸¥ ½ºÅ©¸³Æ®¸¦ ÁöÁ¤ ¿¹Á¤
+    //ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¤ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GamePlayer gamePlayer;
+    
+    // ì¹´ìš´íŒ… ìˆ«ì ìŠ¤í”„ë¼ì´íŠ¸
+    public Sprite[] countSprites;
 
-
-    // ½ºÅ©¸° °¡·Î ¼¼·Î ±æÀÌ
+    // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     float screenWidth = Screen.width;
     float screenHeight = Screen.height;
 
@@ -23,10 +25,12 @@ public class GameUIManager:MonoBehaviour
     GameObject scoreBoardText;
     GameObject counting;
     GameObject countNum;
+    GameObject countSprite;
+    GameObject countBackground;
     GameObject pauseUI;
     #endregion
 
-    //ÀÓ½Ã·Î ¸¸µç °ÅÀÓ ÃßÈÄ Áö¿ï ¿¹Á¤
+    //ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void Start()
     {
         init();
@@ -41,31 +45,34 @@ public class GameUIManager:MonoBehaviour
         scoreBoardText = GameObject.Find("ScoreBoardText");
         counting = GameObject.Find("CountingUI");
         countNum = GameObject.Find("CountNum");
+        countSprite = GameObject.Find("CountSprite");
+        countBackground = GameObject.Find("CountBackground");
         pauseUI = GameObject.Find("PauseUI");
         counting.SetActive(false);
+        countBackground.SetActive(false);
         pauseUI.SetActive(false);
     }
 
-    //°î ÀÌ¸§ ¾÷µ¥ÀÌÆ®
+    //ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public void UpdateSong(string songName)
     {
         songInfoText.GetComponent<TextMeshProUGUI>().text = songName;
     }
 
-    //Á¡¼ö ¾÷µ¥ÀÌÆ®
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public void UpdateScore(int score)
     {
         scoreBoardText.GetComponent<TextMeshProUGUI>().text = score.ToString();
     }
 
-    //È­¸é ¼Ó UI ÇÒ´ç
+    //È­ï¿½ï¿½ ï¿½ï¿½ UI ï¿½Ò´ï¿½
     void AllocateGameUI(){
         pauseButton = GameObject.Find("PauseButton");
         songInfoBoard = GameObject.Find("SongInfoBoard");
         scoreBoard = GameObject.Find("ScoreBoard");
     }
 
-    //È­¸é ÀÏ½ÃÁ¤Áö Ã¢ ¶ç¿ì±â
+    //È­ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
     public void Pause()
     {
         scoreBoard.SetActive(false);
@@ -75,15 +82,16 @@ public class GameUIManager:MonoBehaviour
         gamePlayer.play = false;
     }
 
-    //È­¸é ÀÏ½ÃÁ¤Áö Ç®°í 3ÃÊ Ä«¿îÆÃ
+    //È­ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ 3ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
     public void ResumeCounting()
     {
         pauseUI.SetActive(false);
+        countBackground.SetActive(true);
         counting.SetActive(true);
         Count3();
     }
 
-    //ÇÃ·¹ÀÌ È­¸é UI
+    //ï¿½Ã·ï¿½ï¿½ï¿½ È­ï¿½ï¿½ UI
     public void Resume()
     {
         scoreBoard.SetActive(true);
@@ -94,11 +102,14 @@ public class GameUIManager:MonoBehaviour
 
     public async UniTask Count3()
     {
+        Image countImage = countSprite.GetComponent<Image>();
         for(int i = 3; i > 0; i--)
         {
-            countNum.GetComponent<TextMeshProUGUI>().text = i.ToString();
+            // countNum.GetComponent<TextMeshProUGUI>().text = i.ToString();
+            countImage.sprite = countSprites[i - 1];
             await UniTask.WaitForSeconds(1);
         }
+        countBackground.SetActive(false);
         counting.SetActive(false);
         Resume();
     }
