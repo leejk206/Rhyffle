@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 72afd989ef9c24af9aef8663d8223cda
+guid: 181cbff4059ec4751bbe2b1e9919e474
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5682329509416219667
-    second: GreenFlickUp_0
+      213: -2693379160335305178
+    second: FlickUp_R_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 513
+  spritePixelsToUnits: 720
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,12 +139,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GreenFlickUp_0
+      name: FlickUp_R_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 100
-        width: 269
+        width: 266
         height: 412
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: debc68eda6f4421b0800000000000000
-      internalID: -5682329509416219667
+      spriteID: 62636ce7ce13f9ad0800000000000000
+      internalID: -2693379160335305178
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GreenFlickUp_0: -5682329509416219667
+      FlickUp_R_0: -2693379160335305178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
