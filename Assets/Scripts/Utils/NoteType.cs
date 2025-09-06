@@ -10,10 +10,10 @@ using System.Collections.Generic;
 [System.Serializable]
 public class NoteJson
 {
-    public BasicNoteJson NormalNotes;
-    public HoldNoteJson HoldNotes;
-    public SlideNoteJson SlideNotes;
-    public FlickNoteJson FlickNotes;
+    public BasicNoteInfo[] NormalNotes;
+    public HoldNoteInfo[] HoldNotes;
+    public SlideNoteInfo[] SlideNotes;
+    public FlickNoteInfo[] FlickNotes;
 }
 
 
@@ -32,13 +32,6 @@ public class BasicNoteInfo
         this.length = length;
     }
 
-}
-
-
-[System.Serializable]
-public class BasicNoteJson
-{
-    public BasicNoteInfo[] notes;
 }
 #endregion
 
@@ -59,12 +52,6 @@ public class SlideNoteInfo
     }
 }
 
-
-[System.Serializable]
-public class SlideNoteJson
-{
-    public SlideNoteInfo[] notes;
-}
 #endregion
 
 //우선은 이렇게 구현하고 필요하다면 추후 논의를 통하여 위 아래 플릭으로 나누어 구현
@@ -85,12 +72,6 @@ public class FlickNoteInfo
     }
 }
 
-
-[System.Serializable]
-public class FlickNoteJson
-{
-    public FlickNoteInfo[] notes;
-}
 #endregion
 
 #region HoldNote
@@ -114,11 +95,6 @@ public class HoldNoteInfo
 }
 
 
-[System.Serializable]
-public class HoldNoteJson
-{
-    public HoldNoteInfo[] notes;
-}
 #endregion
 
 
