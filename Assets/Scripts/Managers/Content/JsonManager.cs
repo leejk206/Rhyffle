@@ -8,26 +8,26 @@ public class JsonManager
 {
     NoteJson noteJson;
 
-    //filePathÈ¤Àº int¿Í °°Àº ÄÚµå·Î ¼³Á¤ÇØµµ µÊ
-    //Æ¯Á¤ filePath¸¦ ÀÐ¾î¼­ °¢°¢ÀÇ ³ëÆ® JsonÀ» ÀÐ°í »ý¼º
+    //filePathÈ¤ï¿½ï¿½ intï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½
+    //Æ¯ï¿½ï¿½ filePathï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® Jsonï¿½ï¿½ ï¿½Ð°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    // ÀÌ ºÎºÐÀ» ³ªÁß¿¡ Á¦°Å ÇÊ¿ä Å×½ºÆ®¿ëÀÓ
-    // »ç¿ëÇÒ jsonÆÄÀÏ ÀÌ¸§À» ³ÖÀ¸¸é µÊ
-    string path = "\\DAKI1_VIOLET_rough.json";
+    // ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    string path = "/DAKI1_VIOLET_rough.json";
 
-    //ÆÄÀÏ °æ·Î ¼³Á¤
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SetPath(string path)
     {
         this.path = path;
     }
 
-    // filepath¿¡ ÇØ´çÇÏ´Â °æ·ÎÀÇ json ÆÄÀÏÀ» Ã£À½
-    // Àß ±¼·¯°¡´ÂÁö È®ÀÎÇÏ´Â ¹æ¹ýÀº
-    // C:\Users\»ç¿ëÀÚÀÌ¸§\AppData\LocalLow\DefaultCompany\Rhyffle Æú´õ¿¡ ÇØ´ç json ÆÄÀÏÀ» ³ÖÀ¸¸é µÊ
+    // filepathï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    // C:\Users\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\AppData\LocalLow\DefaultCompany\Rhyffle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-    // ¿¹¸¦ µé¾î chart.json ÆÄÀÏÀ» »ç¿ëÇÏ°í ½Í´Ù¸é
-    // C:\Users\»ç¿ëÀÚÀÌ¸§\AppData\LocalLow\DefaultCompany\Rhyffle Æú´õ¿¡ chart.jsonÀ» ³Ö°í
-    // À§ÀÇ path º¯¼ö¸¦ "\\chart.json"À¸·Î º¯°æÇÏ¸é ÀÛµ¿ÇÔ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ chart.json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´Ù¸ï¿½
+    // C:\Users\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\AppData\LocalLow\DefaultCompany\Rhyffle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ chart.jsonï¿½ï¿½ ï¿½Ö°ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ path ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "\\chart.json"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ûµï¿½ï¿½ï¿½
     public void LoadJson()
     {
         string loadPath = Application.persistentDataPath + path;
@@ -35,7 +35,7 @@ public class JsonManager
         noteJson = JsonConvert.DeserializeObject<NoteJson>(jsonString);
     }
 
-    // ÀÐÀº Json Á¤º¸¸¦ Àü´ÞÇÏ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ Json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public NoteJson ReturnJson()
     {
         return noteJson;

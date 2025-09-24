@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40353ad038bb14f6f84a0c455ea4dc22
+guid: 054ee12808ef54df9b1edf22ec685926
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7121220382037901661
-    second: ScoreBox_0
+      213: 8319461456551766626
+    second: AlbumCover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 85
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ScoreBox_0
+      name: AlbumCover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 118
-        height: 26
+        width: 85
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3aefb59dac75c2d90800000000000000
-      internalID: -7121220382037901661
+      spriteID: 26a6258cd1aa47370800000000000000
+      internalID: 8319461456551766626
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ScoreBox_0: -7121220382037901661
+      AlbumCover_0: 8319461456551766626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
