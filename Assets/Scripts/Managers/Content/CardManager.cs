@@ -25,10 +25,18 @@ public class CardManager
 
     public void Init()
     {
+        OnGameStart(); // 임시로 Init에 설정, 실제 게임 실행 시에는 OnGameStart 코드만 호출
+
+    }
+
+    public void OnGameStart()
+    {
+        // executed at the start of the game 
+
         _fieldCards = new List<CardBase> { null, null, null, null, null, null, null };
         CardPositions = new();
-        
-        _cemetery = new Queue<CardBase> {};
+
+        _cemetery = new Queue<CardBase> { };
 
         #region GetCardTransform
         CardSpawnPoint = GameObject.Find("CardSpawnPoint");

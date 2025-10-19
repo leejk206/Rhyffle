@@ -18,6 +18,11 @@ public class DeckManager
 
     public void Init()
     {
+        OnGameStart();
+    }
+
+    public void OnGameStart()
+    {
         _deck = new(); _unUsedDeck = new(); _usedDeck = new();
 
         #region SetInitialDeck

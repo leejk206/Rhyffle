@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -10,18 +11,20 @@ public class GamePlayer : MonoBehaviour
 
     public NoteTest noteTester;
 
-    // °ÔÀÓ ÁøÇà ¿©ºÎ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool play = true;
-    // °ÔÀÓ ½ÃÀÛ½Ã Æ÷Áö¼Ç (-144¹øÂ° ¹ÚÀÚ¿¡¼­ ½ÃÀÛ, Áï 144¹ÚÀÚ ÀÌÈÄ¸é 0¿¡ ÇØ´çÇÏ´Â ¹ÚÀÚ¸¦ Ã³¸®ÇØ¾ß ÇÏ´Â Å¸ÀÌ¹Ö)
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (-144ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ 144ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¸ï¿½ 0ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ Ã³ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ Å¸ï¿½Ì¹ï¿½)
     float currentTime = -144;
+    // ì´ì „ í”„ë ˆì„ í”Œë ˆì´ ìƒíƒœ í”Œë˜ê·¸ -> ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì´ˆê¸°í™” ë˜ëŠ” ê²ƒì„ ë°©ì§€
+    private bool _wasPlaying = true;
 
-    // ³ëÆ®µé Á¤º¸, Json¿¡¼­ SerializeµÇ¾î ÀúÀåµÈ Info ClassµéÀ» ¹è¿­·Î ÀúÀå (NoteType.cs È®ÀÎ)
+    // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Jsonï¿½ï¿½ï¿½ï¿½ Serializeï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Info Classï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (NoteType.cs È®ï¿½ï¿½)
     #region noteInfos
     BasicNoteInfo[] basicNotes;
     SlideNoteInfo[] slideNotes;
     FlickNoteInfo[] flickNotes;
     HoldNoteInfo[] holdNotes;
-    // holdNote¸¦ ¹ÙÅÁÀ¸·Î holdBodyµéÀ» ¹­¾î ³õÀº List
+    // holdNoteï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ holdBodyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ List
     List<List<HoldNoteInfo>> holdBodyList = new List<List<HoldNoteInfo>>();
     int basicNoteCount;
     int slideNoteCount;
@@ -29,8 +32,8 @@ public class GamePlayer : MonoBehaviour
     int holdNoteCount;
     #endregion
 
-    // noteInfo¿¡¼­ °¢°¢ÀÇ ³ëÆ®µéÀÇ position °ªµéÀ» ¹Ì¸® int ¹è¿­·Î ÀúÀå
-    // holdNoteÀÇ °æ¿ì Ã³À½ µîÀåÇÏ´Â ³ëÆ®¸¦ ±âÁØÀ¸·Î ÀúÀå
+    // noteInfoï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ position ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ int ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // holdNoteï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     #region spawnPositions
     int[] basicNoteTiming;
     int[] slideNoteTiming;
@@ -42,65 +45,71 @@ public class GamePlayer : MonoBehaviour
     int holdCur = 0;
     #endregion
       
-    // ÅÍÄ¡ ÆÇÁ¤ °ü·ÃÇÏ¿© Á¤º¸ ÀúÀå
+    // ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     #region TouchBoolean
-    // ÅÍÄ¡½ÃÀÛ
+    // ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½
     public bool[] press = new bool[21];
-    // ½½¶óÀÌµå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
     public bool[] slide = new bool[21];
-    // ÅÍÄ¡Áß
+    // ï¿½ï¿½Ä¡ï¿½ï¿½
     public bool[] intouch = new bool[21];
-    // ÅÍÄ¡³¡³¿
+    // ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½
     public bool[] endtouch = new bool[21];
-    // ÇÃ¸¯¾÷
+    // ï¿½Ã¸ï¿½ï¿½ï¿½
     public bool[] flickUp = new bool[21];
-    // ÇÃ¸¯´Ù¿î
+    // ï¿½Ã¸ï¿½ï¿½Ù¿ï¿½
     public bool[] flickDown = new bool[21];
     #endregion
 
-    // ³ëÆ® ¶³±¸´Â ¼Óµµ °ü·Ã Á¤º¸ ÀúÀå
+    // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     #region noteSpeed
-    // ³ëÆ® ¼Óµµ (º¯¼Ó ±â¹Í¿¡ º¯È­ÇÔ)
-    int bpm = 120;
-    // ÇÃ·¹ÀÌ¾î ¿ÀÇÁ¼Â
+    // ï¿½ï¿½Æ® ï¿½Óµï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½È­ï¿½ï¿½)
+    int bpm = 80;
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     float offSet = 0;
-    // ÇÃ·¹ÀÌ¾î ³ëÆ® ³»·Á¿À´Â ¼Óµµ
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
     float playerSpeed = 8;
     #endregion
 
-    // ÀÎ °ÔÀÓ NoteµéÀ» ´ãÀº List
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Noteï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ List
     List<Note> inGameNote = new List<Note>();
 
-    // ÆÇÁ¤µÈ judge¸¦ ÀúÀå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ judgeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     int[] judgeChecker =new int[21];
     
-    // ÀÌ ÇÔ¼ö´Â Áö¿ì°í ³ªÁß¿¡ Manager Áß ÇÏ³ª°¡ SetUpÀ» È£ÃâÇÏ´Â ½ÄÀ¸·Î ¼öÁ¤ ºÎÅ¹
+    // ì„ì‹œ íŒì • í…ìŠ¤íŠ¸ UI
+    public TextMeshProUGUI judgeText;
+    
+    // ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ Manager ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ SetUpï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¹
     private void Start()
     {
         SetUp();
 
-        Managers.Deck.DoNothing(); // Manager Instantiate¸¦ À§ÇÑ ÀÓ½Ã ÄÚµå - Manager¸¦ ÇÑ ¹øÀº È£ÃâÇØ¾ß ÀÎ½ºÅÏ½º°¡ »ı±è
+        Managers.Deck.DoNothing(); // Manager Instantiateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½Úµï¿½ - Managerï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        
+        int totalNoteCount = basicNotes.Length + slideNotes.Length + flickNotes.Length + holdNoteCount; // ì´ ë…¸íŠ¸ ìˆ˜ ê³„ì‚°
+        Managers.Score.Init(totalNoteCount); // ì ìˆ˜ ì‹œìŠ¤í…œ ì´ˆê¸°í™”
     }
 
 
     public void SetUp()
     {
-        // noteCreator ÄÄÆ÷³ÍÆ® ÃÊ±âÈ­ (´Ü Scene¿¡ ¹Ì¸® ÀÖ¾îÁà¾ß ÇÔ)
+        // noteCreator ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ê±ï¿½È­ (ï¿½ï¿½ Sceneï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
         noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
 
-        // jsonManager È¤Àº º°µµÀÇ ½ºÅ©¸³Æ®¸¦ ÀÌ¿ëÇØ¼­ noteInfoµé ÀúÀå
-        // Áö±İÀº NoteTester¿¡ unity¿¡¼­ Á¤º¸¸¦ ´ã¾Æ¼­ TestingÇÔ
+        // jsonManager È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ noteInfoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NoteTesterï¿½ï¿½ unityï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ Testingï¿½ï¿½
         basicNotes = noteTester.basicNotes;
         slideNotes = noteTester.slideNotes;
         flickNotes = noteTester.flickNotes;
         holdNotes = noteTester.holdNotes;
 
-        // ÀÌ ºÎºĞ¿¡¼­ ³ëÆ®°¡ ¶³¾îÁö´Â ¼ø¼­¸¦ 'position' ±âÁØÀ¸·Î Á¤¸®°¡ ÇÊ¿äÇÔ (¹Ì±¸Çö)
-        // ±×·¸Áö ¾Ê´Â´Ù¸é ÀÌÈÄ ÆÇÁ¤ ÆÄÆ®¿¡¼­ ²¿ÀÓ
+        // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 'position' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ (ï¿½Ì±ï¿½ï¿½ï¿½)
+        // ï¿½×·ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // holdNoteBody Á¤º¸ ¹Ì¸® countº°·Î ºĞ·ùÇÏ¿© ÀúÀå
+        // holdNoteBody ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ countï¿½ï¿½ï¿½ï¿½ ï¿½Ğ·ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         #region holdNoteBodyInfoBind
-        // holdBodyCount´Â ¿¬°áµÈ È¦µå ³ëÆ®µéÀÇ ÃÑ °³¼ö
+        // holdBodyCountï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ È¦ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int holdBodyCount = -1;
         for (int i = 0; i < holdNotes.Length; i++)
         {
@@ -120,10 +129,10 @@ public class GamePlayer : MonoBehaviour
         }
         #endregion
 
-        // °¢°¢ÀÇ ³ëÆ®µéÀ» ÆÇÁ¤ÇØ¾ß ÇÏ´Â ½ÃÁ¡µéÀ» ÀúÀå(ÀÌ ½ÃÁ¡µéÀ» ÀÌ¿ëÇØ¼­ ¶³¾î¶ß¸®´Â Å¸ÀÌ¹Ö °áÁ¤)
-        // À§¿¡¼­ ³ëÆ®°¡ ¶³¾îÁö´Â ¼ø¼­¸¦ position±âÁØÀ¸·Î Á¤·ÄÇÏÁö ¾Ê´Â´Ù¸é ÀÌ°÷¿¡¼­ »õ·Î¿î ±¸Á¶Ã¼ È¤Àº Class¸¦ ¸¸µé¾î¼­ Àû¿ëÇØµµ µÊ
-        // ÇØ´ç Class¿¡¼­ ³ëÆ®ÀÇ positionÀÌ¶û ÇØ´ç ³ëÆ®°¡ noteInfo¿¡ ¸î¹øÂ°¿¡ ÀÖ´ÂÁö Ã¼Å©ÇÏ´Â Á¤º¸¸¦ °¡Áö¸é... °¡´ÉÇÏÁö ¾ÊÀ»±î¿©...?
-        // ±×·¡µµ ±×³É À§¿¡¼­ Á¤·ÄÇÏ´Â °ÍÀÌ ´Ü¼øÇØ º¸¿©¼­ ÃßÃµÇÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½ Å¸ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ positionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ È¤ï¿½ï¿½ Classï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½
+        // ï¿½Ø´ï¿½ Classï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ positionï¿½Ì¶ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ noteInfoï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½... ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¿©...?
+        // ï¿½×·ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½
         #region setTiming
 
         basicNoteCount = basicNotes.Length;
@@ -162,7 +171,7 @@ public class GamePlayer : MonoBehaviour
         {
 
             currentTime += Time.deltaTime * bpm / 60 * 16;
-            // »ı¼º
+            // ï¿½ï¿½ï¿½ï¿½
             #region creation
             // basicNote Creation
             while (basicCur < basicNoteCount)
@@ -227,19 +236,19 @@ public class GamePlayer : MonoBehaviour
             }
             #endregion
 
-            // ÆÇÁ¤
+            // ï¿½ï¿½ï¿½ï¿½
             #region Judge
             for (int i = 0; i < 21; i++)
             {
                 for (int j = 0; j < inGameNote.Count; j++)
                 {
                     if (press[i])
-                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 1, currentTime);
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, i, currentTime);
                     if (judgeChecker[i] > 0)
                     {
                         if (!(inGameNote[j].gameObject.tag == "HoldNote"))
                         {
-                            // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                            // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
                             Destroy(temp);
@@ -250,7 +259,7 @@ public class GamePlayer : MonoBehaviour
                     if (slide[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 2, currentTime);
                     if (judgeChecker[i] > 0)
                     {
-                        // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                        // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                         GameObject temp = inGameNote[j].gameObject;
                         inGameNote.RemoveAt(j);
                         Destroy(temp);
@@ -264,7 +273,7 @@ public class GamePlayer : MonoBehaviour
                     if (endtouch[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 4, currentTime);
                     if (judgeChecker[i] > 0)
                     {
-                        // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                        // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                         inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
                         GameObject temp = inGameNote[j].gameObject;
                         inGameNote.RemoveAt(j);
@@ -274,7 +283,7 @@ public class GamePlayer : MonoBehaviour
                     if (flickUp[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 5, currentTime);
                     if (judgeChecker[i] > 0)
                     {
-                        // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                        // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                         GameObject temp = inGameNote[j].gameObject;
                         inGameNote.RemoveAt(j);
                         Destroy(temp);
@@ -283,7 +292,7 @@ public class GamePlayer : MonoBehaviour
                     if (flickDown[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 6, currentTime);
                     if (judgeChecker[i] > 0)
                     {
-                        // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                        // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                         GameObject temp = inGameNote[j].gameObject;
                         inGameNote.RemoveAt(j);
                         Destroy(temp);
@@ -294,7 +303,7 @@ public class GamePlayer : MonoBehaviour
                     {
                         if (!(inGameNote[j].gameObject.tag == "HoldNote"))
                         {
-                            // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                            // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
                             Destroy(temp);
@@ -302,7 +311,7 @@ public class GamePlayer : MonoBehaviour
                         }
                         else
                         {
-                            // ÀÌ ºÎºĞ¿¡¼­ poolingÀÌ ÇÊ¿äÇÔ
+                            // ï¿½ï¿½ ï¿½ÎºĞ¿ï¿½ï¿½ï¿½ poolingï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
                             inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
@@ -314,11 +323,13 @@ public class GamePlayer : MonoBehaviour
             }
             #endregion
 
-            // ÆÇÁ¤¿¡ µû¸¥ Á¡¼ö ¹× Ä«µå È¿°ú Àû¿ëÀÌ µé¾î°¥ ºÎºĞ
-            // judgeCheck¿¡ ÆÇÁ¤ ÀúÀå DefineÀÇ ÆÇÁ¤ ºÎºĞ ÂüÁ¶(enumÀº Àû¾î ³õ¾ÒÀ¸³ª Àû¿ë ¸ø ÇßÀ½...)
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½Îºï¿½
+            // judgeCheckï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Defineï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½(enumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...)
 
             // reset
             #region resetForFrame
+
+            int judgeNoteIndex = 0; // noteIndex ì¶”ì 
             for (int i = 0; i < 21; i++)
             {
                 /*
@@ -332,16 +343,24 @@ public class GamePlayer : MonoBehaviour
                 switch (judgeChecker[i])
                 {
                     case 1:
-                        Debug.Log("Miss at " + currentTime);
+                        judgeText.text = "Miss";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, 0);
+                        Debug.Log("Miss at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
                     case 2:
-                        Debug.Log("Good at " + currentTime);
+                        judgeText.text = "Good";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Good, 0);
+                        Debug.Log("Good at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
                     case 3:
-                        Debug.Log("Great at " + currentTime);
+                        judgeText.text = "Great";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Great, 0);
+                        Debug.Log("Great at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
                     case 4:
-                        Debug.Log("Perfect at " + currentTime);
+                        judgeText.text = "Perfect";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Perfect, 0);
+                        Debug.Log("Perfect at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
                 }
                 press[i] = false;
@@ -354,7 +373,24 @@ public class GamePlayer : MonoBehaviour
             }
             #endregion
 
-            // ÀÏ½Ã Á¤Áö
+            if (!play && _wasPlaying)
+            {
+                for (int i = 0; i < 21; i++)
+                {
+                    press[i] = false;
+                    slide[i] = false;
+                    intouch[i] = false;
+                    endtouch[i] = false;
+                    flickUp[i] = false;
+                    flickDown[i] = false;
+                }
+
+                // Debug.Log("TouchBoolean ì´ˆê¸°í™”");
+            }
+            
+            _wasPlaying = play;
+
+            // ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
             await UniTask.WaitUntil(() => play);
             await UniTask.WaitForFixedUpdate();
             if (!Application.isPlaying)
