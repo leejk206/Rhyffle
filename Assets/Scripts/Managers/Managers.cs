@@ -10,17 +10,33 @@ public class Managers : MonoBehaviour
 
     #region Content
     // 게임 컨텐츠 구현에 필요한 매니저 선언
-    // CardManager _card = new CardManager();
+    CardManager _card = new CardManager();
+    DeckManager _deck = new DeckManager();
+    EffectManager _effect = new EffectManager();
+    UIManager _ui = new UIManager();
+    HandManager _hand = new HandManager();
+    MainGameManager _mainGameManager = new MainGameManager();
+    ScoreManager _score = new ScoreManager();
 
     // public static CardManager Card { get { return Instance._card } }
+    public static CardManager Card { get { return Instance._card; } }
+    public static DeckManager Deck { get { return Instance._deck; } }
+    public static EffectManager Effect { get { return Instance._effect; } }
+    public static UIManager UI { get { return Instance._ui; } }
+    public static HandManager Hand { get { return Instance._hand; } }
+    public static ScoreManager Score { get { return Instance._score; } }
     #endregion
 
     #region Core
     // 게임 기초 구현에 필요한 매니저 선언
+    DataManager _data = new DataManager();
+    InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
 
+    public static DataManager Data { get { return Instance._data; } }
+    public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
@@ -32,9 +48,11 @@ public class Managers : MonoBehaviour
     }
 
     void Update()
-        // 각 매니저별 Update가 필요한 코드가 있다면 구현 후 이곳에서 통합 실행
+    // 각 매니저별 Update가 필요한 코드가 있다면 구현 후 이곳에서 통합 실행
     {
-        // Card.Onupdate();
+        _card.OnUpdate();
+
+        _input.OnUpdate();
     }
 
     static void Init()
@@ -56,7 +74,12 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
         }
 
+        s_instance = go.GetComponent<Managers>();
+
         #region ManagersInitiate
+        s_instance._card.Init();
+        s_instance._deck.Init();
+        s_instance._effect.Init();
         s_instance._pool.Init();
         s_instance._scene.Init();
 
