@@ -13,16 +13,18 @@ public class Managers : MonoBehaviour
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
     EffectManager _effect = new EffectManager();
-    GameUIManager _uiManager = new GameUIManager();
+    UIManager _ui = new UIManager();
     HandManager _hand = new HandManager();
     MainGameManager _mainGameManager = new MainGameManager();
+    ScoreManager _score = new ScoreManager();
 
     // public static CardManager Card { get { return Instance._card } }
     public static CardManager Card { get { return Instance._card; } }
     public static DeckManager Deck { get { return Instance._deck; } }
     public static EffectManager Effect { get { return Instance._effect; } }
-    public static GameUIManager UI { get { return Instance._uiManager; } }
+    public static UIManager UI { get { return Instance._ui; } }
     public static HandManager Hand { get { return Instance._hand; } }
+    public static ScoreManager Score { get { return Instance._score; } }
     #endregion
 
     #region Core
