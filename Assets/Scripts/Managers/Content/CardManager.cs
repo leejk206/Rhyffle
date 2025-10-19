@@ -70,22 +70,38 @@ public class CardManager
         if (Input.GetKeyDown(KeyCode.A))
         {
             DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DrawCard(0, "Black Rose Vanguard");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Managers.Deck.ResetDeck();
         }
     }
 
-    public void DrawCard(int idx = 0)
+    public void DrawCard(int idx = 0, string cardName = "")
     {
         // If no parameter is provided, draw the top card.
         // If an index is provided, draw the card at the specified index.
         if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
         {
             CardInfo pop;
-            if (idx == 0) { pop = Managers.Deck.PopCard(); }
-            else { pop = Managers.Deck.PopCard(idx); }
+            if (idx != 0) { pop = Managers.Deck.PopCard(idx); }
+            else if (cardName != "") { pop = Managers.Deck.PopCard(0, cardName); }
+            else { pop = Managers.Deck.PopCard(); }
 
             if (pop != null)
             {
-                GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard", CardRoot);
+                GameObject go = Managers.Resource.Instantiate(
+                    $"Card/{pop.collection}/{(pop.collection == "Standard" ? "StandardCard" : pop.cardName)}", CardRoot);
                 CardBase card = go.GetComponent<CardBase>();
 
                 #region SetCardTransform
@@ -107,7 +123,11 @@ public class CardManager
                         CardAlignment(card, i);
 
                         card.Init(pop); // 카드 초기화 코드
-                        card.OnCardDraw(); // 카드 드로우 시 효과 발동 로직
+
+                        card.OnCardDraw(); // 현재 드로우 한 카드의 드로우 시 실행되는 효과 발동 
+
+                        Managers.Effect.EffectOnCardDraw.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
+                        foreach (var effect in Managers.Effect.EffectOnCardDraw) { effect.OnCardDraw(); }
 
                         Managers.Hand.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
 
@@ -126,7 +146,11 @@ public class CardManager
                                 case 5: Del5(); break;
                                 case 6: Del6(); break;
                             }
-                            card.OnCardDestroy();
+                            card.OnCardDestroy(); // 현재 파괴된 카드의 파괴 시 실행되는 효과 발동
+
+                            Managers.Effect.EffectOnCardDestroy.RemoveAll(effect => effect.shouldBeRemoved == true); // 파괴 시 실행되는 다른 효과들의 리스트 정리
+                            foreach (var effect in Managers.Effect.EffectOnCardDestroy) { effect.OnCardDestroy(); }
+
                             DrawCard();
 
                             // 묘지 상태 확인 용
@@ -141,6 +165,8 @@ public class CardManager
             }
         }
     }
+
+    
 
     public void CardAlignment(CardBase card, int idx)
     {
@@ -167,6 +193,12 @@ public class CardManager
             if (Input.GetKeyDown(KeyCode.Keypad0))
             {
                 Del0();
+                Del1();
+                Del2();
+                Del3();
+                Del4();
+                Del5();
+                Del6();
             }
             else if (Input.GetKeyDown(KeyCode.Keypad1))
             {

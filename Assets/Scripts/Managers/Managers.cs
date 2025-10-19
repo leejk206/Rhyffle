@@ -12,6 +12,7 @@ public class Managers : MonoBehaviour
     // 게임 컨텐츠 구현에 필요한 매니저 선언
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
+    EffectManager _effect = new EffectManager();
     GameUIManager _uiManager = new GameUIManager();
     HandManager _hand = new HandManager();
     MainGameManager _mainGameManager = new MainGameManager();
@@ -19,6 +20,7 @@ public class Managers : MonoBehaviour
     // public static CardManager Card { get { return Instance._card } }
     public static CardManager Card { get { return Instance._card; } }
     public static DeckManager Deck { get { return Instance._deck; } }
+    public static EffectManager Effect { get { return Instance._effect; } }
     public static GameUIManager UI { get { return Instance._uiManager; } }
     public static HandManager Hand { get { return Instance._hand; } }
     #endregion
@@ -75,7 +77,7 @@ public class Managers : MonoBehaviour
         #region ManagersInitiate
         s_instance._card.Init();
         s_instance._deck.Init();
-
+        s_instance._effect.Init();
         s_instance._pool.Init();
         s_instance._scene.Init();
 
