@@ -1,15 +1,44 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using Newtonsoft.Json;
 
 public class JsonManager
 {
     NoteJson noteJson;
 
-    //filePathÈ¤Àº int¿Í °°Àº ÄÚµå·Î ¼³Á¤ÇØµµ µÊ
-    //Æ¯Á¤ filePath¸¦ ÀÐ¾î¼­ °¢°¢ÀÇ ³ëÆ® JsonÀ» ÀÐ°í »ý¼º
-    public void ReadJson(string filePath)
+    //filePathÈ¤ï¿½ï¿½ intï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½
+    //Æ¯ï¿½ï¿½ filePathï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® Jsonï¿½ï¿½ ï¿½Ð°ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+    // ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    string path = "/DAKI1_VIOLET_rough.json";
+
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public void SetPath(string path)
     {
-            
+        this.path = path;
+    }
+
+    // filepathï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    // C:\Users\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\AppData\LocalLow\DefaultCompany\Rhyffle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ chart.json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´Ù¸ï¿½
+    // C:\Users\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\AppData\LocalLow\DefaultCompany\Rhyffle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ chart.jsonï¿½ï¿½ ï¿½Ö°ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ path ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "\\chart.json"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ûµï¿½ï¿½ï¿½
+    public void LoadJson()
+    {
+        string loadPath = Application.persistentDataPath + path;
+        string jsonString = File.ReadAllText(loadPath);
+        noteJson = JsonConvert.DeserializeObject<NoteJson>(jsonString);
+    }
+
+    // ï¿½ï¿½ï¿½ï¿½ Json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    public NoteJson ReturnJson()
+    {
+        return noteJson;
     }
 
 }

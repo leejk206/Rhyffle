@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Contents/GamePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Contents/GamePlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/GameUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/GameUIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/JsonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/JsonManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +95,8 @@
       <workItem from="1753946225709" duration="240000" />
       <workItem from="1754234576938" duration="3706000" />
       <workItem from="1755158317678" duration="3362000" />
+      <workItem from="1756128964135" duration="4778000" />
+      <workItem from="1758625194955" duration="3396000" />
     </task>
     <servers />
   </component>

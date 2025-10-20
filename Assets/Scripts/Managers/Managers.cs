@@ -17,6 +17,7 @@ public class Managers : MonoBehaviour
     HandManager _hand = new HandManager();
     MainGameManager _mainGameManager = new MainGameManager();
     ScoreManager _score = new ScoreManager();
+    JsonManager _json = new JsonManager();
 
     // public static CardManager Card { get { return Instance._card } }
     public static CardManager Card { get { return Instance._card; } }
@@ -25,6 +26,7 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return Instance._ui; } }
     public static HandManager Hand { get { return Instance._hand; } }
     public static ScoreManager Score { get { return Instance._score; } }
+    public static JsonManager Json { get { return Instance._json; } }
     #endregion
 
     #region Core

@@ -9,7 +9,10 @@ public class GamePlayer : MonoBehaviour
 
     NoteCreator noteCreator;
 
-    public NoteTest noteTester;
+    // Json 파일의 채보 정보가 담길 class
+    NoteJson noteJson;
+
+    
 
     // ���� ���� ����
     public bool play = true;
@@ -94,15 +97,19 @@ public class GamePlayer : MonoBehaviour
 
     public void SetUp()
     {
+
+        Managers.Json.LoadJson();
+        noteJson = Managers.Json.ReturnJson();
+
         // noteCreator ������Ʈ �ʱ�ȭ (�� Scene�� �̸� �־���� ��)
         noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
 
-        // jsonManager Ȥ�� ������ ��ũ��Ʈ�� �̿��ؼ� noteInfo�� ����
-        // ������ NoteTester�� unity���� ������ ��Ƽ� Testing��
-        basicNotes = noteTester.basicNotes;
-        slideNotes = noteTester.slideNotes;
-        flickNotes = noteTester.flickNotes;
-        holdNotes = noteTester.holdNotes;
+
+        // Json에서 받은 노트 정보들을 저장
+        basicNotes = noteJson.NormalNotes;
+        slideNotes = noteJson.SlideNotes;
+        flickNotes = noteJson.FlickNotes;
+        holdNotes = noteJson.HoldNotes;
 
         // �� �κп��� ��Ʈ�� �������� ������ 'position' �������� ������ �ʿ��� (�̱���)
         // �׷��� �ʴ´ٸ� ���� ���� ��Ʈ���� ����
