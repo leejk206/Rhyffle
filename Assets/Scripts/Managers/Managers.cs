@@ -1,18 +1,19 @@
 using UnityEngine;
 
 public class Managers : MonoBehaviour
-    // Singleton ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½
-    // ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ Managers.(ManagerName).(FeatureName) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-    // ex) Managers.Resource.Instantiate(path, transform) ï¿½ï¿½
+    // Singleton ÆÐÅÏ ÀÌ¿ë
+    // ¸ðµç ¸Å´ÏÀú °ü·Ã È£Ãâ ½Ã Managers.(ManagerName).(FeatureName) µîÀ¸·Î È£Ãâ °¡´É
+    // ex) Managers.Resource.Instantiate(path, transform) µî
 {
     static Managers s_instance;
     static Managers Instance { get { Init(); return s_instance; } }
 
     #region Content
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // °ÔÀÓ ÄÁÅÙÃ÷ ±¸Çö¿¡ ÇÊ¿äÇÑ ¸Å´ÏÀú ¼±¾ð
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
-    GameUIManager _uiManager = new GameUIManager();
+    EffectManager _effect = new EffectManager();
+    UIManager _ui = new UIManager();
     HandManager _hand = new HandManager();
     MainGameManager _mainGameManager = new MainGameManager();
     ScoreManager _score = new ScoreManager();
@@ -21,14 +22,15 @@ public class Managers : MonoBehaviour
     // public static CardManager Card { get { return Instance._card } }
     public static CardManager Card { get { return Instance._card; } }
     public static DeckManager Deck { get { return Instance._deck; } }
-    public static GameUIManager UI { get { return Instance._uiManager; } }
+    public static EffectManager Effect { get { return Instance._effect; } }
+    public static UIManager UI { get { return Instance._ui; } }
     public static HandManager Hand { get { return Instance._hand; } }
     public static ScoreManager Score { get { return Instance._score; } }
     public static JsonManager Json { get { return Instance._json; } }
     #endregion
 
     #region Core
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // °ÔÀÓ ±âÃÊ ±¸Çö¿¡ ÇÊ¿äÇÑ ¸Å´ÏÀú ¼±¾ð
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
@@ -48,7 +50,7 @@ public class Managers : MonoBehaviour
     }
 
     void Update()
-    // ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Úµå°¡ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // °¢ ¸Å´ÏÀúº° Update°¡ ÇÊ¿äÇÑ ÄÚµå°¡ ÀÖ´Ù¸é ±¸Çö ÈÄ ÀÌ°÷¿¡¼­ ÅëÇÕ ½ÇÇà
     {
         _card.OnUpdate();
 
@@ -57,20 +59,20 @@ public class Managers : MonoBehaviour
 
     static void Init()
     {
-        // s_instance ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+        // s_instance Á¸Àç Ã¼Å©
         if (s_instance != null)
             return;
 
-        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @Managers ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
+        // ¾À ³»¿¡ @Managers ¿ÀºêÁ§Æ®°¡ ÀÖ´ÂÁö Ã£À½
         GameObject go = GameObject.Find("@Managers");
         if (go == null)
         {
-            // ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ø¼ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½È­
+            // ÇÁ¸®ÆÕ¿¡¼­ ·ÎµåÇØ¼­ ÀÎ½ºÅÏ½ºÈ­
             go = Resources.Load<GameObject>("Prefabs/@Managers");
             go = Instantiate(go);
             go.name = "@Managers";
 
-            // ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // ¾À ÀüÈ¯ ½Ã ÆÄ±«µÇÁö ¾Êµµ·Ï ¼³Á¤
             DontDestroyOnLoad(go);
         }
 
@@ -79,7 +81,7 @@ public class Managers : MonoBehaviour
         #region ManagersInitiate
         s_instance._card.Init();
         s_instance._deck.Init();
-
+        s_instance._effect.Init();
         s_instance._pool.Init();
         s_instance._scene.Init();
 
@@ -87,7 +89,7 @@ public class Managers : MonoBehaviour
     }
 
     public static void Clear()
-        // ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ ï¿½ß°ï¿½
+        // ¾À ÀüÈ¯ ½Ã Á¦°ÅÇÒ ¿ä¼Òµé Ãß°¡
     {
         s_instance._pool.Clear();
         s_instance._scene.Clear();

@@ -60,6 +60,8 @@ public class Define
     {
         Unknown = -1,
         Standard = 0,
+        WarOfTheRoses = 1,
+
     }
 
     public enum CardName

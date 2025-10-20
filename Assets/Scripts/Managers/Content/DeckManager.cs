@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DeckManager
@@ -17,6 +18,11 @@ public class DeckManager
 
     public void Init()
     {
+        OnGameStart();
+    }
+
+    public void OnGameStart()
+    {
         _deck = new(); _unUsedDeck = new(); _usedDeck = new();
 
         #region SetInitialDeck
@@ -33,6 +39,8 @@ public class DeckManager
             Define.CardRank.Eight, Define.CardRank.Nine, Define.CardRank.Ten, Define.CardRank.Jack, Define.CardRank.Queen, Define.CardRank.King
         };
 
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War Of The Roses"));
+
         foreach (var suit in suits)
         {
             foreach (var rank in ranks)
@@ -46,22 +54,9 @@ public class DeckManager
         //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
         //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
         //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
-        //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
         #endregion
     }
 
-    public void ResetDeckByInfo() // Shuffle 혹은 새로운 게임 시작 시 Deck의 모든 참조를 UnUsedDeck으로 복사 후 셔플
-    {
-        _usedDeck.Clear();
-        _unUsedDeck.Clear();
-
-        foreach (CardInfo card in _deck)
-        {
-            _unUsedDeck.Add(card);
-        }
-
-        Shuffle();
-    }
 
     public void ResetDeck() // Shuffle 혹은 새로운 게임 시작 시 Deck의 모든 참조를 UnUsedDeck으로 복사 후 셔플
     {
@@ -85,14 +80,20 @@ public class DeckManager
             _unUsedDeck[i] = _unUsedDeck[rand];
             _unUsedDeck[rand] = temp;
         }
+
+        Debug.Log("Shuffled");
     }
 
-    public CardInfo PopCard(int idx = 0)
+    public CardInfo PopCard(int idx = 0, string cardName = "")
     {
         if (_unUsedDeck.Count <= 0) { ResetDeck(); }
 
         CardInfo item;
-        if (idx == 0) { item = _unUsedDeck[0]; _unUsedDeck.RemoveAt(0); }
+        if (idx != 0) { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
+        else if (cardName != "") {
+            item = _unUsedDeck.First(x => x.cardName == cardName);
+            _unUsedDeck.Remove(item);
+        }
         else { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
         
         return item;

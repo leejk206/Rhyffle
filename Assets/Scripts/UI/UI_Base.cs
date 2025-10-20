@@ -9,6 +9,10 @@ using UnityEngine.UI;
 // Base class for all UI components
 public abstract class UI_Base : MonoBehaviour
 {
+    // 모든 UI의 베이스 코드
+    // 사용 방법은 이 코드를 상속한 다른 코드를 참고할 것.
+
+
     // Dictionary to store UI elements by their type (e.g., Button, Text, etc.)
     Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
