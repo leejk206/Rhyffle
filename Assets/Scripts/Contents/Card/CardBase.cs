@@ -22,7 +22,10 @@ public abstract class CardBase : MonoBehaviour
     public string cardNameBack;
     public int uniqueAbilityIdBack;
     public string collectionBack;
-    
+
+    public int CardRank; // 점수 카운팅 시 계산되는 랭크
+
+
     public void MoveTransform(Vector3 pos, float dotweenTime) // ī���� ��ġ�� �������� dotweenTime���� ����
     {
         if (gameObject != null)
@@ -37,6 +40,7 @@ public abstract class CardBase : MonoBehaviour
         // 카드 시작 시 Start 함수를 대체. 추상 메소드 호출은 Start에서 하면 위험함.
         // 카드의 기본 정보를 여기서 입력해야 함.
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
+        CardRank = (int)cardRank;
     }
 
     public virtual void Init(CardInfo cardInfo) 
@@ -44,9 +48,13 @@ public abstract class CardBase : MonoBehaviour
         // 카드 시작 시 Start 함수를 대체. 추상 메소드 호출은 Start에서 하면 위험함.
         // 카드의 기본 정보를 여기서 입력해야 함.
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
+        CardRank = (int)cardRank;
     }
 
-
+    public void SetCardRank(int rank)
+    {
+        CardRank = rank;
+    }
 
     #region Effects : 카드 효과 관련
     public virtual void OnCardDraw() { } // 카드 드로우 시 효과

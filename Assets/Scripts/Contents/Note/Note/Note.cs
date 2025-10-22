@@ -89,52 +89,68 @@ public class Note : MonoBehaviour
     //
     virtual public int ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
+        int result;
+
         if (checkType == 0) { 
             if(curTime > (float)bpm/600 * 2f * 16 + judge)
             {
-                return 1;
+                result = 1;
             }
             else
             {
-                return 0;
+                result = 0;
             }
+
+            if (result != 0)
+            {
+                Managers.Effect.EffectOnNoteTrigger.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
+                foreach (var effect in Managers.Effect.EffectOnNoteTrigger) { effect.OnNoteTrigger(); }
+            }
+
+            return result;
         }
         if (lane >= line && lane <= line +length)
         {
             if (curTime < judge - (float)bpm / 600 * 3f * 16)
             {
-                return 0;
+                result = 0;
             }
             else if (curTime < judge - (float)bpm / 600 * 2f * 16)
             {
-                return 1;
+                result = 1;
             }
             else if (curTime < judge - (float)bpm / 600 * 1.5f * 16)
             {
-                return 2;
+                result = 2;
             }
             else if (curTime < judge - (float)bpm / 600 * 16)
             {
-                return 3;
+                result = 3;
             }else if(curTime < judge + (float)bpm / 600 * 16)
             {
-                return 4;
+                result = 4;
             }else if(curTime < judge + (float)bpm / 600 * 1.5f * 16)
             {
-                return 3;
+                result = 3;
             }else if(curTime < judge + (float)bpm / 600 * 2f * 16)
             {
-                return 2;
+                result = 2;
             }
             else
             {
-                return 1;
+                result = 1;
             }
         }
         else
         {
-            return 0;
+            result = 0;
         }
-            return 0;
+        if (result != 0)
+        {
+            Managers.Effect.EffectOnNoteTrigger.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
+            foreach (var effect in Managers.Effect.EffectOnNoteTrigger) { effect.OnNoteTrigger(); }
+        }
+
+        return result;
     }
 }
