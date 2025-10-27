@@ -1,8 +1,7 @@
 using UnityEngine;
-using System.Linq;
 using static Define;
 
-public class BlackRoseLongbowman : WaroftheRosesBase
+public class BlackRoseSpearman : WaroftheRosesBase
 {
     public override void Init()
     {
@@ -10,11 +9,11 @@ public class BlackRoseLongbowman : WaroftheRosesBase
 
         isBlack = true;
 
-        cardBaseId = 58; // todo
+        cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Spade;
-        cardRank = Define.CardRank.Two;
+        cardRank = Define.CardRank.Eight;
         cardRarity = Define.CardRarity.Common;
-        cardName = "Black Rose Longbowman";
+        cardName = "Black Rose Spearman";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
@@ -22,19 +21,18 @@ public class BlackRoseLongbowman : WaroftheRosesBase
         Sprite sprite = Resources.Load<Sprite>($"Art/Card/War Of The Roses/{cardName}");
         if (sprite != null)
         {
-            // sr.sprite = sprite;
+            sr.sprite = sprite;
         }
         else
         {
             Debug.Log($"{cardName} sprite is null");
         }
-
     }
 
     public override void OnCardDrawComplete()
     {
 
-        Debug.Log("Black Rose Longbowman Effect");
+        Debug.Log("Black Rose Spearman Effect");
 
         int cnt = 0;
 

@@ -40,6 +40,15 @@ public class DeckManager
         };
 
         _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Two, "Black Rose Longbowman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Cavalry Vanguard", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Field Commander", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Crossbowman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Musketeer", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Axeman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Spearman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Heavy Infantry", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Light Cavalry", "War Of The Roses"));
 
         foreach (var suit in suits)
         {

@@ -11,7 +11,7 @@ public class CardManager
 
     List<CardBase> _fieldCards;
     public List<CardBase> FieldCards { get { return _fieldCards; } } // ���� �� ī�� ����Ʈ
-    
+
     Queue<CardBase> _cemetery;
     public Queue<CardBase> Cemetery { get { return _cemetery; } } // 묘지 카드 리스트
 
@@ -63,7 +63,6 @@ public class CardManager
             CardPositions.Add(pos);
         }
 
-        Vector3 originalScale = CardBoard.transform.localScale;
         CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
 
         CardRoot = GameObject.Find("Cards").GetComponent<Transform>();
@@ -84,6 +83,11 @@ public class CardManager
             DrawCard();
             DrawCard();
             DrawCard();
+
+            foreach (CardBase item in _fieldCards)
+            {
+                item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 카드의 효과 발동
+            }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -134,9 +138,6 @@ public class CardManager
 
                         card.OnCardDraw(); // 현재 드로우 한 카드의 드로우 시 실행되는 효과 발동 
 
-                        Managers.Effect.EffectOnCardDraw.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
-                        foreach (var effect in Managers.Effect.EffectOnCardDraw) { effect.OnCardDraw(); }
-
                         Managers.Hand.Evaluate(_fieldCards.Where(c => c != null).ToList()); // 족보 판정 시도
 
                         // 내구도 = 0일 때
@@ -156,8 +157,6 @@ public class CardManager
                             }
                             card.OnCardDestroy(); // 현재 파괴된 카드의 파괴 시 실행되는 효과 발동
 
-                            Managers.Effect.EffectOnCardDestroy.RemoveAll(effect => effect.shouldBeRemoved == true); // 파괴 시 실행되는 다른 효과들의 리스트 정리
-                            foreach (var effect in Managers.Effect.EffectOnCardDestroy) { effect.OnCardDestroy(); }
 
                             DrawCard();
 
@@ -170,18 +169,19 @@ public class CardManager
                     }
                 }
 
+
             }
         }
     }
 
-    
+
 
     public void CardAlignment(CardBase card, int idx)
     {
         card.CardPosition = CardPositions[idx];
         card.MoveTransform(card.CardPosition, 0.2f);
     }
-    
+
     #region ForKeyActionDebug // 디버깅을 위한 임시 코드.
     Action _keypadKeyAction;
 
@@ -207,6 +207,7 @@ public class CardManager
                 Del4();
                 Del5();
                 Del6();
+
             }
             else if (Input.GetKeyDown(KeyCode.Keypad1))
             {
@@ -241,9 +242,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[0];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[0] = null;
-        
+
         // GameObject temp = _fieldCards[0].gameObject;
         // _fieldCards[0] = null;
         // Managers.Resource.Destroy(temp);
@@ -254,9 +256,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[1];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[1] = null;
-        
+
         // GameObject temp = _fieldCards[1].gameObject;
         // _fieldCards[1] = null;
         // Managers.Resource.Destroy(temp);
@@ -267,9 +270,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[2];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[2] = null;
-        
+
         // GameObject temp = _fieldCards[2].gameObject;
         // _fieldCards[2] = null;
         // Managers.Resource.Destroy(temp);
@@ -280,9 +284,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[3];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[3] = null;
-        
+
         // GameObject temp = _fieldCards[3].gameObject;
         // _fieldCards[3] = null;
         // Managers.Resource.Destroy(temp);
@@ -293,9 +298,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[4];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[4] = null;
-        
+
         // GameObject temp = _fieldCards[4].gameObject;
         // _fieldCards[4] = null;
         // Managers.Resource.Destroy(temp);
@@ -306,9 +312,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[5];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[5] = null;
-        
+
         // GameObject temp = _fieldCards[5].gameObject;
         // _cemetery.Enqueue(_fieldCards[5]); // 묘지에 추가
         // _fieldCards[5] = null;
@@ -320,9 +327,10 @@ public class CardManager
         // 묘지에 추가
         CardBase card = _fieldCards[6];
         card.transform.position = CardCemeteryPoint.transform.position;
+        card.OnCardDestroy();
         _cemetery.Enqueue(card);
         _fieldCards[6] = null;
-        
+
         // GameObject temp = _fieldCards[6].gameObject;
         // _cemetery.Enqueue(_fieldCards[6]); // 묘지에 추가
         // _fieldCards[6] = null;

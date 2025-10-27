@@ -103,8 +103,6 @@ public class Note : MonoBehaviour
 
             if (result != 0)
             {
-                Managers.Effect.EffectOnNoteTrigger.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
-                foreach (var effect in Managers.Effect.EffectOnNoteTrigger) { effect.OnNoteTrigger(); }
             }
 
             return result;
@@ -147,8 +145,7 @@ public class Note : MonoBehaviour
         }
         if (result != 0)
         {
-            Managers.Effect.EffectOnNoteTrigger.RemoveAll(effect => effect.shouldBeRemoved == true); // 드로우 시 실행되는 다른 효과들의 리스트 정리
-            foreach (var effect in Managers.Effect.EffectOnNoteTrigger) { effect.OnNoteTrigger(); }
+            // Todo 노트 트리거 이벤트 적용
         }
 
         return result;
