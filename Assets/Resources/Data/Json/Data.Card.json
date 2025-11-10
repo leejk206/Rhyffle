@@ -2,16 +2,76 @@
   "card_base_page": 0,
   "card_index": [
     {
-      "card_baseid": 1,
-      "card_suit": 0,
-      "card_rank": 0,
-      "card_rarity": 1,
-      "card_name": "NewContinentScout",
-      "unique_ability_id": 1,
-      "collections": "NewContinent",
-      "card_name_back": "Empty",
-      "unique_ability_id_back": 0,
-      "collections_back": "Empty"
+        "card_baseid": 1,
+        "card_suit": 0,
+        "card_rank": 0,
+        "card_rarity": 1,
+        "card_name": "NewContinentScout",
+        "unique_ability_id": 1,
+        "collections": "NewContinent",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
+    },
+    {
+        "card_baseid": 57,
+        "card_suit": 0,
+        "card_rank": 1,
+        "card_rarity": 4,
+        "card_name": "검은 장미의 선봉장",
+        "unique_ability_id": 57,
+        "collections": "Rose War",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
+    },
+    {
+        "card_baseid": 58,
+        "card_suit": 0,
+        "card_rank": 2,
+        "card_rarity": 1,
+        "card_name": "검은 장미의 장궁병",
+        "unique_ability_id": 58,
+        "collections": "Rose War",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
+    },
+    {
+        "card_baseid": 59,
+        "card_suit": 0,
+        "card_rank": 3,
+        "card_rarity": 2,
+        "card_name": "검은 장미의 선봉 기수",
+        "unique_ability_id": 59,
+        "collections": "Rose War",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
+    },
+    {
+        "card_baseid": 60,
+        "card_suit": 0,
+        "card_rank": 4,
+        "card_rarity": 2,
+        "card_name": "검은 장미의 야전 지휘관",
+        "unique_ability_id": 60,
+        "collections": "Rose War",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
+    },
+    {
+        "card_baseid": 61,
+        "card_suit": 0,
+        "card_rank": 5,
+        "card_rarity": 1,
+        "card_name": "검은 장미의 석궁병",
+        "unique_ability_id": 60,
+        "collections": "Rose War",
+        "card_name_back": "Empty",
+        "unique_ability_id_back": 0,
+        "collections_back": "Empty"
     }
   ]
 }
