@@ -3,12 +3,15 @@ using System.Collections;
 
 public class CardListRatio : MonoBehaviour
 {
-    Resolution[] resolutions;
+    RectTransform rectTrans;
+    Camera cam;
     public GameObject cardBoard;
     public GameObject UIBack;
 
     private void Start()
     {
-        resolutions = Screen.resolutions;
+        rectTrans = GetComponent<RectTransform>();
+        cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        rectTrans.sizeDelta = new Vector2(cam.pixelWidth/100, cam.pixelHeight/100);
     }
 }
