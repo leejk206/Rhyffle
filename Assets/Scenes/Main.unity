@@ -430,7 +430,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 289733581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292214104}
+        m_TargetAssemblyTypeName: LoadSceneHandler, Assembly-CSharp
+        m_MethodName: GoToSelectAlbumScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &289733581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +602,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396777783}
   m_CullTransparentMesh: 1
+--- !u!1001 &403118646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3887946958984982538, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_Name
+      value: LoadSceneHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1082.9717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 600.56287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595279837306293981, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
 --- !u!1 &472764640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1495,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004152258}
   m_CullTransparentMesh: 1
+--- !u!114 &1292214104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7129900005380083315, guid: 731ec07420f1e4f0fa83c467f081264a, type: 3}
+  m_PrefabInstance: {fileID: 403118646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e209610a4374f63950760fa28a0468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BtnHandler
 --- !u!1 &1446496618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,5 +2091,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 939222655}
+  - {fileID: 403118646}
   - {fileID: 277763894}
   - {fileID: 831253606}
