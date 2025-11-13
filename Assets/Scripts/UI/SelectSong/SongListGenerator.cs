@@ -15,4 +15,20 @@ public class SongListGenerator : MonoBehaviour
         public string difficulty;
         public int level;
     }
+
+    void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        int yValue = 0;
+        //ContentOl| Instantiate
+        var index = Instantiate(songPrefab, new Vector3(0, yValue, 0), Quaternion.identity); 
+        index. transform.SetParent(GameObject.Find("Content"). transform);
+        yValue -= 200;
+    }
+    
+    
 }
