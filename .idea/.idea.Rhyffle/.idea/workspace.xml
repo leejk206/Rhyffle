@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/EllipticalAlbumScroll.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/EllipticalAlbumScroll.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +114,7 @@
       <workItem from="1762927831633" duration="10602000" />
       <workItem from="1762939636538" duration="5235000" />
       <workItem from="1763020593010" duration="1043000" />
+      <workItem from="1763100512032" duration="11014000" />
     </task>
     <servers />
   </component>
