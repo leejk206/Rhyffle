@@ -16,15 +16,15 @@ public class CardBoard : MonoBehaviour
         rect = gameObject.GetComponent<RectTransform>();
         float scrWid = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.width;
         float scrHei = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.height;
-        float boardHei = scrHei / 4 * 3;
+        float boardHei = scrHei / 6 * 5;
         float boardWid = scrWid / 10 * 9;
-        float boardY = - (scrHei /12 );
+        float boardY = - (scrHei /24 );
         Debug.Log(boardHei + "_" + boardWid);
         rect.sizeDelta = new Vector2(boardWid, boardHei);
         rect.localPosition = new Vector3(0, boardY, 0);
 
         float cardHei = boardHei / 40 * 17;
-        float cardWid = (cardHei * 2) / 3;
+        float cardWid = (cardHei * 5) / 8;
         Debug.Log(cardHei + "_" + cardWid);
         cardsPerLine = Mathf.FloorToInt((boardWid - (boardHei / 20))/(cardWid + (boardHei/20)));
 
@@ -39,7 +39,7 @@ public class CardBoard : MonoBehaviour
             {
                 float cardX = -leftMostCardPos + (j * (leftMostCardPos * 2) / (cardsPerLine - 1));
                 GameObject temp = Instantiate(cardListCard);
-                temp.transform.parent = gameObject.transform;
+                temp.transform.SetParent(gameObject.transform);
                 temp.GetComponent<RectTransform>().localPosition = new Vector2(cardX, cardY * (2* i - 1));
                 temp.GetComponent<RectTransform>().sizeDelta = new Vector2(cardWid, cardHei);
                 temp.GetComponent<RectTransform>().localScale = new Vector2(1,1);

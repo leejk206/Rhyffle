@@ -1,0 +1,17 @@
+{
+  "card_base_page": 0,
+  "card_index": [
+    {
+      "card_baseid": 1,
+      "card_suit": 0,
+      "card_rank": 0,
+      "card_rarity": 1,
+      "card_name": "NewContinentScout",
+      "unique_ability_id": 1,
+      "collections": "NewContinent",
+      "card_name_back": "Empty",
+      "unique_ability_id_back": 0,
+      "collections_back": "Empty"
+    }
+  ]
+}
