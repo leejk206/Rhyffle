@@ -3,32 +3,28 @@ using UnityEngine;
 public class StandardCard : CardBase
 {
 
-    public override void Init(CardInfo cardInfo)
+    public override void Init(GameCardInfo card)
     {
         durability = 5;
 
-        cardBaseId = 0;
-        cardSuit = cardInfo.cardSuit;
-        cardRank = cardInfo.cardRank;
-        cardRarity = Define.CardRarity.Common;
+        card.cardInfo.card_baseid = 0;
+        cardBaseInfo.card_suit = card.cardBaseInfo.card_suit;
+        cardBaseInfo.card_rank = card.cardBaseInfo.card_rank;
+        cardBaseInfo.card_rarity = Define.CardRarity.Common;
 
-        cardName = $"{cardInfo.cardName}";
-        collection = "Standard";
-        uniqueAbilityId = 0;
-
-        cardNameBack = "StandardBack";
-        uniqueAbilityIdBack = 0;
-        collectionBack = "StandardBack";
+        cardBaseInfo.card_name = $"{card.cardBaseInfo.card_name}";
+        cardBaseInfo.collections = "Standard";
+        cardBaseInfo.unique_ability_id = 0;
 
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Standard/{cardName}");
+        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Standard/{cardBaseInfo.card_name}");
         if (sprite != null)
         {
             sr.sprite = sprite;
         }
         else
         {
-            Debug.Log($"{cardName} sprite is null");
+            Debug.Log($"{cardBaseInfo.card_name} sprite is null");
         }
     }
 

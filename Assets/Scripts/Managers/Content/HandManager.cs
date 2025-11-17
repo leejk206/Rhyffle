@@ -8,11 +8,11 @@ public class HandManager
     {
         if (cards.Count != 7) return Define.HandRank.None; // 카드 7장일 때 기준
 
-        var rankGroups = cards.GroupBy(c => c.cardRank).ToDictionary(g => g.Key, g => g.Count());
-        var suitGroups = cards.GroupBy(c => c.cardSuit).ToDictionary(g => g.Key, g => g.Count());
+        var rankGroups = cards.GroupBy(c => c.cardBaseInfo.card_rank).ToDictionary(g => g.Key, g => g.Count());
+        var suitGroups = cards.GroupBy(c => c.cardBaseInfo.card_suit).ToDictionary(g => g.Key, g => g.Count());
 
         // 스트레이트 or 플러시 판단
-        var rankList = cards.Select(c => (int)c.cardRank).ToList();
+        var rankList = cards.Select(c => (int)c.cardBaseInfo.card_rank).ToList();
         bool hasFlush = suitGroups.Any(s => s.Value >= 5);
         bool hasStraight = HasStraight(rankList, 5);
         bool hasRainbow = HasStraight(rankList, 7);
@@ -120,12 +120,12 @@ public class HandManager
 
     private bool HasStraightFlush(List<CardBase> cards) // 스트레이트 플러시 여부 판단 함수
     {
-        var grouped = cards.GroupBy(c => c.cardSuit);
+        var grouped = cards.GroupBy(c => c.cardBaseInfo.card_suit);
         foreach (var group in grouped)
         {
             if (group.Count() >= 5)
             {
-                var suitedRanks = group.Select(c => (int)c.cardRank).ToList();
+                var suitedRanks = group.Select(c => (int)c.cardBaseInfo.card_rank).ToList();
                 if (HasStraight(suitedRanks, 5)) return true;
             }
         }

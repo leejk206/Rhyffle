@@ -3,6 +3,7 @@ using DG.Tweening;
 
 public abstract class CardBase : MonoBehaviour
 {
+
     [Header("카드 상태")]
     public int durability = 3;
     public Vector3 CardPosition;
@@ -10,19 +11,8 @@ public abstract class CardBase : MonoBehaviour
     public int SlotIndex { get; set; } // 슬롯되는 인덱스
     
     [Header("카드 기본 정보")]
-    public int cardBaseId;
-    public Define.CardSuit cardSuit;
-    public Define.CardRank cardRank;
-    public Define.CardRarity cardRarity;
-    public string cardName;
-    public string collection;
-    public int uniqueAbilityId;
+    public CardBaseInfo cardBaseInfo;
 
-    [Header("카드 기본 정보 - Back")]
-    public string cardNameBack;
-    public int uniqueAbilityIdBack;
-    public string collectionBack;
-    
     public void MoveTransform(Vector3 pos, float dotweenTime) // ī���� ��ġ�� �������� dotweenTime���� ����
     {
         if (gameObject != null)
@@ -39,7 +29,7 @@ public abstract class CardBase : MonoBehaviour
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
     }
 
-    public virtual void Init(CardInfo cardInfo) 
+    public virtual void Init(GameCardInfo cardInfo) 
     {
         // 카드 시작 시 Start 함수를 대체. 추상 메소드 호출은 Start에서 하면 위험함.
         // 카드의 기본 정보를 여기서 입력해야 함.

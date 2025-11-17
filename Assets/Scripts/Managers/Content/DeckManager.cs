@@ -5,14 +5,14 @@ public class DeckManager
 {
     // 덱 순환 및 관리 담당 매니저
 
-    List<CardInfo> _deck; // 덱의 정보를 담당하는 리스트 : 덱의 카드 교체 등 직접적인 수정이 아닌 한 수정되지 않음
-    public List<CardInfo> Deck { get { return _deck; } }
+    List<GameCardInfo> _deck; // 덱의 정보를 담당하는 리스트 : 덱의 카드 교체 등 직접적인 수정이 아닌 한 수정되지 않음
+    public List<GameCardInfo> Deck { get { return _deck; } }
 
-    List<CardInfo> _unUsedDeck; // 게임 플레이 중 덱을 들고있는 리스트
-    public List<CardInfo> UnUsedDeck { get { return _unUsedDeck; } }
+    List<GameCardInfo> _unUsedDeck; // 게임 플레이 중 덱을 들고있는 리스트
+    public List<GameCardInfo> UnUsedDeck { get { return _unUsedDeck; } }
 
-    List<CardInfo> _usedDeck; // 묘지
-    public List<CardInfo> UsedDeck { get { return _usedDeck; } }
+    List<GameCardInfo> _usedDeck; // 묘지
+    public List<GameCardInfo> UsedDeck { get { return _usedDeck; } }
 
 
     public void Init()
@@ -37,16 +37,16 @@ public class DeckManager
         {
             foreach (var rank in ranks)
             {
-                CardInfo cardInfo = new CardInfo(suit, rank);
+                GameCardInfo cardInfo = new GameCardInfo(suit, rank);
                 _deck.Add(cardInfo);
             }
         }
 
         #region SpecialCardTesting
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
+        _deck.Add(new GameCardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
+        _deck.Add(new GameCardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
+        _deck.Add(new GameCardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
+        _deck.Add(new GameCardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
             #endregion
     }
 
@@ -55,7 +55,7 @@ public class DeckManager
         _usedDeck.Clear();
         _unUsedDeck.Clear();
 
-        foreach (CardInfo card in _deck)
+        foreach (GameCardInfo card in _deck)
         {
             _unUsedDeck.Add(card);
         }
@@ -68,7 +68,7 @@ public class DeckManager
         _usedDeck.Clear();
         _unUsedDeck.Clear();
 
-        foreach (CardInfo card in _deck)
+        foreach (GameCardInfo card in _deck)
         {
             _unUsedDeck.Add(card);
         }
@@ -81,17 +81,17 @@ public class DeckManager
         for (int i = 0; i < _deck.Count; i++)
         {
             int rand = Random.Range(i, _deck.Count);
-            CardInfo temp = _unUsedDeck[i];
+            GameCardInfo temp = _unUsedDeck[i];
             _unUsedDeck[i] = _unUsedDeck[rand];
             _unUsedDeck[rand] = temp;
         }
     }
 
-    public CardInfo PopCard(int idx = 0)
+    public GameCardInfo PopCard(int idx = 0)
     {
         if (_unUsedDeck.Count <= 0) { ResetDeck(); }
 
-        CardInfo item;
+        GameCardInfo item;
         if (idx == 0) { item = _unUsedDeck[0]; _unUsedDeck.RemoveAt(0); }
         else { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
         

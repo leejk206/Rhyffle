@@ -7,6 +7,8 @@ using System;
 public class CardBoard : MonoBehaviour
 {
     //하나의 CardBoard에 들어갈 카드 열 수
+    // BoardPos shows this board is before or current or next board showing up
+    public int BoardPos;
     public int cardsPerLine;
     public List<GameObject> cardOnBoard;
     public GameObject cardListCard;

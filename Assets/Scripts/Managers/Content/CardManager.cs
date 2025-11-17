@@ -79,13 +79,13 @@ public class CardManager
         // If an index is provided, draw the card at the specified index.
         if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
         {
-            CardInfo pop;
+            GameCardInfo pop;
             if (idx == 0) { pop = Managers.Deck.PopCard(); }
             else { pop = Managers.Deck.PopCard(idx); }
 
             if (pop != null)
             {
-                GameObject go = Managers.Resource.Instantiate($"Card/{pop.collection}/StandardCard", CardRoot);
+                GameObject go = Managers.Resource.Instantiate($"Card/{pop.cardBaseInfo.collections}/StandardCard", CardRoot);
                 CardBase card = go.GetComponent<CardBase>();
 
                 #region SetCardTransform
@@ -130,7 +130,7 @@ public class CardManager
                             DrawCard();
 
                             // 묘지 상태 확인 용
-                            string summary = string.Join(" | ", _cemetery.Select(c => $"Slot {c.SlotIndex}: {c.cardBaseId}"));
+                            string summary = string.Join(" | ", _cemetery.Select(c => $"Slot {c.SlotIndex}: {c.cardBaseInfo.card_baseid}"));
                             Debug.Log("[묘지 상태] " + summary);
                         };
 
@@ -293,22 +293,22 @@ public class CardManager
 
 }
 
-public class CardInfo
+public class GameCardInfo
 {
-    public CardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank) // standard용 생성자
+    public GameCardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank) // standard용 생성자
     {
-        this.cardName = $"{cardRank}{cardSuit}";
-        this.collection = "Standard";
-        this.cardSuit = cardSuit;
-        this.cardRank = cardRank;
+        cardBaseInfo.card_name = $"{cardRank}{cardSuit}";
+        cardBaseInfo.collections = "Standard";
+        cardBaseInfo.card_suit = cardSuit;
+        cardBaseInfo.card_rank = cardRank;
     }
 
-    public CardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank, string cardName, string collection) // 일반 생성자
+    public GameCardInfo(Define.CardSuit cardSuit, Define.CardRank cardRank, string cardName, string collection) // 일반 생성자
     {
-        this.cardName = cardName;
-        this.collection = collection;
-        this.cardSuit = cardSuit;
-        this.cardRank = cardRank;
+        cardBaseInfo.card_name = cardName;
+        cardBaseInfo.collections = collection;
+        cardBaseInfo.card_suit = cardSuit;
+        cardBaseInfo.card_rank = cardRank;
     }
 
     public int durability = 3;
@@ -316,15 +316,6 @@ public class CardInfo
     public System.Action<int> isDurabilityZero;
     public int SlotIndex { get; set; } // 슬롯되는 인덱스
 
-    public int cardBaseId;
-    public Define.CardSuit cardSuit;
-    public Define.CardRank cardRank;
-    public Define.CardRarity cardRarity;
-    public string cardName;
-    public string collection;
-    public int uniqueAbilityId;
-
-    public string cardNameBack;
-    public int uniqueAbilityIdBack;
-    public string collectionBack;
+    public CardInfo cardInfo;
+    public CardBaseInfo cardBaseInfo;
 }

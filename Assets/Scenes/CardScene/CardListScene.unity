@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026b5690619961a4296558820d78adc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoardPos: 0
   cardsPerLine: 0
   cardOnBoard: []
   cardListCard: {fileID: 5044543380393312121, guid: db8f269f04db51b4e8ea52368ed2a930, type: 3}
@@ -1965,7 +1966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: next
+  m_text: prev
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
