@@ -22,6 +22,9 @@ public class CardManager
     Vector3 CardScale;
     Transform CardRoot;
 
+    public List<string> SettedCards;
+    public bool isCardSetted = false;
+
 
     public void Init()
     {
@@ -35,6 +38,7 @@ public class CardManager
 
         _fieldCards = new List<CardBase> { null, null, null, null, null, null, null };
         CardPositions = new();
+        SettedCards = new List<string>() { null, null, null, null, null, null, null };
 
         _cemetery = new Queue<CardBase> { };
 
@@ -97,6 +101,37 @@ public class CardManager
         {
             Managers.Deck.ResetDeck();
         }
+    }
+
+    public void DrawAllCard()
+    {
+        if (isCardSetted)
+        {
+            int cnt = 0;
+            foreach (string item in SettedCards)
+            {
+                if (item != null)
+                {
+                    DrawCard(0, item);
+                    cnt++;
+                }
+            }
+            for (int i = 0; i < 7 - cnt; i++)
+            {
+                DrawCard();
+            }
+        }
+        else
+        {
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+            DrawCard();
+        }
+        isCardSetted = false;
     }
 
     public void DrawCard(int idx = 0, string cardName = "")
