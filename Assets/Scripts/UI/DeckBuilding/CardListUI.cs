@@ -1,43 +1,78 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
-public class CardListUI : MonoBehaviour
+public class CardListUI : CardMechUI
 {
-    RectTransform rect;
-    int cardPerBoard = 0;
-    GameObject[] cardBoards = new GameObject[3];
+
 
     private void Start()
     {
-        rect = gameObject.GetComponent<RectTransform>();
-        float UIWid = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.width;
-        float UIHei = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.height;
-        rect.sizeDelta = new Vector2 (UIWid, UIHei);
-    
-        // Board Creation
-
-        // 여기서 보드 크기 확인
+        base.Start();
+        cardPerWidth = boardArray[0].GetComponent<CardListBoard>().cardsPerLine;
+        cardPerHeight = 2;
+        SetCards();
     }
 
-    //우측 이동 함수
-    public void NextCards()
+    public override void CreateBoards(int pos)
     {
-        // 왼쪽 보드 cardBoards에서 제거하고 삭제
-        // 가운데 보드를 왼쪽으로 이동하고 cardBoard 정보 이동
-        // 오른쪽 보드를 가운데로 이동하고 cardBoard 정보 이동
-        // 새로운 보드를 생성하고 cardBoard에 추가
-        // 현재 보드에 카드 정보 입력
-        // 카드 각각에 들어가서 카드 정보 띄우기
+        GameObject tempBoard = Instantiate(boardPrefab,gameObject.transform);
+        tempBoard.GetComponent<RectTransform>().localScale = Vector3.one;
+        tempBoard.GetComponent<CardListBoard>().boardPos = pos - 1;
+        tempBoard.GetComponent<CardListBoard>().SetBoard();
+        boardArray[pos] = tempBoard;
     }
 
-    public void PreviousCards() { 
-        // NextCards 반대로 작동
-    }
-
-    public void ApplyFilter()
+    public override void NextCards()
     {
-
+        cardPage++;
+        SetCards();
     }
-    
+
+    public override void PrevCards()
+    {
+        cardPage--;
+        SetCards();
+    }
+
+    public override void SetCards()
+    {
+        // Online version
+        // Send Filters, Page, CardPerBoard
+        // server will calculate which data to send
+        // recive the json list as string
+        // serialize the string and save in cardInfo list cards
+
+        // HardCode version
+        // Pick cards in range from filtered list saved in searchListPath
+        // save certain cardInfos from lists
+
+        // searchCardList 전체 확인
+        List<CardInfo> filteredCards = JObject.Parse(File.ReadAllText(searchListPath))["card_index"].ToObject<List<CardInfo>>();
+        int cardFirst;
+        if(cardPage * cardPerHeight * cardPerWidth > filteredCards.Count)
+        {
+            cardPage = 0;
+            cardFirst = 0;
+        }
+        if(cardPage < 0)
+        {
+            cardPage = Mathf.FloorToInt(filteredCards.Count / (cardPerHeight * cardPerWidth));
+        }
+        cardFirst = cardPage * cardPerHeight * cardPerWidth;
+        cards.Clear();
+        Debug.Log(cardFirst + "_" + (cardFirst + cardPerHeight * cardPerWidth) + "_" + cardPerHeight + "_" + cardPerWidth);
+        for(int i = cardFirst; i < cardFirst + cardPerHeight * cardPerWidth && i< filteredCards.Count; i++)
+        {
+            cards.Add(filteredCards[i]);
+        }
+
+
+        // 가운데 보드에 ApplyCards 적용
+        boardArray[1].GetComponent<CardListBoard>().ApplyCard(cards);
+    }
+
 }

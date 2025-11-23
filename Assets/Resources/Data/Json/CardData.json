@@ -7,8 +7,8 @@
             "card_rank": 1,
             "card_rarity": 0,
             "card_suit": 0,
-            "collections": "Base Cards",
-            "unique_ability_id": 1
+            "unique_ability_id": 1,
+            "collections": "Base Cards"
         },
         {
             "card_baseid": 2,
@@ -16,8 +16,8 @@
             "card_rank": 2,
             "card_rarity": 0,
             "card_suit": 0,
-            "collections": "Base Cards",
-            "unique_ability_id": 2
+            "unique_ability_id": 2,
+            "collections": "Base Cards"
         },
         {
             "card_baseid": 3,
@@ -25,8 +25,8 @@
             "card_rank": 3,
             "card_rarity": 0,
             "card_suit": 0,
-            "collections": "Base Cards",
-            "unique_ability_id": 3
+            "unique_ability_id": 3,
+            "collections": "Base Cards"
         },
         {
             "card_baseid": 4,
@@ -34,8 +34,8 @@
             "card_rank": 4,
             "card_rarity": 0,
             "card_suit": 0,
-            "collections": "Base Cards",
-            "unique_ability_id": 4
+            "unique_ability_id": 4,
+            "collections": "Base Cards"
         },
         {
             "card_baseid": 5,
@@ -44,7 +44,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤5",
             "unique_ability_id": 5,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -55,8 +55,8 @@
             "card_rank": 6,
             "card_rarity": 0,
             "card_suit": 0,
-            "collections": "Base Cards",
-            "unique_ability_id": 6
+            "unique_ability_id": 6,
+            "collections": "Base Cards"
         },
         {
             "card_baseid": 7,
@@ -65,7 +65,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤7",
             "unique_ability_id": 7,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -77,7 +77,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤8",
             "unique_ability_id": 8,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -89,7 +89,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤9",
             "unique_ability_id": 9,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -101,8 +101,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤10",
             "unique_ability_id": 10,
-            "collections": "Base Cards",
-
+            "collections": "Base Cards"
 
 
         },
@@ -113,7 +112,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤11",
             "unique_ability_id": 11,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -125,7 +124,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤12",
             "unique_ability_id": 12,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -137,7 +136,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤13",
             "unique_ability_id": 13,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -149,7 +148,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤Joker",
             "unique_ability_id": 14,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -161,7 +160,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡Ace",
             "unique_ability_id": 15,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -173,7 +172,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡2",
             "unique_ability_id": 16,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -185,7 +184,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡3",
             "unique_ability_id": 17,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -197,7 +196,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♤18",
             "unique_ability_id": 18,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -209,7 +208,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡5",
             "unique_ability_id": 19,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -233,7 +232,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡7",
             "unique_ability_id": 21,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -245,7 +244,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡8",
             "unique_ability_id": 22,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -257,7 +256,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡9",
             "unique_ability_id": 23,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -269,7 +268,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡10",
             "unique_ability_id": 24,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -281,7 +280,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡11",
             "unique_ability_id": 25,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -293,7 +292,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡12",
             "unique_ability_id": 26,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -305,7 +304,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡13",
             "unique_ability_id": 27,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -317,7 +316,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♡Joker",
             "unique_ability_id": 28,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -329,7 +328,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇Ace",
             "unique_ability_id": 29,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -341,7 +340,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇2",
             "unique_ability_id": 30,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -353,7 +352,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇3",
             "unique_ability_id": 31,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -365,7 +364,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇4",
             "unique_ability_id": 32,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -377,7 +376,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇5",
             "unique_ability_id": 33,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -389,7 +388,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇6",
             "unique_ability_id": 34,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -401,7 +400,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇7",
             "unique_ability_id": 35,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -413,7 +412,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇8",
             "unique_ability_id": 36,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -425,7 +424,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇9",
             "unique_ability_id": 37,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -437,7 +436,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇10",
             "unique_ability_id": 38,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -449,7 +448,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇11",
             "unique_ability_id": 39,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -461,7 +460,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇12",
             "unique_ability_id": 40,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -473,7 +472,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇13",
             "unique_ability_id": 41,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -485,7 +484,7 @@
             "card_rarity": 0,
             "card_name": "Basic ◇Joker",
             "unique_ability_id": 42,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -497,7 +496,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧Ace",
             "unique_ability_id": 43,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -509,7 +508,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧2",
             "unique_ability_id": 44,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -521,7 +520,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧3",
             "unique_ability_id": 45,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -533,7 +532,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧4",
             "unique_ability_id": 46,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -545,7 +544,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧5",
             "unique_ability_id": 47,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -557,7 +556,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧6",
             "unique_ability_id": 48,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -569,9 +568,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧7",
             "unique_ability_id": 49,
-            "collections": "Base Cards",
-
-
+            "collections": "Base Cards"
 
         },
         {
@@ -581,7 +578,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧8",
             "unique_ability_id": 50,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -593,7 +590,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧9",
             "unique_ability_id": 51,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -605,7 +602,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧10",
             "unique_ability_id": 52,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -617,7 +614,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧11",
             "unique_ability_id": 53,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -629,7 +626,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧12",
             "unique_ability_id": 54,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -641,7 +638,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧13",
             "unique_ability_id": 55,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -653,7 +650,7 @@
             "card_rarity": 0,
             "card_name": "Basic ♧Joker",
             "unique_ability_id": 56,
-            "collections": "Base Cards",
+            "collections": "Base Cards"
 
 
 
@@ -665,7 +662,7 @@
             "card_rarity": 4,
             "card_name": "검은 장미의 선봉장",
             "unique_ability_id": 57,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -677,7 +674,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 장궁병",
             "unique_ability_id": 58,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -689,7 +686,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 선봉 기수",
             "unique_ability_id": 59,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -701,7 +698,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 야전 지휘관",
             "unique_ability_id": 60,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -713,7 +710,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 석궁병",
             "unique_ability_id": 61,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -725,7 +722,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 화승총병",
             "unique_ability_id": 62,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -737,7 +734,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 도끼병",
             "unique_ability_id": 63,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -749,7 +746,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 장창병",
             "unique_ability_id": 64,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -761,7 +758,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 중장병",
             "unique_ability_id": 65,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -773,7 +770,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 경기병",
             "unique_ability_id": 66,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -785,7 +782,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 교섭자",
             "unique_ability_id": 67,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -797,7 +794,7 @@
             "card_rarity": 3,
             "card_name": "검은 장미의 여왕",
             "unique_ability_id": 68,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -809,7 +806,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 왕자",
             "unique_ability_id": 69,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -821,7 +818,7 @@
             "card_rarity": 3,
             "card_name": "검은 장미의 ♤Joker",
             "unique_ability_id": 70,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -833,7 +830,7 @@
             "card_rarity": 3,
             "card_name": "붉은 장미의 후군장",
             "unique_ability_id": 71,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -845,7 +842,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 공성병",
             "unique_ability_id": 72,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -857,7 +854,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 함선원",
             "unique_ability_id": 73,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -869,7 +866,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 갑판병",
             "unique_ability_id": 74,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -881,7 +878,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 함포 사수",
             "unique_ability_id": 75,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -893,7 +890,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 후위 기수",
             "unique_ability_id": 76,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -905,7 +902,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 병기 총감",
             "unique_ability_id": 77,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -917,7 +914,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 보급관",
             "unique_ability_id": 78,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -929,7 +926,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 의무병",
             "unique_ability_id": 79,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -941,7 +938,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 대장장이",
             "unique_ability_id": 80,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -953,7 +950,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 사제",
             "unique_ability_id": 81,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -965,7 +962,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 공주",
             "unique_ability_id": 82,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -977,7 +974,7 @@
             "card_rarity": 4,
             "card_name": "붉은 장미의 왕",
             "unique_ability_id": 83,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -989,7 +986,7 @@
             "card_rarity": 3,
             "card_name": "붉은 장미의 ♡Joker",
             "unique_ability_id": 84,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1001,7 +998,7 @@
             "card_rarity": 4,
             "card_name": "붉은 장미의 선봉장",
             "unique_ability_id": 85,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1013,7 +1010,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 장궁병",
             "unique_ability_id": 86,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1025,7 +1022,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 석궁병",
             "unique_ability_id": 87,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1037,7 +1034,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 화승총병",
             "unique_ability_id": 88,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1049,7 +1046,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 도끼병",
             "unique_ability_id": 89,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1061,7 +1058,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 선봉 기수",
             "unique_ability_id": 90,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1073,7 +1070,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 야전 지휘관",
             "unique_ability_id": 91,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1085,7 +1082,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 장창병",
             "unique_ability_id": 92,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1097,7 +1094,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 중장병",
             "unique_ability_id": 93,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1109,7 +1106,7 @@
             "card_rarity": 1,
             "card_name": "붉은 장미의 경기병",
             "unique_ability_id": 94,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1121,7 +1118,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 교섭자",
             "unique_ability_id": 95,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1133,7 +1130,7 @@
             "card_rarity": 3,
             "card_name": "붉은 장미의 여왕",
             "unique_ability_id": 96,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1145,7 +1142,7 @@
             "card_rarity": 2,
             "card_name": "붉은 장미의 왕자",
             "unique_ability_id": 97,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1156,8 +1153,8 @@
             "card_rank": 0,
             "card_rarity": 3,
             "card_name": "붉은 장미의 ◇Joker",
-            "unique_ability_id": 87,
-            "collections": "Rose War",
+            "unique_ability_id": 98,
+            "collections": "Rose War"
 
 
 
@@ -1168,8 +1165,8 @@
             "card_rank": 1,
             "card_rarity": 3,
             "card_name": "검은 장미의 후군장",
-            "unique_ability_id": 87,
-            "collections": "Rose War",
+            "unique_ability_id": 99,
+            "collections": "Rose War"
 
 
 
@@ -1181,7 +1178,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 공성병",
             "unique_ability_id": 100,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1193,7 +1190,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 후위 기수",
             "unique_ability_id": 101,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1205,7 +1202,7 @@
             "card_rarity": 2,
             "card_name": "검은 장미의 병기 총감",
             "unique_ability_id": 102,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1217,7 +1214,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 함선원",
             "unique_ability_id": 103,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1229,7 +1226,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 갑판병",
             "unique_ability_id": 104,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1241,7 +1238,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 함포 사수",
             "unique_ability_id": 105,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1253,7 +1250,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 보급관",
             "unique_ability_id": 106,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1265,7 +1262,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 의무병",
             "unique_ability_id": 107,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1277,7 +1274,7 @@
             "card_rarity": 1,
             "card_name": "검은 장미의 대장장이",
             "unique_ability_id": 108,
-            "collections": "Rose War",
+            "collections": "Rose War"
 
 
 
@@ -1297,8 +1294,8 @@
             "card_rank": 12,
             "card_rarity": 2,
             "card_suit": 3,
-            "collections": "Rose War",
-            "unique_ability_id": 110
+            "unique_ability_id": 110,
+            "collections": "Rose War"
         },
         {
             "card_baseid": 111,
@@ -1306,8 +1303,8 @@
             "card_rank": 13,
             "card_rarity": 4,
             "card_suit": 3,
-            "collections": "Rose War",
-            "unique_ability_id": 111
+            "unique_ability_id": 111,
+            "collections": "Rose War"
         },
         {
             "card_baseid": 112,
@@ -1315,8 +1312,8 @@
             "card_rank": 0,
             "card_rarity": 3,
             "card_suit": 3,
-            "collections": "Rose War",
-            "unique_ability_id": 112
+            "unique_ability_id": 112,
+            "collections": "Rose War"
         }
     ]
 }
