@@ -1,7 +1,7 @@
 using UnityEngine;
 using static Define;
 
-public class BlackRoseVanguard : WaroftheRosesBase
+public class RedRoseVanguard : WaroftheRosesBase
 {
     public override void Init()
     {
@@ -10,10 +10,10 @@ public class BlackRoseVanguard : WaroftheRosesBase
         isBlack = true;
 
         cardBaseId = 57; // todo
-        cardSuit = Define.CardSuit.Spade;
+        cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Ace;
         cardRarity = Define.CardRarity.Legendary;
-        cardName = "Black Rose Vanguard";
+        cardName = "Red Rose Vanguard";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
@@ -34,7 +34,7 @@ public class BlackRoseVanguard : WaroftheRosesBase
     public override void OnCardDrawComplete()
     {
 
-        Debug.Log("Black Rose Vanguard Effect");
+        Debug.Log($"{cardName} Effect");
 
         int left = 0;
         int right = Managers.Deck.UnUsedDeck.Count - 1;
@@ -42,11 +42,11 @@ public class BlackRoseVanguard : WaroftheRosesBase
 
         while (left < right && swaps < 5)
         {
-            // 왼쪽에서 다음 '빨간 카드'(검은 카드를 건너뜀) 찾기
-            while (left < right && (Managers.Deck.UnUsedDeck[left].cardSuit == Define.CardSuit.Spade || Managers.Deck.UnUsedDeck[left].cardSuit == Define.CardSuit.Club)) left++;
+            // 왼쪽에서 다음 '검은 카드'(빨간 카드를 건너뜀) 찾기
+            while (left < right && (Managers.Deck.UnUsedDeck[left].cardSuit == Define.CardSuit.Heart || Managers.Deck.UnUsedDeck[left].cardSuit == Define.CardSuit.Diamond)) left++;
 
-            // 오른쪽에서 다음 '검은 카드'(빨간 카드를 건너뜀) 찾기
-            while (left < right && (Managers.Deck.UnUsedDeck[right].cardSuit == Define.CardSuit.Diamond || Managers.Deck.UnUsedDeck[right].cardSuit == Define.CardSuit.Heart)) right--;
+            // 오른쪽에서 다음 '빨간 카드'(검은 카드를 건너뜀) 찾기
+            while (left < right && (Managers.Deck.UnUsedDeck[right].cardSuit == Define.CardSuit.Spade || Managers.Deck.UnUsedDeck[right].cardSuit == Define.CardSuit.Club)) right--;
 
             if (left < right)
             {

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5516388415009561165}
   - component: {fileID: 482074672895770593}
   - component: {fileID: -9056966617644072980}
-  - component: {fileID: 1649377054635687537}
+  - component: {fileID: 1639969149118915904}
   m_Layer: 0
-  m_Name: Black Rose Prince
+  m_Name: Black Rose King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6307210719305837937, guid: 7a7a5372231af4c4dbbc37493af0a80b, type: 3}
+  m_Sprite: {fileID: -8353498466351157465, guid: e68baf1f3114817408879657e23351ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 16.960312, y: 25.28}
+    oldSize: {x: 8.48, y: 12.64}
     newSize: {x: 9.92, y: 14.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.92, y: 14.62}
   m_EdgeRadius: 0
---- !u!114 &1649377054635687537
+--- !u!114 &1639969149118915904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,9 +147,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 610298332938065557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0dd1b212bbe690448f178d8246158b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 024f6c1c5bb6e144e98dc1370005d052, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BlackRosePrince
+  m_EditorClassIdentifier: Assembly-CSharp::BlackRoseKing
   durability: 3
   CardPosition: {x: 0, y: 0, z: 0}
   cardBaseId: 0

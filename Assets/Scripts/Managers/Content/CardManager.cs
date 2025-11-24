@@ -80,22 +80,12 @@ public class CardManager
         // 디버깅을 위한 임시 코드.
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DrawCard();
-            DrawCard();
-            DrawCard();
-            DrawCard();
-            DrawCard();
-            DrawCard();
-            DrawCard();
+            DrawAllCard();
 
             foreach (CardBase item in _fieldCards)
             {
                 item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 카드의 효과 발동
             }
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DrawCard(0, "Black Rose Vanguard");
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -132,12 +122,14 @@ public class CardManager
             DrawCard();
         }
         isCardSetted = false;
+        Managers.Score.CurrentMultiflier = 1;
     }
 
     public void DrawCard(int idx = 0, string cardName = "")
     {
         // If no parameter is provided, draw the top card.
         // If an index is provided, draw the card at the specified index.
+        // If you want to draw a card with specific name, write index (0, cardname)
         if (_fieldCards.Count - _fieldCards.Count(item => item == null) < 7)
         {
             CardInfo pop;
@@ -149,7 +141,10 @@ public class CardManager
             {
                 GameObject go = Managers.Resource.Instantiate(
                     $"Card/{pop.collection}/{(pop.collection == "Standard" ? "StandardCard" : pop.cardName)}", CardRoot);
-                CardBase card = go.GetComponent<CardBase>();
+                CardBase card;
+
+                if (go != null && go.GetComponent<CardBase>() != null) { card = go.GetComponent<CardBase>();  }
+                else { Debug.Log($"null : {go.name}"); return; }
 
                 #region SetCardTransform
                 go.transform.position = CardSpawnPoint.transform.position;
@@ -208,8 +203,6 @@ public class CardManager
             }
         }
     }
-
-
 
     public void CardAlignment(CardBase card, int idx)
     {

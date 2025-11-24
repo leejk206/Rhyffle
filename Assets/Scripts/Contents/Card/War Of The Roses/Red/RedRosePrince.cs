@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using static Define;
 
-public class BlackRosePrince : WaroftheRosesBase
+public class RedRosePrince : WaroftheRosesBase
 {
     public override void Init()
     {
@@ -11,10 +11,10 @@ public class BlackRosePrince : WaroftheRosesBase
         isBlack = true;
 
         cardBaseId = 57; // todo
-        cardSuit = Define.CardSuit.Spade;
+        cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.King;
         cardRarity = Define.CardRarity.Rare;
-        cardName = "Black Rose Prince";
+        cardName = "Red Rose Prince";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
@@ -35,14 +35,14 @@ public class BlackRosePrince : WaroftheRosesBase
     public override void OnCardDraw()
     {
 
-        Debug.Log("Black Rose Prince Effect");
+        Debug.Log("Red Rose Prince Effect");
 
         Managers.Card.isCardSetted = true;
         for (int i = 0; i < Managers.Card.SettedCards.Count; i++)
         {
             if (Managers.Card.SettedCards[i] == null)
             {
-                Managers.Card.SettedCards[i] = "Black Rose King";
+                Managers.Card.SettedCards[i] = "Red Rose King";
                 break;
             }
         }
@@ -54,7 +54,7 @@ public class BlackRosePrince : WaroftheRosesBase
                 var card = Managers.Deck.UnUsedDeck
                     .FirstOrDefault(x =>
                         x.collection == "War of the Roses" &&
-                        (x.cardSuit == CardSuit.Spade || x.cardSuit == CardSuit.Club));
+                        (x.cardSuit == CardSuit.Heart || x.cardSuit == CardSuit.Diamond));
 
                 // 찾은 카드가 없으면 아무것도 하지 않음
                 if (card != null)
