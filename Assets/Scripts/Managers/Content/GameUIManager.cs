@@ -88,15 +88,15 @@ public class GameUIManager:MonoBehaviour
         pauseUI.SetActive(false);
         countBackground.SetActive(true);
         counting.SetActive(true);
+        scoreBoard.SetActive(true);
+        songInfoBoard.SetActive(true);
+        pauseButton.SetActive(true);
         Count3();
     }
 
     //�÷��� ȭ�� UI
     public void Resume()
     {
-        scoreBoard.SetActive(true);
-        songInfoBoard.SetActive(true);
-        pauseButton.SetActive(true);
         gamePlayer.play = true;
     }
 
