@@ -9,7 +9,7 @@ public class BlackRoseVanguard : WaroftheRosesBase
 
         isBlack = true;
 
-        cardBaseId = 0; // todo
+        cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Ace;
         cardRarity = Define.CardRarity.Legendary;
@@ -31,7 +31,7 @@ public class BlackRoseVanguard : WaroftheRosesBase
         Debug.Log("init");
     }
 
-    public override void OnCardDraw()
+    public override void OnCardDrawComplete()
     {
 
         Debug.Log("Black Rose Vanguard Effect");

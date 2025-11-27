@@ -6,6 +6,8 @@ public class ScoreManager
     private int _baseScorePerNote;
     private int _remainderFirstNote;
 
+    public float CurrentMultiflier; // 카드 효과에 의한 배율
+
     public Define.GameMode CurrentMode { get; set; } = Define.GameMode.Plain;
     
     public void Init(float totalNoteCount) // 점수 시스템 초기화
@@ -14,6 +16,7 @@ public class ScoreManager
         _baseScorePerNote = Mathf.RoundToInt(rawScore);
         _remainderFirstNote = Mathf.RoundToInt(1000000 - _baseScorePerNote * (totalNoteCount - 1));
         totalScore = 0;
+        CurrentMultiflier = 1;
     }
     
     public void ApplyNoteScore(int noteIndex, Define.JudgementType judgement, int cardBonus) // 노트 하나 점수 계산하여 totalScore에 반영 
@@ -22,7 +25,7 @@ public class ScoreManager
         float multiplier = GetJudgementMultiplier(judgement); // 판정 배율
 
         // 노트 점수 + 카드 점수) * 판정 배율
-        int totalNoteScore = Mathf.RoundToInt((baseScore + (CurrentMode == Define.GameMode.Challenge ? cardBonus : 0)) * multiplier);
+        int totalNoteScore = Mathf.RoundToInt((baseScore + (CurrentMode == Define.GameMode.Challenge ? cardBonus : 0)) * multiplier * CurrentMultiflier);
         totalScore += totalNoteScore;
     }
 

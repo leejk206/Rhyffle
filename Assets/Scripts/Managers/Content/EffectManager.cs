@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class EffectManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public List<EffectBase> EffectOnCardDraw;
-    public List<EffectBase> EffectOnNoteTriggered;
-    public List<EffectBase> EffectOnCardDestroy;
+    
+
+    public EffectData EffectData;
 
     public void Init()
     {
-        EffectOnCardDraw = new();
-        EffectOnNoteTriggered = new();
-        EffectOnCardDestroy = new();
+
+        #region SetEffectData
+        EffectData = new()
+        {
+            BlackRoseMultiplier = 1,
+            RedRoseMultiplier = 1
+        };
+        #endregion
+
     }
 
     public void GameEnd()
     {
-        EffectOnCardDraw = new();
-        EffectOnNoteTriggered = new();
-        EffectOnCardDestroy = new();
+
     }
 }
 
@@ -32,6 +35,13 @@ public abstract class EffectBase
     public virtual void SetEffectProperty() { isPropertySetted = true; }
 
     public virtual void OnCardDraw() { Debug.Log($"{this.GetType()} OnCardDraw Called."); }
-    public virtual void OnNoteTriggered() { Debug.Log($"{this.GetType()} OnNoteTriggered Called."); }
+    public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} OnCardDrawComplete Called."); }
+    public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} OnNoteTrigger Called."); }
     public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} OnCardDestroy Called."); }
+}
+
+public class EffectData
+{
+    public int BlackRoseMultiplier;
+    public int RedRoseMultiplier;
 }

@@ -40,6 +40,33 @@ public class DeckManager
         };
 
         _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Two, "Black Rose Longbowman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Cavalry Vanguard", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Four, "Black Rose Field Commander", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Five, "Black Rose Crossbowman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Six, "Black Rose Musketeer", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Seven, "Black Rose Axeman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Eight, "Black Rose Spearman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Nine, "Black Rose Heavy Infantry", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ten, "Black Rose Light Cavalry", "War Of The Roses"));
+        // _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Jack, "Black Rose Negotiator", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Queen, "Black Rose Queen", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.King, "Black Rose Prince", "War Of The Roses"));
+        // _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Joker, "Black Rose Joker Spade", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ace, "Black Rose Rear Commander", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Two, "Black Rose Siege Engineer", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Three, "Black Rose Rear Cavalry", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Four, "Black Rose Armament Chief", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Five, "Black Rose Crewman", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Six, "Black Rose Deck Soldier", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Seven, "Black Rose Gunner", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Eight, "Black Rose Quatermaster", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Nine, "Black Rose Medic", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ten, "Black Rose Blacksmith", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Jack, "Black Rose Priest", "War Of The Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Queen, "Black Rose Princess", "War Of The Roses"));
+        // _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.King, "Black Rose King", "War Of The Roses"));
+        // _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Joker, "Black Rose Joker Club", "War Of The Roses"));
 
         foreach (var suit in suits)
         {
@@ -86,16 +113,35 @@ public class DeckManager
 
     public CardInfo PopCard(int idx = 0, string cardName = "")
     {
-        if (_unUsedDeck.Count <= 0) { ResetDeck(); }
+        if (_unUsedDeck.Count <= 0)
+            ResetDeck();
 
         CardInfo item;
-        if (idx != 0) { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
-        else if (cardName != "") {
-            item = _unUsedDeck.First(x => x.cardName == cardName);
+
+        // idx가 0이 아니면 무조건 idx 드로우
+        if (idx != 0)
+        {
+            item = _unUsedDeck[idx];
+            _unUsedDeck.RemoveAt(idx);
+            return item;
+        }
+
+        // idx == 0일 때: cardName 우선 시도 → 실패 시 일반 드로우
+        item = !string.IsNullOrEmpty(cardName)
+            ? _unUsedDeck.FirstOrDefault(x => x.cardName == cardName)
+            : null;
+
+        // 못 찾았으면 기본 드로우(0번)
+        if (item == null)
+        {
+            item = _unUsedDeck[0];
+            _unUsedDeck.RemoveAt(0);
+        }
+        else
+        {
             _unUsedDeck.Remove(item);
         }
-        else { item = _unUsedDeck[idx]; _unUsedDeck.RemoveAt(idx); }
-        
+
         return item;
     }
 
