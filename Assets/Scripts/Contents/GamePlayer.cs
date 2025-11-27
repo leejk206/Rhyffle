@@ -3,6 +3,7 @@ using TMPro;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System;
 
 public class GamePlayer : MonoBehaviour
 {
@@ -347,8 +348,24 @@ public class GamePlayer : MonoBehaviour
                 if (flickDown[i]) Debug.Log("flickDown" + i);
                 if (flickUp[i]) Debug.Log("flickUp" + i);
                 */
-                int cardRank = Managers.Card.FieldCards[i].CardRank;
 
+
+
+                // This part need to fix
+                // currently, cardRank is not initialized at the point 'GameSystem()' is called
+                // 
+                // so I put try-catch exception call and tested if cardRank is changing into rank of cards in 'Managers.Card.FieldCards'
+                // 'cardRank' is initalized to rank of card in 'Managers.Card.FieldCards' only when "A" key pressed in game (Drawing All Cards)
+                
+                int cardRank = 0; 
+                try
+                {
+                    cardRank = Managers.Card.FieldCards[i / 3].CardRank;
+                    Debug.Log("CardRankChecked");
+                }catch(Exception e)
+                {
+
+                }
                 switch (judgeChecker[i])
                 {
                     case 1:
