@@ -13,12 +13,19 @@ public class GamePlayer : MonoBehaviour
     // Json 파일의 채보 정보가 담길 class
     NoteJson noteJson;
 
+
+
+    // Erase Later
+
+    public TMP_Text text;
+
+
     
 
     // ���� ���� ����
     public bool play = true;
     // ���� ���۽� ������ (-144��° ���ڿ��� ����, �� 144���� ���ĸ� 0�� �ش��ϴ� ���ڸ� ó���ؾ� �ϴ� Ÿ�̹�)
-    float currentTime = -144;
+    public float currentTime = -1000;
     // 이전 프레임 플레이 상태 플래그 -> 매 프레임마다 초기화 되는 것을 방지
     private bool _wasPlaying = true;
 
@@ -68,12 +75,15 @@ public class GamePlayer : MonoBehaviour
     // ��Ʈ ������ �ӵ� ���� ���� ����
     #region noteSpeed
     // ��Ʈ �ӵ� (���� ��Ϳ� ��ȭ��)
-    int bpm = 80;
+    int bpm = 120;
     // �÷��̾� ������
     float offSet = 0;
     // �÷��̾� ��Ʈ �������� �ӵ�
-    float playerSpeed = 8;
+    float playerSpeed = 4;
     #endregion
+
+    // Offset between chart_tool and this game
+    float chartToolOffset = 6.4f;
 
     // �� ���� Note���� ���� List
     List<Note> inGameNote = new List<Note>();
@@ -87,6 +97,7 @@ public class GamePlayer : MonoBehaviour
     // �� �Լ��� ����� ���߿� Manager �� �ϳ��� SetUp�� ȣ���ϴ� ������ ���� ��Ź
     private void Start()
     {
+        currentTime = -64;
         SetUp();
 
         Managers.Deck.DoNothing(); // For Manager Instantiate
@@ -98,79 +109,85 @@ public class GamePlayer : MonoBehaviour
 
     public void SetUp()
     {
-
-        Managers.Json.LoadJson();
-        noteJson = Managers.Json.ReturnJson();
-
-        // noteCreator ������Ʈ �ʱ�ȭ (�� Scene�� �̸� �־���� ��)
-        noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
-
-
-        // Json에서 받은 노트 정보들을 저장
-        basicNotes = noteJson.NormalNotes;
-        slideNotes = noteJson.SlideNotes;
-        flickNotes = noteJson.FlickNotes;
-        holdNotes = noteJson.HoldNotes;
-
-        // �� �κп��� ��Ʈ�� �������� ������ 'position' �������� ������ �ʿ��� (�̱���)
-        // �׷��� �ʴ´ٸ� ���� ���� ��Ʈ���� ����
-
-        // holdNoteBody ���� �̸� count���� �з��Ͽ� ����
-        #region holdNoteBodyInfoBind
-        // holdBodyCount�� ����� Ȧ�� ��Ʈ���� �� ����
-        int holdBodyCount = -1;
-        for (int i = 0; i < holdNotes.Length; i++)
+        try
         {
-            if (holdBodyCount < holdNotes[i].count) {
-                holdBodyCount = holdNotes[i].count;
-            } 
-        }
+            Managers.Json.LoadJson();
+            noteJson = Managers.Json.ReturnJson();
 
-        for(int i = 0; i <= holdBodyCount; i++)
-        {
-            holdBodyList.Add(new List<HoldNoteInfo>());        
-        }
+            // noteCreator ������Ʈ �ʱ�ȭ (�� Scene�� �̸� �־���� ��)
+            noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
 
-        for(int i = 0; i < holdNotes.Length; i++)
-        {
-            holdBodyList[holdNotes[i].count].Add(holdNotes[i]);
-        }
-        #endregion
 
-        // ������ ��Ʈ���� �����ؾ� �ϴ� �������� ����(�� �������� �̿��ؼ� ����߸��� Ÿ�̹� ����)
-        // ������ ��Ʈ�� �������� ������ position�������� �������� �ʴ´ٸ� �̰����� ���ο� ����ü Ȥ�� Class�� ���� �����ص� ��
-        // �ش� Class���� ��Ʈ�� position�̶� �ش� ��Ʈ�� noteInfo�� ���°�� �ִ��� üũ�ϴ� ������ ������... �������� �����...?
-        // �׷��� �׳� ������ �����ϴ� ���� �ܼ��� ������ ��õ��
-        #region setTiming
+            // Json에서 받은 노트 정보들을 저장
+            basicNotes = noteJson.NormalNotes;
+            slideNotes = noteJson.SlideNotes;
+            flickNotes = noteJson.FlickNotes;
+            holdNotes = noteJson.HoldNotes;
 
-        basicNoteCount = basicNotes.Length;
-        slideNoteCount = slideNotes.Length;
-        flickNoteCount = flickNotes.Length;
-        holdNoteCount = holdBodyCount + 1;
+            // �� �κп��� ��Ʈ�� �������� ������ 'position' �������� ������ �ʿ��� (�̱���)
+            // �׷��� �ʴ´ٸ� ���� ���� ��Ʈ���� ����
 
-        basicNoteTiming = new int[basicNoteCount];
-        slideNoteTiming = new int[slideNoteCount];
-        flickNoteTiming = new int[flickNoteCount];
-        if (holdBodyCount >= 0) holdNoteTiming = new int[holdNoteCount];
-        for (int i = 0; i < basicNoteCount; i++)
-        {
-            basicNoteTiming[i] = basicNotes[i].position;
-        }
-        for(int i = 0; i < slideNoteCount; i++)
-        {
-            slideNoteTiming[i] = slideNotes[i].position;
-        }
-        for (int i = 0; i < flickNoteCount; i++)
-        {
-            flickNoteTiming[i] = flickNotes[i].position;
-        }
-        for(int i = 0; i < holdNoteCount; i++)
-        {
-            holdNoteTiming[i] = holdBodyList[i][0].position;
-        }
-        #endregion
+            // holdNoteBody ���� �̸� count���� �з��Ͽ� ����
+            #region holdNoteBodyInfoBind
+            // holdBodyCount�� ����� Ȧ�� ��Ʈ���� �� ����
+            int holdBodyCount = -1;
+            for (int i = 0; i < holdNotes.Length; i++)
+            {
+                if (holdBodyCount < holdNotes[i].count)
+                {
+                    holdBodyCount = holdNotes[i].count;
+                }
+            }
 
-        GameSystem();
+            for (int i = 0; i <= holdBodyCount; i++)
+            {
+                holdBodyList.Add(new List<HoldNoteInfo>());
+            }
+
+            for (int i = 0; i < holdNotes.Length; i++)
+            {
+                holdBodyList[holdNotes[i].count].Add(holdNotes[i]);
+            }
+            #endregion
+
+            // ������ ��Ʈ���� �����ؾ� �ϴ� �������� ����(�� �������� �̿��ؼ� ����߸��� Ÿ�̹� ����)
+            // ������ ��Ʈ�� �������� ������ position�������� �������� �ʴ´ٸ� �̰����� ���ο� ����ü Ȥ�� Class�� ���� �����ص� ��
+            // �ش� Class���� ��Ʈ�� position�̶� �ش� ��Ʈ�� noteInfo�� ���°�� �ִ��� üũ�ϴ� ������ ������... �������� �����...?
+            // �׷��� �׳� ������ �����ϴ� ���� �ܼ��� ������ ��õ��
+            #region setTiming
+
+            basicNoteCount = basicNotes.Length;
+            slideNoteCount = slideNotes.Length;
+            flickNoteCount = flickNotes.Length;
+            holdNoteCount = holdBodyCount + 1;
+
+            basicNoteTiming = new int[basicNoteCount];
+            slideNoteTiming = new int[slideNoteCount];
+            flickNoteTiming = new int[flickNoteCount];
+            if (holdBodyCount >= 0) holdNoteTiming = new int[holdNoteCount];
+            for (int i = 0; i < basicNoteCount; i++)
+            {
+                basicNoteTiming[i] = basicNotes[i].position;
+            }
+            for (int i = 0; i < slideNoteCount; i++)
+            {
+                slideNoteTiming[i] = slideNotes[i].position;
+            }
+            for (int i = 0; i < flickNoteCount; i++)
+            {
+                flickNoteTiming[i] = flickNotes[i].position;
+            }
+            for (int i = 0; i < holdNoteCount; i++)
+            {
+                holdNoteTiming[i] = holdBodyList[i][0].position;
+            }
+            #endregion
+
+            GameSystem();
+        }
+        catch (Exception e) { 
+            text.text = e.ToString();   
+        }
     }
 
     public async UniTask GameSystem()
@@ -178,13 +195,13 @@ public class GamePlayer : MonoBehaviour
         while (true)
         {
 
-            currentTime += Time.deltaTime * bpm / 60 * 16;
+            currentTime += Time.deltaTime * (bpm / 60) * 16;
             // ����
             #region creation
             // basicNote Creation
             while (basicCur < basicNoteCount)
             {
-                if (currentTime > basicNoteTiming[basicCur] - 64 * 4 / playerSpeed)
+                if (currentTime > basicNoteTiming[basicCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateBasic(basicNotes[basicCur]).GetComponent<BasicNote>());
                     basicCur++;
@@ -197,7 +214,7 @@ public class GamePlayer : MonoBehaviour
             // slideNote Creation
             while (slideCur < slideNoteCount)
             {
-                if (currentTime > slideNoteTiming[slideCur] - 64 * 4 / playerSpeed)
+                if (currentTime > slideNoteTiming[slideCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateSlide(slideNotes[slideCur]).GetComponent<SlideNote>());
                     slideCur++;
@@ -211,7 +228,7 @@ public class GamePlayer : MonoBehaviour
             // flickNote Creation
             while (flickCur < flickNoteCount)
             {
-                if (currentTime > flickNoteTiming[flickCur] - 64 * 4 / playerSpeed)
+                if (currentTime > flickNoteTiming[flickCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateFlick(flickNotes[flickCur]).GetComponent<FlickNote>());
                     flickCur++;
@@ -224,7 +241,7 @@ public class GamePlayer : MonoBehaviour
             // holdNote Creation
             while (holdCur < holdNoteCount)
             {
-                if (currentTime > holdNoteTiming[holdCur] - 64 * 4 / playerSpeed)
+                if (currentTime > holdNoteTiming[holdCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateHoldBody(holdBodyList[holdCur], playerSpeed).GetComponent<HoldNoteBody>());
                     holdCur++;
@@ -273,7 +290,7 @@ public class GamePlayer : MonoBehaviour
                         Destroy(temp);
                         break;
                     }
-                    if (intouch[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 3, currentTime);
+                    if (intouch[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 3, currentTime );
                     if (judgeChecker[i] > 0)
                     {
                         break;
@@ -361,7 +378,6 @@ public class GamePlayer : MonoBehaviour
                 try
                 {
                     cardRank = Managers.Card.FieldCards[i / 3].CardRank;
-                    Debug.Log("CardRankChecked");
                 }catch(Exception e)
                 {
 
@@ -372,21 +388,25 @@ public class GamePlayer : MonoBehaviour
                         judgeText.text = "Miss";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, cardRank);
                         Debug.Log("Miss at " + currentTime + " | Current score: " + Managers.Score.totalScore);
+                        text.text = "Miss";
                         break;
                     case 2:
                         judgeText.text = "Good";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Good, cardRank);
                         Debug.Log("Good at " + currentTime + " | Current score: " + Managers.Score.totalScore);
+                        text.text = "Good";
                         break;
                     case 3:
                         judgeText.text = "Great";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Great, cardRank);
                         Debug.Log("Great at " + currentTime + " | Current score: " + Managers.Score.totalScore);
+                        text.text = "Great";
                         break;
                     case 4:
                         judgeText.text = "Perfect";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Perfect, cardRank);
                         Debug.Log("Perfect at " + currentTime + " | Current score: " + Managers.Score.totalScore);
+                        text.text = "Perfect";
                         break;
                 }
                 press[i] = false;

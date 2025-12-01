@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 03c90d34fba86104ab987b4ef58c0ff9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SelectAlbum.unity
     guid: 4420b11a0f5c4104692492ecfe34d950
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoadingGame.unity
     guid: be8bd0b9280a0cb44a183c51a20405db
   - enabled: 1

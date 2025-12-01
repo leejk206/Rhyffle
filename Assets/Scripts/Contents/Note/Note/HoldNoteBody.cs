@@ -55,7 +55,7 @@ public class HoldNoteBody : Note
             {
                 if(lane >= holdNotes[curJudge].line && lane <= holdNotes[curJudge].line + holdNotes[curJudge].length)
                 {
-                    int tempJudge = holdNotes[curJudge].judge;
+                    float tempJudge = holdNotes[curJudge].judge;
                     if(curTime < tempJudge - (float)bpm / 600 * 16) 
                     {
                         return 0;

@@ -54,6 +54,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,6 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 12
@@ -86,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 4.8722615, y: 0.9610136}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8244326249287074978
@@ -104,9 +107,10 @@ MonoBehaviour:
   judge: 0
   line: 0
   length: 0
+  height: 10
   flicDir: 0
-  flickUpSprite: {fileID: -4334457456803565793, guid: db5ddcad6a113410ea92816af249d88a, type: 3}
-  flickDownSprite: {fileID: -5265111857970887000, guid: f403fe422b0104f968e39f946e22a6b3, type: 3}
+  flickUpSprite: {fileID: 21300000, guid: db5ddcad6a113410ea92816af249d88a, type: 3}
+  flickDownSprite: {fileID: 21300000, guid: f403fe422b0104f968e39f946e22a6b3, type: 3}
 --- !u!1 &3280852576235947296
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +164,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -181,6 +187,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 12
@@ -210,6 +217,7 @@ MonoBehaviour:
   judge: 0
   line: 0
   length: 0
+  height: 10
   flicDir: 0
   flickUpSprite: {fileID: -4334457456803565793, guid: db5ddcad6a113410ea92816af249d88a, type: 3}
   flickDownSprite: {fileID: -5265111857970887000, guid: f403fe422b0104f968e39f946e22a6b3, type: 3}

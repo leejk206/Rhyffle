@@ -86,6 +86,8 @@ public class Managers : MonoBehaviour
         s_instance._scene.Init();
 
         #endregion
+
+
     }
 
     public static void Clear()

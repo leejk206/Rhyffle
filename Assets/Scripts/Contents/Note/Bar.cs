@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TouchPhase = UnityEngine.TouchPhase;
 
+using TMPro;
+
 public class Bar : MonoBehaviour
 {
     public int barNum;
@@ -10,31 +12,42 @@ public class Bar : MonoBehaviour
     public GamePlayer gamePlayer;
     float beforeX, beforeY;
 
+    public TMP_Text text;
+
     private void Update()
     {
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPos = touch.position;
-            Ray ray = Camera.main.ScreenPointToRay(touchPos);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                if (hit.transform == transform)
-                {
-                    switch (touch.phase)
+                
+                    Touch touch = Input.GetTouch(i);
+                    Vector2 touchPos = touch.position;
+                    Ray ray = Camera.main.ScreenPointToRay(touchPos);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        case TouchPhase.Began:
-                            gamePlayer.press[barNum] = true;
-                            break;
-                        case TouchPhase.Moved:
-                        case TouchPhase.Stationary:
-                            gamePlayer.intouch[barNum] = true;
-                            break;
-                        case TouchPhase.Ended:
-                            gamePlayer.endtouch[barNum] = true;
-                            break;
+                        if (hit.transform == transform)
+                        {
+                            switch (touch.phase)
+                            {
+                                case TouchPhase.Began:
+                                    gamePlayer.press[barNum] = true;
+                                    text.text = "Began" + barNum + " at " + gamePlayer.currentTime;
+                                    gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                                    break;
+                                case TouchPhase.Moved:
+                                    break;
+                                case TouchPhase.Stationary:
+                                    gamePlayer.intouch[barNum] = true;
+                                    break;
+                                case TouchPhase.Ended:
+                                    gamePlayer.endtouch[barNum] = true;
+                                    gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                                    break;
+                            }
+                        }
                     }
-                }
+                
             }
         }
     }

@@ -3,13 +3,13 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     //외부에서 이 노트를 참조할 때 노트
-    public int judge;
+    public float judge;
     //노트 lane
     public int line;
     float lanePos = 0;
     //노트 길이
     public int length;
-    float height = 10;
+    public float height = 10;
 
     Vector3 scaleVector;
     Vector3 posVector;
@@ -23,7 +23,7 @@ public class Note : MonoBehaviour
     //판정 위치 저장
     virtual public void SetJudge(int judge)
     {
-        this.judge = judge;
+        this.judge = judge * 6.4f;
     }
     
     virtual public void Drop(float speed)
@@ -90,7 +90,6 @@ public class Note : MonoBehaviour
     virtual public int ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
         int result;
-
         if (checkType == 0) { 
             if(curTime > (float)bpm/600 * 2f * 16 + judge)
             {

@@ -13,7 +13,9 @@ public class JsonManager
 
     // �� �κ��� ���߿� ���� �ʿ� �׽�Ʈ����
     // ����� json���� �̸��� ������ ��
-    string path = "/DAKI1_VIOLET_rough.json";
+    //string path = "/DAKI1_VIOLET_rough.json";
+    string path = "/04_daki_Lily's_waltz.json";
+    string resourcePath = "Data/Json/Songs/Lily";
 
     //���� ��� ����
     public void SetPath(string path)
@@ -30,8 +32,9 @@ public class JsonManager
     // ���� path ������ "\\chart.json"���� �����ϸ� �۵���
     public void LoadJson()
     {
-        string loadPath = Application.persistentDataPath + path;
-        string jsonString = File.ReadAllText(loadPath);
+        //string loadPath = Application.persistentDataPath + path;
+        // string jsonString = File.ReadAllText(loadPath);
+        string jsonString = Resources.Load<TextAsset>(resourcePath).text;
         noteJson = JsonConvert.DeserializeObject<NoteJson>(jsonString);
     }
 
