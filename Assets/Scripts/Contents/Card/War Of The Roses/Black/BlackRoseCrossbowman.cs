@@ -13,7 +13,7 @@ public class BlackRoseCrossbowman : WaroftheRosesBase
         cardBaseId = 61; // todo
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Five;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Crossbowman";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

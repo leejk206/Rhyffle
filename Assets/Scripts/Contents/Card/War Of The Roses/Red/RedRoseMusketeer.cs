@@ -12,7 +12,7 @@ public class RedRoseMusketeer : WaroftheRosesBase
         cardBaseId = 62; // todo
         cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Four;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Red Rose Musketeer";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

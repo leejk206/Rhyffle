@@ -12,7 +12,7 @@ public class BlackRoseAxeman : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Seven;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Axeman";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

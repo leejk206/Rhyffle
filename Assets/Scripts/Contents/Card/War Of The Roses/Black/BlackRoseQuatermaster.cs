@@ -11,7 +11,7 @@ public class BlackRoseQuatermaster : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Club;
         cardRank = Define.CardRank.Eight;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Quatermaster";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

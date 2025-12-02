@@ -11,7 +11,7 @@ public class RedRoseGunner : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Five;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Gunner";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

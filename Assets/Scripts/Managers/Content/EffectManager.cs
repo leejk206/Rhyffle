@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EffectManager
 {
-    
 
+    public BrandData BrandData;
     public EffectData EffectData;
 
     public void Init()
@@ -17,6 +17,10 @@ public class EffectManager
             BlackRoseMultiplier = 1,
             RedRoseMultiplier = 1
         };
+        #endregion
+        BrandData = new();
+        #region SetBrandData
+
         #endregion
 
     }
@@ -44,4 +48,22 @@ public class EffectData
 {
     public int BlackRoseMultiplier;
     public int RedRoseMultiplier;
+}
+
+public abstract class BrandBase
+{
+    public bool shouldBeRemoved = false;
+    public bool isPropertySetted = false;
+    public BrandBase() { SetEffectProperty(); }
+    public virtual void SetEffectProperty() { isPropertySetted = true; }
+
+    public virtual void OnCardDraw() { Debug.Log($"{this.GetType()} Brand OnCardDraw Called."); }
+    public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} Brand OnCardDrawComplete Called."); }
+    public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} Brand OnNoteTrigger Called."); }
+    public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} Brand OnCardDestroy Called."); }
+}
+
+public class BrandData
+{
+
 }

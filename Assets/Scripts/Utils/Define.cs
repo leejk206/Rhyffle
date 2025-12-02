@@ -35,7 +35,7 @@ public class Define
 
     public enum CardRarity
     {
-        Unknown = -1, Common = 0, Rare = 1, Epic = 2, Legendary = 3
+        Unknown = -1, Normal = 0, Rare = 1, Epic = 2, Legendary = 3
     }
 
     public enum HandRank

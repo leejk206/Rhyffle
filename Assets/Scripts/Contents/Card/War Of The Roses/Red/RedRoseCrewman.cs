@@ -12,7 +12,7 @@ public class RedRoseCrewman : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Three;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Red Rose Crewman";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

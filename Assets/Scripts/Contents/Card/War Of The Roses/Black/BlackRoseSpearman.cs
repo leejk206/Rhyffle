@@ -12,7 +12,7 @@ public class BlackRoseSpearman : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Eight;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Spearman";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

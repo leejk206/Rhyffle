@@ -11,7 +11,7 @@ public class RedRoseBlacksmith : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Ten;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Blacksmith";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

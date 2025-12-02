@@ -12,7 +12,7 @@ public class BlackRoseHeavyInfantry : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Nine;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Black Rose Heavy Infantry";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo

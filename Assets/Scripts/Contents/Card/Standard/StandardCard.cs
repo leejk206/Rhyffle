@@ -10,7 +10,7 @@ public class StandardCard : CardBase
         cardBaseId = 0;
         cardSuit = cardInfo.cardSuit;
         cardRank = cardInfo.cardRank;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
 
         cardName = $"{cardInfo.cardName}";
         collection = "Standard";

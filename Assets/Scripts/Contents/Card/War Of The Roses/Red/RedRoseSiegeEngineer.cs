@@ -13,7 +13,7 @@ public class RedRoseSiegeEngineer : WaroftheRosesBase
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Club;
         cardRank = Define.CardRank.Two;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
         cardName = "Red Rose Siege Engineer";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
