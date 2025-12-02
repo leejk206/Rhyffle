@@ -268,7 +268,10 @@ public class GamePlayer : MonoBehaviour
                 for (int j = 0; j < inGameNote.Count; j++)
                 {
                     if (press[i])
-                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, i, currentTime);
+                    {
+                        judgeText.text = i + "pressed";
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 1, currentTime);
+                    }
                     if (judgeChecker[i] > 0)
                     {
                         if (!(inGameNote[j].gameObject.tag == "HoldNote"))
@@ -385,25 +388,25 @@ public class GamePlayer : MonoBehaviour
                 switch (judgeChecker[i])
                 {
                     case 1:
-                        judgeText.text = "Miss";
+                        //judgeText.text = "Miss";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, cardRank);
                         Debug.Log("Miss at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         text.text = "Miss";
                         break;
                     case 2:
-                        judgeText.text = "Good";
+                        //judgeText.text = "Good";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Good, cardRank);
                         Debug.Log("Good at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         text.text = "Good";
                         break;
                     case 3:
-                        judgeText.text = "Great";
+                        //judgeText.text = "Great";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Great, cardRank);
                         Debug.Log("Great at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         text.text = "Great";
                         break;
                     case 4:
-                        judgeText.text = "Perfect";
+                        //judgeText.text = "Perfect";
                         Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Perfect, cardRank);
                         Debug.Log("Perfect at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         text.text = "Perfect";
