@@ -441,7 +441,6 @@ public class GamePlayer : MonoBehaviour
 
             // �Ͻ� ����
             await UniTask.WaitUntil(() => play);
-            await UniTask.WaitForFixedUpdate();
             if (!Application.isPlaying)
             {
                 break;
