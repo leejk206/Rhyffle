@@ -7,10 +7,23 @@ public class NoteScreen : MonoBehaviour
     public GamePlayer gamePlayer;
     int[] touchIDs = new int[5];
     int[] lastLane = new int[5];
-    float[] touchY = new float[5];
+    Vector2[] touchPos = new Vector2[5];
     float flickMinDis = 0.2f;
+    float distancePx;
     public TMP_Text text;
     // Update is called once per frame
+    private void Start()
+    {
+        touchPos = new Vector2[5];
+        distancePx = Screen.dpi;
+        if(distancePx < 100)
+        {
+            distancePx = 300;
+        }
+
+        distancePx = distancePx * 0.393701f * 0.1f;
+    }
+
     void Update()
     {
         if (Input.touchCount > 0)
@@ -27,7 +40,7 @@ public class NoteScreen : MonoBehaviour
                         if (touchIDs[j] == touch.fingerId)
                         {
                             touchIDs[i] = touch.fingerId;
-                            touchY[i] = touchY[j];
+                            this.touchPos[i] = this.touchPos[j];
                             lastLane[i] = lastLane[j];
                             pass = true;
                             break;
@@ -36,13 +49,9 @@ public class NoteScreen : MonoBehaviour
                     if (!pass)
                     {
                         touchIDs[i] = touch.fingerId;
-                        touchY[i] = 0;
+                        this.touchPos[i] = touch.position;
                         lastLane[i] = -1;
                     }
-                }
-                if (Input.touchCount > 0)
-                {
-                    text.text = touchY[0].ToString();
                 }
                 // 터치의 RayCast 사용하여 위치 확인
                 Vector2 touchPos = touch.position;
@@ -58,45 +67,65 @@ public class NoteScreen : MonoBehaviour
                     {
                         case TouchPhase.Began:
                             gamePlayer.press[targetBar] = true;
-                            gamePlayer.slide[targetBar] = true;
                             lastLane[i] = targetBar;
                             break;
                         case TouchPhase.Moved:
                             gamePlayer.intouch[targetBar] = true;
+                            Vector2 direction = (touch.position - this.touchPos[i]).normalized;
+                            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                             if (touch.deltaPosition.y > 0)
                             {
-                                if (touchY[i] > 0)
+                                if (this.touchPos[i].y < touch.position.y)
                                 {
-                                    touchY[i] += touch.deltaPosition.y;
+                                    if (angle > 30 && angle < 150)
+                                    {
+                                        // Flick 판정 확인
+                                        if (touch.position.y - this.touchPos[i].y > distancePx)
+                                        {
+                                            gamePlayer.flickUp[targetBar] = true;
+                                            this.touchPos[i] = touch.position;
+                                            text.text = "Flicked Up at " + gamePlayer.currentTime;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.touchPos[i] = touch.position;
+                                    }
+                                    // 아닐경우 그냥 + 
                                 }
                                 else
                                 {
-                                    touchY[i] = touch.deltaPosition.y;
+                                    this.touchPos[i] = touch.position;
                                 }
                             }
                             else if (touch.deltaPosition.y < 0)
                             {
-                                if (touchY[i] < 0)
+                                if (this.touchPos[i].y > touch.position.y)
                                 {
-                                    touchY[i] += touch.deltaPosition.y;
+                                    if (angle > -150 && angle < -30)
+                                    {
+                                        if (this.touchPos[i].y - touch.position.y > distancePx)
+                                        {
+                                            gamePlayer.flickDown[targetBar] = true;
+                                            this.touchPos[i] = touch.position;
+                                            text.text = "Flicked Down at " + gamePlayer.currentTime; 
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.touchPos[i] = touch.position;
+                                    }
                                 }
                                 else
                                 {
-                                    touchY[i] = touch.deltaPosition.y;
+                                    this.touchPos[i] = touch.deltaPosition;
                                 }
                             }
                             else
                             {
-                                touchY[i] = 0;
+                                this.touchPos[i] = touch.position;
                             }
-                            if (touchY[i] > flickMinDis)
-                            {
-                                gamePlayer.flickUp[targetBar] = true;
-                            }
-                            if (touchY[i] < -flickMinDis)
-                            {
-                                gamePlayer.flickDown[targetBar] = true;
-                            }
+                            
                             if (lastLane[i] != targetBar)
                             {
                                 lastLane[i] = targetBar;
@@ -106,18 +135,18 @@ public class NoteScreen : MonoBehaviour
                             break;
                         case TouchPhase.Stationary:
                             gamePlayer.intouch[targetBar] = true;
-                            touchY[i] = 0;
+                            this.touchPos[i] = touch.position;
                             break;
                         case TouchPhase.Ended:
                             gamePlayer.endtouch[targetBar] = true;
-                            touchY[i] = 0;
+                            this.touchPos[i] = Vector2.zero;
                             lastLane[i] = -1;
                             break;
                     }
                 }
                 else
                 {
-                    touchY[i] = 0;
+                    this.touchPos[i]= Vector2.zero; 
                     lastLane[i] = -1;
                 }
                 
