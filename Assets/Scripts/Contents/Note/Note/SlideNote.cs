@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class SlideNote : Note
 {
@@ -15,7 +16,7 @@ public class SlideNote : Note
         base.SetJudge(judge);
     }
 
-    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
         if (checkType == 1 || checkType == 0)
         {
@@ -27,27 +28,27 @@ public class SlideNote : Note
             {
                 if(curTime < judge - (float)bpm / 600 * 16)
                 {
-                    return 0;
+                    return JudgementType.Checked;
                 }else if(curTime > judge - (float)bpm / 600 * 16)
                 {
-                    return 4;
+                    return JudgementType.Perfect;
                 }else if(curTime > judge - (float)bpm / 600 * 1.5f * 16)
                 {
-                    return 3;
+                    return JudgementType.Great;
                 }else if(curTime > judge - (float)bpm/600 * 2 * 16)
                 {
-                    return 2;
+                    return JudgementType.Good;
                 }
                 else
                 {
-                    return 1;
+                    return JudgementType.Miss;
                 }
             }
-            return 0;
+            return JudgementType.NotChecked;
             
         }else
         {
-            return 0;
+            return JudgementType.NotChecked;
         }
     }
 }

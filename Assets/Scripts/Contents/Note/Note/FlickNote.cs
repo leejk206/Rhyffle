@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class FlickNote : Note
 {
@@ -7,6 +8,8 @@ public class FlickNote : Note
     // FlickUp & Down 구분
     public Sprite flickUpSprite;
     public Sprite flickDownSprite;
+
+    bool judgeLock = false;
 
     private Vector3 _upOffset = new Vector3(0, 0.3f, 0);
     private Vector3 _downOffset = new Vector3(0, -0.3f, 0);
@@ -47,22 +50,22 @@ public class FlickNote : Note
         // if (dir == 1) gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
-    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
         if(checkType == 0)
         {
             return base.ReadJudge(lane, bpm, checkType, curTime);
         }
-        if (flicDir == 0 && checkType == 5)
+        if (flicDir == 0 && checkType == 6)
         {
             return base.ReadJudge(lane, bpm, checkType, curTime);
         }
-        else if (flicDir == 1 && checkType == 6) {
+        else if (flicDir == 1 && checkType == 5) {
             return base.ReadJudge(lane, bpm, checkType, curTime);
         }
         else
         {
-            return 0;
+            return JudgementType.NotChecked;
         }
     }
 

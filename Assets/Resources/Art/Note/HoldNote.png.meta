@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
@@ -143,12 +143,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 425
         width: 170
-        height: 400
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 369}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -156,6 +156,336 @@ TextureImporter:
       bones: []
       spriteID: ad87ed78dcaa62680800000000000000
       internalID: -8780142623787681574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 373
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4ff83937fcdd24298c6afbf0b6cc9e
+      internalID: -1016936637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 347
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54ddf270bf47af34898e4fd5ffc9d218
+      internalID: 2019138781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ec67978945cfa4c9ece6b91065c77c
+      internalID: -107316519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 295
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf2529d46481da4f83cf6732f0c55ec
+      internalID: -1647149788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 269
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20d2db3825ab9fb489f914d8df1ec252
+      internalID: 341996941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 243
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be387e676dfd594cb45da2e1e1e6778
+      internalID: -270757174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 217
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c63dd89b2e1779d4a912d639c08e7b38
+      internalID: -1751286048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b80d1b9644cd0428cbbe995d880cea
+      internalID: 2142246432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c05e035e23cff4f925fbe58c031ce8
+      internalID: 1138027339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8d4abb88ab0f54780782c8794f2dcd
+      internalID: 1330932039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3f8436a4b551b045aac2d364070a0a2
+      internalID: 354716774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 87
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86a9396deffc96498bdd050f4cdb5f4
+      internalID: 863059821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 61
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f193aad8c8246940803beffc42f84c3
+      internalID: 1188149947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 35
+        width: 170
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8601728de14e54f9061d5b01714667
+      internalID: 1659992726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldNote_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 170
+        height: 26
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fee4e5d2abd8014daadf2018f382ec1
+      internalID: -733664167
       vertices: []
       indices: 
       edges: []
@@ -172,9 +502,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":170.0,"y":26.0},"gridSpriteOffset":{"x":0.0,"y":10.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       HoldNote_0: -8780142623787681574
+      HoldNote_1: -1016936637
+      HoldNote_10: 1330932039
+      HoldNote_11: 354716774
+      HoldNote_12: 863059821
+      HoldNote_13: 1188149947
+      HoldNote_14: 1659992726
+      HoldNote_15: -733664167
+      HoldNote_2: 2019138781
+      HoldNote_3: -107316519
+      HoldNote_4: -1647149788
+      HoldNote_5: 341996941
+      HoldNote_6: -270757174
+      HoldNote_7: -1751286048
+      HoldNote_8: 2142246432
+      HoldNote_9: 1138027339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

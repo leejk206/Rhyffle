@@ -62,13 +62,13 @@ public class FlickNoteInfo
     public int position;
     public int line;
     public int length;
-    public int dir;
+    public int direction;
     public FlickNoteInfo(int position, int line, int length, int dir)
     {
         this.position=position;
         this.line=line;
         this.length=length;
-        this.dir=dir;
+        this.direction=dir;
     }
 }
 

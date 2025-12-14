@@ -1,10 +1,11 @@
 using UnityEngine;
+using static Define;
 using System.Collections.Generic;
 
 public class HoldNoteBody : Note
 {
-    List<HoldNote> holdNotes = new List<HoldNote>();
-    List<BoxCollider2D> colliders = new List<BoxCollider2D>();
+    public List<HoldNote> holdNotes = new List<HoldNote>();
+    public List<BoxCollider2D> colliders = new List<BoxCollider2D>();
     public LineRenderer lineRenderer;
     public int curJudge = 0;
 
@@ -20,21 +21,21 @@ public class HoldNoteBody : Note
         DrawLine();
     }
 
-    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
         
         if (curJudge == 0)
         {
             if(checkType == 1 || checkType == 0)
             {
-                int temp = holdNotes[0].ReadJudge(lane, bpm,checkType, curTime);
-                if ((temp!=0))
+                JudgementType temp = holdNotes[0].ReadJudge(lane, bpm,checkType, curTime);
+                if ((temp!=JudgementType.Checked))
                 {
                     curJudge++;
                 }
                 return temp;
             }
-            else { return 0; }
+            else { return JudgementType.NotChecked; }
         }
         else if (curJudge == holdNotes.Count - 1) {
             if (checkType == 4 || checkType == 0)
@@ -43,7 +44,7 @@ public class HoldNoteBody : Note
             }
             else
             {
-                return 0;
+                return JudgementType.NotChecked;
             }
         }
         else
@@ -58,31 +59,35 @@ public class HoldNoteBody : Note
                     float tempJudge = holdNotes[curJudge].judge;
                     if(curTime < tempJudge - (float)bpm / 600 * 16) 
                     {
-                        return 0;
+                        return JudgementType.Checked;
                     }
                     else if (curTime < tempJudge + (float)bpm / 600 * 16)
                     {
                         curJudge++;
-                        return 4;
+                        return JudgementType.Perfect;
                     }else if(curTime < tempJudge + (float)bpm / 600 * 1.5f * 16)
                     {
                         curJudge++;
-                        return 3;
+                        return JudgementType.Great;
                     }else if (curTime < tempJudge + (float)bpm/600 *2f * 16)
                     {
                         curJudge++;
-                        return 2;
+                        return JudgementType.Good;
                     }
                     else
                     {
                         curJudge++;
-                        return 1;
+                        return JudgementType.Miss;
                     }
                 }
                 else
                 {
-                    return 0;
+                    return JudgementType.NotChecked;
                 }
+            }
+            else
+            {
+                return JudgementType.NotChecked;
             }
         }
         return base.ReadJudge(lane, bpm, checkType, curTime);

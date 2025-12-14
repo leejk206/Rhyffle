@@ -88,7 +88,9 @@ public class Define
         Perfect,
         Great,
         Good,
-        Miss
+        Miss,
+        Checked,
+        NotChecked
     }
 
     public enum GameMode

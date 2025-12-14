@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class HoldNote : Note
 {
@@ -21,7 +22,7 @@ public class HoldNote : Note
         base.SetJudge(judge);
     }
 
-    public override int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
         return base.ReadJudge(lane, bpm, checkType, curTime);
     }

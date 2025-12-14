@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class Note : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Note : MonoBehaviour
     //노트 길이
     public int length;
     public float height = 10;
+
+    public int fingerID = -1;
 
     Vector3 scaleVector;
     Vector3 posVector;
@@ -84,67 +87,70 @@ public class Note : MonoBehaviour
     // bpm에 따라서 판정 계산 달라짐 (속도가 빠르면 curTime과 judge와의 판정이 커져야 함)
     // bpm/600은 0.1sec라고 보면 된다
     // 
-    // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown
+    // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown 100: Miss
     // GamePlayer의 TouchBoolean 순서 + 0 --> MissCheck
     //
-    virtual public int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    virtual public JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
     {
-        int result;
+        JudgementType result;
         if (checkType == 0) { 
-            if(curTime > (float)bpm/600 * 2f * 16 + judge)
+            if( lane >= line && lane <= line + length)
             {
-                result = 1;
+                if (curTime > (float)bpm / 600 * 2f * 16 + judge)
+                {
+                    result = JudgementType.Miss;
+                }
+                else
+                {
+                    result = JudgementType.Checked;
+                }
             }
             else
             {
-                result = 0;
-            }
-
-            if (result != 0)
-            {
+                result = JudgementType.NotChecked;
             }
 
             return result;
+        }
+        if(checkType == 100)
+        {
+            return JudgementType.Miss;
         }
         if (lane >= line && lane <= line +length)
         {
             if (curTime < judge - (float)bpm / 600 * 3f * 16)
             {
-                result = 0;
+                result = JudgementType.Checked;
             }
             else if (curTime < judge - (float)bpm / 600 * 2f * 16)
             {
-                result = 1;
+                result = JudgementType.Miss;
             }
             else if (curTime < judge - (float)bpm / 600 * 1.5f * 16)
             {
-                result = 2;
+                result = JudgementType.Good;
             }
             else if (curTime < judge - (float)bpm / 600 * 16)
             {
-                result = 3;
+                result = JudgementType.Great;
             }else if(curTime < judge + (float)bpm / 600 * 16)
             {
-                result = 4;
+                result = JudgementType.Perfect;
             }else if(curTime < judge + (float)bpm / 600 * 1.5f * 16)
             {
-                result = 3;
+                result = JudgementType.Great;
             }else if(curTime < judge + (float)bpm / 600 * 2f * 16)
             {
-                result = 2;
+                result = JudgementType.Good;
             }
             else
             {
-                result = 1;
+                result = JudgementType.Miss;
             }
         }
         else
         {
-            result = 0;
-        }
-        if (result != 0)
-        {
-            // Todo 노트 트리거 이벤트 적용
+            result = JudgementType.NotChecked;
         }
 
         return result;

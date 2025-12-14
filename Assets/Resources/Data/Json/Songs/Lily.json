@@ -1581,7 +1581,288 @@
             "length": 3
         }
     ],
-    "HoldNotes": [],
+    "HoldNotes": [
+        {
+            "position": 30,
+            "line": 6,
+            "noteType": 0,
+            "count": 0,
+            "length": 3
+        },
+        {
+            "position": 30,
+            "line": 12,
+            "noteType": 0,
+            "count": 1,
+            "length": 3
+        },
+        {
+            "position": 31,
+            "line": 6,
+            "noteType": 2,
+            "count": 0,
+            "length": 3
+        },
+        {
+            "position": 31,
+            "line": 12,
+            "noteType": 2,
+            "count": 1,
+            "length": 3
+        },
+        {
+            "position": 37,
+            "line": 6,
+            "noteType": 0,
+            "count": 2,
+            "length": 3
+        },
+        {
+            "position": 37,
+            "line": 12,
+            "noteType": 0,
+            "count": 3,
+            "length": 3
+        },
+        {
+            "position": 38,
+            "line": 6,
+            "noteType": 2,
+            "count": 2,
+            "length": 3
+        },
+        {
+            "position": 38,
+            "line": 12,
+            "noteType": 2,
+            "count": 3,
+            "length": 3
+        },
+        {
+            "position": 45,
+            "line": 0,
+            "noteType": 0,
+            "count": 4,
+            "length": 3
+        },
+        {
+            "position": 45,
+            "line": 6,
+            "noteType": 0,
+            "count": 5,
+            "length": 3
+        },
+        {
+            "position": 46,
+            "line": 0,
+            "noteType": 2,
+            "count": 4,
+            "length": 3
+        },
+        {
+            "position": 46,
+            "line": 6,
+            "noteType": 2,
+            "count": 5,
+            "length": 3
+        },
+        {
+            "position": 52,
+            "line": 0,
+            "noteType": 0,
+            "count": 6,
+            "length": 3
+        },
+        {
+            "position": 52,
+            "line": 6,
+            "noteType": 0,
+            "count": 7,
+            "length": 3
+        },
+        {
+            "position": 53,
+            "line": 0,
+            "noteType": 2,
+            "count": 6,
+            "length": 3
+        },
+        {
+            "position": 53,
+            "line": 6,
+            "noteType": 2,
+            "count": 7,
+            "length": 3
+        },
+        {
+            "position": 59,
+            "line": 12,
+            "noteType": 0,
+            "count": 8,
+            "length": 3
+        },
+        {
+            "position": 59,
+            "line": 18,
+            "noteType": 0,
+            "count": 9,
+            "length": 3
+        },
+        {
+            "position": 60,
+            "line": 12,
+            "noteType": 2,
+            "count": 8,
+            "length": 3
+        },
+        {
+            "position": 60,
+            "line": 18,
+            "noteType": 2,
+            "count": 9,
+            "length": 3
+        },
+        {
+            "position": 66,
+            "line": 12,
+            "noteType": 0,
+            "count": 10,
+            "length": 3
+        },
+        {
+            "position": 66,
+            "line": 18,
+            "noteType": 0,
+            "count": 11,
+            "length": 3
+        },
+        {
+            "position": 67,
+            "line": 12,
+            "noteType": 2,
+            "count": 10,
+            "length": 3
+        },
+        {
+            "position": 67,
+            "line": 18,
+            "noteType": 2,
+            "count": 11,
+            "length": 3
+        },
+        {
+            "position": 74,
+            "line": 6,
+            "noteType": 0,
+            "count": 12,
+            "length": 3
+        },
+        {
+            "position": 74,
+            "line": 12,
+            "noteType": 0,
+            "count": 13,
+            "length": 3
+        },
+        {
+            "position": 75,
+            "line": 6,
+            "noteType": 2,
+            "count": 12,
+            "length": 3
+        },
+        {
+            "position": 75,
+            "line": 12,
+            "noteType": 2,
+            "count": 13,
+            "length": 3
+        },
+        {
+            "position": 81,
+            "line": 6,
+            "noteType": 0,
+            "count": 14,
+            "length": 3
+        },
+        {
+            "position": 81,
+            "line": 12,
+            "noteType": 0,
+            "count": 15,
+            "length": 3
+        },
+        {
+            "position": 82,
+            "line": 6,
+            "noteType": 2,
+            "count": 14,
+            "length": 3
+        },
+        {
+            "position": 82,
+            "line": 12,
+            "noteType": 2,
+            "count": 15,
+            "length": 3
+        },
+        {
+            "position": 88,
+            "line": 3,
+            "noteType": 0,
+            "count": 16,
+            "length": 3
+        },
+        {
+            "position": 93,
+            "line": 3,
+            "noteType": 2,
+            "count": 16,
+            "length": 3
+        },
+        {
+            "position": 96,
+            "line": 15,
+            "noteType": 0,
+            "count": 17,
+            "length": 3
+        },
+        {
+            "position": 101,
+            "line": 15,
+            "noteType": 2,
+            "count": 17,
+            "length": 3
+        },
+        {
+            "position": 103,
+            "line": 15,
+            "noteType": 0,
+            "count": 18,
+            "length": 3
+        },
+        {
+            "position": 108,
+            "line": 15,
+            "noteType": 2,
+            "count": 18,
+            "length": 3
+        },
+        {
+            "position": 110,
+            "line": 3,
+            "noteType": 0,
+            "count": 19,
+            "length": 3
+        },
+        {
+            "position": 115,
+            "line": 3,
+            "noteType": 2,
+            "count": 19,
+            "length": 3
+        }
+    ],
     "SlideNotes": [
         {
             "position": 148,
