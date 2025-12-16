@@ -36,6 +36,9 @@ public class FilterUI : MonoBehaviour
         float UIHei = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.height;
         rect.sizeDelta = new Vector2(UIWid, UIHei);
         gameObject.SetActive(false);
+
+        //이거 이외에도 다른 필터들 위치 정렬하는 함수가 필요할 듯
+
     }
 
 
