@@ -13,6 +13,9 @@ public class HoldNoteBody : Note
     Vector3 drawVector = Vector3.zero;
     float x, y;
 
+    // 0 not touched yet, 1 touching, 2 touch ended
+    int touchSig = 0;
+
     public override void Drop(float speed)
     {
         for (int i = 0; i < holdNotes.Count; i++) {
@@ -83,6 +86,13 @@ public class HoldNoteBody : Note
                 else
                 {
                     return JudgementType.NotChecked;
+                }
+            }
+            else if(checkType == 4)
+            {
+                if (fingerID == endFingerID)
+                {
+                    return JudgementType.SpMiss;
                 }
             }
             else

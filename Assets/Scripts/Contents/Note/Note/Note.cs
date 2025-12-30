@@ -12,10 +12,12 @@ public class Note : MonoBehaviour
     public int length;
     public float height = 10;
 
+    public int endFingerID = -1;
     public int fingerID = -1;
 
     Vector3 scaleVector;
     Vector3 posVector;
+
 
     //노트 떨구는 함수, UniTask로 지속적으로 호출하는 방식
     //추후 너무 비효율적이라면 수정 예정
@@ -28,7 +30,7 @@ public class Note : MonoBehaviour
     {
         this.judge = judge * 6.4f;
     }
-    
+
     virtual public void Drop(float speed)
     {
         //매 프레임마다 설정되는 높이
@@ -59,6 +61,8 @@ public class Note : MonoBehaviour
     //길이 설정, 처음에 설정하고 건들지 않음
     virtual public void Set(int lane, int length)
     {
+        endFingerID = -1;
+        fingerID = -1;
         height = 10;
         this.line = lane;
         this.length = length;
@@ -71,6 +75,8 @@ public class Note : MonoBehaviour
     }
     virtual public void Set(int lane, int length, float height)
     {
+        endFingerID = -1;
+        fingerID = -1;
         this.height = height;
         this.line = lane;
         this.length = length;

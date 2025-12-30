@@ -72,6 +72,7 @@ public class NoteScreen : MonoBehaviour
                             if (isOnBar)
                             {
                                 gamePlayer.press[targetBar] = true;
+                                gamePlayer.touchStart[targetBar] = touch.fingerId;
                                 gamePlayer.slide[targetBar] = true;
                             }
                             break;
@@ -104,6 +105,7 @@ public class NoteScreen : MonoBehaviour
                             if (isOnBar)
                             {
                                 gamePlayer.endtouch[targetBar] = true;
+                                gamePlayer.touchEnd[targetBar] = touch.fingerId;
                             }
                             this.touchPos[i] = Vector2.zero;
 

@@ -89,6 +89,7 @@ public class Define
         Great,
         Good,
         Miss,
+        SpMiss,
         Checked,
         NotChecked
     }
