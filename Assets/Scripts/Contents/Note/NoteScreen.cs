@@ -80,6 +80,7 @@ public class NoteScreen : MonoBehaviour
                             if (isOnBar)
                             {
                                 gamePlayer.intouch[targetBar] = true;
+                                gamePlayer.touchCon[targetBar] = touch.fingerId;
                                 gamePlayer.slide[targetBar] = true;
                                 if (speed * dpi > speedPx)
                                 {
@@ -99,6 +100,7 @@ public class NoteScreen : MonoBehaviour
                             if (isOnBar)
                             {
                                 gamePlayer.intouch[targetBar] = true;
+                                gamePlayer.touchCon[targetBar] = touch.fingerId;
                             }
                             break;
                         case TouchPhase.Ended:

@@ -43,7 +43,22 @@ public class HoldNoteBody : Note
         else if (curJudge == holdNotes.Count - 1) {
             if (checkType == 4 || checkType == 0)
             {
-                return holdNotes[curJudge].ReadJudge(lane, bpm, checkType, curTime);
+                if (fingerID == endFingerID)
+                {
+                    JudgementType tempJudge = holdNotes[curJudge].ReadJudge(lane, bpm, checkType, curTime);
+                    if(tempJudge == JudgementType.Checked || tempJudge == JudgementType.NotChecked)
+                    {
+                        return JudgementType.SpMiss;
+                    }
+                    else
+                    {
+                        return tempJudge;
+                    }
+                }
+                else
+                {
+                    return holdNotes[curJudge].ReadJudge(lane, bpm, 0, curTime);
+                }
             }
             else
             {
@@ -57,7 +72,7 @@ public class HoldNoteBody : Note
                 return holdNotes[curJudge].ReadJudge(lane,bpm,checkType, curTime);
             }else if(checkType == 3)
             {
-                if(lane >= holdNotes[curJudge].line && lane <= holdNotes[curJudge].line + holdNotes[curJudge].length)
+                if(lane >= holdNotes[curJudge].line && lane <= holdNotes[curJudge].line + holdNotes[curJudge].length && pressFingerID == fingerID)
                 {
                     float tempJudge = holdNotes[curJudge].judge;
                     if(curTime < tempJudge - (float)bpm / 600 * 16) 

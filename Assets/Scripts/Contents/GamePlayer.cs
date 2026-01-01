@@ -97,6 +97,7 @@ public class GamePlayer : MonoBehaviour
     // this is used on HoldNote to check whether pressed finger is taken off or not
     public int[] touchStart = new int[21];
     public int[] touchEnd = new int[21];
+    public int[] touchCon = new int[21];
 
     // 임시 판정 텍스트 UI
     public TextMeshProUGUI judgeText;
@@ -291,13 +292,13 @@ public class GamePlayer : MonoBehaviour
                     }
                     if (press[i])
                     {
-                        if (inGameNote[j].fingerID == -1)
-                        {
-                            inGameNote[j].fingerID = touchStart[i];
-                        }
                         judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 1, currentTime);
                         if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
                         {
+                            if (inGameNote[j].fingerID == -1)
+                            {
+                                inGameNote[j].fingerID = touchStart[i];
+                            }
                             if (!(inGameNote[j].gameObject.tag == "HoldNote"))
                             {
                                 // Need Pooling
@@ -321,6 +322,7 @@ public class GamePlayer : MonoBehaviour
                     }
                     if (slide[i])
                     {
+                        inGameNote[j].pressFingerID = touchCon[i];
                         judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 2, currentTime);
                         if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
                         {
@@ -333,6 +335,7 @@ public class GamePlayer : MonoBehaviour
                     }
                     if (intouch[i])
                     {
+                        inGameNote[j].pressFingerID = touchCon[i];
                         judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 3, currentTime);
                         if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
                         {

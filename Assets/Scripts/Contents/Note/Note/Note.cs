@@ -13,6 +13,7 @@ public class Note : MonoBehaviour
     public float height = 10;
 
     public int endFingerID = -1;
+    public int pressFingerID = -1;
     public int fingerID = -1;
 
     Vector3 scaleVector;
