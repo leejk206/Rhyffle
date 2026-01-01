@@ -19,7 +19,8 @@ public class GamePlayer : MonoBehaviour
     // Erase Later
 
     public TMP_Text text;
-
+    public TMP_Text text2;
+    public TMP_Text text3;
 
     
 
@@ -274,6 +275,14 @@ public class GamePlayer : MonoBehaviour
             
             for (int i = 0; i < 21; i++)
             {
+                if (touchStart[i] != -1)
+                {
+                    text2.text = touchStart[i].ToString();
+                }
+                if (touchEnd[i] != -1)
+                {
+                    text3.text = touchEnd[i].ToString();
+                }
                 for (int j = 0; j < inGameNote.Count; j++)
                 {
                     if (judgeChecker[i] != JudgementType.NotChecked)
@@ -295,6 +304,17 @@ public class GamePlayer : MonoBehaviour
                                 GameObject temp = inGameNote[j].gameObject;
                                 inGameNote.RemoveAt(j);
                                 Destroy(temp);
+                            }
+                            else
+                            {
+                                if (judgeChecker[i] == JudgementType.Miss)
+                                {
+                                    inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
+                                    GameObject temp = inGameNote[j].gameObject;
+                                    inGameNote.RemoveAt(j);
+                                    Destroy(temp);
+                                    break;
+                                }
                             }
                             break;
                         }
@@ -367,6 +387,7 @@ public class GamePlayer : MonoBehaviour
                     {
                         if (inGameNote[j].gameObject.tag == "HoldNote")
                         {
+                            Debug.Log("Success");
                             // need pooling
                             inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
                             GameObject temp = inGameNote[j].gameObject;

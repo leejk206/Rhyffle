@@ -54,7 +54,7 @@ public class Note : MonoBehaviour
         }
         else
         {
-            posVector.y = height - 2.25f;
+            posVector.y = 7.75f;
             gameObject.transform.localPosition = posVector;
         }
     }

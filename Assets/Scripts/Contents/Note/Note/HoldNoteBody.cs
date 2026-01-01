@@ -32,7 +32,7 @@ public class HoldNoteBody : Note
             if(checkType == 1 || checkType == 0)
             {
                 JudgementType temp = holdNotes[0].ReadJudge(lane, bpm,checkType, curTime);
-                if ((temp!=JudgementType.Checked))
+                if (temp!=JudgementType.Checked && temp!=JudgementType.NotChecked)
                 {
                     curJudge++;
                 }
