@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3d0266dc66594871bf52ee64e5baed3
+guid: c8c73ea10406c4266836fd7adce7f56c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1825299474321268152
-    second: Diamond Field Utility Player_0
+      213: 5581912024636345562
+    second: MainBackground 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1113
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Diamond Field Utility Player_0
+      name: MainBackground 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1696
-        height: 2528
+        width: 1113
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 842af588ccb3ba6e0800000000000000
-      internalID: -1825299474321268152
+      spriteID: adc4ee3896fe67d40800000000000000
+      internalID: 5581912024636345562
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Diamond Field Utility Player_0: -1825299474321268152
+      MainBackground 1_0: 5581912024636345562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

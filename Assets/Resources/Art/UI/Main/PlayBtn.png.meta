@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: acca463d5bf314f3f9b749193e980e57
+guid: 206e6afff48dc444eb968e772e6c9c71
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6776774991789157354
-    second: PostBoxBtn_0
+      213: 7314064279959886257
+    second: PlayBtn_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PostBoxBtn_0
+      name: PlayBtn_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
+        width: 325
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61418a3cc0f04f1a0800000000000000
-      internalID: -6776774991789157354
+      spriteID: 1b9d16706b6c08560800000000000000
+      internalID: 7314064279959886257
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PostBoxBtn_0: -6776774991789157354
+      PlayBtn_0: 7314064279959886257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
