@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6e426f77ba9b14a62b9a925762d6557e
+guid: 2d1b9ae4eb7f74e5bba9fb643cb4468b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8783132295902675780
-    second: Rectangle 326_0
+      213: -3957158395094218968
+    second: SelectAlbum_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1411
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rectangle 326_0
+      name: SelectAlbum_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1411
+        width: 1724
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbcb57f36bb0c1680800000000000000
-      internalID: -8783132295902675780
+      spriteID: 8274474d7695519c0800000000000000
+      internalID: -3957158395094218968
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rectangle 326_0: -8783132295902675780
+      SelectAlbum_0: -3957158395094218968
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

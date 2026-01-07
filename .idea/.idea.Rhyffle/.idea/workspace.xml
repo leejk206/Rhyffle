@@ -6,14 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/BackBtn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/BackBtn.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Rectangle 326.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Rectangle 326.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectBtn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectBtn.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/EllipticalAlbumScroll.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/EllipticalAlbumScroll.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectSong/SongListGenerator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/LoadSceneHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/LoadSceneHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +33,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/BtnHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@86b6e6a2e286/Runtime/UniTaskScheduler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -115,6 +121,7 @@
       <workItem from="1762939636538" duration="5235000" />
       <workItem from="1763020593010" duration="1043000" />
       <workItem from="1763100512032" duration="11014000" />
+      <workItem from="1767762527145" duration="1365000" />
     </task>
     <servers />
   </component>

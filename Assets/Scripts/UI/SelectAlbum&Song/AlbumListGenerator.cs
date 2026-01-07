@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 public class AlbumListGenerator : MonoBehaviour
 {
     public GameObject albumPrefab;
+    public GameObject activeImage;
 
     public Transform leftAnchor;
     public Transform centerAnchor;
@@ -97,7 +98,20 @@ public class AlbumListGenerator : MonoBehaviour
                 targetPositions[album] = hiddenAnchor.transform.position;
                 targetScales[album] = Vector3.one;
             }
+            
+            Transform activeObj = album.transform.Find("Active");
+            if (activeObj != null)
+            {
+                bool isCenter = (offset == 0);
+                activeObj.gameObject.SetActive(isCenter);
+            }
         }
+    }
+    
+    // Active 활성화
+    public void SetActiveVisual(bool isActive)
+    {
+        activeImage.SetActive(isActive);
     }
 
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 491186318edbd4861a3a5f5206a5e0b2
+guid: 40ee5b1ccab1b47cbbfb43a2db15c300
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2614270113051161491
-    second: BackBtn_0
+      213: -2876453786398378778
+    second: SelectBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1813
+  spritePixelsToUnits: 1113
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BackBtn_0
+      name: SelectBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1813
+        width: 1113
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6c4aa4ee2f38bbd0800000000000000
-      internalID: -2614270113051161491
+      spriteID: 6e4b5e87588c418d0800000000000000
+      internalID: -2876453786398378778
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BackBtn_0: -2614270113051161491
+      SelectBackground_0: -2876453786398378778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

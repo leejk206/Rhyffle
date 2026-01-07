@@ -17,7 +17,7 @@ public class LoadSceneHandler : MonoBehaviour
         SceneManager.LoadScene("SelectAlbum");
     }
     
-    // 구매하기 -> 곡 선택 화면?
+    // 
     public void GoToSelectSongScene()
     {
         SceneManager.LoadScene("SelectSong");
