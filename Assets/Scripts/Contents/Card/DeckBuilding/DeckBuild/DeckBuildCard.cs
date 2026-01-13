@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeckBuildCard : MonoBehaviour
 {
     bool isNull = false;
-    bool cardInDeck;   
+    bool cardInDeck;
     public SpriteRenderer ownCardSprite;
 
     CardInfo cardInfo;
