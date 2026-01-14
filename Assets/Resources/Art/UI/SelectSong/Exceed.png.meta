@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1f5ae14692bea45d9a515d563f7e106d
+guid: bb5718f5568354844a24b072e1ffa8c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4290258334861816810
-    second: Exceed_0
+      213: 6178105857699002835
+    second: Exceed 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 528
+  spritePixelsToUnits: 1971
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Exceed_0
+      name: Exceed 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 528
+        width: 1971
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61c07e376c0f574c0800000000000000
-      internalID: -4290258334861816810
+      spriteID: 3d9b8e86b8a0db550800000000000000
+      internalID: 6178105857699002835
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Exceed_0: -4290258334861816810
+      Exceed 1_0: 6178105857699002835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

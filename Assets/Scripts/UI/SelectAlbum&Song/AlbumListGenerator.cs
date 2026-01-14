@@ -61,8 +61,8 @@ public class AlbumListGenerator : MonoBehaviour
         Vector3 right = rightAnchor.position;
 
         // 가운데 앨범 크기가 커짐에 따라 좌중간 우중간 위치 보정
-        Vector3 midLeft = Vector3.Lerp(left, center, 0.47f);
-        Vector3 midRight = Vector3.Lerp(center, right, 0.53f);
+        Vector3 midLeft = Vector3.Lerp(left, center, 0.45f);
+        Vector3 midRight = Vector3.Lerp(center, right, 0.55f);
 
         Vector3[] positions = new Vector3[]
         {
@@ -73,7 +73,7 @@ public class AlbumListGenerator : MonoBehaviour
             right
         };
 
-        float curveStrength = 20f; // 타원 궤도 높이
+        float curveStrength = 0.1f; // 타원 궤도 높이
 
         for (int i = 0; i < albumInstances.Count; i++)
         {
@@ -91,7 +91,7 @@ public class AlbumListGenerator : MonoBehaviour
 
                 // 가운데 앨범은 크기 확대, 나머지는 원래 크기
                 targetPositions[album] = curvePos;
-                targetScales[album] = (offset == 0) ? Vector3.one * 1.2f : Vector3.one;
+                targetScales[album] = (offset == 0) ? Vector3.one * 1.15f : Vector3.one;
             }
             else
             {

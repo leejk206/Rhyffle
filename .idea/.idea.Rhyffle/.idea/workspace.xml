@@ -6,20 +6,57 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/BackBtn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/BackBtn.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/LeftBtn.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Rectangle 326.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Rectangle 326.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/RightBtn.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectBtn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectBtn.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/BtnName.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/BtnName.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/DeckCardBtn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/DeckCardBtn.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/MainBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/MainBackground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/MainBtnBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/MainBtnBackground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/PlayBtn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/PlayBtn.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Pause/PauseBtn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/Pause/PauseBtn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Pause/PauseBtn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/Pause/PauseBtn.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/AlbumCover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/AlbumCover.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/GameBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/GameBackground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/Line.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/Line.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/Line.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/Play/Line.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Pay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/Pay.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectAlbum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectAlbum/SelectAlbum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Easy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Easy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Easy.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Easy.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/EasyAlbum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/EasyAlbum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Exceed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Exceed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Exceed.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Exceed.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/ExceedAlbum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/ExceedAlbum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Hard.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Hard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Hard.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Hard.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/HardAlbum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/HardAlbum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Line.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Line.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Normal.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Normal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/NormalAlbum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/NormalAlbum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/SongSelectEffect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/SongSelectEffect.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Song.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/LoadSceneHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/LoadSceneHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/SongListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/SongListGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Pretendard/Pretendard-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Pretendard/Pretendard-Regular SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +158,9 @@
       <workItem from="1762939636538" duration="5235000" />
       <workItem from="1763020593010" duration="1043000" />
       <workItem from="1763100512032" duration="11014000" />
-      <workItem from="1767762527145" duration="1365000" />
+      <workItem from="1767762527145" duration="2139000" />
+      <workItem from="1768121193274" duration="2998000" />
+      <workItem from="1768374150983" duration="1247000" />
     </task>
     <servers />
   </component>
