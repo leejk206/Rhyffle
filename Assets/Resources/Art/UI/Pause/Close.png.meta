@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1945e40514f894916aabfaf7ada8f817
+guid: 5af8389810ee24507a7b5cd6a8f3e8b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2408307638380322343
-    second: PauseBackground_0
+      213: 5248415023898783801
+    second: Close_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,33 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -139,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PauseBackground_0
+      name: Close_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1113
+        width: 512
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72ed48f89070c6120800000000000000
-      internalID: 2408307638380322343
+      spriteID: 9307f4d28ad16d840800000000000000
+      internalID: 5248415023898783801
       vertices: []
       indices: 
       edges: []
@@ -174,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PauseBackground_0: 2408307638380322343
+      Close_0: 5248415023898783801
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

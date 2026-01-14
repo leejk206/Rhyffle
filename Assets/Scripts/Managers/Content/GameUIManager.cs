@@ -75,9 +75,9 @@ public class GameUIManager:MonoBehaviour
     //ȭ�� �Ͻ����� â ����
     public void Pause()
     {
-        scoreBoard.SetActive(false);
-        pauseButton.SetActive(false);
-        songInfoBoard.SetActive(false);
+        // scoreBoard.SetActive(false);
+        // pauseButton.SetActive(false);
+        // songInfoBoard.SetActive(false);
         pauseUI.SetActive(true);
         gamePlayer.play = false;
     }
@@ -94,9 +94,9 @@ public class GameUIManager:MonoBehaviour
     //�÷��� ȭ�� UI
     public void Resume()
     {
-        scoreBoard.SetActive(true);
-        songInfoBoard.SetActive(true);
-        pauseButton.SetActive(true);
+        // scoreBoard.SetActive(true);
+        // songInfoBoard.SetActive(true);
+        // pauseButton.SetActive(true);
         gamePlayer.play = true;
     }
 
