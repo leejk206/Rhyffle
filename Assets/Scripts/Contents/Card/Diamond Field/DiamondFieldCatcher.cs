@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class DiamondFieldCatcher : DiamondFIeldBase
+public class DiamondFieldCatcher : DiamondFieldBase
 {
     public override void Init()
     {

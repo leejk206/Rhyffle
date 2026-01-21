@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiamondFieldThirdBaseman : DiamondFIeldBase
+public class DiamondFieldThirdBaseman : DiamondFieldBase
 {
     public override void Init()
     {
@@ -26,5 +26,6 @@ public class DiamondFieldThirdBaseman : DiamondFIeldBase
             Debug.Log($"{cardName} sprite is null");
         }
 
+        property = Property.Infielder;
     }
 }

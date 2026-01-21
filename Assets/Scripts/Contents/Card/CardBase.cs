@@ -1,5 +1,8 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
+using static Define;
+
 
 public abstract class CardBase : MonoBehaviour
 {
@@ -24,6 +27,7 @@ public abstract class CardBase : MonoBehaviour
     public string collectionBack;
 
     public int CardRank; // 점수 카운팅 시 계산되는 랭크
+    public List<JudgementType> presetJudgementType; // 이미 정해진 노트 판정이 있다면 그걸 사용
 
 
     public void MoveTransform(Vector3 pos, float dotweenTime) // ī���� ��ġ�� �������� dotweenTime���� ����
@@ -32,7 +36,6 @@ public abstract class CardBase : MonoBehaviour
         {
             transform.DOMove(pos, dotweenTime);
         }
-
     }
 
     public virtual void Init()
@@ -41,6 +44,7 @@ public abstract class CardBase : MonoBehaviour
         // 카드의 기본 정보를 여기서 입력해야 함.
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
         CardRank = (int)cardRank;
+        ResetJudgementType();
     }
 
     public virtual void Init(CardInfo cardInfo) 
@@ -49,6 +53,7 @@ public abstract class CardBase : MonoBehaviour
         // 카드의 기본 정보를 여기서 입력해야 함.
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
         CardRank = (int)cardRank;
+        ResetJudgementType();
     }
 
     public void SetCardRank(int rank)
@@ -73,5 +78,10 @@ public abstract class CardBase : MonoBehaviour
     {
         durability--;
         if (durability <= 0) isDurabilityZero?.Invoke(SlotIndex);
+    }
+
+    public void ResetJudgementType()
+    {
+        presetJudgementType = new List<JudgementType>() { JudgementType.Miss, JudgementType.Good, JudgementType.Great, JudgementType.Perfect };
     }
 }

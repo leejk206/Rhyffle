@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiamondFieldSupporters : DiamondFIeldBase
+public class DiamondFieldSupporters : DiamondFieldBase
 {
     public override void Init()
     {
@@ -26,5 +26,18 @@ public class DiamondFieldSupporters : DiamondFIeldBase
             Debug.Log($"{cardName} sprite is null");
         }
 
+    }
+
+    public override void OnCardDrawComplete()
+    {
+        base.OnCardDrawComplete();
+
+        foreach (var item in Managers.Card.FieldCards)
+        {
+            if (item.collection == "Diamond Field")
+            {
+                item.CardRank *= 2;
+            }
+        }
     }
 }

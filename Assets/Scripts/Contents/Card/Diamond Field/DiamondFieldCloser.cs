@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiamondFieldCloser : DiamondFIeldBase
+public class DiamondFieldCloser : DiamondFieldBase
 {
     public override void Init()
     {
