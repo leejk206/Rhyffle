@@ -102,8 +102,9 @@ public class DiamondFieldShortstop : DiamondFieldBase
     public override void OnCardDestroy()
     {
         base.OnCardDestroy();
+        ResetJudgementType();
         Managers.Score.isJudgementSetted = false;
-
+        
     }
 }
 

@@ -33,21 +33,6 @@ public class BlackRoseLightCavalry : WaroftheRosesBase
     {
 
         Debug.Log("Black Rose Light Cavarly Effect");
-
-        int cnt = 0;
-
-        foreach (CardBase item in Managers.Card.FieldCards)
-        {
-
-            if (item == null)
-                continue;
-
-            if (item.cardSuit != CardSuit.Spade && item.cardSuit != CardSuit.Club)
-                continue;
-
-            cnt += (item.collection == "War Of The Roses") ? 2 : 1;
-        }
-
-        this.CardRank += cnt * Managers.Effect.EffectData.BlackRoseMultiplier;
+        GetBlackRoseRankBonus();
     }
 }

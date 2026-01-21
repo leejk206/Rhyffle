@@ -34,21 +34,6 @@ public class BlackRoseGunner : WaroftheRosesBase
     {
 
         Debug.Log($"{cardName} Effect");
-
-        int cnt = 0;
-
-        foreach (CardBase item in Managers.Card.FieldCards)
-        {
-
-            if (item == null)
-                continue;
-
-            if (item.cardSuit != Define.CardSuit.Spade && item.cardSuit != Define.CardSuit.Club)
-                continue;
-
-            cnt += (item.collection == "War Of The Roses") ? 2 : 1;
-        }
-
-        this.CardRank += cnt * Managers.Effect.EffectData.BlackRoseMultiplier;
+        GetBlackRoseRankBonus();
     }
 }
