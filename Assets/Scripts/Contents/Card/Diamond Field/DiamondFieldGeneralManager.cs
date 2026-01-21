@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiamondFieldGeneralManager: DiamondFIeldBase
+public class DiamondFieldGeneralManager: DiamondFieldBase
 {
     public override void Init()
     {
@@ -25,6 +25,6 @@ public class DiamondFieldGeneralManager: DiamondFIeldBase
         {
             Debug.Log($"{cardName} sprite is null");
         }
-
+        property = Property.StoveLeague;
     }
 }

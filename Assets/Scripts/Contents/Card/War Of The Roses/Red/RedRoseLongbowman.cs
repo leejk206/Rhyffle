@@ -35,21 +35,6 @@ public class RedRoseLongbowman : WaroftheRosesBase
     {
 
         Debug.Log($"{cardName} Effect");
-
-        int cnt = 0;
-
-        foreach (CardBase item in Managers.Card.FieldCards)
-        {
-
-            if (item == null)
-                continue;
-
-            if (item.cardSuit != CardSuit.Diamond && item.cardSuit != CardSuit.Heart)
-                continue;
-
-            cnt += (item.collection == "War Of The Roses") ? 2 : 1;
-        }
-
-        this.CardRank += cnt * Managers.Effect.EffectData.BlackRoseMultiplier;
+        GetRedkRoseRankBonus();
     }
 }

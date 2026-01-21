@@ -8,8 +8,13 @@ public class EffectManager
     public BrandData BrandData;
     public EffectData EffectData;
 
+    public List<EffectBase> Effects;
+    public List<BrandBase> Brands;
+
     public void Init()
     {
+        Effects = new();
+        Brands = new();
 
         #region SetEffectData
         EffectData = new()

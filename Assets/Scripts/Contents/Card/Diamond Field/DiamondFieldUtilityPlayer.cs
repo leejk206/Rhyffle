@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiamondFieldUtilityPlayer : DiamondFIeldBase
+public class DiamondFieldUtilityPlayer : DiamondFieldBase
 {
     public override void Init()
     {
@@ -25,6 +25,6 @@ public class DiamondFieldUtilityPlayer : DiamondFIeldBase
         {
             Debug.Log($"{cardName} sprite is null");
         }
-
+        property = Property.MultiPosition;
     }
 }
