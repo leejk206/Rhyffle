@@ -22,7 +22,7 @@ public class HoldNote : Note
         base.SetJudge(judge);
     }
 
-    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {
         return base.ReadJudge(lane, bpm, checkType, curTime);
     }

@@ -77,11 +77,11 @@ public class GamePlayer : MonoBehaviour
     // ��Ʈ ������ �ӵ� ���� ���� ����
     #region noteSpeed
     // ��Ʈ �ӵ� (���� ��Ϳ� ��ȭ��)
-    int bpm = 120;
+    float bpm = 120 / 5 * 8;
     // �÷��̾� ������
     float offSet = 0;
     // �÷��̾� ��Ʈ �������� �ӵ�
-    float playerSpeed = 8;
+    float playerSpeed = 4;
     #endregion
 
     // Offset between chart_tool and this game
@@ -105,7 +105,7 @@ public class GamePlayer : MonoBehaviour
     // �� �Լ��� ����� ���߿� Manager �� �ϳ��� SetUp�� ȣ���ϴ� ������ ���� ��Ź
     private void Start()
     {
-        currentTime = -64;
+        currentTime = -(bpm/60) * 32;
         SetUp();
 
         Managers.Deck.DoNothing(); // For Manager Instantiate

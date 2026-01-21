@@ -15,7 +15,7 @@ public class JsonManager
     // ����� json���� �̸��� ������ ��
     //string path = "/DAKI1_VIOLET_rough.json";
     string path = "/04_daki_Lily's_waltz.json";
-    string resourcePath = "Data/Json/Songs/Lily";
+    string resourcePath = "Data/Json/Songs/daki_우산_아래";
 
     //���� ��� ����
     public void SetPath(string path)

@@ -97,7 +97,7 @@ public class Note : MonoBehaviour
     // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown 100: Miss
     // GamePlayerÀÇ TouchBoolean ¼ø¼­ + 0 --> MissCheck
     //
-    virtual public JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
+    virtual public JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {
         JudgementType result;
         if (checkType == 0) { 

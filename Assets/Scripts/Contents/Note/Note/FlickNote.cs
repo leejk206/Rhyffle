@@ -50,7 +50,7 @@ public class FlickNote : Note
         // if (dir == 1) gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
-    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {
         if(checkType == 0)
         {

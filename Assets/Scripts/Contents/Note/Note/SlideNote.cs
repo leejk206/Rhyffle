@@ -16,7 +16,7 @@ public class SlideNote : Note
         base.SetJudge(judge);
     }
 
-    public override JudgementType ReadJudge(int lane, int bpm, int checkType, float curTime)
+    public override JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {
         if (checkType == 1 || checkType == 0)
         {
