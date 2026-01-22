@@ -6,8 +6,6 @@ public class RedRoseGunner : WaroftheRosesBase
     {
         base.Init();
 
-        isBlack = true;
-
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Five;
@@ -16,16 +14,7 @@ public class RedRoseGunner : WaroftheRosesBase
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/War Of The Roses/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
         Debug.Log("init");
     }
@@ -34,6 +23,6 @@ public class RedRoseGunner : WaroftheRosesBase
     {
 
         Debug.Log($"{cardName} Effect");
-        GetRedkRoseRankBonus();
+        GetRankBonus();
     }
 }

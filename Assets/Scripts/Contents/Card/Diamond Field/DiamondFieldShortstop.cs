@@ -26,16 +26,7 @@ public class DiamondFieldShortstop : DiamondFieldBase
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Diamond Field/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
         property = Property.Infielder;
         infieldCommander = InfieldCommander.Miss;
@@ -91,7 +82,7 @@ public class DiamondFieldShortstop : DiamondFieldBase
                     }
                 }
                 break;
-            default: // 4ÀåÀ» ³Ñ¾î°¡´Â ¸ðµç ÄÉÀÌ½º Ã³¸®
+            default: // 4ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ Ã³ï¿½ï¿½
                 infieldCommander = (InfieldCommander)4;
                 Managers.Effect.Brands.Add(new IronWallInfield());
                 break;

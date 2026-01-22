@@ -16,16 +16,7 @@ public class BlackRoseBlacksmith : WaroftheRosesBase
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/War Of The Roses/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
         Debug.Log("init");
     }
@@ -34,6 +25,6 @@ public class BlackRoseBlacksmith : WaroftheRosesBase
     {
 
         Debug.Log($"{cardName} Effect");
-        GetBlackRoseRankBonus();
+        GetRankBonus();
     }
 }

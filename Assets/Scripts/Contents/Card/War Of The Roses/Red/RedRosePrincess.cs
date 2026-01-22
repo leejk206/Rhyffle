@@ -8,8 +8,6 @@ public class RedRosePrincess : WaroftheRosesBase
     {
         base.Init();
 
-        isBlack = true;
-
         cardBaseId = 57; // todo
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Queen;
@@ -18,54 +16,13 @@ public class RedRosePrincess : WaroftheRosesBase
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/War Of The Roses/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
         Debug.Log("init");
     }
 
     public override void OnCardDraw()
     {
-
-        Debug.Log($"{cardName} Effect");
-
-        Managers.Card.isCardSetted = true;
-        for (int i = 0; i < Managers.Card.SettedCards.Count; i++)
-        {
-            if (Managers.Card.SettedCards[i] == null)
-            {
-                Managers.Card.SettedCards[i] = "Red Rose Queen";
-                break;
-            }
-        }
-
-        for (int i = 0; i < Managers.Card.SettedCards.Count; i++)
-        {
-            if (Managers.Card.SettedCards[i] == null)
-            {
-                var card = Managers.Deck.UnUsedDeck
-                    .FirstOrDefault(x =>
-                        x.collection == "War of the Roses" &&
-                        (x.cardSuit == CardSuit.Heart || x.cardSuit == CardSuit.Diamond));
-
-                // 찾은 카드가 없으면 아무것도 하지 않음
-                if (card != null)
-                {
-                    Managers.Card.SettedCards[i] = card.cardName;
-                }
-
-                break;
-            }
-        }
-
-
+        SetCardEffect("Red Rose Queen");
     }
 }

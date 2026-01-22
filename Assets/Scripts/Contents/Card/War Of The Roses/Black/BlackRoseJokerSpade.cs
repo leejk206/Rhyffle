@@ -17,16 +17,7 @@ public class BlackRoseJokerSpade : WaroftheRosesBase
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/War Of The Roses/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
     }
 
@@ -37,10 +28,24 @@ public class BlackRoseJokerSpade : WaroftheRosesBase
 
         foreach (CardBase item in Managers.Card.FieldCards)
         {
+            if (item == null)
+                continue;
 
-          
-
+            if (item is WaroftheRosesBase wotr && wotr.isBlack) 
+            { 
+                if (wotr.cardRarity == CardRarity.Epic || wotr.cardRarity == CardRarity.Legendary)
+                {
+                    Managers.Effect.Brands.Add(new BlackRoseInfoGather());
+                    break;
+                }
+            } 
         }
 
+
     }
+}
+
+public class BlackRoseInfoGather : BrandBase
+{
+
 }

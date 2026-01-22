@@ -83,6 +83,11 @@ public class CardManager
         {
             DrawAllCard();
 
+            foreach (BrandBase item in Managers.Effect.Brands)
+            {
+                item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 낙인/징표의 효과 발동
+            }
+
             foreach (CardBase item in _fieldCards)
             {
                 item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 카드의 효과 발동

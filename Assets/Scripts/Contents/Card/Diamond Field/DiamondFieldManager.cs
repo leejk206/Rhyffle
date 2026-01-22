@@ -16,16 +16,7 @@ public class DiamondFieldManager : DiamondFieldBase
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Diamond Field/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
 
     }
 
@@ -33,19 +24,19 @@ public class DiamondFieldManager : DiamondFieldBase
     {
         base.OnCardDrawComplete();
 
-        // 1) Diamond Field Ä«µå ÇÊÅÍ¸µ + Á¤·Ä
+        // 1) Diamond Field Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ + ï¿½ï¿½ï¿½ï¿½
         var diamondCards = Managers.Deck.UnUsedDeck
             .Where(card => card.collection == "Diamond Field")
             .OrderBy(card => card.cardRank)
             .ToList();
 
-        // 2) µ¦¿¡¼­ Á¦°Å
+        // 2) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var card in diamondCards)
         {
             Managers.Deck.UnUsedDeck.Remove(card);
         }
 
-        // 3) ¸Ç À§·Î ÀÌµ¿
+        // 3) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         Managers.Deck.UnUsedDeck.InsertRange(0, diamondCards);
     }
 }

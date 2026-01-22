@@ -25,16 +25,7 @@ public class DiamondFieldCenterFielder : DiamondFieldBase
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Diamond Field/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
         property = Property.Outfielder;
         outfieldCommander = OutfieldCommander.Miss;
     }
@@ -75,7 +66,7 @@ public class DiamondFieldCenterFielder : DiamondFieldBase
                     }
                 }
                 break;
-            default: // 3ÀåÀ» ³Ñ¾î°¡´Â ¸ðµç ÄÉÀÌ½º Ã³¸®
+            default: // 3ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ Ã³ï¿½ï¿½
                 outfieldCommander = (OutfieldCommander)3;
                 Managers.Effect.Brands.Add(new IronWallOutfield());
                 break;

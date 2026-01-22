@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class RedRoseBlacksmith : WaroftheRosesBase
+public class BlackRoseNegotiator : WaroftheRosesBase
 {
     public override void Init()
     {
         base.Init();
 
+        isBlack = true;
+
         cardBaseId = 57; // todo
-        cardSuit = Define.CardSuit.Heart;
-        cardRank = Define.CardRank.Ten;
-        cardRarity = Define.CardRarity.Normal;
-        cardName = "Black Rose Blacksmith";
+        cardSuit = Define.CardSuit.Club;
+        cardRank = Define.CardRank.Jack;
+        cardRarity = Define.CardRarity.Rare;
+        cardName = "Black Rose Negotiator";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
@@ -21,8 +23,6 @@ public class RedRoseBlacksmith : WaroftheRosesBase
 
     public override void OnCardDrawComplete()
     {
-
-        Debug.Log($"{cardName} Effect");
-        GetRankBonus();
+        NegotiatorEffect();
     }
 }

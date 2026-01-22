@@ -84,4 +84,21 @@ public abstract class CardBase : MonoBehaviour
     {
         presetJudgementType = new List<JudgementType>() { JudgementType.Miss, JudgementType.Good, JudgementType.Great, JudgementType.Perfect };
     }
+
+    protected void LoadCardSprite()
+    {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        if (sr == null) return;
+
+        string spritePath = $"Art/Card/{collection}/{cardName}";
+        Sprite sprite = Resources.Load<Sprite>(spritePath);
+        if (sprite != null)
+        {
+            sr.sprite = sprite;
+        }
+        else
+        {
+            Debug.Log($"{cardName} sprite is null (Path: {spritePath})");
+        }
+    }
 }
