@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class ScoreManager
 {
@@ -27,9 +28,43 @@ public class ScoreManager
         int baseScore = (noteIndex == 0) ? _remainderFirstNote : _baseScorePerNote;
         float multiplier = GetJudgementMultiplier(judgement); // 판정 배율
 
-        // 노트 점수 + 카드 점수) * 판정 배율
-        int totalNoteScore = Mathf.RoundToInt((baseScore + (CurrentMode == Define.GameMode.Challenge ? cardBonus : 0)) * multiplier * CurrentMultiflier);
-        totalScore += totalNoteScore;
+        // 점수 계산 컨텍스트 생성
+        ScoreContext ctx = new ScoreContext
+        {
+            NoteIndex = noteIndex,
+            Judgement = judgement,
+            BaseScore = baseScore,
+            CardBonus = cardBonus,
+            JudgementMultiplier = multiplier,
+            CardMultiplier = CurrentMultiflier,
+        };
+
+        // 모든 Brand/Effect에 훅 호출 (낙인/효과가 점수에 개입)
+        if (Managers.Effect.Brands != null)
+        {
+            foreach (var brand in Managers.Effect.Brands)
+            {
+                brand.OnBeforeScoreApply(ctx);
+            }
+        }
+
+        if (Managers.Effect.Effects != null)
+        {
+            foreach (var effect in Managers.Effect.Effects)
+            {
+                effect.OnBeforeScoreApply(ctx);
+            }
+        }
+
+        // 최종 점수 계산
+        int totalNoteScore = Mathf.RoundToInt(
+            (ctx.BaseScore + (CurrentMode == Define.GameMode.Challenge ? ctx.CardBonus : 0))
+            * ctx.JudgementMultiplier
+            * ctx.CardMultiplier
+        );
+
+        ctx.FinalScore = totalNoteScore;
+        totalScore += ctx.FinalScore;
     }
     
     public void ApplyPresetNoteScore(int noteIndex, Define.JudgementType judgement, int cardBonus)
@@ -63,4 +98,16 @@ public class ScoreManager
     {
         totalScore = 0;
     }
+}
+
+public class ScoreContext
+{
+    public int NoteIndex;
+    public JudgementType Judgement;
+    public int BaseScore;
+    public int CardBonus;
+    public float JudgementMultiplier;
+    public float CardMultiplier;
+
+    public int FinalScore;
 }

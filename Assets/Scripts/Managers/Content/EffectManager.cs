@@ -47,6 +47,9 @@ public abstract class EffectBase
     public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} OnCardDrawComplete Called."); }
     public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} OnNoteTrigger Called."); }
     public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} OnCardDestroy Called."); }
+
+    // 점수 계산 직전 훅 (필요한 Effect만 오버라이드)
+    public virtual void OnBeforeScoreApply(ScoreContext context) { }
 }
 
 public class EffectData
@@ -66,6 +69,9 @@ public abstract class BrandBase
     public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} Brand OnCardDrawComplete Called."); }
     public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} Brand OnNoteTrigger Called."); }
     public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} Brand OnCardDestroy Called."); }
+
+    // 점수 계산 직전 훅 (필요한 Brand만 오버라이드)
+    public virtual void OnBeforeScoreApply(ScoreContext context) { }
 }
 
 public class BrandData

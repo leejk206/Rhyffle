@@ -24,25 +24,16 @@ public class BlackRoseJokerClub : WaroftheRosesBase
 
     public override void OnCardDrawComplete()
     {
-
-        Debug.Log("Black Rose Joker Club Effect");
-
-        if (Managers.Effect.Brands.Any(b => b is BlackRoseInfoGather))
-        {
-            var target = Managers.Effect.Brands.FirstOrDefault(b => b is BlackRoseInfoGather);
-
-            if (target != null)
-            {
-                Managers.Effect.Brands.Remove(target);
-            }
-            Managers.Effect.Brands.Add(new BlackRoseInfoWithdraw());
-        }
-
-
+        JokerInfoWithdrawEffect();
     }
 }
 
 public class BlackRoseInfoWithdraw : BrandBase
 {
-
+    // 붉은 장미단 고유능력의 추가 점수 5배 적용
+    public override void OnBeforeScoreApply(ScoreContext context)
+    {
+        // 여기서는 단순히 cardBonus 전체를 5배로 처리
+        context.CardBonus *= 5;
+    }
 }

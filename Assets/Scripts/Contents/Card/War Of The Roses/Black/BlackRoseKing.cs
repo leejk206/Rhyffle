@@ -1,16 +1,29 @@
 using UnityEngine;
+using static Define;
 
 public class BlackRoseKing : WaroftheRosesBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Init()
     {
-        
+        base.Init();
+
+        isBlack = true;
+
+        cardBaseId = 57; // todo
+        cardSuit = Define.CardSuit.Spade;
+        cardRank = Define.CardRank.King;
+        cardRarity = Define.CardRarity.Legendary;
+        cardName = "Black Rose King";
+        collection = "War Of The Roses";
+        uniqueAbilityId = 0; // Todo
+
+        LoadCardSprite();
+
+        Debug.Log("init");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnCardDrawComplete()
     {
-        
+        ApplyBlackRoseKingEffect();
     }
 }

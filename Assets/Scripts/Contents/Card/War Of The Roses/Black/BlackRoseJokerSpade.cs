@@ -23,25 +23,7 @@ public class BlackRoseJokerSpade : WaroftheRosesBase
 
     public override void OnCardDrawComplete()
     {
-
-        Debug.Log("Black Rose Joker Spade Effect");
-
-        foreach (CardBase item in Managers.Card.FieldCards)
-        {
-            if (item == null)
-                continue;
-
-            if (item is WaroftheRosesBase wotr && wotr.isBlack) 
-            { 
-                if (wotr.cardRarity == CardRarity.Epic || wotr.cardRarity == CardRarity.Legendary)
-                {
-                    Managers.Effect.Brands.Add(new BlackRoseInfoGather());
-                    break;
-                }
-            } 
-        }
-
-
+        JokerInfoGatherEffect();
     }
 }
 

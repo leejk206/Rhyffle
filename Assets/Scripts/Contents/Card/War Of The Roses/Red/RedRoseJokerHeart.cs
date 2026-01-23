@@ -1,16 +1,36 @@
 using UnityEngine;
+using System.Linq;
+using static Define;
 
 public class RedRoseJokerHeart : WaroftheRosesBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Init()
     {
-        
+        base.Init();
+
+        // Red Rose Joker (Heart)
+        cardBaseId = 57; // todo
+        cardSuit = Define.CardSuit.Heart;
+        cardRank = Define.CardRank.Joker;
+        cardRarity = Define.CardRarity.Epic;
+        cardName = "Red Rose Joker Heart";
+        collection = "War Of The Roses";
+        uniqueAbilityId = 0; // Todo
+
+        // Red 조커이므로 isBlack 은 false
+        isBlack = false;
+
+        LoadCardSprite();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnCardDrawComplete()
     {
-        
+        JokerInfoWithdrawEffect();
     }
 }
+
+public class RedRoseInfoWithdraw : BrandBase
+{
+
+}
+
