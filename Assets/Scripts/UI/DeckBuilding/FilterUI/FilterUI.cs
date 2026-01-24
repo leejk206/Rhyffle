@@ -7,6 +7,14 @@ using System.Collections.Generic;
 public class FilterUI : MonoBehaviour
 {
     RectTransform rect;
+    #region filterButtons
+    public RectTransform[] rankRect;
+    public RectTransform[] rarityRect;
+    public RectTransform[] suitRect;
+    public RectTransform ownedRect;
+    public RectTransform bookmarkRect;
+    public RectTransform canvas;
+    #endregion
 
     #region filters
     public bool[] rank;
@@ -18,7 +26,8 @@ public class FilterUI : MonoBehaviour
     List<Define.CardRank> cardRank = new List<Define.CardRank>();
     List<Define.CardRarity> cardRarity = new List<Define.CardRarity>();
     List<Define.CardSuit> cardSuit = new List<Define.CardSuit>();
-
+    float UIWid;
+    float UIHei;
 
     // We'll erase this later when adding server connection on filter
     public HardCodeFilter hardCodeFilter;
@@ -32,15 +41,33 @@ public class FilterUI : MonoBehaviour
         rarity = new bool[4];
         suit = new bool[4];
         rect = gameObject.GetComponent<RectTransform>();
-        float UIWid = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.width / 10 * 9;
-        float UIHei = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.height;
+        UIWid = canvas.rect.width / 10 * 9;
+        UIHei = canvas.rect.height;
         rect.sizeDelta = new Vector2(UIWid, UIHei);
+        SetFilterPos();
         gameObject.SetActive(false);
 
         //이거 이외에도 다른 필터들 위치 정렬하는 함수가 필요할 듯
 
     }
 
+    public void SetFilterPos()
+    {
+        float wid, hei, x, y;
+        //suit
+        wid = UIWid / 30;
+        hei = UIWid / 30;
+        for(int i = 0; i<14; i++)
+        {
+            rankRect[i].anchoredPosition = new Vector2();
+        }
+
+        // rank
+
+        // rarity
+
+        // bookmark
+    }
 
 
     // Later we need to rebuild this to Online Connecting version

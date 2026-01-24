@@ -57,11 +57,14 @@ public class DeckBuildDeck : MonoBehaviour
         boardY = (scrHei / 16 * 3);
         boardX = boardWid / 2 - scrWid/2;
 
-        leftLimit = boardWid/2 - scrWid/2;
-        rightLimit = - boardWid/2 + scrWid/2;
+        rightLimit = boardWid/2 - scrWid/2;
+        leftLimit = - boardWid/2 + scrWid/2;
+
+        Debug.Log("LeftLimit: " + leftLimit + " RightLimit: " + rightLimit);
 
         rect.sizeDelta = new Vector2(boardWid, boardHei);
-        rect.localPosition = new Vector3(boardX, boardY, 0);
+        rect.localPosition = Vector3.zero;
+        rect.anchoredPosition = new Vector3(boardX, boardY, 0);
 
 
         cardY = boardY;
@@ -90,20 +93,24 @@ public class DeckBuildDeck : MonoBehaviour
         Debug.Log(cardX);
         if (cardX < rect.localPosition.x - scrWid / 2 + cardWid || cardX > rect.localPosition.x + scrWid / 2 - cardWid)
         {
+            Debug.Log("Passed");
             if (cardX > leftLimit)
             {
                 if (cardX < rightLimit)
                 {
-                    rect.localPosition = new Vector3(cardX, boardY, 0);
+                    Debug.Log("middle");
+                    rect.anchoredPosition = new Vector3(cardX, boardY, 0);
                 }
                 else
                 {
-                    rect.localPosition = new Vector3(rightLimit, boardY, 0);
+                    Debug.Log("rightlimit");
+                    rect.anchoredPosition = new Vector3(rightLimit, boardY, 0);
                 }
             }
             else
             {
-                rect.localPosition = new Vector3(leftLimit, boardY, 0);
+                Debug.Log("leftlimit");
+                rect.anchoredPosition = new Vector3(leftLimit, boardY, 0);
             }
         }
         else
@@ -112,28 +119,8 @@ public class DeckBuildDeck : MonoBehaviour
         }
     }
 
-    public void DeckTestHeartTwo()
+    public void ChangePosition(float mag)
     {
-        SetDeckPos(CardSuit.Heart, CardRank.Two);
-    }
-    public void DeckTestSpadeThree()
-    {
-        SetDeckPos(CardSuit.Spade, CardRank.Three);
-    }
-    public void DeckTestHeartThree()
-    {
-        SetDeckPos(CardSuit.Heart, CardRank.Three);
-    }
-    public void DeckTestClubKing()
-    {
-        SetDeckPos(CardSuit.Club, CardRank.King);
-    }
-    public void DeckTestSpadeTen()
-    {
-        SetDeckPos(CardSuit.Spade, CardRank.Ten);
-    }
-    public void DeckTestClubseven()
-    {
-        SetDeckPos(CardSuit.Club, CardRank.Seven);
+
     }
 }
