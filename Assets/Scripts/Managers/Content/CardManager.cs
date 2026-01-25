@@ -81,7 +81,7 @@ public class CardManager
         // 디버깅을 위한 임시 코드.
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DrawAllCard();
+            ResetCards();
 
             foreach (BrandBase item in Managers.Effect.Brands)
             {
@@ -214,6 +214,28 @@ public class CardManager
     {
         card.CardPosition = CardPositions[idx];
         card.MoveTransform(card.CardPosition, 0.2f);
+    }
+
+    public void RemoveAllCards()
+    {
+        Del0();
+        Del1();
+        Del2();
+        Del3();
+        Del4();
+        Del5();
+        Del6();
+    }
+
+    public void ResetCards()
+    {
+        if (Managers.Card.FieldCards[0] != null)
+        {
+            RemoveAllCards();
+            DrawAllCard();
+            return;
+        }
+        DrawAllCard();
     }
 
     #region ForKeyActionDebug // 디버깅을 위한 임시 코드.

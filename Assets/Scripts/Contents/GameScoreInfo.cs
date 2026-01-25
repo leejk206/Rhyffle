@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using static Define;
 using static HitEvent;
+using System.Linq;
 
 public class GameScoreInfo : MonoBehaviour
 {
@@ -25,17 +26,17 @@ public class GameScoreInfo : MonoBehaviour
         handRankScore = new float[]{1, 1.011f, 1.02211f, 1.1f, 1.1f, 1.11f, 1.554f, 1.32f, 4.44f, 13.76f, 15.0f, 33.22f, 100f };
 
     }
-    public void SetCard(List<CardBase> cards)
+    public void SetCard()
     {
         for(int i = 0; i < 7; i++)
         {
-            cardSets[i] = cards[i];
+            cardSets[i] = Managers.Card.FieldCards[i];
         }
     }
     // With new Hand, Set new hand rank
     public void SetNewHandRank(HandRank handRank)
     {
-        baseHandRank = handRank;
+        baseHandRank = Managers.Hand.Evaluate(Managers.Card.FieldCards.Where(c => c != null).ToList());
     }
 
     // with bonus applied to all of the ranks

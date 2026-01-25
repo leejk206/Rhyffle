@@ -19,7 +19,6 @@ public class BlackRoseJokerClub : WaroftheRosesBase
         uniqueAbilityId = 0; // Todo
 
         LoadCardSprite();
-
     }
 
     public override void OnCardDrawComplete()
@@ -34,6 +33,6 @@ public class BlackRoseInfoWithdraw : BrandBase
     public override void OnBeforeScoreApply(ScoreContext context)
     {
         // 여기서는 단순히 cardBonus 전체를 5배로 처리
-        context.CardBonus *= 5;
+        context.CardMultiplier *= 8;
     }
 }

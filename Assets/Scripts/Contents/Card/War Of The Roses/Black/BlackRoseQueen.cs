@@ -25,21 +25,14 @@ public class BlackRoseQueen : WaroftheRosesBase
 
     public override void OnCardDrawComplete()
     {
-        
-
-    }
-
-    
-    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
-    { 
-        var evt = base.OnNoteTrigger(hitEvent);
-
         if (IsCurrentBestHandComposedOnlyOfSpadesOrClubs(out _, out _))
         {
-            evt.AddScaleAdd(4);
+            foreach (CardBase card in Managers.Card.FieldCards)
+            {
+                card.ScaleAdd += 4;
+            }
         }
 
-        return evt;
     }
 
     #region SuitHelper
