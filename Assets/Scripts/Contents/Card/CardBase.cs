@@ -75,9 +75,7 @@ public abstract class CardBase : MonoBehaviour
         hitEvent.AddScaleAdd(0);
         return hitEvent;
     } // 노트 판정 시 효과
-    public virtual HitEvent OnCardExist(HitEvent hitEvent, float ScaleAdd, float ScaleMult) {
-        ScaleAdd = this.ScaleAdd;
-        ScaleMult = this.ScaleMult;
+    public virtual HitEvent OnCardExist(HitEvent hitEvent) {
         hitEvent.AddScaleAdd(ScaleAdd);
         hitEvent.AddScaleMult(ScaleMult);
         return hitEvent; 
