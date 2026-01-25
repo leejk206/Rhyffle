@@ -74,7 +74,7 @@ public class GameScoreInfo : MonoBehaviour
             hitEvents[i].SetScale(handRankScore[(int)baseHandRank] + allRankBonus);
             hitEvents[i].ResetRank();
 
-
+            /*
             // Apply Cards from left card to right card
             // leftmost card
             if (hitEvents[i].cardEffect[0]) {
@@ -116,7 +116,7 @@ public class GameScoreInfo : MonoBehaviour
             {
                 hitEvents[i] = cardSets[i].OnCardExist(hitEvents[i]);
             }
-
+            */
             // Scoring based on hitEvents
             hitScore = handRankScore[(int)hitEvents[i].GetHandRank()] * hitEvents[i].GetScale();
             Managers.Score.ApplyNoteScore(1, hitEvents[i].GetJudgement(), hitScore);

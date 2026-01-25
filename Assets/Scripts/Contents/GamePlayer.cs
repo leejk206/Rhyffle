@@ -189,6 +189,7 @@ public class GamePlayer : MonoBehaviour
             judgeChecker = new JudgementType[21];
             secondJudgeChecker = new JudgementType[21];
             #endregion
+            hitEvents = new List<HitEvent>();
             GameSystem();
         }
         catch (Exception e) { 
