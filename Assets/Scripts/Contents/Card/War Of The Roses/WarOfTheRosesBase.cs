@@ -418,5 +418,4 @@ public abstract class WaroftheRosesBase : CardBase
         }
     }
     #endregion
-
 }
