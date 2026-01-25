@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Deck 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Deck 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/EmptyDeck.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/EmptyDeck.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Album.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/UI/SelectSong/Album.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Album&amp;Song/Album.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LoadingGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LoadingGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectAlbum.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectSong.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SelectAlbum&amp;Song/AlbumListGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +113,7 @@
       <workItem from="1768374150983" duration="1247000" />
       <workItem from="1768380754842" duration="298000" />
       <workItem from="1769243444412" duration="2396000" />
-      <workItem from="1769346398073" duration="5435000" />
+      <workItem from="1769346398073" duration="6822000" />
     </task>
     <servers />
   </component>
