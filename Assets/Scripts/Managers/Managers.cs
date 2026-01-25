@@ -1,15 +1,15 @@
 using UnityEngine;
 
 public class Managers : MonoBehaviour
-    // Singleton íŒ¨í„´ ì´ìš©
-    // ëª¨ë“  ë§¤ë‹ˆì € ê´€ë ¨ í˜¸ì¶œ ì‹œ Managers.(ManagerName).(FeatureName) ë“±ìœ¼ë¡œ í˜¸ì¶œ ê°€ëŠ¥
-    // ex) Managers.Resource.Instantiate(path, transform) ë“±
+    // Singleton ÆĞÅÏ ÀÌ¿ë
+    // ¸ğµç ¸Å´ÏÀú °ü·Ã È£Ãâ ½Ã Managers.(ManagerName).(FeatureName) µîÀ¸·Î È£Ãâ °¡´É
+    // ex) Managers.Resource.Instantiate(path, transform) µî
 {
     static Managers s_instance;
     static Managers Instance { get { Init(); return s_instance; } }
 
     #region Content
-    // ê²Œì„ ì»¨í…ì¸  êµ¬í˜„ì— í•„ìš”í•œ ë§¤ë‹ˆì € ì„ ì–¸
+    // °ÔÀÓ ÄÁÅÙÃ÷ ±¸Çö¿¡ ÇÊ¿äÇÑ ¸Å´ÏÀú ¼±¾ğ
     CardManager _card = new CardManager();
     DeckManager _deck = new DeckManager();
     EffectManager _effect = new EffectManager();
@@ -30,7 +30,7 @@ public class Managers : MonoBehaviour
     #endregion
 
     #region Core
-    // ê²Œì„ ê¸°ì´ˆ êµ¬í˜„ì— í•„ìš”í•œ ë§¤ë‹ˆì € ì„ ì–¸
+    // °ÔÀÓ ±âÃÊ ±¸Çö¿¡ ÇÊ¿äÇÑ ¸Å´ÏÀú ¼±¾ğ
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
@@ -50,7 +50,7 @@ public class Managers : MonoBehaviour
     }
 
     void Update()
-    // ê° ë§¤ë‹ˆì €ë³„ Updateê°€ í•„ìš”í•œ ì½”ë“œê°€ ìˆë‹¤ë©´ êµ¬í˜„ í›„ ì´ê³³ì—ì„œ í†µí•© ì‹¤í–‰
+    // °¢ ¸Å´ÏÀúº° Update°¡ ÇÊ¿äÇÑ ÄÚµå°¡ ÀÖ´Ù¸é ±¸Çö ÈÄ ÀÌ°÷¿¡¼­ ÅëÇÕ ½ÇÇà
     {
         _card.OnUpdate();
 
@@ -59,20 +59,20 @@ public class Managers : MonoBehaviour
 
     static void Init()
     {
-        // s_instance ì¡´ì¬ ì²´í¬
+        // s_instance Á¸Àç Ã¼Å©
         if (s_instance != null)
             return;
 
-        // ì”¬ ë‚´ì— @Managers ì˜¤ë¸Œì íŠ¸ê°€ ìˆëŠ”ì§€ ì°¾ìŒ
+        // ¾À ³»¿¡ @Managers ¿ÀºêÁ§Æ®°¡ ÀÖ´ÂÁö Ã£À½
         GameObject go = GameObject.Find("@Managers");
         if (go == null)
         {
-            // í”„ë¦¬íŒ¹ì—ì„œ ë¡œë“œí•´ì„œ ì¸ìŠ¤í„´ìŠ¤í™”
+            // ÇÁ¸®ÆÕ¿¡¼­ ·ÎµåÇØ¼­ ÀÎ½ºÅÏ½ºÈ­
             go = Resources.Load<GameObject>("Prefabs/@Managers");
             go = Instantiate(go);
             go.name = "@Managers";
 
-            // ì”¬ ì „í™˜ ì‹œ íŒŒê´´ë˜ì§€ ì•Šë„ë¡ ì„¤ì •
+            // ¾À ÀüÈ¯ ½Ã ÆÄ±«µÇÁö ¾Êµµ·Ï ¼³Á¤
             DontDestroyOnLoad(go);
         }
 
@@ -91,7 +91,7 @@ public class Managers : MonoBehaviour
     }
 
     public static void Clear()
-        // ì”¬ ì „í™˜ ì‹œ ì œê±°í•  ìš”ì†Œë“¤ ì¶”ê°€
+        // ¾À ÀüÈ¯ ½Ã Á¦°ÅÇÒ ¿ä¼Òµé Ãß°¡
     {
         s_instance._pool.Clear();
         s_instance._scene.Clear();
