@@ -70,8 +70,12 @@ public abstract class CardBase : MonoBehaviour
         hitEvent.AddScaleAdd(0);
         return hitEvent;
     } // 노트 판정 시 효과
-    public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
+    public virtual HitEvent OnCardExist(HitEvent hitEvent) {
+        hitEvent.AddScaleAdd(0);
+        return hitEvent; 
+    }
 
+    public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
     #endregion
 
     void OnMouseDown() // (임시) 카드 클릭 시 내구도 감소

@@ -110,6 +110,12 @@ public class GameScoreInfo : MonoBehaviour
                // OnNoteTrigger로 카드 배율 변화
                 hitEvents[i] = cardSets[6].OnNoteTrigger(hitEvents[i]);
             }
+
+            for(int j = 0; j < 7; j++)
+            {
+                hitEvents[i] = cardSets[i].OnCardExist(hitEvents[i]);
+            }
+
             // Scoring based on hitEvents
             hitScore = handRankScore[(int)hitEvents[i].GetHandRank()] * hitEvents[i].GetScale();
             Managers.Score.ApplyNoteScore(1, hitEvents[i].GetJudgement(), hitScore);
