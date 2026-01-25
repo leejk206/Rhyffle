@@ -3,9 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-//Note ½ºÅ©¸³Æ®¿ÍÀÇ Ãæµ¹ È¸ÇÇ¸¦ À§ÇØ ÀÌ·¸°Ô info, jsonÀ» ºÙ¿©¼­ ÀÛ¸íÇÔ
-//info´Â °¢°¢ÀÇ ³ëÆ®¿¡ ´ëÇÑ Á¤º¸
-//jsonÀº json ÆÄÀÏ¿¡¼­ °¡Á®¿Â ¸ğµç ³ëÆ®¿¡ ´ëÇÑ Á¤º¸
+//Note ìŠ¤í¬ë¦½íŠ¸ì™€ì˜ ì¶©ëŒ íšŒí”¼ë¥¼ ìœ„í•´ ì´ë ‡ê²Œ info, jsonì„ ë¶™ì—¬ì„œ ì‘ëª…í•¨
+//infoëŠ” ê°ê°ì˜ ë…¸íŠ¸ì— ëŒ€í•œ ì •ë³´
+//jsonì€ json íŒŒì¼ì—ì„œ ê°€ì ¸ì˜¨ ëª¨ë“  ë…¸íŠ¸ì— ëŒ€í•œ ì •ë³´
+
+[System.Serializable]
+public class NoteJson
+{
+    public BasicNoteInfo[] NormalNotes;
+    public HoldNoteInfo[] HoldNotes;
+    public SlideNoteInfo[] SlideNotes;
+    public FlickNoteInfo[] FlickNotes;
+}
+
+
 #region BasicNote
 [System.Serializable]
 public class BasicNoteInfo
@@ -22,16 +33,9 @@ public class BasicNoteInfo
     }
 
 }
-
-
-[System.Serializable]
-public class BasicNoteJson
-{
-    public BasicNoteInfo[] notes;
-}
 #endregion
 
-//ÀÌ ºÎºĞ¿¡ ´ëÇØ¼­ ÃßÈÄ °ËÅä ¿¹Á¤, SlideNoteÀÇ °æ¿ì¿¡´Â ÀÏ¹İÀûÀÎ BasicNoteÀÇ class¸¦ ±×´ë·Î °¡Á®´Ù½áµµ ¹®Á¦°¡ ¹ß»ıÇÏÁö ¾Ê±â ¶§¹®
+//ì´ ë¶€ë¶„ì— ëŒ€í•´ì„œ ì¶”í›„ ê²€í†  ì˜ˆì •, SlideNoteì˜ ê²½ìš°ì—ëŠ” ì¼ë°˜ì ì¸ BasicNoteì˜ classë¥¼ ê·¸ëŒ€ë¡œ ê°€ì ¸ë‹¤ì¨ë„ ë¬¸ì œê°€ ë°œìƒí•˜ì§€ ì•Šê¸° ë•Œë¬¸
 #region SlideNote
 [System.Serializable]
 public class SlideNoteInfo
@@ -48,15 +52,9 @@ public class SlideNoteInfo
     }
 }
 
-
-[System.Serializable]
-public class SlideNoteJson
-{
-    public SlideNoteInfo[] notes;
-}
 #endregion
 
-//¿ì¼±Àº ÀÌ·¸°Ô ±¸ÇöÇÏ°í ÇÊ¿äÇÏ´Ù¸é ÃßÈÄ ³íÀÇ¸¦ ÅëÇÏ¿© À§ ¾Æ·¡ ÇÃ¸¯À¸·Î ³ª´©¾î ±¸Çö
+//ìš°ì„ ì€ ì´ë ‡ê²Œ êµ¬í˜„í•˜ê³  í•„ìš”í•˜ë‹¤ë©´ ì¶”í›„ ë…¼ì˜ë¥¼ í†µí•˜ì—¬ ìœ„ ì•„ë˜ í”Œë¦­ìœ¼ë¡œ ë‚˜ëˆ„ì–´ êµ¬í˜„
 #region FlickNote
 [System.Serializable]
 public class FlickNoteInfo
@@ -64,22 +62,16 @@ public class FlickNoteInfo
     public int position;
     public int line;
     public int length;
-    public int dir;
+    public int direction;
     public FlickNoteInfo(int position, int line, int length, int dir)
     {
         this.position=position;
         this.line=line;
         this.length=length;
-        this.dir=dir;
+        this.direction=dir;
     }
 }
 
-
-[System.Serializable]
-public class FlickNoteJson
-{
-    public FlickNoteInfo[] notes;
-}
 #endregion
 
 #region HoldNote
@@ -88,7 +80,7 @@ public class HoldNoteInfo
 {
     public int position;
     public int line;
-    public int noteType;
+    public int noteType; //0: ì‹œì‘, 1: ì¤‘ê°„, 2: ë
     public int count;
     public int length;
 
@@ -103,11 +95,6 @@ public class HoldNoteInfo
 }
 
 
-[System.Serializable]
-public class HoldNoteJson
-{
-    public HoldNoteInfo[] notes;
-}
 #endregion
 
 

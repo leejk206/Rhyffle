@@ -1,16 +1,24 @@
 using UnityEngine;
 
 public class Define
-// ���� ���ǰ� �� ����. State ���� �̿��� ����.
 {
     public enum Scene
-    { 
-        Unknown = -1, // ����
-        Lobby, // ����
-        Game, // ����
-        Loading, // �ε�
-        LoadingGame, // ���� ���� �� �ε� (�� ����/���̵�/��� ����/ ���� ����)
-        ScoreBoard, //���� ���ȭ��
+    {
+        Unknown = -1, 
+        Lobby, 
+        Game, 
+        Loading, 
+        LoadingGame, 
+        ScoreBoard, 
+    }
+
+    public enum UIEvent
+    {
+        Click,
+        Drag,
+        PointerEnter,
+        PointerExit,
+        Drop
     }
 
     public enum CardSuit
@@ -21,13 +29,13 @@ public class Define
     public enum CardRank
     {
         Unknown = -1, Joker = 0, Ace = 1,
-        Two = 2, Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10, 
+        Two = 2, Three = 3, Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8, Nine = 9, Ten = 10,
         Jack = 11, Queen = 12, King = 13,
     }
 
     public enum CardRarity
     {
-        Unknown = -1, Common = 0, Rare = 1, Epic = 2, Legendary = 3
+        Unknown = -1, Normal = 0, Rare = 1, Epic = 2, Legendary = 3
     }
 
     public enum HandRank
@@ -52,6 +60,8 @@ public class Define
     {
         Unknown = -1,
         Standard = 0,
+        WarOfTheRoses = 1,
+
     }
 
     public enum CardName
@@ -71,6 +81,22 @@ public class Define
         NewContinentEccentricEngineer = 106,
         NewContinentSovereign = 107,
         #endregion
+    }
+    
+    public enum JudgementType
+    {
+        Perfect,
+        Great,
+        Good,
+        Miss,
+        SpMiss,
+        Checked,
+        NotChecked
+    }
 
+    public enum GameMode
+    {
+        Plain, 
+        Challenge
     }
 }

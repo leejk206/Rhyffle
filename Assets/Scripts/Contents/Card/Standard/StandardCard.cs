@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class StandardCard : CardBase
+{
+
+    public override void Init(CardInfo cardInfo)
+    {
+        durability = 5;
+
+        cardBaseId = 0;
+        cardSuit = cardInfo.cardSuit;
+        cardRank = cardInfo.cardRank;
+        cardRarity = Define.CardRarity.Normal;
+
+        cardName = $"{cardInfo.cardName}";
+        collection = "Standard";
+        uniqueAbilityId = 0;
+
+        cardNameBack = "StandardBack";
+        uniqueAbilityIdBack = 0;
+        collectionBack = "StandardBack";
+
+        LoadCardSprite();
+    }
+
+}
