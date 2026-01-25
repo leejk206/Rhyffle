@@ -6,6 +6,8 @@ using static Define;
 
 public abstract class CardBase : MonoBehaviour
 {
+    private bool _isInitialized;
+
     [Header("카드 상태")]
     public int durability = 3;
     public Vector3 CardPosition;
@@ -39,6 +41,38 @@ public abstract class CardBase : MonoBehaviour
         {
             transform.DOMove(pos, dotweenTime);
         }
+    }
+
+    /// <summary>
+    /// 카드 초기화 단일 진입점.
+    /// 외부(CardManager 등)에서는 반드시 이 메서드만 호출하도록 통일한다.
+    /// </summary>
+    public void Initialize(CardInfo cardInfo)
+    {
+        if (_isInitialized)
+            return;
+
+        _isInitialized = true;
+
+        // 공통 초기화(중복/덮어쓰기 방지 목적)
+        ResetJudgementType();
+        ScaleAdd = 0;
+        ScaleMult = 0;
+
+        // 1) 데이터 기반 초기화(덱에서 뽑힌 CardInfo 반영 및 베이스 초기화)
+        Init(cardInfo);
+
+        // 2) 타입(카드 스크립트) 정의 초기화
+        // 대부분의 카드가 Init()만 오버라이드하고 있으므로,
+        // "실제로 오버라이드된 경우에만" 호출해서 불필요한 2중 초기화를 피한다.
+        var init0 = GetType().GetMethod("Init", System.Type.EmptyTypes);
+        if (init0 != null && init0.DeclaringType != typeof(CardBase))
+        {
+            Init();
+        }
+
+        // 3) 최종 정리: Init 내부에서 cardRank가 바뀌어도 CardRank는 일관되게 맞춘다
+        CardRank = (int)cardRank;
     }
 
     public virtual void Init()

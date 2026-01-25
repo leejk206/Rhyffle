@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DiamondFieldShortstop : DiamondFieldBase
@@ -49,42 +50,34 @@ public class DiamondFieldShortstop : DiamondFieldBase
         switch (infielderCnt)
         {
             case 1:
-                infieldCommander = (InfieldCommander)1;
-                presetJudgementType = new List<Define.JudgementType>() { Define.JudgementType.Miss, Define.JudgementType.Miss,Define.JudgementType.Miss,Define.JudgementType.Miss };
+                infieldCommander = InfieldCommander.Miss;
                 break;
             case 2:
-                infieldCommander = (InfieldCommander)2;
-                Managers.Score.isJudgementSetted = true;
-                foreach (var item in Managers.Card.FieldCards)
+                infieldCommander = InfieldCommander.HighJumpCatch;
+                if (Managers.Effect.Effects != null && !Managers.Effect.Effects.Any(e => e is HighJumpCatchEffect))
                 {
-                    if (item.collection == "Diamond Field")
-                    {
-                        var card = item as DiamondFieldBase;
-                        if (card != null && card.property == Property.Infielder || card != null && card.property == Property.MultiPosition)
-                        {
-                            card.presetJudgementType = new List<Define.JudgementType>() 
-                            { Define.JudgementType.Miss, Define.JudgementType.Perfect, Define.JudgementType.Perfect, Define.JudgementType.Perfect };
-                        }
-                    }
+                    Managers.Effect.Effects.Add(new HighJumpCatchEffect());
                 }
                 break;
             case 3:
-                infieldCommander = (InfieldCommander)3;
-                foreach (var item in Managers.Card.FieldCards)
+                infieldCommander = InfieldCommander.DoublePlay;
+                foreach (var card in Managers.Card.FieldCards)
                 {
-                    if (item.collection == "Diamond Field")
+                    if (card == null) continue;
+                    if (card.collection != "Diamond Field") continue;
+
+                    if (card is DiamondFieldBase dia && (dia.property == Property.Infielder || dia.property == Property.MultiPosition))
                     {
-                        var card = item as DiamondFieldBase;
-                        if (card != null && card.property == Property.Infielder || card != null && card.property == Property.MultiPosition)
-                        {
-                            card.CardRank += 73;
-                        }
+                        card.CardRank += 73;
                     }
                 }
                 break;
-            default: // 4���� �Ѿ�� ��� ���̽� ó��
-                infieldCommander = (InfieldCommander)4;
-                Managers.Effect.Brands.Add(new IronWallInfield());
+            default: // Over 4
+                infieldCommander = InfieldCommander.IronWallInfield;
+                if (Managers.Effect.Brands != null && !Managers.Effect.Brands.Any(b => b is IronWallInfield))
+                {
+                    Managers.Effect.Brands.Add(new IronWallInfield());
+                }
                 break;
         }
 
@@ -93,9 +86,22 @@ public class DiamondFieldShortstop : DiamondFieldBase
     public override void OnCardDestroy()
     {
         base.OnCardDestroy();
-        ResetJudgementType();
+        Managers.Effect.Effects.RemoveAll(e => e is HighJumpCatchEffect);
         Managers.Score.isJudgementSetted = false;
         
+    }
+
+    // 1장(실책): "이 카드가 처리하는 노트"는 항상 Miss
+    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
+    {
+        var evt = base.OnNoteTrigger(hitEvent);
+
+        if (infieldCommander == InfieldCommander.Miss)
+        {
+            evt.ChangeJudge(Define.JudgementType.Miss);
+        }
+
+        return evt;
     }
 }
 
@@ -103,3 +109,9 @@ public class IronWallInfield : BrandBase
 {
 
 }
+
+public class HighJumpCatchEffect : EffectBase
+{
+
+}
+

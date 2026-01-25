@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DiamondFieldCenterFielder : DiamondFieldBase
@@ -47,35 +48,52 @@ public class DiamondFieldCenterFielder : DiamondFieldBase
         switch (outfielderCnt)
         {
             case 1:
-                outfieldCommander = (OutfieldCommander)1;
-                presetJudgementType = new List<Define.JudgementType>() { Define.JudgementType.Miss, Define.JudgementType.Miss, Define.JudgementType.Miss, Define.JudgementType.Miss };
+                outfieldCommander = OutfieldCommander.Miss;
                 break;
             case 2:
-                outfieldCommander = (OutfieldCommander)2;
-                Managers.Score.isJudgementSetted = true;
-                foreach (var item in Managers.Card.FieldCards)
+                outfieldCommander = OutfieldCommander.DivingCatch;
+                if (Managers.Effect.Effects != null && !Managers.Effect.Effects.Any(e => e is DivingCatchEffect))
                 {
-                    if (item.collection == "Diamond Field")
-                    {
-                        var card = item as DiamondFieldBase;
-                        if (card != null && card.property == Property.Outfielder || card != null && card.property == Property.MultiPosition)
-                        {
-                            card.presetJudgementType = new List<Define.JudgementType>()
-                            { Define.JudgementType.Miss, Define.JudgementType.Perfect, Define.JudgementType.Perfect, Define.JudgementType.Perfect };
-                        }
-                    }
+                    Managers.Effect.Effects.Add(new DivingCatchEffect());
                 }
                 break;
-            default: // 3���� �Ѿ�� ��� ���̽� ó��
-                outfieldCommander = (OutfieldCommander)3;
-                Managers.Effect.Brands.Add(new IronWallOutfield());
+            default: // 3장 이상
+                outfieldCommander = OutfieldCommander.IronWallOutfield;
+                if (Managers.Effect.Brands != null && !Managers.Effect.Brands.Any(b => b is IronWallOutfield))
+                {
+                    Managers.Effect.Brands.Add(new IronWallOutfield());
+                }
                 break;
 
         }
     }
+
+    public override void OnCardDestroy()
+    {
+        base.OnCardDestroy();
+        Managers.Effect.Effects.RemoveAll(e => e is DivingCatchEffect);
+    }
+
+    // 1장(실책): "이 카드가 처리하는 노트"는 항상 Miss
+    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
+    {
+        var evt = base.OnNoteTrigger(hitEvent);
+
+        if (outfieldCommander == OutfieldCommander.Miss)
+        {
+            evt.ChangeJudge(Define.JudgementType.Miss);
+        }
+
+        return evt;
+    }
 }
 
 public class IronWallOutfield : BrandBase
+{
+
+}
+
+public class DivingCatchEffect : EffectBase
 {
 
 }

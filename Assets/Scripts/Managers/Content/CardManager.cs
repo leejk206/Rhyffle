@@ -82,16 +82,6 @@ public class CardManager
         if (Input.GetKeyDown(KeyCode.A))
         {
             ResetCards();
-
-            foreach (BrandBase item in Managers.Effect.Brands)
-            {
-                item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 낙인/징표의 효과 발동
-            }
-
-            foreach (CardBase item in _fieldCards)
-            {
-                item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 카드의 효과 발동
-            }
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -170,7 +160,7 @@ public class CardManager
                         _fieldCards[i] = card;
                         CardAlignment(card, i);
 
-                        card.Init(pop); // 카드 초기화 코드
+                        card.Initialize(pop); // 카드 초기화(단일 진입점)
 
                         card.OnCardDraw(); // 현재 드로우 한 카드의 드로우 시 실행되는 효과 발동 
 
@@ -232,10 +222,22 @@ public class CardManager
         if (Managers.Card.FieldCards[0] != null)
         {
             RemoveAllCards();
-            DrawAllCard();
-            return;
         }
         DrawAllCard();
+
+        if (Managers.Effect.Brands != null)
+        {
+            foreach (BrandBase item in Managers.Effect.Brands)
+            {
+                item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 낙인/징표의 효과 발동
+            }
+        }
+
+        foreach (CardBase item in _fieldCards)
+        {
+            if (item == null) continue;
+            item.OnCardDrawComplete(); // 모든 카드 드로우 완료 시 각 카드의 효과 발동
+        }
     }
 
     #region ForKeyActionDebug // 디버깅을 위한 임시 코드.
