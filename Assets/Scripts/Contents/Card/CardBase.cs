@@ -29,6 +29,9 @@ public abstract class CardBase : MonoBehaviour
     public int CardRank; // 점수 카운팅 시 계산되는 랭크
     public List<JudgementType> presetJudgementType; // 이미 정해진 노트 판정이 있다면 그걸 사용
 
+    public float ScaleAdd;
+    public float ScaleMult;
+
 
     public void MoveTransform(Vector3 pos, float dotweenTime) // ī���� ��ġ�� �������� dotweenTime���� ����
     {
@@ -45,6 +48,8 @@ public abstract class CardBase : MonoBehaviour
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
         CardRank = (int)cardRank;
         ResetJudgementType();
+        ScaleAdd = 0;
+        ScaleMult = 0;
     }
 
     public virtual void Init(CardInfo cardInfo) 
@@ -70,8 +75,11 @@ public abstract class CardBase : MonoBehaviour
         hitEvent.AddScaleAdd(0);
         return hitEvent;
     } // 노트 판정 시 효과
-    public virtual HitEvent OnCardExist(HitEvent hitEvent) {
-        hitEvent.AddScaleAdd(0);
+    public virtual HitEvent OnCardExist(HitEvent hitEvent, float ScaleAdd, float ScaleMult) {
+        ScaleAdd = this.ScaleAdd;
+        ScaleMult = this.ScaleMult;
+        hitEvent.AddScaleAdd(ScaleAdd);
+        hitEvent.AddScaleMult(ScaleMult);
         return hitEvent; 
     }
 
