@@ -12,7 +12,10 @@ public class HitEvent
     // rightMost lane
     int maxRange;
 
-    float scale;
+    // scale은 기본값이 족보의 배율이고 추가될 수 있음
+    float scale = 1;
+    // rank는 말 그대로 카드들의 rank
+    int rank = 0;
 
     // which card this card will be affected
     public bool[] cardEffect = new bool[7];
@@ -20,6 +23,7 @@ public class HitEvent
     {
         handRank = Define.HandRank.None;
         scale = 1;
+        rank = 0;
         this.judge = judge;
         minRange = min;
         maxRange = max;
@@ -81,14 +85,18 @@ public class HitEvent
     {
         scale = rankBonus;
     }
+    public void ResetRank()
+    {
+        rank = 0;
+    }
 
     // scale addition
-    public void ChangeScaleAdd(float change)
+    public void AddScaleAdd(float change)
     {
         scale += change;
     }
     // scale multiplication
-    public void ChangeScaleMult(float change)
+    public void AddScaleMult(float change)
     {
         scale *= change;
     }
@@ -105,9 +113,16 @@ public class HitEvent
         judge = newJudge;
     }
 
+    public void AddRank(int newRank)
+    {
+        rank += newRank;
+    }
+
     public JudgementType GetJudgement() { return judge; }
 
     public HandRank GetHandRank() { return handRank; }
 
     public float GetScale() {  return scale; }
+
+    public int GetRank() { return rank; }   
 }
