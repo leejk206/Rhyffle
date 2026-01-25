@@ -7,7 +7,7 @@ using static HitEvent;
 public class GameScoreInfo : MonoBehaviour
 {
     // Basic hand ranking score
-    public float[] handRankScore = new float[12];
+    public float[] handRankScore = new float[13];
     // Affect all hand ranking score
     public float allRankBonus = 0;
     // Base hand rank when applying score
@@ -21,6 +21,9 @@ public class GameScoreInfo : MonoBehaviour
     public void SetUp()
     {
         // rankRanking 기본점수
+
+        handRankScore = new float[]{1, 1.011f, 1.02211f, 1.1f, 1.1f, 1.11f, 1.554f, 1.32f, 4.44f, 13.76f, 15.0f, 33.22f, 100f };
+
     }
     public void SetCard(List<CardBase> cards)
     {
