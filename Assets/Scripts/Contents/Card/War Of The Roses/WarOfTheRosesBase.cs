@@ -419,4 +419,14 @@ public abstract class WaroftheRosesBase : CardBase
     }
     #endregion
 
+
+
+    #region temporary
+    public HitEvent Soilder_Scoring(HitEvent hitEvent)
+    {
+        // 배율 +5배
+        hitEvent.ChangeScaleAdd(5);
+        return hitEvent;
+    }
+    #endregion
 }

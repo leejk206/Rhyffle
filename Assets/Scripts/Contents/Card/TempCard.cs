@@ -25,9 +25,9 @@ public class TempCard : CardBase
     {
         Debug.Log($"{cardName} Draw");
     }
-    public override void OnNoteTrigger()
+    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
     {
-
+        return hitEvent;
     }
 
 

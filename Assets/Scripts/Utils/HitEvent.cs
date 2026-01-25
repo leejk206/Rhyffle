@@ -76,6 +76,12 @@ public class HitEvent
         #endregion
     }
 
+    // scale Set to the hand rankings
+    public void SetScale(float rankBonus)
+    {
+        scale = rankBonus;
+    }
+
     // scale addition
     public void ChangeScaleAdd(float change)
     {

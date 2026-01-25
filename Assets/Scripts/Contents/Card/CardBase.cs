@@ -64,7 +64,7 @@ public abstract class CardBase : MonoBehaviour
     #region Effects : 카드 효과 관련
     public virtual void OnCardDraw() { } // 카드 드로우 시 효과
     public virtual void OnCardDrawComplete() { } // 모든 카드 드로우 완료 시 효과
-    public virtual void OnNoteTrigger() { } // 노트 판정 시 효과
+    public virtual HitEvent OnNoteTrigger(HitEvent hitEvent) { return hitEvent; } // 노트 판정 시 효과
     public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
 
     #endregion
