@@ -38,6 +38,11 @@ public class DeckBuildDeck : MonoBehaviour
         SetBoard();
     }
 
+    public void SaveDeck()
+    {
+
+    }
+
     private void Start()
     {
         SetBoard();

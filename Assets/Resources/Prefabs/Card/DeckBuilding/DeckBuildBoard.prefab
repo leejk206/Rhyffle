@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6677275594647245648}
   - component: {fileID: 26437106513054259}
   - component: {fileID: -5466655828068915365}
+  - component: {fileID: 1154411271790257423}
   m_Layer: 0
   m_Name: DeckBuildBoard
   m_TagString: Untagged
@@ -75,3 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1154411271790257423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673627713503262924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c2da386ce0a9841ae829242b6986ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckBuildBoard
+  boardPos: 0
+  cardsPerLine: 0
+  cardOnBoard: []
+  deckBuildCard: {fileID: 0}
+  rect: {fileID: 0}
+  canvas: {fileID: 0}
