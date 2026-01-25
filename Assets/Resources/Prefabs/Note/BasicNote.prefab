@@ -108,6 +108,9 @@ MonoBehaviour:
   line: 0
   length: 0
   height: 10
+  endFingerID: -1
+  pressFingerID: -1
+  fingerID: -1
 --- !u!1 &5006114718042446355
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +196,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.9939337, y: 1.1822542}
+  m_Size: {x: 0.32, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -215,3 +218,6 @@ MonoBehaviour:
   line: 0
   length: 0
   height: 10
+  endFingerID: -1
+  pressFingerID: -1
+  fingerID: -1
