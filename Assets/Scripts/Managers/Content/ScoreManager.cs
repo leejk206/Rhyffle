@@ -23,7 +23,7 @@ public class ScoreManager
         isJudgementSetted = false;
     }
     
-    public void ApplyNoteScore(int noteIndex, Define.JudgementType judgement, int cardBonus) // 노트 하나 점수 계산하여 totalScore에 반영 
+    public void ApplyNoteScore(int noteIndex, Define.JudgementType judgement, float cardBonus) // 노트 하나 점수 계산하여 totalScore에 반영 
     {
         int baseScore = (noteIndex == 0) ? _remainderFirstNote : _baseScorePerNote;
         float multiplier = GetJudgementMultiplier(judgement); // 판정 배율
@@ -105,7 +105,7 @@ public class ScoreContext
     public int NoteIndex;
     public JudgementType Judgement;
     public int BaseScore;
-    public int CardBonus;
+    public float CardBonus;
     public float JudgementMultiplier;
     public float CardMultiplier;
 

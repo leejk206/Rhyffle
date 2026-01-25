@@ -3,6 +3,7 @@ using static Define;
 
 public class HoldNote : Note
 {
+    
     bool isCheck = false;
     public override void Set(int lane, int length)
     {
