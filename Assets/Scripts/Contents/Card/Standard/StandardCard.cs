@@ -10,7 +10,7 @@ public class StandardCard : CardBase
         cardBaseId = 0;
         cardSuit = cardInfo.cardSuit;
         cardRank = cardInfo.cardRank;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
 
         cardName = $"{cardInfo.cardName}";
         collection = "Standard";
@@ -20,16 +20,7 @@ public class StandardCard : CardBase
         uniqueAbilityIdBack = 0;
         collectionBack = "StandardBack";
 
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        Sprite sprite = Resources.Load<Sprite>($"Art/Card/Standard/{cardName}");
-        if (sprite != null)
-        {
-            sr.sprite = sprite;
-        }
-        else
-        {
-            Debug.Log($"{cardName} sprite is null");
-        }
+        LoadCardSprite();
     }
 
 }

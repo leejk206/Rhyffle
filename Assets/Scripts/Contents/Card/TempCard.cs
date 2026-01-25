@@ -10,7 +10,7 @@ public class TempCard : CardBase
         cardBaseId = 0;
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Ace;
-        cardRarity = Define.CardRarity.Common;
+        cardRarity = Define.CardRarity.Normal;
 
         cardName = "TempCard";
         collection = "TempCollection";
@@ -25,9 +25,9 @@ public class TempCard : CardBase
     {
         Debug.Log($"{cardName} Draw");
     }
-    public override void OnNoteTrigger()
+    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
     {
-
+        return hitEvent;
     }
 
 

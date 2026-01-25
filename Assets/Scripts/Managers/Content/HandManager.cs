@@ -9,7 +9,9 @@ public class HandManager
         if (cards.Count != 7) return Define.HandRank.None; // 카드 7장일 때 기준
 
         var rankGroups = cards.GroupBy(c => c.cardRank).ToDictionary(g => g.Key, g => g.Count());
-        var suitGroups = cards.GroupBy(c => c.cardSuit).ToDictionary(g => g.Key, g => g.Count());
+        var suitGroups = cards
+            .GroupBy(c => SuitHelper.GetEffectiveSuit(c.cardSuit))
+            .ToDictionary(g => g.Key, g => g.Count());
 
         // 스트레이트 or 플러시 판단
         var rankList = cards.Select(c => (int)c.cardRank).ToList();
@@ -120,7 +122,7 @@ public class HandManager
 
     private bool HasStraightFlush(List<CardBase> cards) // 스트레이트 플러시 여부 판단 함수
     {
-        var grouped = cards.GroupBy(c => c.cardSuit);
+        var grouped = cards.GroupBy(c => SuitHelper.GetEffectiveSuit(c.cardSuit));
         foreach (var group in grouped)
         {
             if (group.Count() >= 5)

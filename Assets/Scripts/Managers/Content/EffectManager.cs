@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class EffectManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public List<EffectBase> EffectOnCardDraw;
-    public List<EffectBase> EffectOnNoteTriggered;
-    public List<EffectBase> EffectOnCardDestroy;
+
+    public BrandData BrandData;
+    public EffectData EffectData;
+
+    public List<EffectBase> Effects;
+    public List<BrandBase> Brands;
 
     public void Init()
     {
-        EffectOnCardDraw = new();
-        EffectOnNoteTriggered = new();
-        EffectOnCardDestroy = new();
+        Effects = new();
+        Brands = new();
+
+        #region SetEffectData
+        EffectData = new()
+        {
+            BlackRoseMultiplier = 1,
+            RedRoseMultiplier = 1
+        };
+        #endregion
+        BrandData = new();
+        #region SetBrandData
+
+        #endregion
+
     }
 
     public void GameEnd()
     {
-        EffectOnCardDraw = new();
-        EffectOnNoteTriggered = new();
-        EffectOnCardDestroy = new();
+
     }
 }
 
@@ -32,6 +44,37 @@ public abstract class EffectBase
     public virtual void SetEffectProperty() { isPropertySetted = true; }
 
     public virtual void OnCardDraw() { Debug.Log($"{this.GetType()} OnCardDraw Called."); }
-    public virtual void OnNoteTriggered() { Debug.Log($"{this.GetType()} OnNoteTriggered Called."); }
+    public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} OnCardDrawComplete Called."); }
+    public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} OnNoteTrigger Called."); }
     public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} OnCardDestroy Called."); }
+
+    // 점수 계산 직전 훅 (필요한 Effect만 오버라이드)
+    public virtual void OnBeforeScoreApply(ScoreContext context) { }
+}
+
+public class EffectData
+{
+    public int BlackRoseMultiplier;
+    public int RedRoseMultiplier;
+}
+
+public abstract class BrandBase
+{
+    public bool shouldBeRemoved = false;
+    public bool isPropertySetted = false;
+    public BrandBase() { SetEffectProperty(); }
+    public virtual void SetEffectProperty() { isPropertySetted = true; }
+
+    public virtual void OnCardDraw() { Debug.Log($"{this.GetType()} Brand OnCardDraw Called."); }
+    public virtual void OnCardDrawComplete() { Debug.Log($"{this.GetType()} Brand OnCardDrawComplete Called."); }
+    public virtual void OnNoteTrigger() { Debug.Log($"{this.GetType()} Brand OnNoteTrigger Called."); }
+    public virtual void OnCardDestroy() { Debug.Log($"{this.GetType()} Brand OnCardDestroy Called."); }
+
+    // 점수 계산 직전 훅 (필요한 Brand만 오버라이드)
+    public virtual void OnBeforeScoreApply(ScoreContext context) { }
+}
+
+public class BrandData
+{
+
 }

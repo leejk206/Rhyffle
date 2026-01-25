@@ -1,18 +1,24 @@
 using UnityEngine;
+using static Define;
 
 public class Note : MonoBehaviour
 {
     //외부에서 이 노트를 참조할 때 노트
-    public int judge;
+    public float judge;
     //노트 lane
     public int line;
     float lanePos = 0;
     //노트 길이
     public int length;
-    float height = 10;
+    public float height = 10;
+
+    public int endFingerID = -1;
+    public int pressFingerID = -1;
+    public int fingerID = -1;
 
     Vector3 scaleVector;
     Vector3 posVector;
+
 
     //노트 떨구는 함수, UniTask로 지속적으로 호출하는 방식
     //추후 너무 비효율적이라면 수정 예정
@@ -23,9 +29,9 @@ public class Note : MonoBehaviour
     //판정 위치 저장
     virtual public void SetJudge(int judge)
     {
-        this.judge = judge;
+        this.judge = judge * 6.4f;
     }
-    
+
     virtual public void Drop(float speed)
     {
         //매 프레임마다 설정되는 높이
@@ -49,13 +55,15 @@ public class Note : MonoBehaviour
         }
         else
         {
-            posVector.y = height - 2.25f;
+            posVector.y = 7.75f;
             gameObject.transform.localPosition = posVector;
         }
     }
     //길이 설정, 처음에 설정하고 건들지 않음
     virtual public void Set(int lane, int length)
     {
+        endFingerID = -1;
+        fingerID = -1;
         height = 10;
         this.line = lane;
         this.length = length;
@@ -68,6 +76,8 @@ public class Note : MonoBehaviour
     }
     virtual public void Set(int lane, int length, float height)
     {
+        endFingerID = -1;
+        fingerID = -1;
         this.height = height;
         this.line = lane;
         this.length = length;
@@ -84,57 +94,72 @@ public class Note : MonoBehaviour
     // bpm에 따라서 판정 계산 달라짐 (속도가 빠르면 curTime과 judge와의 판정이 커져야 함)
     // bpm/600은 0.1sec라고 보면 된다
     // 
-    // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown
+    // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown 100: Miss
     // GamePlayer의 TouchBoolean 순서 + 0 --> MissCheck
     //
-    virtual public int ReadJudge(int lane, int bpm, int checkType, float curTime)
+    virtual public JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {
+        JudgementType result;
         if (checkType == 0) { 
-            if(curTime > (float)bpm/600 * 2f * 16 + judge)
+            if( lane >= line && lane <= line + length)
             {
-                return 1;
+                if (curTime > (float)bpm / 600 * 2f * 16 + judge)
+                {
+                    result = JudgementType.Miss;
+                }
+                else
+                {
+                    result = JudgementType.Checked;
+                }
             }
             else
             {
-                return 0;
+                result = JudgementType.NotChecked;
             }
+
+            return result;
+        }
+        if(checkType == 100)
+        {
+            return JudgementType.Miss;
         }
         if (lane >= line && lane <= line +length)
         {
             if (curTime < judge - (float)bpm / 600 * 3f * 16)
             {
-                return 0;
+                result = JudgementType.Checked;
             }
             else if (curTime < judge - (float)bpm / 600 * 2f * 16)
             {
-                return 1;
+                result = JudgementType.Miss;
             }
             else if (curTime < judge - (float)bpm / 600 * 1.5f * 16)
             {
-                return 2;
+                result = JudgementType.Good;
             }
             else if (curTime < judge - (float)bpm / 600 * 16)
             {
-                return 3;
+                result = JudgementType.Great;
             }else if(curTime < judge + (float)bpm / 600 * 16)
             {
-                return 4;
+                result = JudgementType.Perfect;
             }else if(curTime < judge + (float)bpm / 600 * 1.5f * 16)
             {
-                return 3;
+                result = JudgementType.Great;
             }else if(curTime < judge + (float)bpm / 600 * 2f * 16)
             {
-                return 2;
+                result = JudgementType.Good;
             }
             else
             {
-                return 1;
+                result = JudgementType.Miss;
             }
         }
         else
         {
-            return 0;
+            result = JudgementType.NotChecked;
         }
-            return 0;
+
+        return result;
     }
 }

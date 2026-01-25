@@ -2,19 +2,23 @@ using UnityEngine;
 using TMPro;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
+using static Define;
+using static HitEvent;
 using System.Collections.Generic;
+using System;
+
 
 public class GamePlayer : MonoBehaviour
 {
 
     NoteCreator noteCreator;
-
-    public NoteTest noteTester;
+    // Json 파일의 채보 정보가 담길 class
+    NoteJson noteJson;
 
     // ���� ���� ����
     public bool play = true;
     // ���� ���۽� ������ (-144��° ���ڿ��� ����, �� 144���� ���ĸ� 0�� �ش��ϴ� ���ڸ� ó���ؾ� �ϴ� Ÿ�̹�)
-    float currentTime = -144;
+    public float currentTime = -1000;
     // 이전 프레임 플레이 상태 플래그 -> 매 프레임마다 초기화 되는 것을 방지
     private bool _wasPlaying = true;
 
@@ -64,28 +68,45 @@ public class GamePlayer : MonoBehaviour
     // ��Ʈ ������ �ӵ� ���� ���� ����
     #region noteSpeed
     // ��Ʈ �ӵ� (���� ��Ϳ� ��ȭ��)
-    int bpm = 80;
+    float bpm = 120 / 5 * 8;
     // �÷��̾� ������
     float offSet = 0;
     // �÷��̾� ��Ʈ �������� �ӵ�
-    float playerSpeed = 8;
+    float playerSpeed = 4;
     #endregion
+
+    // 카드 판정 및 스코어링용
+    #region cardJudge
+    public List<HitEvent> hitEvents = new List<HitEvent>();
+    public GameScoreInfo scoreInfo;
+    #endregion
+
+
+    // Offset between chart_tool and this game
+    float chartToolOffset = 6.4f;
 
     // �� ���� Note���� ���� List
     List<Note> inGameNote = new List<Note>();
 
     // ������ judge�� ����
-    int[] judgeChecker =new int[21];
-    
+    JudgementType[] judgeChecker;
+    JudgementType[] secondJudgeChecker;
+
+    // this is used on HoldNote to check whether pressed finger is taken off or not
+    public int[] touchStart = new int[21];
+    public int[] touchEnd = new int[21];
+    public int[] touchCon = new int[21];
+
     // 임시 판정 텍스트 UI
     public TextMeshProUGUI judgeText;
     
     // �� �Լ��� ����� ���߿� Manager �� �ϳ��� SetUp�� ȣ���ϴ� ������ ���� ��Ź
     private void Start()
     {
+        currentTime = -(bpm/60) * 32;
         SetUp();
 
-        Managers.Deck.DoNothing(); // Manager Instantiate�� ���� �ӽ� �ڵ� - Manager�� �� ���� ȣ���ؾ� �ν��Ͻ��� ����
+        Managers.Deck.DoNothing(); // For Manager Instantiate
         
         int totalNoteCount = basicNotes.Length + slideNotes.Length + flickNotes.Length + holdNoteCount; // 총 노트 수 계산
         Managers.Score.Init(totalNoteCount); // 점수 시스템 초기화
@@ -94,75 +115,86 @@ public class GamePlayer : MonoBehaviour
 
     public void SetUp()
     {
-        // noteCreator ������Ʈ �ʱ�ȭ (�� Scene�� �̸� �־���� ��)
-        noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
-
-        // jsonManager Ȥ�� ������ ��ũ��Ʈ�� �̿��ؼ� noteInfo�� ����
-        // ������ NoteTester�� unity���� ������ ��Ƽ� Testing��
-        basicNotes = noteTester.basicNotes;
-        slideNotes = noteTester.slideNotes;
-        flickNotes = noteTester.flickNotes;
-        holdNotes = noteTester.holdNotes;
-
-        // �� �κп��� ��Ʈ�� �������� ������ 'position' �������� ������ �ʿ��� (�̱���)
-        // �׷��� �ʴ´ٸ� ���� ���� ��Ʈ���� ����
-
-        // holdNoteBody ���� �̸� count���� �з��Ͽ� ����
-        #region holdNoteBodyInfoBind
-        // holdBodyCount�� ����� Ȧ�� ��Ʈ���� �� ����
-        int holdBodyCount = -1;
-        for (int i = 0; i < holdNotes.Length; i++)
+        try
         {
-            if (holdBodyCount < holdNotes[i].count) {
-                holdBodyCount = holdNotes[i].count;
-            } 
-        }
+            Managers.Json.LoadJson();
+            noteJson = Managers.Json.ReturnJson();
+            // noteCreator ������Ʈ �ʱ�ȭ (�� Scene�� �̸� �־���� ��)
+            noteCreator = GameObject.Find("NoteCreator").GetComponent<NoteCreator>();
 
-        for(int i = 0; i <= holdBodyCount; i++)
-        {
-            holdBodyList.Add(new List<HoldNoteInfo>());        
-        }
 
-        for(int i = 0; i < holdNotes.Length; i++)
-        {
-            holdBodyList[holdNotes[i].count].Add(holdNotes[i]);
-        }
-        #endregion
+            // Json에서 받은 노트 정보들을 저장
+            basicNotes = noteJson.NormalNotes;
+            slideNotes = noteJson.SlideNotes;
+            flickNotes = noteJson.FlickNotes;
+            holdNotes = noteJson.HoldNotes;
 
-        // ������ ��Ʈ���� �����ؾ� �ϴ� �������� ����(�� �������� �̿��ؼ� ����߸��� Ÿ�̹� ����)
-        // ������ ��Ʈ�� �������� ������ position�������� �������� �ʴ´ٸ� �̰����� ���ο� ����ü Ȥ�� Class�� ���� �����ص� ��
-        // �ش� Class���� ��Ʈ�� position�̶� �ش� ��Ʈ�� noteInfo�� ���°�� �ִ��� üũ�ϴ� ������ ������... �������� �����...?
-        // �׷��� �׳� ������ �����ϴ� ���� �ܼ��� ������ ��õ��
-        #region setTiming
+            // �� �κп��� ��Ʈ�� �������� ������ 'position' �������� ������ �ʿ��� (�̱���)
+            // �׷��� �ʴ´ٸ� ���� ���� ��Ʈ���� ����
 
-        basicNoteCount = basicNotes.Length;
-        slideNoteCount = slideNotes.Length;
-        flickNoteCount = flickNotes.Length;
-        holdNoteCount = holdBodyCount + 1;
+            // holdNoteBody ���� �̸� count���� �з��Ͽ� ����
+            #region holdNoteBodyInfoBind
+            // holdBodyCount�� ����� Ȧ�� ��Ʈ���� �� ����
+            int holdBodyCount = -1;
+            for (int i = 0; i < holdNotes.Length; i++)
+            {
+                if (holdBodyCount < holdNotes[i].count)
+                {
+                    holdBodyCount = holdNotes[i].count;
+                }
+            }
 
-        basicNoteTiming = new int[basicNoteCount];
-        slideNoteTiming = new int[slideNoteCount];
-        flickNoteTiming = new int[flickNoteCount];
-        if (holdBodyCount >= 0) holdNoteTiming = new int[holdNoteCount];
-        for (int i = 0; i < basicNoteCount; i++)
-        {
-            basicNoteTiming[i] = basicNotes[i].position;
-        }
-        for(int i = 0; i < slideNoteCount; i++)
-        {
-            slideNoteTiming[i] = slideNotes[i].position;
-        }
-        for (int i = 0; i < flickNoteCount; i++)
-        {
-            flickNoteTiming[i] = flickNotes[i].position;
-        }
-        for(int i = 0; i < holdNoteCount; i++)
-        {
-            holdNoteTiming[i] = holdBodyList[i][0].position;
-        }
-        #endregion
+            for (int i = 0; i <= holdBodyCount; i++)
+            {
+                holdBodyList.Add(new List<HoldNoteInfo>());
+            }
 
-        GameSystem();
+            for (int i = 0; i < holdNotes.Length; i++)
+            {
+                holdBodyList[holdNotes[i].count].Add(holdNotes[i]);
+            }
+            #endregion
+
+            // ������ ��Ʈ���� �����ؾ� �ϴ� �������� ����(�� �������� �̿��ؼ� ����߸��� Ÿ�̹� ����)
+            // ������ ��Ʈ�� �������� ������ position�������� �������� �ʴ´ٸ� �̰����� ���ο� ����ü Ȥ�� Class�� ���� �����ص� ��
+            // �ش� Class���� ��Ʈ�� position�̶� �ش� ��Ʈ�� noteInfo�� ���°�� �ִ��� üũ�ϴ� ������ ������... �������� �����...?
+            // �׷��� �׳� ������ �����ϴ� ���� �ܼ��� ������ ��õ��
+            #region setTiming
+
+            basicNoteCount = basicNotes.Length;
+            slideNoteCount = slideNotes.Length;
+            flickNoteCount = flickNotes.Length;
+            holdNoteCount = holdBodyCount + 1;
+
+            basicNoteTiming = new int[basicNoteCount];
+            slideNoteTiming = new int[slideNoteCount];
+            flickNoteTiming = new int[flickNoteCount];
+            if (holdBodyCount >= 0) holdNoteTiming = new int[holdNoteCount];
+            for (int i = 0; i < basicNoteCount; i++)
+            {
+                basicNoteTiming[i] = basicNotes[i].position;
+            }
+            for (int i = 0; i < slideNoteCount; i++)
+            {
+                slideNoteTiming[i] = slideNotes[i].position;
+            }
+            for (int i = 0; i < flickNoteCount; i++)
+            {
+                flickNoteTiming[i] = flickNotes[i].position;
+            }
+            for (int i = 0; i < holdNoteCount; i++)
+            {
+                holdNoteTiming[i] = holdBodyList[i][0].position;
+            }
+            judgeChecker = new JudgementType[21];
+            secondJudgeChecker = new JudgementType[21];
+            #endregion
+            hitEvents = new List<HitEvent>();
+            GameSystem();
+        }
+        catch (Exception e) { 
+            
+        }
     }
 
     public async UniTask GameSystem()
@@ -170,13 +202,13 @@ public class GamePlayer : MonoBehaviour
         while (true)
         {
 
-            currentTime += Time.deltaTime * bpm / 60 * 16;
+            currentTime += Time.deltaTime * (bpm / 60) * 16;
             // ����
             #region creation
             // basicNote Creation
             while (basicCur < basicNoteCount)
             {
-                if (currentTime > basicNoteTiming[basicCur] - 64 * 4 / playerSpeed)
+                if (currentTime > basicNoteTiming[basicCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateBasic(basicNotes[basicCur]).GetComponent<BasicNote>());
                     basicCur++;
@@ -189,7 +221,7 @@ public class GamePlayer : MonoBehaviour
             // slideNote Creation
             while (slideCur < slideNoteCount)
             {
-                if (currentTime > slideNoteTiming[slideCur] - 64 * 4 / playerSpeed)
+                if (currentTime > slideNoteTiming[slideCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateSlide(slideNotes[slideCur]).GetComponent<SlideNote>());
                     slideCur++;
@@ -203,7 +235,7 @@ public class GamePlayer : MonoBehaviour
             // flickNote Creation
             while (flickCur < flickNoteCount)
             {
-                if (currentTime > flickNoteTiming[flickCur] - 64 * 4 / playerSpeed)
+                if (currentTime > flickNoteTiming[flickCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateFlick(flickNotes[flickCur]).GetComponent<FlickNote>());
                     flickCur++;
@@ -216,7 +248,7 @@ public class GamePlayer : MonoBehaviour
             // holdNote Creation
             while (holdCur < holdNoteCount)
             {
-                if (currentTime > holdNoteTiming[holdCur] - 64 * 4 / playerSpeed)
+                if (currentTime > holdNoteTiming[holdCur] * chartToolOffset - (64 * 4 / playerSpeed))
                 {
                     inGameNote.Add(noteCreator.CreateHoldBody(holdBodyList[holdCur], playerSpeed).GetComponent<HoldNoteBody>());
                     holdCur++;
@@ -236,74 +268,148 @@ public class GamePlayer : MonoBehaviour
             }
             #endregion
 
+
+
             // ����
             #region Judge
+            
             for (int i = 0; i < 21; i++)
             {
                 for (int j = 0; j < inGameNote.Count; j++)
                 {
-                    if (press[i])
-                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, i, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (judgeChecker[i] != JudgementType.NotChecked)
                     {
-                        if (!(inGameNote[j].gameObject.tag == "HoldNote"))
+                        break;
+                    }
+                    if (press[i])
+                    {
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 1, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
                         {
-                            // �� �κп��� pooling�� �ʿ���
+                            if (inGameNote[j].fingerID == -1)
+                            {
+                                inGameNote[j].fingerID = touchStart[i];
+                            }
+                            if (!(inGameNote[j].gameObject.tag == "HoldNote"))
+                            {
+                                // Need Pooling
+                                HitEvent newEvent = new HitEvent(judgeChecker[i], inGameNote[j].line, inGameNote[j].line + inGameNote[j].length);
+                                hitEvents.Add(newEvent);
+                                GameObject temp = inGameNote[j].gameObject;
+                                inGameNote.RemoveAt(j);
+                                Destroy(temp);
+                            }
+                            else
+                            {
+                                HoldNoteBody tempBody = inGameNote[j].gameObject.GetComponent<HoldNoteBody>();
+                                HitEvent newEvent = new HitEvent(judgeChecker[i], tempBody.holdNotes[0].line, tempBody.holdNotes[0].line + tempBody.holdNotes[0].length);
+                                hitEvents.Add(newEvent) ;
+                                if (judgeChecker[i] == JudgementType.Miss)
+                                {
+                                    inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
+                                    GameObject temp = inGameNote[j].gameObject;
+                                    inGameNote.RemoveAt(j);
+                                    Destroy(temp);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    if (slide[i])
+                    {
+                        inGameNote[j].pressFingerID = touchCon[i];
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 2, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
+                        {
+                            // Need Pooling
+                            HitEvent newEvent = new HitEvent(judgeChecker[i], inGameNote[j].line, inGameNote[j].line + inGameNote[j].length);
+                            hitEvents.Add(newEvent);
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
                             Destroy(temp);
                             break;
                         }
-                        break;
                     }
-                    if (slide[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 2, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (intouch[i])
                     {
-                        // �� �κп��� pooling�� �ʿ���
-                        GameObject temp = inGameNote[j].gameObject;
-                        inGameNote.RemoveAt(j);
-                        Destroy(temp);
-                        break;
+                        inGameNote[j].pressFingerID = touchCon[i];
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 3, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
+                        {
+                            HoldNoteBody tempBody = inGameNote[j].gameObject.GetComponent<HoldNoteBody>();
+                            int curJudge = tempBody.curJudge;
+                            HitEvent newEvent = new HitEvent(judgeChecker[i], tempBody.holdNotes[curJudge - 1].line, tempBody.holdNotes[curJudge - 1].line + tempBody.holdNotes[curJudge - 1].length);
+                            hitEvents.Add((newEvent));
+                            break;
+                        }
                     }
-                    if (intouch[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 3, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (endtouch[i])
                     {
-                        break;
+                        inGameNote[j].endFingerID = touchEnd[i];
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 4, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
+                        {
+                            HoldNoteBody tempBody = inGameNote[j].gameObject.GetComponent<HoldNoteBody>();
+                            int curJudge = tempBody.curJudge;
+                            if (judgeChecker[i] == JudgementType.SpMiss)
+                            {
+                                judgeChecker[i] = JudgementType.Checked;
+                                secondJudgeChecker[i] = JudgementType.Miss;
+                                HitEvent newEvent = new HitEvent(JudgementType.Miss, tempBody.holdNotes[curJudge].line,tempBody.holdNotes[curJudge].line + tempBody.holdNotes[curJudge].length);
+                                hitEvents.Add(newEvent);
+                            }
+                            else
+                            {
+                                HitEvent newEvent = new HitEvent(judgeChecker[i], tempBody.holdNotes[curJudge].line, tempBody.holdNotes[curJudge].line + tempBody.holdNotes[curJudge].length);
+                                hitEvents.Add(newEvent);
+                            }
+
+
+                            // 삭제
+                            inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
+                            GameObject temp = inGameNote[j].gameObject;
+                            inGameNote.RemoveAt(j);
+                            Destroy(temp);
+                            break;
+                        }
                     }
-                    if (endtouch[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 4, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (flickUp[i])
                     {
-                        // �� �κп��� pooling�� �ʿ���
-                        inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
-                        GameObject temp = inGameNote[j].gameObject;
-                        inGameNote.RemoveAt(j);
-                        Destroy(temp);
-                        break;
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 5, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
+                        {
+                            HitEvent newEvent = new HitEvent(judgeChecker[i], inGameNote[j].line, inGameNote[j].line + inGameNote[j].length);
+                            hitEvents.Add(newEvent);
+                            GameObject temp = inGameNote[j].gameObject;
+                            inGameNote.RemoveAt(j);
+                            Destroy(temp);
+                            break;
+                        }
                     }
-                    if (flickUp[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 5, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (flickDown[i])
                     {
-                        // �� �κп��� pooling�� �ʿ���
-                        GameObject temp = inGameNote[j].gameObject;
-                        inGameNote.RemoveAt(j);
-                        Destroy(temp);
-                        break;
-                    }
-                    if (flickDown[i]) judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 6, currentTime);
-                    if (judgeChecker[i] > 0)
-                    {
-                        // �� �κп��� pooling�� �ʿ���
-                        GameObject temp = inGameNote[j].gameObject;
-                        inGameNote.RemoveAt(j);
-                        Destroy(temp);
-                        break;
+                        judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 6, currentTime);
+                        if (judgeChecker[i] != JudgementType.Checked && judgeChecker[i] != JudgementType.NotChecked)
+                        {
+                            HitEvent newEvent = new HitEvent(judgeChecker[i], inGameNote[j].line, inGameNote[j].line + inGameNote[j].length);
+                            hitEvents.Add(newEvent);
+                            GameObject temp = inGameNote[j].gameObject;
+                            inGameNote.RemoveAt(j);
+                            Destroy(temp);
+                            break;
+                        }
                     }
                     judgeChecker[i] = inGameNote[j].ReadJudge(i, bpm, 0, currentTime);
-                    if (judgeChecker[i] > 0)
+                    if (judgeChecker[i] == JudgementType.Miss)
                     {
-                        if (!(inGameNote[j].gameObject.tag == "HoldNote"))
+                        if (inGameNote[j].gameObject.tag == "HoldNote")
                         {
-                            // �� �κп��� pooling�� �ʿ���
+                            // need pooling
+                            HoldNoteBody tempBody = inGameNote[j].gameObject.GetComponent<HoldNoteBody>();
+                            int curJudge = tempBody.curJudge;
+                            HitEvent newEvent = new HitEvent(JudgementType.Miss, tempBody.holdNotes[curJudge].line, tempBody.holdNotes[curJudge].length + tempBody.holdNotes[curJudge].line);
+                            inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
                             Destroy(temp);
@@ -311,8 +417,9 @@ public class GamePlayer : MonoBehaviour
                         }
                         else
                         {
-                            // �� �κп��� pooling�� �ʿ���
-                            inGameNote[j].gameObject.GetComponent<HoldNoteBody>().ResetNotes();
+                            // need pooling
+                            HitEvent newEvent = new HitEvent(judgeChecker[i], inGameNote[j].line, inGameNote[j].line + inGameNote[j].length);
+                            hitEvents.Add(newEvent);
                             GameObject temp = inGameNote[j].gameObject;
                             inGameNote.RemoveAt(j);
                             Destroy(temp);
@@ -321,6 +428,8 @@ public class GamePlayer : MonoBehaviour
                     }
                 }
             }
+
+
             #endregion
 
             // ������ ���� ���� �� ī�� ȿ�� ������ �� �κ�
@@ -328,48 +437,77 @@ public class GamePlayer : MonoBehaviour
 
             // reset
             #region resetForFrame
-
+            
+            
+            
+            //효과 적용 및 스코어링
+            scoreInfo.CardScoring(hitEvents);
+            
             int judgeNoteIndex = 0; // noteIndex 추적
             for (int i = 0; i < 21; i++)
             {
-                /*
-                if (press[i]) Debug.Log("press " + i);
-                if (slide[i]) Debug.Log("slide" + i);
-                if (intouch[i]) Debug.Log("intouch" + i);
-                if (endtouch[i]) Debug.Log("endtouch" + i);
-                if (flickDown[i]) Debug.Log("flickDown" + i);
-                if (flickUp[i]) Debug.Log("flickUp" + i);
-                */
+            /*
+                int cardRank = 0; 
+                try
+                {
+                    cardRank = Managers.Card.FieldCards[i / 3].CardRank;
+                }catch(Exception e)
+                {
+
+                }
                 switch (judgeChecker[i])
                 {
-                    case 1:
-                        judgeText.text = "Miss";
-                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, 0);
+                    case JudgementType.Miss:
+                        //judgeText.text = "Miss";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, cardRank);
                         Debug.Log("Miss at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
-                    case 2:
-                        judgeText.text = "Good";
-                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Good, 0);
+                    case JudgementType.Good:
+                        //judgeText.text = "Good";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Good, cardRank);
                         Debug.Log("Good at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
-                    case 3:
-                        judgeText.text = "Great";
-                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Great, 0);
+                    case JudgementType.Great:
+                        //judgeText.text = "Great";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Great, cardRank);
                         Debug.Log("Great at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
-                    case 4:
-                        judgeText.text = "Perfect";
-                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Perfect, 0);
+                    case JudgementType.Perfect:
+                        //judgeText.text = "Perfect";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Perfect, cardRank);
                         Debug.Log("Perfect at " + currentTime + " | Current score: " + Managers.Score.totalScore);
                         break;
+                    case JudgementType.Checked:
+                        break;
+                    case JudgementType.NotChecked:
+                        break;
                 }
+                switch (secondJudgeChecker[i])
+                {
+                    case JudgementType.Miss:
+                        //judgeText.text = "Miss";
+                        Managers.Score.ApplyNoteScore(judgeNoteIndex, Define.JudgementType.Miss, cardRank);
+                        Debug.Log("Miss at " + currentTime + " | Current score: " + Managers.Score.totalScore);
+                        break;
+                    case JudgementType.NotChecked:
+                        break;
+                }*/
+
+
                 press[i] = false;
                 slide[i] = false;
                 intouch[i] = false;
                 endtouch[i] = false;
                 flickUp[i] = false;
                 flickDown[i] = false;
-                judgeChecker[i] = 0;
+                
+                touchStart[i] = -1;
+                touchEnd[i] = -1;
+
+                judgeChecker[i] = JudgementType.NotChecked;
+                secondJudgeChecker[i] = JudgementType.NotChecked;
+
+                hitEvents.Clear();
             }
             #endregion
 
@@ -383,6 +521,14 @@ public class GamePlayer : MonoBehaviour
                     endtouch[i] = false;
                     flickUp[i] = false;
                     flickDown[i] = false;
+
+                    touchStart[i] = -1;
+                    touchEnd[i] = -1;
+
+                    secondJudgeChecker[i] = JudgementType.NotChecked;
+                    judgeChecker[i] = JudgementType.NotChecked;
+                
+                    hitEvents.Clear();
                 }
 
                 // Debug.Log("TouchBoolean 초기화");
@@ -392,7 +538,6 @@ public class GamePlayer : MonoBehaviour
 
             // �Ͻ� ����
             await UniTask.WaitUntil(() => play);
-            await UniTask.WaitForFixedUpdate();
             if (!Application.isPlaying)
             {
                 break;

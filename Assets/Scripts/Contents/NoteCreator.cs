@@ -19,7 +19,6 @@ public class NoteCreator : MonoBehaviour
         BasicNote basicComp = basic.GetComponent<BasicNote>();
         basicComp.SetJudge(basicNoteInfo.position);
         basicComp.Set(basicNoteInfo.line, basicNoteInfo.length);
-
         return basic;
     }
     public GameObject CreateSlide(SlideNoteInfo slideNoteInfo)
@@ -38,7 +37,8 @@ public class NoteCreator : MonoBehaviour
         FlickNote flickComp = flick.GetComponent<FlickNote>();
         flickComp.SetJudge(flickNoteInfo.position);
         flickComp.Set(flickNoteInfo.line,flickNoteInfo.length);
-        flickComp.SetDir(flickNoteInfo.dir);
+        flickComp.SetDir(flickNoteInfo.direction);
+        
 
         return flick;
     }
@@ -52,7 +52,7 @@ public class NoteCreator : MonoBehaviour
         for(int i=0; i < holdBodyInfo.Count; i++)
         {
             holddiff = holdBodyInfo[i].position - holdStart;
-            holdBodyComp.AddNotes(CreateHold(holdBodyInfo[i], 10 + holddiff / 16 * 2.5f * playerSpeed / 4).GetComponent<HoldNote>());
+            holdBodyComp.AddNotes(CreateHold(holdBodyInfo[i], 10 + (float)holddiff / 16 * 6.4f * 2.5f * playerSpeed / 4).GetComponent<HoldNote>());
         }
 
         return holdBody;
@@ -60,6 +60,7 @@ public class NoteCreator : MonoBehaviour
 
     public GameObject CreateHold(HoldNoteInfo holdNoteInfo, float height)
     {
+        Debug.Log("Hold height is " + height);
         GameObject hold = GameObject.Instantiate(holdNote);
         HoldNote holdComp = hold.GetComponent<HoldNote>();
         holdComp.SetJudge(holdNoteInfo.position);

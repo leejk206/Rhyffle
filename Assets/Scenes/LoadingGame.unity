@@ -298,9 +298,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1979143094700196277, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1955448553306655712, guid: bb1279e40ab974367ba90ccda48dfe4d, type: 3}
+    - target: {fileID: 2035971373511814605, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035971373511814605, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 956
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035971373511814605, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 440
+      objectReference: {fileID: 0}
     - target: {fileID: 2391972830978672810, guid: ea8e89474894ba040b914ee094363f34, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.060806274
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974687284592882323, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.14049149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325450295422016454, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0029907227
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383197884686319968, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.14048767
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519584884914079925, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.18676758
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127147743900410076, guid: ea8e89474894ba040b914ee094363f34, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.06594849
       objectReference: {fileID: 0}
     - target: {fileID: 6640996823731761707, guid: ea8e89474894ba040b914ee094363f34, type: 3}
       propertyPath: m_Name
