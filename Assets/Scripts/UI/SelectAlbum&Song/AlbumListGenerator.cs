@@ -60,7 +60,7 @@ public class AlbumListGenerator : MonoBehaviour
         Vector3 center = centerAnchor.position;
         Vector3 right = rightAnchor.position;
 
-        // 가운데 앨범 크기가 커짐에 따라 좌중간 우중간 위치 보정
+        // 좌중간 우중간 위치 보정
         Vector3 midLeft = Vector3.Lerp(left, center, 0.45f);
         Vector3 midRight = Vector3.Lerp(center, right, 0.55f);
 
