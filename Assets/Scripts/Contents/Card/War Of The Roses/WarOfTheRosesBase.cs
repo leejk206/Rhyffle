@@ -259,11 +259,17 @@ public abstract class WaroftheRosesBase : CardBase
 
         if (isBlack && black > red)
         {
-            Managers.Score.CurrentMultiflier *= 1.2f;
+            foreach (CardBase card in Managers.Card.FieldCards)
+            {
+                card.ScaleAdd += 2;
+            }
         }
         else if (!isBlack && black < red)
         {
-            Managers.Score.CurrentMultiflier *= 1.2f;
+            foreach (CardBase card in Managers.Card.FieldCards)
+            {
+                card.ScaleAdd += 2;
+            }
         }
     }
 

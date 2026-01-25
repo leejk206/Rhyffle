@@ -27,10 +27,4 @@ public class BlackRoseAxeman : WaroftheRosesBase
         GetRankBonus();
     }
 
-    public override HitEvent OnNoteTrigger(HitEvent hitEvent)
-    {
-        hitEvent.AddRank(CardRank);
-        hitEvent.AddScaleAdd(0);
-        return hitEvent;
-    }
 }

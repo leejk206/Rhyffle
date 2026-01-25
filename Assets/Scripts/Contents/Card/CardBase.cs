@@ -29,6 +29,9 @@ public abstract class CardBase : MonoBehaviour
     public int CardRank; // 점수 카운팅 시 계산되는 랭크
     public List<JudgementType> presetJudgementType; // 이미 정해진 노트 판정이 있다면 그걸 사용
 
+    public float ScaleAdd;
+    public float ScaleMult;
+
 
     public void MoveTransform(Vector3 pos, float dotweenTime) // ī���� ��ġ�� �������� dotweenTime���� ����
     {
@@ -45,6 +48,8 @@ public abstract class CardBase : MonoBehaviour
         // 하위 클래스에서 실행 : cardSuit = cardInfo.cardSuit 등
         CardRank = (int)cardRank;
         ResetJudgementType();
+        ScaleAdd = 0;
+        ScaleMult = 0;
     }
 
     public virtual void Init(CardInfo cardInfo) 
@@ -64,9 +69,19 @@ public abstract class CardBase : MonoBehaviour
     #region Effects : 카드 효과 관련
     public virtual void OnCardDraw() { } // 카드 드로우 시 효과
     public virtual void OnCardDrawComplete() { } // 모든 카드 드로우 완료 시 효과
-    public virtual HitEvent OnNoteTrigger(HitEvent hitEvent) { return hitEvent; } // 노트 판정 시 효과
-    public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
+    public virtual HitEvent OnNoteTrigger(HitEvent hitEvent) 
+    {
+        hitEvent.AddRank(CardRank);
+        hitEvent.AddScaleAdd(0);
+        return hitEvent;
+    } // 노트 판정 시 효과
+    public virtual HitEvent OnCardExist(HitEvent hitEvent) {
+        hitEvent.AddScaleAdd(ScaleAdd);
+        hitEvent.AddScaleMult(ScaleMult);
+        return hitEvent; 
+    }
 
+    public virtual void OnCardDestroy() { } // 카드 파괴 시 효과
     #endregion
 
     void OnMouseDown() // (임시) 카드 클릭 시 내구도 감소
