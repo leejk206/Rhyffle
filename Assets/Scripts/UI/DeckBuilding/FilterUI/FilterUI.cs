@@ -13,6 +13,7 @@ public class FilterUI : MonoBehaviour
     public RectTransform[] suitRect;
     public RectTransform ownedRect;
     public RectTransform bookmarkRect;
+    public RectTransform applyRect;
     public RectTransform canvas;
     #endregion
 
@@ -44,6 +45,7 @@ public class FilterUI : MonoBehaviour
         UIWid = canvas.rect.width / 10 * 9;
         UIHei = canvas.rect.height;
         rect.sizeDelta = new Vector2(UIWid, UIHei);
+        Debug.Log(UIWid +"_" + UIHei);
         SetFilterPos();
         gameObject.SetActive(false);
 
@@ -53,20 +55,45 @@ public class FilterUI : MonoBehaviour
 
     public void SetFilterPos()
     {
-        float wid, hei, x, y;
+        float wid, hei;
         //suit
         wid = UIWid / 30;
-        hei = UIWid / 30;
-        for(int i = 0; i<14; i++)
+        hei = UIHei / 30;
+        for(int i = 0; i< 4; i++)
         {
-            rankRect[i].anchoredPosition = new Vector2();
+            suitRect[i].sizeDelta = new Vector2(wid, hei);
+            suitRect[i].anchoredPosition = new Vector2((UIWid / 30) * (5 * (i+1)), - (UIHei / 30 * 5));
         }
 
         // rank
-
+        wid = UIWid / 90;
+        hei = UIHei / 30;
+        for(int i = 0; i< 14; i++)
+        {
+            rankRect[i].sizeDelta = new Vector2(wid, hei);
+            rankRect[i].anchoredPosition = new Vector2((UIWid / 90) * (6 * (i + 1)), -UIHei / 30 * 10);
+        }
         // rarity
+        wid = UIWid / 30;
+        hei = UIHei / 30;
+        for (int i = 0; i < 4; i++)
+        {
+            rarityRect[i].sizeDelta = new Vector2(wid, hei);
+            rarityRect[i].anchoredPosition = new Vector2((UIWid / 30) * (5 * (i + 1)), -UIHei / 30 * 15);
+        }
 
         // bookmark
+        wid = UIWid / 15;
+        hei = UIHei / 30;
+        bookmarkRect.sizeDelta = new Vector2(wid, hei);
+        bookmarkRect.anchoredPosition = new Vector2(UIWid / 30 * 4, -UIHei / 30 * 20);
+
+        // apply
+
+        wid = UIWid / 10;
+        hei = UIHei / 15;
+        applyRect.sizeDelta = new Vector2(wid, hei);
+        applyRect.anchoredPosition = new Vector2(-UIWid / 5, UIHei / 15 * 2);
     }
 
 
