@@ -10,7 +10,7 @@ public class RedRoseDeckSoldier : WaroftheRosesBase
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Four;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Red Rose Deck Solider";
+        cardName = "Red Rose Deck Soldier";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 

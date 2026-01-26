@@ -11,7 +11,7 @@ public class RedRoseLightCavalry : WaroftheRosesBase
         cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Ten;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Red Rose Light Cavarly";
+        cardName = "Red Rose Light Cavalry";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
