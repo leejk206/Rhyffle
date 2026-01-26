@@ -27,10 +27,8 @@ public class BlackRoseQueen : WaroftheRosesBase
     {
         if (IsCurrentBestHandComposedOnlyOfSpadesOrClubs(out _, out _))
         {
-            foreach (CardBase card in Managers.Card.FieldCards)
-            {
-                card.ScaleAdd += 4;
-            }
+            // 배율 보너스는 "이 카드"에만 적용 (노트당 1회만 더해지도록)
+            ScaleAdd += 4f;
         }
 
     }

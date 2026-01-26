@@ -13,7 +13,7 @@ public class BlackRoseCavalryVanguard : WaroftheRosesBase
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Three;
         cardRarity = Define.CardRarity.Rare;
-        cardName = "Black Rose Cavarly Vanguard";
+        cardName = "Black Rose Cavalry Vanguard";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 

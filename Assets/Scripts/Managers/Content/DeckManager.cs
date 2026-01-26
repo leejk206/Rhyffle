@@ -39,34 +39,81 @@ public class DeckManager
             Define.CardRank.Eight, Define.CardRank.Nine, Define.CardRank.Ten, Define.CardRank.Jack, Define.CardRank.Queen, Define.CardRank.King
         };
 
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Two, "Black Rose Longbowman", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Cavalry Vanguard", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Four, "Black Rose Field Commander", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Five, "Black Rose Crossbowman", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Six, "Black Rose Musketeer", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Seven, "Black Rose Axeman", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Eight, "Black Rose Spearman", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Nine, "Black Rose Heavy Infantry", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ten, "Black Rose Light Cavalry", "War Of The Roses"));
-        // _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Jack, "Black Rose Negotiator", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Queen, "Black Rose Queen", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.King, "Black Rose Prince", "War Of The Roses"));
-        // _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Joker, "Black Rose Joker Spade", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ace, "Black Rose Rear Commander", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Two, "Black Rose Siege Engineer", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Three, "Black Rose Rear Cavalry", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Four, "Black Rose Armament Chief", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Five, "Black Rose Crewman", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Six, "Black Rose Deck Soldier", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Seven, "Black Rose Gunner", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Eight, "Black Rose Quatermaster", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Nine, "Black Rose Medic", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ten, "Black Rose Blacksmith", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Jack, "Black Rose Priest", "War Of The Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Queen, "Black Rose Princess", "War Of The Roses"));
-        // _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.King, "Black Rose King", "War Of The Roses"));
-        // _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Joker, "Black Rose Joker Club", "War Of The Roses"));
+        // War of the Roses (Black)
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Two, "Black Rose Longbowman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Cavalry Vanguard", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Four, "Black Rose Field Commander", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Five, "Black Rose Crossbowman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Six, "Black Rose Musketeer", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Seven, "Black Rose Axeman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Eight, "Black Rose Spearman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Nine, "Black Rose Heavy Infantry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ten, "Black Rose Light Cavalry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Jack, "Black Rose Negotiator", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Queen, "Black Rose Queen", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.King, "Black Rose Prince", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Joker, "Black Rose Joker Spade", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ace, "Black Rose Rear Commander", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Two, "Black Rose Siege Engineer", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Three, "Black Rose Rear Cavalry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Four, "Black Rose Armament Chief", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Five, "Black Rose Crewman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Six, "Black Rose Deck Soldier", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Seven, "Black Rose Gunner", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Eight, "Black Rose Quatermaster", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Nine, "Black Rose Medic", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ten, "Black Rose Blacksmith", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Jack, "Black Rose Priest", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Queen, "Black Rose Princess", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.King, "Black Rose King", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Joker, "Black Rose Joker Club", "War of the Roses"));
+
+        // War of the Roses (Red)
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ace, "Red Rose Vanguard", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Two, "Red Rose Longbowman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Three, "Red Rose Crossbowman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Four, "Red Rose Musketeer", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Five, "Red Rose Axeman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Six, "Red Rose Cavalry Vanguard", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Seven, "Red Rose Field Commander", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Eight, "Red Rose Spearman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Nine, "Red Rose Heavy Infantry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ten, "Red Rose Light Cavalry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Jack, "Red Rose Negotiator", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Queen, "Red Rose Queen", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.King, "Red Rose Prince", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Joker, "Red Rose Joker Diamond", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Ace, "Red Rose Rear Commander", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Two, "Red Rose Siege Engineer", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Three, "Red Rose Crewman", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Four, "Red Rose Deck Soldier", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Five, "Red Rose Gunner", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Six, "Red Rose Rear Cavalry", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Seven, "Red Rose Armament Chief", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Eight, "Red Rose Quatermaster", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Nine, "Red Rose Medic", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Ten, "Red Rose Blacksmith", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Jack, "Red Rose Priest", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Queen, "Red Rose Princess", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.King, "Red Rose King", "War of the Roses"));
+        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Joker, "Red Rose Joker Heart", "War of the Roses"));
+
+        // Diamond Field
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ace, "Diamond Field Ace", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Two, "Diamond Field Catcher", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Three, "Diamond Field First Baseman", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Four, "Diamond Field Second Baseman", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Five, "Diamond Field Third Baseman", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Six, "Diamond Field Shortstop", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Seven, "Diamond Field Left Fielder", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Eight, "Diamond Field Center Fielder", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Nine, "Diamond Field Right Fielder", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ten, "Diamond Field Supporters", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Jack, "Diamond Field Manager", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Queen, "Diamond Field General Manager", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.King, "Diamond Field Closer", "Diamond Field"));
+        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Joker, "Diamond Field Utility Player", "Diamond Field"));
 
         foreach (var suit in suits)
         {

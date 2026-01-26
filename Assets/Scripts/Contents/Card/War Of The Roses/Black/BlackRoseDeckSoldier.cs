@@ -12,7 +12,7 @@ public class BlackRoseDeckSoldier : WaroftheRosesBase
         cardSuit = Define.CardSuit.Club;
         cardRank = Define.CardRank.Six;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Black Rose Deck Solider";
+        cardName = "Black Rose Deck Soldier";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 

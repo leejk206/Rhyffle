@@ -21,7 +21,7 @@ public class GameScoreInfo : MonoBehaviour
 
     public void SetUp()
     {
-        // rankRanking 기본점수
+        // rankRanking ??????
 
         handRankScore = new float[]{1, 1.011f, 1.02211f, 1.1f, 1.1f, 1.11f, 1.554f, 1.32f, 4.44f, 13.76f, 15.0f, 33.22f, 100f };
 
@@ -59,10 +59,10 @@ public class GameScoreInfo : MonoBehaviour
 
 
     // Used when calling game with cards
-    // CardScoring 함수는 GamePlayer의 resetForFrames에서 각각의 touch에 대한 리셋을 하기 이전에 이 함수를 호출
-    // CardScoring 함수에서 hitEvents를 받아옴
-    // 기본적인 족보, 판정 적용 후
-    // 노트가 걸친 지역에 따라서 왼쪽 카드부터 순차적으로 OnNoteTrigger를 통해 배율 계산
+    // CardScoring ????? GamePlayer?? resetForFrames???? ?????? touch?? ???? ?????? ??? ?????? ?? ????? ???
+    // CardScoring ??????? hitEvents?? ????
+    // ?????? ????, ???? ???? ??
+    // ????? ??? ?????? ???? ???? ?????? ?????????? OnNoteTrigger?? ???? ???? ???
     public void CardScoring(List<HitEvent> hitEvents)
     {
         float hitScore;
@@ -78,37 +78,37 @@ public class GameScoreInfo : MonoBehaviour
             // Apply Cards from left card to right card
             // leftmost card
             if (hitEvents[i].cardEffect[0]) {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[0].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[1])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[1].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[2])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[2].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[3])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[3].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[4])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[4].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[5])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[5].OnNoteTrigger(hitEvents[i]);
             }
             if (hitEvents[i].cardEffect[6])
             {
-               // OnNoteTrigger로 카드 배율 변화
+               // OnNoteTrigger?? ??? ???? ???
                 hitEvents[i] = cardSets[6].OnNoteTrigger(hitEvents[i]);
             }
 
@@ -118,7 +118,7 @@ public class GameScoreInfo : MonoBehaviour
             }
             
             // Scoring based on hitEvents
-            hitScore = handRankScore[(int)hitEvents[i].GetHandRank()] * hitEvents[i].GetScale();
+            hitScore = hitEvents[i].GetRank() + (handRankScore[(int)hitEvents[i].GetHandRank()] * hitEvents[i].GetScale());
             Managers.Score.ApplyNoteScore(1, hitEvents[i].GetJudgement(), hitScore);
 
         }

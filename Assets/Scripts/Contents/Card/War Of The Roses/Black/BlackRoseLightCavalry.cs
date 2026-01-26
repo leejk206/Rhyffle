@@ -13,7 +13,7 @@ public class BlackRoseLightCavalry : WaroftheRosesBase
         cardSuit = Define.CardSuit.Spade;
         cardRank = Define.CardRank.Ten;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Black Rose Light Cavarly";
+        cardName = "Black Rose Light Cavalry";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 
@@ -23,7 +23,7 @@ public class BlackRoseLightCavalry : WaroftheRosesBase
     public override void OnCardDrawComplete()
     {
 
-        Debug.Log("Black Rose Light Cavarly Effect");
+        Debug.Log("Black Rose Light Cavalry Effect");
         GetRankBonus();
     }
 }

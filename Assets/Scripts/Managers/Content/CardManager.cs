@@ -12,8 +12,8 @@ public class CardManager
     List<CardBase> _fieldCards;
     public List<CardBase> FieldCards { get { return _fieldCards; } } // ���� �� ī�� ����Ʈ
 
-    Queue<CardBase> _cemetery;
-    public Queue<CardBase> Cemetery { get { return _cemetery; } } // 묘지 카드 리스트
+    Queue<CardInfo> _cemetery;
+    public Queue<CardInfo> Cemetery { get { return _cemetery; } } // 묘지 카드 리스트
 
     GameObject CardSpawnPoint;
     GameObject CardCemeteryPoint; // Card 묫자리
@@ -40,7 +40,7 @@ public class CardManager
         CardPositions = new();
         SettedCards = new List<string>() { null, null, null, null, null, null, null };
 
-        _cemetery = new Queue<CardBase> { };
+        _cemetery = new Queue<CardInfo> { };
 
         #region GetCardTransform
         CardSpawnPoint = GameObject.Find("CardSpawnPoint");
@@ -91,7 +91,12 @@ public class CardManager
 
     public void DrawAllCard()
     {
-        if (isCardSetted)
+        // NOTE:
+        // - 카드 효과(OnCardDraw 등)로 isCardSetted가 "이번 DrawAllCard 도중" 켜질 수 있다.
+        // - 이 경우는 "다음 ResetCards"에 적용되어야 하므로, DrawAllCard 마지막에 무조건 false로 내리면 안 된다.
+        bool usedSettedAtStart = isCardSetted;
+
+        if (usedSettedAtStart)
         {
             int cnt = 0;
             foreach (string item in SettedCards)
@@ -117,7 +122,11 @@ public class CardManager
             DrawCard();
             DrawCard();
         }
-        isCardSetted = false;
+
+        // 세팅 드로우를 실제로 사용한 경우에만 1회 소모
+        if (usedSettedAtStart)
+            isCardSetted = false;
+
         Managers.Score.CurrentMultiflier = 1;
     }
 
@@ -181,8 +190,6 @@ public class CardManager
                                 case 5: Del5(); break;
                                 case 6: Del6(); break;
                             }
-                            card.OnCardDestroy(); // 현재 파괴된 카드의 파괴 시 실행되는 효과 발동
-
 
                             DrawCard();
 
@@ -219,7 +226,8 @@ public class CardManager
 
     public void ResetCards()
     {
-        if (Managers.Card.FieldCards[0] != null)
+        // 슬롯 0만 보지 말고, 하나라도 있으면 전체 제거
+        if (_fieldCards.Any(c => c != null))
         {
             RemoveAllCards();
         }
@@ -299,100 +307,112 @@ public class CardManager
     {
         // 묘지에 추가
         CardBase card = _fieldCards[0];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[0] = null;
-
-        // GameObject temp = _fieldCards[0].gameObject;
-        // _fieldCards[0] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del1()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[1];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[1] = null;
-
-        // GameObject temp = _fieldCards[1].gameObject;
-        // _fieldCards[1] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del2()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[2];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[2] = null;
-
-        // GameObject temp = _fieldCards[2].gameObject;
-        // _fieldCards[2] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del3()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[3];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[3] = null;
-
-        // GameObject temp = _fieldCards[3].gameObject;
-        // _fieldCards[3] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del4()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[4];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[4] = null;
-
-        // GameObject temp = _fieldCards[4].gameObject;
-        // _fieldCards[4] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del5()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[5];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[5] = null;
-
-        // GameObject temp = _fieldCards[5].gameObject;
-        // _cemetery.Enqueue(_fieldCards[5]); // 묘지에 추가
-        // _fieldCards[5] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     public void Del6()
     {
         // 묘지에 추가
         CardBase card = _fieldCards[6];
-        card.transform.position = CardCemeteryPoint.transform.position;
+        if (card == null) return;
         card.OnCardDestroy();
-        _cemetery.Enqueue(card);
+        _cemetery.Enqueue(new CardInfo(card.cardSuit, card.cardRank, card.cardName, card.collection)
+        {
+            SlotIndex = card.SlotIndex,
+            cardBaseId = card.cardBaseId,
+        });
         _fieldCards[6] = null;
-
-        // GameObject temp = _fieldCards[6].gameObject;
-        // _cemetery.Enqueue(_fieldCards[6]); // 묘지에 추가
-        // _fieldCards[6] = null;
-        // Managers.Resource.Destroy(temp);
+        if (card.gameObject != null)
+            GameObject.Destroy(card.gameObject);
     }
 
     #endregion

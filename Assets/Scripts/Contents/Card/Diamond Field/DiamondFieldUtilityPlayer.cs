@@ -11,7 +11,7 @@ public class DiamondFieldUtilityPlayer : DiamondFieldBase
         cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Joker;
         cardRarity = Define.CardRarity.Rare;
-        cardName = "Diaond Field Ace";
+        cardName = "Diamond Field Utility Player";
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 

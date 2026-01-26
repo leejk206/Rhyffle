@@ -11,7 +11,7 @@ public class DiamondFieldFirstBaseman : DiamondFieldBase
         cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Three;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Diaond Field First Baseman";
+        cardName = "Diamond Field First Baseman";
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 
