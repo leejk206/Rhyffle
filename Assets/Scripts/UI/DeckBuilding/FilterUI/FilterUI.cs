@@ -42,9 +42,10 @@ public class FilterUI : MonoBehaviour
         rarity = new bool[4];
         suit = new bool[4];
         rect = gameObject.GetComponent<RectTransform>();
-        UIWid = canvas.rect.width / 10 * 9;
+        UIWid = canvas.rect.width / 20 * 9;
         UIHei = canvas.rect.height;
         rect.sizeDelta = new Vector2(UIWid, UIHei);
+        rect.anchoredPosition = new Vector2(-UIWid/2,0);
         Debug.Log(UIWid +"_" + UIHei);
         SetFilterPos();
         gameObject.SetActive(false);
@@ -66,7 +67,7 @@ public class FilterUI : MonoBehaviour
         }
 
         // rank
-        wid = UIWid / 90;
+        wid = UIWid / 60;
         hei = UIHei / 30;
         for(int i = 0; i< 14; i++)
         {
