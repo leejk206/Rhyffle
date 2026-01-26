@@ -10,8 +10,7 @@ public class DeckBuildDeck : MonoBehaviour
     public RectTransform canvas;
     public GameObject deckBuildSlot;
     public List<GameObject> cardInDeck;
-    public List<DeckCardInfo> cardInfos;
-      
+
     #region sizeInfo
     float scrWid;
     float scrHei;
@@ -31,24 +30,22 @@ public class DeckBuildDeck : MonoBehaviour
     // then load deck from that json
     public void LoadDeck(string path)
     {
-        SetBoard();
+
     }
 
     public void NewDeck()
     {
         SetBoard();
-
     }
 
     public void SaveDeck()
     {
-        //cardInfos¸¦ Àû¿ë
 
     }
 
     private void Start()
     {
-        NewDeck();
+        SetBoard();
     }
 
     public void SetBoard()
@@ -84,7 +81,6 @@ public class DeckBuildDeck : MonoBehaviour
             temp.transform.SetParent(transform);
             temp.GetComponent<DeckBuildSlot>().cardSlotCard.GetComponent<RectTransform>().localPosition = Vector2.zero;
             temp.GetComponent<DeckBuildSlot>().cardSlotCard.GetComponent<RectTransform>().sizeDelta = new Vector2(cardWid, cardHei);
-            temp.GetComponent<DeckBuildSlot>().SetUpSlot(i%14,Mathf.FloorToInt(i / 14));
             temp.GetComponent<RectTransform>().localPosition = new Vector2(cardX, 0);
             temp.GetComponent<RectTransform>().sizeDelta = new Vector2(cardWid, cardHei);
             temp.GetComponent<RectTransform>().localScale = new Vector2(1, 1);
@@ -130,15 +126,6 @@ public class DeckBuildDeck : MonoBehaviour
 
     public void ChangePosition(float mag)
     {
-        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x + mag, boardY);
 
-        if (rect.anchoredPosition.x < leftLimit)
-        {
-            rect.anchoredPosition = new Vector2(leftLimit, boardY); ;
-        }
-        if(rect.anchoredPosition.x > rightLimit)
-        {
-            rect.anchoredPosition = new Vector2(rightLimit, boardY);
-        }
     }
 }
