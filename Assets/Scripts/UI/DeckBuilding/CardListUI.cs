@@ -12,6 +12,9 @@ public class CardListUI : CardMechUI
     private void Start()
     {
         base.Start();
+        CreateBoards(0);
+        CreateBoards(1);
+        CreateBoards(2);
         cardPerWidth = boardArray[0].GetComponent<CardListBoard>().cardsPerLine;
         cardPerHeight = 2;
         SetCards();

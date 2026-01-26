@@ -36,10 +36,6 @@ public class CardMechUI : MonoBehaviour
         // Board Creation
 
         // 여기서 보드 크기 확인
-
-        CreateBoards(0);
-        CreateBoards(1);
-        CreateBoards(2);
     }
     public virtual void CreateBoards(int pos) { }
     public virtual void NextCards() { }

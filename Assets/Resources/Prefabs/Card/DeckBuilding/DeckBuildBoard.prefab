@@ -91,6 +91,6 @@ MonoBehaviour:
   boardPos: 0
   cardsPerLine: 0
   cardOnBoard: []
-  deckBuildCard: {fileID: 0}
+  deckBuildCard: {fileID: 8673627713503262924, guid: 00bb3cbaf3a1e554abb802e616b24b8b, type: 3}
   rect: {fileID: 0}
   canvas: {fileID: 0}

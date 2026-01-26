@@ -26,14 +26,10 @@ public class DeckBuildBoard : MonoBehaviour
     float cardX;
     #endregion
 
-    private void Start()
-    {
-        SetBoard();
-    }
-
     public void SetBoard()
     {
         rect = gameObject.GetComponent<RectTransform>();
+        canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
         scrWid = canvas.GetComponent<RectTransform>().rect.width;
         scrHei = canvas.GetComponent<RectTransform>().rect.height;
         boardHei = scrHei / 3;
@@ -58,5 +54,20 @@ public class DeckBuildBoard : MonoBehaviour
             temp.GetComponent<RectTransform>().localScale = new Vector2(1, 1);
             cardOnBoard.Add(temp);
         }
+    }
+
+    public void ApplyCard(List<DeckCardInfo> cards)
+    {
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cardOnBoard[i].SetActive(true);
+            cardOnBoard[i].GetComponent<DeckBuildCard>().SetCard(cards[i]);
+        }
+        for (int i = cards.Count; i < cardsPerLine; i++)
+        {
+            cardOnBoard[i].SetActive(false);
+        }
+
     }
 }

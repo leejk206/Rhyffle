@@ -11,14 +11,17 @@ public class DeckBuildCard : MonoBehaviour
     string cardBaseJsonPath = "Data/Json/CardData";
 
     public bool isInDeck = false;
-    
+
     public DeckCardInfo cardInfo;
     public CardBaseInfo cardBaseInfo;
     DeckBuildUI deckBuildUI;
+    float saveX, saveY;
+    RectTransform rect;
 
     public void SetCard(DeckCardInfo cardInfo)
     {
-        deckBuildUI = GameObject.Find("CardListUI").GetComponent<DeckBuildUI>();
+        rect = gameObject.GetComponent<RectTransform>();
+        deckBuildUI = GameObject.Find("DeckBuildingUI").GetComponent<DeckBuildUI>();
         this.cardInfo = cardInfo;
         LoadCardInfo();
         ApplyCard();
@@ -47,11 +50,9 @@ public class DeckBuildCard : MonoBehaviour
         return cardInfo;
     }
 
-    public CardBaseInfo SencCardBaseInfo()
+    public CardBaseInfo SendCardBaseInfo()
     {
         return cardBaseInfo;
     }
-
-    
 
 }
