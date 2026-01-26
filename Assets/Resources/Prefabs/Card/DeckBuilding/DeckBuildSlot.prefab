@@ -89,7 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b9c4c422459174fab98e226f9befb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSlotCard: {fileID: 8200661298899617137}
+  cardSlotCard: {fileID: 7004362500260166060}
+  hardCodeFilter: {fileID: 0}
+  board: {fileID: 0}
+  isCardInSlot: 0
+  rank: 0
+  suit: 0
 --- !u!1001 &689174385523490237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,8 +197,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6677275594647245648, guid: 00bb3cbaf3a1e554abb802e616b24b8b, type: 3}
   m_PrefabInstance: {fileID: 689174385523490237}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8200661298899617137 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8673627713503262924, guid: 00bb3cbaf3a1e554abb802e616b24b8b, type: 3}
+--- !u!114 &7004362500260166060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7540168059671938065, guid: 00bb3cbaf3a1e554abb802e616b24b8b, type: 3}
   m_PrefabInstance: {fileID: 689174385523490237}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7b18bfeac2c4b4a8c15bc326f2ab80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckBuildCard
