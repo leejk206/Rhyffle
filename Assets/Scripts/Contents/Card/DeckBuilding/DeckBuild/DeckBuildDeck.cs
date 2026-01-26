@@ -9,8 +9,8 @@ public class DeckBuildDeck : MonoBehaviour
     public RectTransform rect;
     public RectTransform canvas;
     public GameObject deckBuildSlot;
-    public List<GameObject> cardInDeck;
-    public List<DeckCardInfo> cardInfos;
+    public GameObject[] cardInDeck;
+    public DeckCardInfo[] cardInfos;
       
     #region sizeInfo
     float scrWid;
@@ -37,7 +37,7 @@ public class DeckBuildDeck : MonoBehaviour
     public void NewDeck()
     {
         SetBoard();
-
+        
     }
 
     public void SaveDeck()
@@ -48,6 +48,8 @@ public class DeckBuildDeck : MonoBehaviour
 
     private void Start()
     {
+        cardInDeck = new GameObject[56];
+        cardInfos = new DeckCardInfo[56];
         NewDeck();
     }
 
@@ -88,7 +90,7 @@ public class DeckBuildDeck : MonoBehaviour
             temp.GetComponent<RectTransform>().localPosition = new Vector2(cardX, 0);
             temp.GetComponent<RectTransform>().sizeDelta = new Vector2(cardWid, cardHei);
             temp.GetComponent<RectTransform>().localScale = new Vector2(1, 1);
-            cardInDeck.Add(temp);
+            cardInDeck[i] = temp;
         }
 
         SetDeckPos(CardSuit.Spade, CardRank.Ten);

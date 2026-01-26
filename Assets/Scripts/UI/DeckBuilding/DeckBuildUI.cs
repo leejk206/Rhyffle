@@ -14,6 +14,10 @@ public class DeckBuildUI : CardMechUI
     public RectTransform starDust;
     public RectTransform starPiece;
     public RectTransform filter;
+    public RectTransform next;
+    public RectTransform prev;
+
+
 
     // Start부분에서 각각의 UI 위치들 화면 비율에 맞게 조정
     private void Start()
