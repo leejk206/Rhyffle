@@ -42,7 +42,8 @@ public class DiamondFieldShortstop : DiamondFieldBase
         {
             if (item is DiamondFieldBase diamond) 
             { 
-                if (diamond.property == DiamondFieldBase.Property.Infielder || diamond.property == DiamondFieldBase.Property.StoveLeague
+                // StoveLeague는 설계상 별도 속성(1개 클래스)이라 "내야수 수" 카운트에 포함하지 않는다.
+                if (diamond.property == DiamondFieldBase.Property.Infielder
                    || diamond.property == DiamondFieldBase.Property.MultiPosition) { infielderCnt++; } 
             }
         }

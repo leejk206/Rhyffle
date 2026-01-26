@@ -10,7 +10,7 @@ public class RedRoseMedic : WaroftheRosesBase
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Nine;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Black Rose Medic";
+        cardName = "Red Rose Medic";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 

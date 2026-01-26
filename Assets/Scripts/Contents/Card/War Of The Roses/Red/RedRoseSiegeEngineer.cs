@@ -9,7 +9,7 @@ public class RedRoseSiegeEngineer : WaroftheRosesBase
         base.Init();
 
         cardBaseId = 57; // todo
-        cardSuit = Define.CardSuit.Club;
+        cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Two;
         cardRarity = Define.CardRarity.Normal;
         cardName = "Red Rose Siege Engineer";

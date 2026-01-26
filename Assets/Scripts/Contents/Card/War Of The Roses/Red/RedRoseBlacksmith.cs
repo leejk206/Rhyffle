@@ -10,7 +10,7 @@ public class RedRoseBlacksmith : WaroftheRosesBase
         cardSuit = Define.CardSuit.Heart;
         cardRank = Define.CardRank.Ten;
         cardRarity = Define.CardRarity.Normal;
-        cardName = "Black Rose Blacksmith";
+        cardName = "Red Rose Blacksmith";
         collection = "War Of The Roses";
         uniqueAbilityId = 0; // Todo
 

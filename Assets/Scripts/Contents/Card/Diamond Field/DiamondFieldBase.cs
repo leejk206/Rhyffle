@@ -18,12 +18,12 @@ public abstract class DiamondFieldBase : CardBase
     {
         property = Property.None;
 
-        collection = "Diamond FIeld";
+        collection = "Diamond Field";
         uniqueAbilityId = 0;
 
-        cardNameBack = "Diamond FIeld Back";
+        cardNameBack = "Diamond Field Back";
         uniqueAbilityIdBack = 0;
-        collectionBack = "Diamond FIeld Back";
+        collectionBack = "Diamond Field Back";
 
     }
 

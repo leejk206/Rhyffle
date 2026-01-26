@@ -12,7 +12,7 @@ public class DiamondFieldCatcher : DiamondFieldBase
         cardSuit = Define.CardSuit.Diamond;
         cardRank = Define.CardRank.Two;
         cardRarity = Define.CardRarity.Rare;
-        cardName = "Diaond Field Catcher";
+        cardName = "Diamond Field Catcher";
         collection = "Diamond Field";
         uniqueAbilityId = 0; // Todo
 

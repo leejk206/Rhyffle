@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Linq;
 using static Define;
 
@@ -16,12 +16,17 @@ public abstract class WaroftheRosesBase : CardBase
         uniqueAbilityIdBack = 0;
         collectionBack = "War Of The Roses Back";
 
-        isBlack = (cardSuit == Define.CardSuit.Spade || cardSuit == Define.CardSuit.Club);
+        // NOTE: Initialize() 흐름상, 이 시점에는 파생 Init()이 아직 cardSuit를 세팅하기 전일 수 있다.
+        // 따라서 cardInfo 기준으로 진영을 결정해야 한다.
+        isBlack = (cardInfo.cardSuit == Define.CardSuit.Spade || cardInfo.cardSuit == Define.CardSuit.Club);
     }
 
     #region Methods
     private bool IsEffectBlocked()
     {
+        if (Managers.Effect.Brands == null)
+            return false;
+
         if (isBlack && Managers.Effect.Brands.Any(b => b is BlackRoseInfoWithdraw))
         {
             return true;
@@ -46,8 +51,38 @@ public abstract class WaroftheRosesBase : CardBase
             if (item == null)
                 continue;
 
-            if (item is WaroftheRosesBase wotr1 && wotr1.isBlack) { blackCnt += 2; } else { blackCnt += 1; }
-            if (item is WaroftheRosesBase wotr2 && !wotr2.isBlack) { redCnt += 2; } else { redCnt += 1; }
+            // - War Of The Roses 카드는 isBlack(협상가 등으로 변할 수 있음)를 우선 사용
+            // - 그 외 카드는 유효 무늬(빨강/검정)로 진영 판정
+            bool isItemBlack;
+            int weight;
+
+            if (item is WaroftheRosesBase wotr)
+            {
+                isItemBlack = wotr.isBlack;
+                weight = 2; // 장미전쟁 카드는 기여도를 2로 취급
+            }
+            else
+            {
+                var suit = SuitHelper.GetEffectiveSuit(item.cardSuit);
+                if (suit == CardSuit.Spade || suit == CardSuit.Club)
+                {
+                    isItemBlack = true;
+                }
+                else if (suit == CardSuit.Diamond || suit == CardSuit.Heart)
+                {
+                    isItemBlack = false;
+                }
+                else
+                {
+                    // 예외적인 무늬(정의되지 않음 등)는 카운트에서 제외
+                    continue;
+                }
+
+                weight = 1;
+            }
+
+            if (isItemBlack) blackCnt += weight;
+            else redCnt += weight;
         }
         
         if (isBlack)
@@ -250,6 +285,7 @@ public abstract class WaroftheRosesBase : CardBase
 
         foreach (var c in Managers.Card.FieldCards)
         {
+            if (c == null) continue;
             var suit = SuitHelper.GetEffectiveSuit(c.cardSuit);
             if (suit == CardSuit.Spade || suit == CardSuit.Club)
                 black++;
@@ -259,17 +295,13 @@ public abstract class WaroftheRosesBase : CardBase
 
         if (isBlack && black > red)
         {
-            foreach (CardBase card in Managers.Card.FieldCards)
-            {
-                card.ScaleAdd += 2;
-            }
+            // 배율 보너스는 "이 카드"에만 적용 (노트당 1회만 더해지도록)
+            ScaleAdd += 2f;
         }
         else if (!isBlack && black < red)
         {
-            foreach (CardBase card in Managers.Card.FieldCards)
-            {
-                card.ScaleAdd += 2;
-            }
+            // 배율 보너스는 "이 카드"에만 적용 (노트당 1회만 더해지도록)
+            ScaleAdd += 2f;
         }
     }
 
@@ -377,11 +409,15 @@ public abstract class WaroftheRosesBase : CardBase
                 {
                     if (isBlack)
                     {
-                        Managers.Effect.Brands.Add(new BlackRoseInfoGather());
+                        // 중복 방지
+                        if (!Managers.Effect.Brands.Any(b => b is BlackRoseInfoGather))
+                            Managers.Effect.Brands.Add(new BlackRoseInfoGather());
                     }
                     else
                     {
-                        Managers.Effect.Brands.Add(new RedRoseInfoGather());
+                        // 중복 방지
+                        if (!Managers.Effect.Brands.Any(b => b is RedRoseInfoGather))
+                            Managers.Effect.Brands.Add(new RedRoseInfoGather());
                     }
                     break;
                 }
@@ -406,7 +442,9 @@ public abstract class WaroftheRosesBase : CardBase
                 {
                     Managers.Effect.Brands.Remove(target);
                 }
-                Managers.Effect.Brands.Add(new BlackRoseInfoWithdraw());
+                // 중복 방지
+                if (!Managers.Effect.Brands.Any(b => b is BlackRoseInfoWithdraw))
+                    Managers.Effect.Brands.Add(new BlackRoseInfoWithdraw());
             }
         }
         else
@@ -419,7 +457,9 @@ public abstract class WaroftheRosesBase : CardBase
                 {
                     Managers.Effect.Brands.Remove(target);
                 }
-                Managers.Effect.Brands.Add(new RedRoseInfoWithdraw());
+                // 중복 방지
+                if (!Managers.Effect.Brands.Any(b => b is RedRoseInfoWithdraw))
+                    Managers.Effect.Brands.Add(new RedRoseInfoWithdraw());
             }
         }
     }
