@@ -3,12 +3,12 @@ using static Define;
 
 public class Note : MonoBehaviour
 {
-    //¿ÜºÎ¿¡¼­ ÀÌ ³ëÆ®¸¦ ÂüÁ¶ÇÒ ¶§ ³ëÆ®
+    //ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®
     public float judge;
-    //³ëÆ® lane
+    //ï¿½ï¿½Æ® lane
     public int line;
     float lanePos = 0;
-    //³ëÆ® ±æÀÌ
+    //ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     public int length;
     public float height = 10;
 
@@ -20,13 +20,13 @@ public class Note : MonoBehaviour
     Vector3 posVector;
 
 
-    //³ëÆ® ¶³±¸´Â ÇÔ¼ö, UniTask·Î Áö¼ÓÀûÀ¸·Î È£ÃâÇÏ´Â ¹æ½Ä
-    //ÃßÈÄ ³Ê¹« ºñÈ¿À²ÀûÀÌ¶ó¸é ¼öÁ¤ ¿¹Á¤
+    //ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½, UniTaskï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    //120bpm ±âº»¼Óµµ 4 ±âÁØ 2ÃÊ ¾È¿¡ ¶³¾îÁü
-    //¼Óµµ °è»ê ¹æ¹ýÀº (bpm)x(¼³Á¤¼Óµµ)
+    //120bpm ï¿½âº»ï¿½Óµï¿½ 4 ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Óµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (bpm)x(ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½)
     
-    //ÆÇÁ¤ À§Ä¡ ÀúÀå
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     virtual public void SetJudge(int judge)
     {
         this.judge = judge * 6.4f;
@@ -34,12 +34,12 @@ public class Note : MonoBehaviour
 
     virtual public void Drop(float speed)
     {
-        //¸Å ÇÁ·¹ÀÓ¸¶´Ù ¼³Á¤µÇ´Â ³ôÀÌ
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½
         height -= speed / 480 * 5 * Time.deltaTime;
         float cal = height * (-0.08f) + 1;
         if (height >= 0 && height <=10)
         {
-            scaleVector.x = length * 3.2f * cal;
+            scaleVector.x = length * 0.8f * cal;
             scaleVector.y = 3.2f * cal;
             posVector.x = lanePos * cal;
             posVector.y = height - 2.25f;
@@ -59,7 +59,7 @@ public class Note : MonoBehaviour
             gameObject.transform.localPosition = posVector;
         }
     }
-    //±æÀÌ ¼³Á¤, Ã³À½¿¡ ¼³Á¤ÇÏ°í °ÇµéÁö ¾ÊÀ½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     virtual public void Set(int lane, int length)
     {
         endFingerID = -1;
@@ -68,8 +68,8 @@ public class Note : MonoBehaviour
         this.line = lane;
         this.length = length;
         lanePos = -10.5f + lane;
-        //ÃÊ±â À§Ä¡ ¼³Á¤
-        scaleVector = new Vector3(length * 0.64f, 0.64f, 1);
+        //ï¿½Ê±ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+        scaleVector = new Vector3(length * 0.16f, 0.64f, 1);
         gameObject.transform.localScale = scaleVector;
         posVector = new Vector3(lanePos * 0.2f, 7.75f, 2);
         gameObject.transform.localPosition = posVector;
@@ -82,20 +82,20 @@ public class Note : MonoBehaviour
         this.line = lane;
         this.length = length;
         lanePos = -10.5f + lane;
-        //ÃÊ±â À§Ä¡ ¼³Á¤
-        scaleVector = new Vector3(length * 0.64f, 0.64f, 1);
+        //ï¿½Ê±ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+        scaleVector = new Vector3(length * 0.16f, 0.64f, 1);
         gameObject.transform.localScale = scaleVector;
         posVector = new Vector3(lanePos * 0.2f, height - 2.25f, 2);
         gameObject.transform.localPosition = posVector;
     }
 
-    // return °ª DefineÀÇ JudgeNum¿¡ µû¸¥ int °ª
-    // ÀÌ ÇÔ¼ö´Â ÆÇÁ¤À» ÅëÇØ¼­ °ªÀ» ³»º¸³¿
-    // bpm¿¡ µû¶ó¼­ ÆÇÁ¤ °è»ê ´Þ¶óÁü (¼Óµµ°¡ ºü¸£¸é curTime°ú judge¿ÍÀÇ ÆÇÁ¤ÀÌ Ä¿Á®¾ß ÇÔ)
-    // bpm/600Àº 0.1sec¶ó°í º¸¸é µÈ´Ù
+    // return ï¿½ï¿½ Defineï¿½ï¿½ JudgeNumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ int ï¿½ï¿½
+    // ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // bpmï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¶ï¿½ï¿½ï¿½ (ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ curTimeï¿½ï¿½ judgeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+    // bpm/600ï¿½ï¿½ 0.1secï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½
     // 
     // checkType 0: MissCheck, 1: press, 2: slide, 3: intouch, 4: endtouch, 5: flickUp, 6: flickDown 100: Miss
-    // GamePlayerÀÇ TouchBoolean ¼ø¼­ + 0 --> MissCheck
+    // GamePlayerï¿½ï¿½ TouchBoolean ï¿½ï¿½ï¿½ï¿½ + 0 --> MissCheck
     //
     virtual public JudgementType ReadJudge(int lane, float bpm, int checkType, float curTime)
     {

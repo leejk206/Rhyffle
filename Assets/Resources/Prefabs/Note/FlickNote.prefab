@@ -112,8 +112,8 @@ MonoBehaviour:
   pressFingerID: -1
   fingerID: -1
   flicDir: 0
-  flickUpSprite: {fileID: 21300000, guid: db5ddcad6a113410ea92816af249d88a, type: 3}
-  flickDownSprite: {fileID: 21300000, guid: f403fe422b0104f968e39f946e22a6b3, type: 3}
+  flickUpSprite: {fileID: 2664434829443777333, guid: f363a9cfbb41e4ec4ae26e971f3bcb5c, type: 3}
+  flickDownSprite: {fileID: 915788078009525506, guid: 0024d556cee454fc4b11000327f14667, type: 3}
 --- !u!1 &3280852576235947296
 GameObject:
   m_ObjectHideFlags: 0
