@@ -2440,6 +2440,7 @@ MonoBehaviour:
   - {fileID: -855298285791758126, guid: d659a5387c04142409afadd0d2444afc, type: 3}
   - {fileID: 6937817954938267909, guid: c094fb8e9fb6e46b7a9684a0267bd702, type: 3}
   - {fileID: -6470460504253458178, guid: 64b745b2a465e4ada9cc59b1a93e34f2, type: 3}
+  audioTest: {fileID: 1576993637}
 --- !u!4 &454426947
 Transform:
   m_ObjectHideFlags: 0
@@ -2842,14 +2843,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &577698781
-Transform:
+--- !u!224 &577698781
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577698780}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2857,6 +2857,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 799217412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &603339603
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,7 +3353,7 @@ GameObject:
   - component: {fileID: 752974390}
   - component: {fileID: 752974389}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4798,7 +4803,7 @@ GameObject:
   - component: {fileID: 1258200803}
   - component: {fileID: 1258200802}
   m_Layer: 5
-  m_Name: Resume
+  m_Name: Again
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9600,6 +9605,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1576993637}
+        m_TargetAssemblyTypeName: AudioTest, Assembly-CSharp
+        m_MethodName: PauseSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1325398145}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -9814,7 +9831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2031818226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9860,7 +9877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2037384813
 RectTransform:
   m_ObjectHideFlags: 0

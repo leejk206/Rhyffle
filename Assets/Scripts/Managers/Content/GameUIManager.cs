@@ -16,6 +16,9 @@ public class GameUIManager:MonoBehaviour
     // ��ũ�� ���� ���� ����
     float screenWidth = Screen.width;
     float screenHeight = Screen.height;
+    
+    // 오디오 소스
+    public AudioTest audioTest;
 
     #region uiVariables
     GameObject pauseButton;
@@ -41,8 +44,8 @@ public class GameUIManager:MonoBehaviour
         pauseButton = GameObject.Find("PauseButton");
         songInfoBoard = GameObject.Find("SongInfoBoard");
         songInfoText = GameObject.Find("SongInfoText");
-        scoreBoard = GameObject.Find("ScoreBoard");
-        scoreBoardText = GameObject.Find("ScoreBoardText");
+        // scoreBoard = GameObject.Find("ScoreBoard");
+        // scoreBoardText = GameObject.Find("ScoreBoardText");
         counting = GameObject.Find("CountingUI");
         countNum = GameObject.Find("CountNum");
         countSprite = GameObject.Find("CountSprite");
@@ -69,7 +72,7 @@ public class GameUIManager:MonoBehaviour
     void AllocateGameUI(){
         pauseButton = GameObject.Find("PauseButton");
         songInfoBoard = GameObject.Find("SongInfoBoard");
-        scoreBoard = GameObject.Find("ScoreBoard");
+        // scoreBoard = GameObject.Find("ScoreBoard");
     }
 
     //ȭ�� �Ͻ����� â ����
@@ -98,6 +101,7 @@ public class GameUIManager:MonoBehaviour
         // songInfoBoard.SetActive(true);
         // pauseButton.SetActive(true);
         gamePlayer.play = true;
+        audioTest.ResumeSong();
     }
 
     public async UniTask Count3()

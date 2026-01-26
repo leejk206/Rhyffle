@@ -6,39 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Catcher.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Catcher.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Center Fielder.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Center Fielder.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Closer.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Closer.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field First Baseman.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field First Baseman.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field General Manager.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field General Manager.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Left Fielder.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Left Fielder.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Manager.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Manager.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Right Fielder.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Right Fielder.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Second Baseman.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Second Baseman.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Shortstop.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Shortstop.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Supporters.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Supporters.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Third Baseman.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Third Baseman.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Utility Player.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Art/Card/Diamond Field/Diamond Field Utility Player.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/BasicNote.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/BasicNote.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickDown_G.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickDown_G.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickDown_R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickDown_R.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickUp_G.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickUp_G.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickUp_R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/FlickUp_R.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/HoldNote.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/Note/HoldNote.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/BasicNote.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/BasicNote.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/FlickNote.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/FlickNote.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/HoldNote.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/HoldNote.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/HoldNoteBody.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Note/HoldNoteBody.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/CardScene/CardListScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CardScene/CardListScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Contents/Note/Note/HoldNote.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Contents/Note/Note/HoldNote.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Contents/Note/Note/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Contents/Note/Note/Note.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/GameUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/GameUIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +119,7 @@
       <workItem from="1769417175229" duration="1543000" />
       <workItem from="1769443476466" duration="598000" />
       <workItem from="1769445713979" duration="811000" />
-      <workItem from="1769449980784" duration="5021000" />
+      <workItem from="1769449980784" duration="8160000" />
     </task>
     <servers />
   </component>
