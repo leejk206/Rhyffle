@@ -11,11 +11,11 @@ public class RankFilter : MonoBehaviour
         filterUI.rank[rank] = !filterUI.rank[rank];
         if (filterUI.rank[rank])
         {
-            gameObject.GetComponent<Image>().color = Color.red;
+            // gameObject.GetComponent<Image>().color = Color.red;
         }
         else
         {
-            gameObject.GetComponent<Image>().color =Color.white;
+            // gameObject.GetComponent<Image>().color =Color.white;
         }
     }
 }

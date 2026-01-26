@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Material.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Material.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Art/UI/Main/Star.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CardScene/CardListScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CardScene/CardListScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CardScene/DeckBuildScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CardScene/DeckBuildScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/DeckBuilding/FilterUI/RankFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DeckBuilding/FilterUI/RankFilter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +44,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Unity 에디터에 연결.Unity 에디터에 연결.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development/integration&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -114,6 +120,7 @@
       <workItem from="1768380754842" duration="298000" />
       <workItem from="1769243444412" duration="2396000" />
       <workItem from="1769346398073" duration="6822000" />
+      <workItem from="1769417175229" duration="1543000" />
     </task>
     <servers />
   </component>
