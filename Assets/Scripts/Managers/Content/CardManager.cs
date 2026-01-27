@@ -47,6 +47,7 @@ public class CardManager
         CardCemeteryPoint = GameObject.Find("CardCemeteryPoint");
         CardBoard = GameObject.Find("CardBoard");
         GameObject CardScaleGuide = GameObject.Find("CardScaleGuide");
+        GameObject CardRowAnchor = GameObject.Find("CardRowAnchor");
 
         // 카드 기본 크기(CardScale)는 Y 배치 계산 전에 먼저 구해야 한다.
         CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
@@ -54,9 +55,14 @@ public class CardManager
         SpriteRenderer sr = CardBoard.GetComponent<SpriteRenderer>();
         Vector3 CardBoardSize = Vector3.Scale(sr.sprite.bounds.size, sr.transform.lossyScale);
         float width = CardBoardSize.x;
+        float compress = 0.35f;
+        float offsetX = CardScale.x * 0f;
 
-        float startX = sr.bounds.min.x;
-        float centerY = CardBoard.transform.position.y;
+        // float startX = sr.bounds.min.x;
+        
+        // card 생성 위치를 pause 버튼 아래 기준으로
+        float cardRowX = CardRowAnchor.transform.position.x;
+        float cardRowY = CardRowAnchor.transform.position.y;
         float z = CardBoard.transform.position.z - 1;
 
         // 가로 7칸 위치는 그대로 쓰되, Y를 위/아래 두 줄로 번갈아 배치한다.
@@ -64,15 +70,15 @@ public class CardManager
         int totalDivisions = 42;
 
         // 위/아래 줄 간격은 카드 높이(CardScale.y)를 기준으로 조정
-        float rowOffset = CardScale.y * 0.6f;
-        float upperY = centerY + rowOffset * 0.5f;
-        float lowerY = centerY - rowOffset * 0.5f;
+        float rowOffset = CardScale.y * 1.3f;
+        float upperY = cardRowY + rowOffset * 0.5f;
+        float lowerY = cardRowY - rowOffset * 0.5f;
 
         for (int slot = 0; slot < indices.Length; slot++)
         {
             int i = indices[slot];
             float t = (float)i / totalDivisions;
-            float posX = startX + t * width;
+            float posX = cardRowX + (t - 0.5f) * width * compress + offsetX;
 
             // 0,2,4,6번 슬롯은 위줄, 1,3,5번 슬롯은 아래줄
             float y = (slot % 2 == 0) ? upperY : lowerY;
