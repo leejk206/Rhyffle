@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DeckManager
 {
-    // µ¦ ¼øÈ¯ ¹× °ü¸® ´ã´ç ¸Å´ÏÀú
+    // ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½
 
-    List<CardInfo> _deck; // µ¦ÀÇ Á¤º¸¸¦ ´ã´çÇÏ´Â ¸®½ºÆ® : µ¦ÀÇ Ä«µå ±³Ã¼ µî Á÷Á¢ÀûÀÎ ¼öÁ¤ÀÌ ¾Æ´Ñ ÇÑ ¼öÁ¤µÇÁö ¾ÊÀ½
+    List<CardInfo> _deck; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® : ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public List<CardInfo> Deck { get { return _deck; } }
 
-    List<CardInfo> _unUsedDeck; // °ÔÀÓ ÇÃ·¹ÀÌ Áß µ¦À» µé°íÀÖ´Â ¸®½ºÆ®
+    List<CardInfo> _unUsedDeck; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     public List<CardInfo> UnUsedDeck { get { return _unUsedDeck; } }
 
-    List<CardInfo> _usedDeck; // ¹¦Áö
+    List<CardInfo> _usedDeck; // ï¿½ï¿½ï¿½ï¿½
     public List<CardInfo> UsedDeck { get { return _usedDeck; } }
 
 
@@ -30,7 +30,7 @@ public class DeckManager
         #endregion
     }
 
-    public void SetInitialDeck() // ±âº» 52ÀåÀÇ ½ºÅÄ´Ùµå Ä«µå Ãß°¡
+    public void SetInitialDeck() // ï¿½âº» 52ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä´Ùµï¿½ Ä«ï¿½ï¿½ ï¿½ß°ï¿½
     {
         List<Define.CardSuit> suits = new() { Define.CardSuit.Spade, Define.CardSuit.Heart, Define.CardSuit.Diamond, Define.CardSuit.Club };
         List<Define.CardRank> ranks = new()
@@ -132,7 +132,7 @@ public class DeckManager
     }
 
 
-    public void ResetDeck() // Shuffle È¤Àº »õ·Î¿î °ÔÀÓ ½ÃÀÛ ½Ã DeckÀÇ ¸ðµç ÂüÁ¶¸¦ UnUsedDeckÀ¸·Î º¹»ç ÈÄ ¼ÅÇÃ
+    public void ResetDeck() // Shuffle È¤ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Deckï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UnUsedDeckï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         _usedDeck.Clear();
         _unUsedDeck.Clear();
@@ -165,7 +165,7 @@ public class DeckManager
 
         CardInfo item;
 
-        // idx°¡ 0ÀÌ ¾Æ´Ï¸é ¹«Á¶°Ç idx µå·Î¿ì
+        // idxï¿½ï¿½ 0ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ idx ï¿½ï¿½Î¿ï¿½
         if (idx != 0)
         {
             item = _unUsedDeck[idx];
@@ -173,12 +173,12 @@ public class DeckManager
             return item;
         }
 
-        // idx == 0ÀÏ ¶§: cardName ¿ì¼± ½Ãµµ ¡æ ½ÇÆÐ ½Ã ÀÏ¹Ý µå·Î¿ì
+        // idx == 0ï¿½ï¿½ ï¿½ï¿½: cardName ï¿½ì¼± ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½Î¿ï¿½
         item = !string.IsNullOrEmpty(cardName)
             ? _unUsedDeck.FirstOrDefault(x => x.cardName == cardName)
             : null;
 
-        // ¸ø Ã£¾ÒÀ¸¸é ±âº» µå·Î¿ì(0¹ø)
+        // ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Î¿ï¿½(0ï¿½ï¿½)
         if (item == null)
         {
             item = _unUsedDeck[0];
@@ -197,7 +197,7 @@ public class DeckManager
 
     }
 
-    public void DoNothing() // °ÔÀÓ °³¹ß ÃÊ¹Ý Manager ÀÎ½ºÅÏ½º »ý¼º¿ë È£Ãâ ÄÚµå
+    public void DoNothing() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ Manager ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½Úµï¿½
     {
         return;
     }

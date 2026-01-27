@@ -47,27 +47,38 @@ public class CardManager
         CardCemeteryPoint = GameObject.Find("CardCemeteryPoint");
         CardBoard = GameObject.Find("CardBoard");
         GameObject CardScaleGuide = GameObject.Find("CardScaleGuide");
+
+        // 카드 기본 크기(CardScale)는 Y 배치 계산 전에 먼저 구해야 한다.
+        CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
+
         SpriteRenderer sr = CardBoard.GetComponent<SpriteRenderer>();
         Vector3 CardBoardSize = Vector3.Scale(sr.sprite.bounds.size, sr.transform.lossyScale);
         float width = CardBoardSize.x;
-        float height = CardBoardSize.x;
 
         float startX = sr.bounds.min.x;
-        float y = CardBoard.transform.position.y;
+        float centerY = CardBoard.transform.position.y;
         float z = CardBoard.transform.position.z - 1;
 
+        // 가로 7칸 위치는 그대로 쓰되, Y를 위/아래 두 줄로 번갈아 배치한다.
         int[] indices = { 3, 9, 15, 21, 27, 33, 39 };
         int totalDivisions = 42;
 
-        foreach (int i in indices)
-        {
-            float t = (float)i / totalDivisions;    // ����
-            float posX = startX + t * width;
-            Vector3 pos = new Vector3(posX, y, z);
-            CardPositions.Add(pos);
-        }
+        // 위/아래 줄 간격은 카드 높이(CardScale.y)를 기준으로 조정
+        float rowOffset = CardScale.y * 0.6f;
+        float upperY = centerY + rowOffset * 0.5f;
+        float lowerY = centerY - rowOffset * 0.5f;
 
-        CardScale = CardScaleGuide.GetComponent<SpriteRenderer>().bounds.size;
+        for (int slot = 0; slot < indices.Length; slot++)
+        {
+            int i = indices[slot];
+            float t = (float)i / totalDivisions;
+            float posX = startX + t * width;
+
+            // 0,2,4,6번 슬롯은 위줄, 1,3,5번 슬롯은 아래줄
+            float y = (slot % 2 == 0) ? upperY : lowerY;
+
+            CardPositions.Add(new Vector3(posX, y, z));
+        }
 
         CardRoot = GameObject.Find("Cards").GetComponent<Transform>();
         #endregion
@@ -151,17 +162,6 @@ public class CardManager
                 if (go != null && go.GetComponent<CardBase>() != null) { card = go.GetComponent<CardBase>();  }
                 else { Debug.Log($"null : {go.name}"); return; }
 
-                #region SetCardTransform
-                go.transform.position = CardSpawnPoint.transform.position;
-
-                SpriteRenderer target = go.GetComponent<SpriteRenderer>();
-                Vector3 targetSize = target.bounds.size;
-                Vector3 scale = target.transform.localScale;
-                scale.x *= CardScale.x / targetSize.x;
-                scale.y *= CardScale.y / targetSize.y;
-                target.transform.localScale = scale;
-                #endregion
-
                 for (int i = 0; i < 7; i++) // Find empty space and fill it
                 {
                     if (_fieldCards[i] == null)
@@ -170,6 +170,25 @@ public class CardManager
                         CardAlignment(card, i);
 
                         card.Initialize(pop); // 카드 초기화(단일 진입점)
+
+                        // Initialize 안에서 스프라이트가 교체되므로,
+                        // 최종 스프라이트 기준으로 CardScaleGuide 크기에 맞춰 스케일을 보정한다.
+                        #region SetCardTransform
+                        go.transform.position = CardSpawnPoint.transform.position;
+
+                        SpriteRenderer target = go.GetComponent<SpriteRenderer>();
+                        if (target != null)
+                        {
+                            Vector3 targetSize = target.bounds.size;
+                            Vector3 scale = target.transform.localScale;
+                            if (targetSize.x != 0 && targetSize.y != 0)
+                            {
+                                scale.x *= CardScale.x / targetSize.x;
+                                scale.y *= CardScale.y / targetSize.y;
+                                target.transform.localScale = scale;
+                            }
+                        }
+                        #endregion
 
                         card.OnCardDraw(); // 현재 드로우 한 카드의 드로우 시 실행되는 효과 발동 
 
