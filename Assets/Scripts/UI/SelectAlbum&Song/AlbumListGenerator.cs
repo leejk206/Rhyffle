@@ -131,4 +131,20 @@ public class AlbumListGenerator : MonoBehaviour
             UpdateAlbumPositions();
         }
     }
+    
+    public void SelectCurrentAlbum()
+    {
+        if (viewCenterIndex >= 0 && viewCenterIndex < albumInstances.Count)
+        {
+            var selectedAlbumInstance = albumInstances[viewCenterIndex];
+            var data = selectedAlbumInstance.GetComponent<AlbumData>();
+
+            if (data != null)
+            {
+                SelectedAlbumManager.Instance.albumPrefabPath = data.albumPrefabPath;
+                SelectedAlbumManager.Instance.jsonPath = data.jsonPath;
+            }
+        }
+    }
+
 }
