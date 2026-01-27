@@ -34,4 +34,9 @@ public class LoadSceneHandler : MonoBehaviour
         SceneManager.LoadScene("CardListScene");
     }
 
+    // 곡 선택 씬 -> 게임 씬 (로딩 씬 추가)
+    public void GoToGameScene()
+    {
+        SceneManager.LoadScene("Game");
+    }
 }
