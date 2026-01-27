@@ -40,7 +40,7 @@ public class DeckManager
         };
 
         // War of the Roses (Black)
-        _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War of the Roses"));
+        //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "Black Rose Vanguard", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Two, "Black Rose Longbowman", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Three, "Black Rose Cavalry Vanguard", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Four, "Black Rose Field Commander", "War of the Roses"));
@@ -66,11 +66,11 @@ public class DeckManager
         _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Ten, "Black Rose Blacksmith", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Jack, "Black Rose Priest", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Queen, "Black Rose Princess", "War of the Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.King, "Black Rose King", "War of the Roses"));
+        //_deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.King, "Black Rose King", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Club, Define.CardRank.Joker, "Black Rose Joker Club", "War of the Roses"));
 
         // War of the Roses (Red)
-        _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ace, "Red Rose Vanguard", "War of the Roses"));
+        //_deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Ace, "Red Rose Vanguard", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Two, "Red Rose Longbowman", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Three, "Red Rose Crossbowman", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Four, "Red Rose Musketeer", "War of the Roses"));
@@ -96,7 +96,7 @@ public class DeckManager
         _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Ten, "Red Rose Blacksmith", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Jack, "Red Rose Priest", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Queen, "Red Rose Princess", "War of the Roses"));
-        _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.King, "Red Rose King", "War of the Roses"));
+        //_deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.King, "Red Rose King", "War of the Roses"));
         _deck.Add(new CardInfo(Define.CardSuit.Heart, Define.CardRank.Joker, "Red Rose Joker Heart", "War of the Roses"));
 
         // Diamond Field
@@ -115,14 +115,14 @@ public class DeckManager
         _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.King, "Diamond Field Closer", "Diamond Field"));
         _deck.Add(new CardInfo(Define.CardSuit.Diamond, Define.CardRank.Joker, "Diamond Field Utility Player", "Diamond Field"));
 
-        foreach (var suit in suits)
-        {
-            foreach (var rank in ranks)
-            {
-                CardInfo cardInfo = new CardInfo(suit, rank);
-                _deck.Add(cardInfo);
-            }
-        }
+        //foreach (var suit in suits)
+        //{
+        //    foreach (var rank in ranks)
+        //    {
+        //        CardInfo cardInfo = new CardInfo(suit, rank);
+        //        _deck.Add(cardInfo);
+        //    }
+        //}
 
         #region SpecialCardTesting
         //_deck.Add(new CardInfo(Define.CardSuit.Spade, Define.CardRank.Ace, "NewContinentScout", "NewContinent"));
