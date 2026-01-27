@@ -23,19 +23,18 @@ public class ScoreManager
         isJudgementSetted = false;
     }
     
-    public void ApplyNoteScore(int noteIndex, Define.JudgementType judgement, float cardBonus) // 노트 하나 점수 계산하여 totalScore에 반영 
+    public void ApplyNoteScore(bool first, Define.JudgementType judgement, int rank, float scale) // 노트 하나 점수 계산하여 totalScore에 반영 
     {
-        int baseScore = (noteIndex == 0) ? _remainderFirstNote : _baseScorePerNote;
-        float multiplier = GetJudgementMultiplier(judgement); // 판정 배율
+        int baseScore = (first) ? _remainderFirstNote : _baseScorePerNote;
 
         // 점수 계산 컨텍스트 생성
         ScoreContext ctx = new ScoreContext
         {
-            NoteIndex = noteIndex,
+            NoteIndex = 0,
             Judgement = judgement,
             BaseScore = baseScore,
-            CardBonus = cardBonus,
-            JudgementMultiplier = multiplier,
+            CardBonus = 1,
+            JudgementMultiplier = 1,
             CardMultiplier = CurrentMultiflier,
         };
 
@@ -58,9 +57,10 @@ public class ScoreManager
 
         // 최종 점수 계산
         int totalNoteScore = Mathf.RoundToInt(
-            (ctx.BaseScore + (CurrentMode == Define.GameMode.Challenge ? ctx.CardBonus : 0))
+            /*(ctx.BaseScore + (CurrentMode == Define.GameMode.Challenge ? ctx.CardBonus : 0))
             * ctx.JudgementMultiplier
-            * ctx.CardMultiplier
+            * ctx.CardMultiplier*/
+            (baseScore + (CurrentMode == Define.GameMode.Challenge ? 1 :0)  * (rank)) * scale
         );
 
         ctx.FinalScore = totalNoteScore;
@@ -102,6 +102,7 @@ public class ScoreManager
 
 public class ScoreContext
 {
+    public bool First;
     public int NoteIndex;
     public JudgementType Judgement;
     public int BaseScore;

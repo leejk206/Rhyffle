@@ -5,7 +5,7 @@ public class AudioTest : MonoBehaviour
     float ct = 0;
     public float timer;
     bool played = false;
-    bool paused = false;
+    public bool paused = false;
     // Update is called once per frame
     void Update()
     {

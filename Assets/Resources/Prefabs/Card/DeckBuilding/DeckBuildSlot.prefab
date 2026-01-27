@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2287379056669521704}
   m_Layer: 0
   m_Name: DeckBuildSlot
-  m_TagString: Untagged
+  m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,8 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSlotCard: {fileID: 7004362500260166060}
-  hardCodeFilter: {fileID: 0}
-  board: {fileID: 0}
   isCardInSlot: 0
   rank: 0
   suit: 0

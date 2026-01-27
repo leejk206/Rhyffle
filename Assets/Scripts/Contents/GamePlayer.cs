@@ -99,7 +99,11 @@ public class GamePlayer : MonoBehaviour
 
     // 임시 판정 텍스트 UI
     public TextMeshProUGUI judgeText;
-    
+
+    // Sound
+    public AudioTest audio;
+
+
     // �� �Լ��� ����� ���߿� Manager �� �ϳ��� SetUp�� ȣ���ϴ� ������ ���� ��Ź
     private void Start()
     {
@@ -115,6 +119,7 @@ public class GamePlayer : MonoBehaviour
 
     public void SetUp()
     {
+        scoreInfo.SetUp();
         try
         {
             Managers.Json.LoadJson();
@@ -536,8 +541,13 @@ public class GamePlayer : MonoBehaviour
             
             _wasPlaying = play;
 
+            if (!play)
+            {
+                audio.PauseSong();
+            }
             // �Ͻ� ����
             await UniTask.WaitUntil(() => play);
+            if (audio.paused) audio.ResumeSong();
             if (!Application.isPlaying)
             {
                 break;
