@@ -17,15 +17,21 @@ public class AlbumListGenerator : MonoBehaviour
     
     private Dictionary<GameObject, Vector3> targetPositions = new();
     private Dictionary<GameObject, Vector3> targetScales = new();
+    public List<GameObject> albumPrefabs;
+
+    void Start()
+    {
+        foreach (GameObject prefab in albumPrefabs)
+        {
+            AddAlbum(prefab);
+        }
+
+        UpdateAlbumPositions();
+    }
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            AddAlbum();
-            UpdateAlbumPositions();
-        }
-        
         // 매 프레임 부드럽게 이동
         foreach (var album in albumInstances)
         {
@@ -45,12 +51,12 @@ public class AlbumListGenerator : MonoBehaviour
         }
     }
 
-    void AddAlbum()
+    void AddAlbum(GameObject prefab)
     {
-        GameObject album = Instantiate(albumPrefab, hiddenAnchor.transform.position, Quaternion.identity, this.transform);
+        GameObject album = Instantiate(prefab, hiddenAnchor.position, Quaternion.identity, this.transform);
         albumInstances.Add(album);
-        
-        targetPositions[album] = hiddenAnchor.transform.position;
+
+        targetPositions[album] = hiddenAnchor.position;
         targetScales[album] = Vector3.one;
     }
 
@@ -99,21 +105,14 @@ public class AlbumListGenerator : MonoBehaviour
                 targetScales[album] = Vector3.one;
             }
             
-            Transform activeObj = album.transform.Find("Active");
-            if (activeObj != null)
-            {
-                bool isCenter = (offset == 0);
-                activeObj.gameObject.SetActive(isCenter);
-            }
+            // Transform activeObj = album.transform.Find("Active");
+            // if (activeObj != null)
+            // {
+            //     bool isCenter = (offset == 0);
+            //     activeObj.gameObject.SetActive(isCenter);
+            // }
         }
     }
-    
-    // Active 활성화
-    public void SetActiveVisual(bool isActive)
-    {
-        activeImage.SetActive(isActive);
-    }
-
 
     public void LeftButtonClicked()
     {
@@ -132,4 +131,20 @@ public class AlbumListGenerator : MonoBehaviour
             UpdateAlbumPositions();
         }
     }
+    
+    public void SelectCurrentAlbum()
+    {
+        if (viewCenterIndex >= 0 && viewCenterIndex < albumInstances.Count)
+        {
+            var selectedAlbumInstance = albumInstances[viewCenterIndex];
+            var data = selectedAlbumInstance.GetComponent<AlbumData>();
+
+            if (data != null)
+            {
+                SelectedAlbumManager.Instance.albumPrefabPath = data.albumPrefabPath;
+                SelectedAlbumManager.Instance.jsonPath = data.jsonPath;
+            }
+        }
+    }
+
 }
