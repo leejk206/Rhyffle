@@ -97,8 +97,11 @@ public class GamePlayer : MonoBehaviour
     public int[] touchEnd = new int[21];
     public int[] touchCon = new int[21];
 
-    // 임시 판정 텍스트 UI
+    // 임시
     public TextMeshProUGUI judgeText;
+    float cardChangeTimer = 20;
+    float cardCountTimer = 0;
+
 
     // Sound
     public AudioTest audio;
@@ -195,6 +198,7 @@ public class GamePlayer : MonoBehaviour
             secondJudgeChecker = new JudgementType[21];
             #endregion
             hitEvents = new List<HitEvent>();
+            Managers.Card.ResetCards();
             GameSystem();
         }
         catch (Exception e) { 
@@ -206,6 +210,13 @@ public class GamePlayer : MonoBehaviour
     {
         while (true)
         {
+            //20 초마다 카드 교환
+            cardCountTimer += Time.deltaTime;
+            if (cardCountTimer > cardChangeTimer) {
+                cardCountTimer = 0;
+                Managers.Card.ResetCards();
+            }
+
 
             currentTime += Time.deltaTime * (bpm / 60) * 16;
             // ����
