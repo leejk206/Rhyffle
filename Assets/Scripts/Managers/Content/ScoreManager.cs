@@ -60,7 +60,7 @@ public class ScoreManager
             /*(ctx.BaseScore + (CurrentMode == Define.GameMode.Challenge ? ctx.CardBonus : 0))
             * ctx.JudgementMultiplier
             * ctx.CardMultiplier*/
-            (baseScore + (CurrentMode == Define.GameMode.Challenge ? 1 :0)  * (rank)) * scale
+            (baseScore + (CurrentMode == Define.GameMode.Challenge ? 1 : 0) * (rank)) * scale * GetJudgementMultiplier(judgement)
         );
 
         ctx.FinalScore = totalNoteScore;
