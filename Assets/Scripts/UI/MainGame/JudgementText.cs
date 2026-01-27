@@ -11,22 +11,22 @@ public class JudgementText : MonoBehaviour
             case Define.JudgementType.Perfect:
                 judge.color = Color.red;
                 judge.text = "Perfect";
-                judge.alpha = 1.0f;
+                judge.alpha = 0.5f;
                 break;
             case Define.JudgementType.Great:
                 judge.color = Color.yellow;
                 judge.text = "Great";
-                judge.alpha = 1.0f;
+                judge.alpha = 0.5f;
                 break;
             case Define.JudgementType.Good:
                 judge.color = Color.blue;
                 judge.text = "Good";
-                judge.alpha = 1.0f;
+                judge.alpha = 0.5f;
                 break;
             case Define.JudgementType.Miss:
                 judge.color = Color.gray;
                 judge.text = "Miss";
-                judge.alpha = 1.0f;
+                judge.alpha = 0.5f;
                 break;
         }
     }
