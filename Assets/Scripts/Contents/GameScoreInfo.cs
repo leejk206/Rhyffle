@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using TMPro;
 using System.Collections.Generic;
 using static Define;
 using static HitEvent;
@@ -7,6 +8,9 @@ using System.Linq;
 
 public class GameScoreInfo : MonoBehaviour
 {
+    public TMP_Text text;
+
+    public bool firstNote = true;
     // Basic hand ranking score
     public float[] handRankScore = new float[13];
     // Affect all hand ranking score
@@ -24,7 +28,7 @@ public class GameScoreInfo : MonoBehaviour
         // rankRanking ??????
 
         handRankScore = new float[]{1, 1.011f, 1.02211f, 1.1f, 1.1f, 1.11f, 1.554f, 1.32f, 4.44f, 13.76f, 15.0f, 33.22f, 100f };
-
+        text.text = "0";
     }
     public void SetCard()
     {
@@ -118,9 +122,10 @@ public class GameScoreInfo : MonoBehaviour
             }
             */            
             // Scoring based on hitEvents
-            hitScore = hitEvents[i].GetRank() + (handRankScore[(int)hitEvents[i].GetHandRank()] * hitEvents[i].GetScale());
-            Managers.Score.ApplyNoteScore(1, hitEvents[i].GetJudgement(), hitScore);
-
+            Managers.Score.ApplyNoteScore(firstNote, hitEvents[i].GetJudgement(), hitEvents[i].GetRank(), hitEvents[i].GetScale());
+            firstNote = false;
+            hitScore = Managers.Score.GetTotalScore();
+            text.text = hitScore.ToString();
         }
 
     }

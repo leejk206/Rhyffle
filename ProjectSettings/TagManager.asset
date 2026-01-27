@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bar
   - HoldNote
+  - card
+  - Deck
+  - Slot
   layers:
   - Default
   - TransparentFX
