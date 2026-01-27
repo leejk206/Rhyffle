@@ -9,6 +9,7 @@ using System.Linq;
 public class GameScoreInfo : MonoBehaviour
 {
     public TMP_Text text;
+    public JudgementText judgementText;
 
     public bool firstNote = true;
     // Basic hand ranking score
@@ -126,6 +127,7 @@ public class GameScoreInfo : MonoBehaviour
             firstNote = false;
             hitScore = Managers.Score.GetTotalScore();
             text.text = hitScore.ToString();
+            judgementText.JudgeText(hitEvents[i].GetJudgement());
         }
 
     }
