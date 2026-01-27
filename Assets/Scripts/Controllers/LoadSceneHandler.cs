@@ -22,5 +22,16 @@ public class LoadSceneHandler : MonoBehaviour
     {
         SceneManager.LoadScene("SelectSong");
     }
+    
+    // 덱 관리(메인) -> 덱 빌딩 씬
+    public void GoToDeckBuildScene()
+    {
+        SceneManager.LoadScene("DeckBuildScene");
+    }
+    
+    public void GoToCardLlistScene()
+    {
+        SceneManager.LoadScene("CardListScene");
+    }
 
 }

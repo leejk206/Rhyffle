@@ -9,7 +9,7 @@ public class HoldNoteBody : Note
     public LineRenderer lineRenderer;
     public int curJudge = 0;
 
-    // Draw Line¿¡¼­ »ç¿ë
+    // Draw Lineï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     Vector3 drawVector = Vector3.zero;
     float x, y;
 
@@ -135,17 +135,58 @@ public class HoldNoteBody : Note
         lineRenderer.positionCount = 0;
     }
 
-    // ¸Å ÇÁ·¹ÀÓ¸¶´Ù ½ÇÇàµÇ¾î ÁÙÀ» ±×¾îÁÖ´Â ÇÔ¼ö
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     public void DrawLine()
     {
-        for(int i = 0; i < colliders.Count; i++)
+        // for(int i = 0; i < colliders.Count; i++)
+        // {
+        //     x = (colliders[i].bounds.max.x + colliders[i].bounds.min.x)/2;
+        //     y = holdNotes[i].gameObject.transform.position.y;
+        //     drawVector.x = x;
+        //     drawVector.y = y;
+        //     lineRenderer.SetPosition(i, drawVector);
+        // }
+        
+        if (holdNotes.Count < 2) return;
+
+        float minY = float.MaxValue;
+        float maxY = float.MinValue;
+
+        // yê°’ ë²”ìœ„ ê³„ì‚°
+        foreach (var note in holdNotes)
         {
-            x = (colliders[i].bounds.max.x + colliders[i].bounds.min.x)/2;
-            y = holdNotes[i].gameObject.transform.position.y;
-            drawVector.x = x;
-            drawVector.y = y;
-            lineRenderer.SetPosition(i, drawVector);
+            float y = note.gameObject.transform.position.y;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
         }
 
+        AnimationCurve widthCurve = new AnimationCurve();
+
+        for (int i = 0; i < holdNotes.Count; i++)
+        {
+            var note = holdNotes[i];
+            var collider = colliders[i];
+
+            // ë¼ì¸ ì  ìœ„ì¹˜ ì„¤ì •
+            x = (collider.bounds.max.x + collider.bounds.min.x) / 2;
+            y = note.transform.position.y;
+            drawVector.x = x;
+            drawVector.y = y;
+            drawVector.z = note.transform.position.z;
+            lineRenderer.SetPosition(i, drawVector);
+
+            // Y ìœ„ì¹˜ë¥¼ 0~1ë¡œ ì •ê·œí™”
+            float normalizedY = Mathf.InverseLerp(minY, maxY, y);
+
+            // Noteì—ì„œ ì‚¬ìš©í•˜ëŠ” scale ê³„ì‚° ê³µì‹
+            float h = note.height;
+            float scale = h * (-0.08f) + 1f;
+
+            // ì• ë‹ˆë©”ì´ì…˜ ì»¤ë¸Œì— ì¶”ê°€
+            widthCurve.AddKey(normalizedY, scale * 1.5f); // base width = 0.1
+        }
+
+        // ë¼ì¸ì— ê³¡ì„  ì ìš©
+        lineRenderer.widthCurve = widthCurve;
     }
 }
