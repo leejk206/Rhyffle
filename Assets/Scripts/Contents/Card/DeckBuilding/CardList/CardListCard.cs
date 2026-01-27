@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using UnityEngine.EventSystems;
 
-public class CardListCard : MonoBehaviour
+public class CardListCard : MonoBehaviour,IPointerClickHandler
 {
     string cardBaseJsonPath = "Data/Json/CardData";
     public DeckCardInfo cardInfo;
@@ -46,6 +46,7 @@ public class CardListCard : MonoBehaviour
     {
         return cardBaseInfo;
     }
+
 
     public void OnPointerClick(PointerEventData eventData)
     {

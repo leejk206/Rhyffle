@@ -32,8 +32,8 @@ public class CardListBoard : MonoBehaviour
         rect = gameObject.GetComponent<RectTransform>();
         scrWid = gameObject.transform.parent.parent.gameObject.GetComponent<RectTransform>().rect.width;
         scrHei = gameObject.transform.parent.parent.gameObject.GetComponent<RectTransform>().rect.height;
-        boardHei = scrHei / 6 * 5;
-        boardWid = scrWid / 10 * 9;
+        boardHei = scrHei / 4 * 3;
+        boardWid = scrWid / 10 * 8;
         boardY = - (scrHei /24 );
         rect.sizeDelta = new Vector2(boardWid, boardHei);
         rect.localPosition = new Vector3(0, boardY, 0);

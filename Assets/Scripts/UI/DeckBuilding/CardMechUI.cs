@@ -31,7 +31,6 @@ public class CardMechUI : MonoBehaviour
         rect = gameObject.GetComponent<RectTransform>();
         float UIWid = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.width;
         float UIHei = gameObject.transform.parent.gameObject.GetComponent<RectTransform>().rect.height;
-        rect.sizeDelta = new Vector2(UIWid, UIHei);
 
         // Board Creation
 

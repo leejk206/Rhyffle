@@ -44,8 +44,6 @@ public class FilterUI : MonoBehaviour
         rect = gameObject.GetComponent<RectTransform>();
         UIWid = canvas.rect.width / 20 * 9;
         UIHei = canvas.rect.height;
-        rect.sizeDelta = new Vector2(UIWid, UIHei);
-        rect.anchoredPosition = new Vector2(-UIWid/2,0);
         Debug.Log(UIWid +"_" + UIHei);
         SetFilterPos();
         gameObject.SetActive(false);
