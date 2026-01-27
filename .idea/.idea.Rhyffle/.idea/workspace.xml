@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="" />
+    <list default="true" id="64e507dd-3936-44c4-b5f9-ee7d304d644e" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rhyffle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/CardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Content/CardManager.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +120,8 @@
       <workItem from="1769445713979" duration="811000" />
       <workItem from="1769449980784" duration="8160000" />
       <workItem from="1769499234622" duration="2064000" />
+      <workItem from="1769502204062" duration="173000" />
+      <workItem from="1769507049590" duration="3287000" />
     </task>
     <servers />
   </component>
