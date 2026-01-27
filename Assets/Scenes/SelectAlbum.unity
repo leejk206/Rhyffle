@@ -867,6 +867,12 @@ MonoBehaviour:
   centerAnchor: {fileID: 1330413867}
   rightAnchor: {fileID: 870680415}
   hiddenAnchor: {fileID: 1408639339}
+  albumPrefabs:
+  - {fileID: 3462202321370556384, guid: c536ca3c731814775a940ddd931e9eb9, type: 3}
+  - {fileID: 3462202321370556384, guid: bf55c6c3629e64403bca87c3bd9863a0, type: 3}
+  - {fileID: 3462202321370556384, guid: 9c207bd0ff7434dbdb7bf6baf68e4e78, type: 3}
+  - {fileID: 3462202321370556384, guid: b58dbfb2a56e840c3a1b03838e3166c3, type: 3}
+  - {fileID: 3462202321370556384, guid: b2e5c861993224acaa16095860a2f894, type: 3}
 --- !u!1 &560883510
 GameObject:
   m_ObjectHideFlags: 0

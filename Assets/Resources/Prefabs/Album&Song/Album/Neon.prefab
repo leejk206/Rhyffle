@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6477053681338239485}
   - component: {fileID: 8130369573295163775}
   m_Layer: 0
-  m_Name: Album
+  m_Name: Neon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4751849602599883212, guid: fdadec22f6aa943a289f8b1cb08bfbab, type: 3}
+  m_Sprite: {fileID: 4733774303714647194, guid: d87ef190d62ff43db927e8fa82f3c935, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2081868159255002479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2803955146950545069, guid: 2c58d9a20d3464a919f8d48f3620c5c2, type: 3}
+  m_Sprite: {fileID: 4733774303714647194, guid: d87ef190d62ff43db927e8fa82f3c935, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
